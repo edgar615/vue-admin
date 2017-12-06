@@ -1,4 +1,4 @@
-# my-project
+# vue-admin
 
 > A Vue.js project
 
