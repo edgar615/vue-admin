@@ -2,9 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 初始化加载的模块
-import MainContent from '@/components/main-content/main-content.vue';
+import Home from '@/components/home/home.vue';
 import EventCreate from '@/components/event/create.vue';
-import Layout from '@/components/Layout.vue';
+import Layout from '@/components/layout/Layout.vue';
 // 异步加载的模块
 var Notfound = function (resolve, reject) {
   require.ensure(['@/components/notfound/notfound.vue'], function () {
@@ -44,7 +44,7 @@ var routes = [{
   },
   children: [{
     path: '', // 默认路由
-    component: MainContent
+    component: Home
   }]
 }, {
   path: '/event',

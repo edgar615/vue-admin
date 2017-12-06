@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-    import RouterBreadcrumb from '@/components/router-breadcrumb/router-breadcrumb.vue'
+    import RouterBreadcrumb from '@/components/layout/router-breadcrumb/router-breadcrumb.vue'
 
     export default {
         data() {

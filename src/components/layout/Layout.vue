@@ -3,17 +3,17 @@
         <Navbar class="app__navbar"></Navbar>
         <el-row class="app__main-box">
             <el-col :span="4" class="app__router-nav-box">
-                <RouterNav></RouterNav>
+                <Sidebar></Sidebar>
             </el-col>
             <el-col :span="20" class="app__main-content-box">
-                <router-view></router-view>
+                <MainContent></MainContent>
             </el-col>
         </el-row>
     </div>
 </template>
 <script>
     import Navbar from '@/components/layout/navbar/navbar.vue';
-    import RouterNav from '@/components/layout/router-nav/router-nav.vue';
+    import Sidebar from '@/components/layout/sidebar/sidebar.vue';
     import MainContent from '@/components/layout/main-content/main-content.vue';
 
     export default {
@@ -23,7 +23,7 @@
         },
         components: {
             Navbar,
-            RouterNav,
+            Sidebar,
             MainContent
         }
     };
@@ -50,13 +50,13 @@
         width: 100%;
     }
     .app__main-box {
-        padding-top: 60px; /* 预留出顶部导航的高度 */
+        padding-top: 0px; /* 预留出顶部导航的高度 */
     }
     .app__router-nav-box {
-        background-color: #3a3f52;
         overflow: auto;
     }
     .app__main-content-box {
         overflow: auto;
+        padding-top: 5px;
     }
 </style>

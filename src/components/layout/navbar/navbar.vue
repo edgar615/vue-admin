@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="4" class="navbar__logo-box">
-            <img src="../../assets/logo.png" alt="" class="navbar__logo">
+            <img src="../../../assets/logo.png" alt="" class="navbar__logo">
         </el-col>
         <el-col :span="20" class="navbar__menu-box">
           <el-menu :default-active="activeIndex" class="navbar__menu" mode="horizontal">
