@@ -3,30 +3,29 @@ import Router from 'vue-router'
 
 // 初始化加载的模块
 import MainContent from '@/components/main-content/main-content.vue';
-import Home from '@/components/home/home.vue';
 import EventCreate from '@/components/event/create.vue';
 import Layout from '@/components/Layout.vue';
 // 异步加载的模块
-var Notfound = function(resolve, reject) {
-  require.ensure(['@/components/notfound/notfound.vue'], function() {
+var Notfound = function (resolve, reject) {
+  require.ensure(['@/components/notfound/notfound.vue'], function () {
     resolve(require('@/components/notfound/notfound.vue'));
   });
 };
 
-var EventList = function(resolve, reject) {
-  require.ensure(['@/components/event/list.vue'], function() {
+var EventList = function (resolve, reject) {
+  require.ensure(['@/components/event/list.vue'], function () {
     resolve(require('@/components/event/list.vue'));
   });
 };
 
-var Recharge = function(resolve, reject) {
-  require.ensure(['@/components/user/recharge.vue'], function() {
+var Recharge = function (resolve, reject) {
+  require.ensure(['@/components/user/recharge.vue'], function () {
     resolve(require('@/components/user/recharge.vue'));
   });
 };
 
-var Account = function(resolve, reject) {
-  require.ensure(['@/components/user/account.vue'], function() {
+var Account = function (resolve, reject) {
+  require.ensure(['@/components/user/account.vue'], function () {
     resolve(require('@/components/user/account.vue'));
   });
 };
@@ -34,21 +33,6 @@ var Account = function(resolve, reject) {
 Vue.use(Router)
 var routes = [{
   path: '/',
-  component: MainContent,
-  meta: {
-    // 直接使用 name 作为菜单的名字, 如果有默认路由的时候会有警告
-    // Named Route '首页' has a default child route.
-    // When navigating to this named route (:to="{name: '首页'"),
-    // the default child route will not be rendered.
-    // Remove the name from this route and use the name of the default child route for named links instead.
-    name: '首页'
-  },
-  children: [{
-    path: '', // 默认路由
-    component: Home
-  }]
-},{
-  path: '/layout',
   component: Layout,
   meta: {
     // 直接使用 name 作为菜单的名字, 如果有默认路由的时候会有警告
@@ -123,6 +107,7 @@ routes.push({
   }
 });
 
-export default new Router({
+export default
+new Router({
   routes: routes
 });

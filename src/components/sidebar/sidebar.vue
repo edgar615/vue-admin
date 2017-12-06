@@ -1,5 +1,6 @@
 <template>
-    <el-menu :default-active="$route.path" :default-openeds="level1" theme="dark" router>
+    <!-- 使用路由生成菜单 -->
+    <el-menu :default-active="$route.path" :default-openeds="curRoute" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
         <template v-for="route in $router.options.routes" v-if="!route.meta.hidden">
             <!-- 如果没有子路由或者只有一个子路由的, 就不生成子菜单 -->
             <el-menu-item v-if="!route.children || route.children.length == 1" :index="route.path" :key="route.path">
@@ -13,14 +14,25 @@
     </el-menu>
 </template>
 <script>
+  function startWith(str, start){
+     var reg=new RegExp("^"+str);
+     return reg.test(str);
+   }
     export default {
         data() {
             return {
             };
         },
         computed: {
-            level1() { // 默认打开所有一级菜单
+            level1() {
+              // 默认打开所有一级菜单
                 return this.$router.options.routes.map(function(route) {
+                    return route.path;
+                });
+            },
+           curRoute() {
+              //根据匹配地址判断打开的一级菜单
+               return this.$route.matched.map(function(route) {
                     return route.path;
                 });
             }
