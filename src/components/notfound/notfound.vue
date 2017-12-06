@@ -1,6 +1,6 @@
 <template>
     <div class="main-content">
-        404
+        <img src="../../assets/pages-404.png">
     </div>
 </template>
 <script>

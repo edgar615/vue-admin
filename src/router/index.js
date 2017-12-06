@@ -18,6 +18,11 @@ var EventList = function (resolve, reject) {
   });
 };
 
+var UserList = function (resolve, reject) {
+  require.ensure(['@/components/user/list.vue'], function () {
+    resolve(require('@/components/user/list.vue'));
+  });
+};
 var Recharge = function (resolve, reject) {
   require.ensure(['@/components/user/recharge.vue'], function () {
     resolve(require('@/components/user/recharge.vue'));
@@ -79,9 +84,15 @@ var routes = [{
   },
   children: [{
     path: '',
-    redirect: 'recharge',
+    redirect: 'list',
     meta: {
       hidden: true
+    }
+  }, {
+    path: 'list',
+    component: UserList,
+    meta: {
+      name: '用户列表'
     }
   }, {
     path: 'recharge',
