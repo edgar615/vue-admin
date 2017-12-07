@@ -1,97 +1,124 @@
 <template>
-    <div>
-       <!--工具条-->
-        <el-col :span="24" class="toolbar">
-         <el-form :inline="true" :model="formFilter" class="demo-form-inline">
-           <el-form-item label="审批人">
-             <el-input v-model="formFilter.user" placeholder="审批人"></el-input>
-           </el-form-item>
-           <el-form-item label="活动区域">
-             <el-select v-model="formFilter.region" placeholder="活动区域">
-               <el-option label="区域一" value="shanghai"></el-option>
-               <el-option label="区域二" value="beijing"></el-option>
-             </el-select>
-           </el-form-item>
-           <el-form-item>
-             <el-button type="primary" @click="onSubmit" icon="el-icon-search">查询</el-button>
-              <el-button @click="onAdd" icon="el-icon-plus">新增</el-button>
-           </el-form-item>
-         </el-form>
-        </el-col>
-        <el-table :data="tableData" border style="width: 100%;" stripe border>
-            <el-table-column prop="date" label="日期" width="180" align="left">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" width="180" align="left">
-            </el-table-column>
-            <el-table-column prop="address" label="地址" align="left">
-            </el-table-column>
-            <el-table-column
-                  fixed="right"
-                  label="操作"
-                  width="100">
-                  <template slot-scope="scope">
-                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-                    <el-button type="text" size="small">编辑</el-button>
-                  </template>
-                </el-table-column>
-          </el-table>
-        <el-pagination
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"
-              :current-page="currentPage4"
-              :page-sizes="[10, 20, 30, 40]"
-              :page-size="100"
-              layout="total, sizes, prev, pager, next, jumper"
-              :total="400">
-            </el-pagination>
+  <section>
+    <b-field>
+      <b-input placeholder="Search..." type="search" icon="magnify">
+      </b-input>
+      <p class="control">
+        <button class="button is-info">Search</button>
+      </p>
+    </b-field>
+    <b-field  position="is-right">
+      <b-input placeholder="Search..." type="search" icon="magnify">
+      </b-input>
+      <p class="control">
+        <button class="button is-info">Search</button>
+      </p>
+    </b-field>
+    <b-field position="is-right">
+      <button class="button field is-danger" @click="checkedRows = []"
+              :disabled="!checkedRows.length">
+        <b-icon icon="close"></b-icon>
+        <span>Clear checked</span>
+      </button>
+    </b-field>
+    <div class="field is-grouped is-grouped-right">
+      <p class="control">
+        <a class="button is-primary">
+          Submit
+        </a>
+      </p>
+      <p class="control">
+        <a class="button is-light">
+          Cancel
+        </a>
+      </p>
     </div>
-</template>
-<script>
-    export default {
-        data() {
-            return {
-                 formFilter: {
-                  user: '',
-                  region: ''
-                },
-                tableData: [{
-                                date: '2016-05-02',
-                                name: '王小虎',
-                                address: '上海市普陀区金沙江路 1518 弄'
-                              }, {
-                                date: '2016-05-04',
-                                name: '王小虎',
-                                address: '上海市普陀区金沙江路 1517 弄'
-                              }, {
-                                date: '2016-05-01',
-                                name: '王小虎',
-                                address: '上海市普陀区金沙江路 1519 弄'
-                              }, {
-                                date: '2016-05-03',
-                                name: '王小虎',
-                                address: '上海市普陀区金沙江路 1516 弄'
-                              }]
-            };
+    <b-table
+      :data="isEmpty ? [] : tableData"
+      :bordered="isBordered"
+      :striped="isStriped"
+      :narrowed="isNarrowed"
+      :hoverable="isHoverable"
+      :loading="isLoading"
+      :mobile-cards="hasMobileCards"
+      :checked-rows.sync="checkedRows"
+      checkable>
 
-        },
-       methods: {
-         onSubmit() {
-           console.log('submit!');
-           console.log(this.formFilter.user);
-            console.log(this.formFilter.region);
-         },
-         onAdd() {
-          console.log('onAdd!');
-        },
-        handleSizeChange(val) {
-          console.log(`每页 ${val} 条`);
-        },
-        handleCurrentChange(val) {
-          console.log(`当前页: ${val}`);
-        },
-        handleClick(row) {
-          console.log(row.name);
-        }
-       }
-    };
+      <template slot-scope="props">
+        <b-table-column label="ID" width="40" numeric>
+          {{ props.row.id }}
+        </b-table-column>
+
+        <b-table-column label="First Name">
+          {{ props.row.first_name }}
+        </b-table-column>
+
+        <b-table-column label="Last Name">
+          {{ props.row.last_name }}
+        </b-table-column>
+
+        <b-table-column label="Date" centered>
+          {{ new Date(props.row.date).toLocaleDateString() }}
+        </b-table-column>
+
+        <b-table-column label="Gender">
+          {{ props.row.gender }}
+        </b-table-column>
+      </template>
+
+      <template slot="empty">
+        <section class="section">
+          <div class="content has-text-grey has-text-centered">
+            <p>
+              <b-icon
+                icon="sentiment_very_dissatisfied"
+                size="is-large">
+              </b-icon>
+            </p>
+            <p>无数据</p>
+          </div>
+        </section>
+      </template>
+    </b-table>
+    <b-pagination
+      :total="total"
+      :current.sync="current"
+      :order="order"
+      :size="size"
+      :simple="isSimple"
+      :per-page="perPage">
+    </b-pagination>
+  </section>
+</template>
+
+<script>
+  export default {
+    data() {
+      const tableData = [
+        { 'id': 1, 'first_name': 'Jesse', 'last_name': 'Simmons', 'date': '2016-10-15 13:43:27', 'gender': 'Male' },
+        { 'id': 2, 'first_name': 'John', 'last_name': 'Jacobs', 'date': '2016-12-15 06:00:53', 'gender': 'Male' },
+        { 'id': 3, 'first_name': 'Tina', 'last_name': 'Gilbert', 'date': '2016-04-26 06:26:28', 'gender': 'Female' },
+        { 'id': 4, 'first_name': 'Clarence', 'last_name': 'Flores', 'date': '2016-04-10 10:28:46', 'gender': 'Male' },
+        { 'id': 5, 'first_name': 'Anne', 'last_name': 'Lee', 'date': '2016-12-06 14:38:38', 'gender': 'Female' }
+      ]
+
+      return {
+        tableData,
+        isEmpty: false,
+        isBordered: true,
+        isStriped: true,
+        isNarrowed: false,
+        isHoverable: true,
+        isLoading: false,
+        hasMobileCards: true,
+        checkedRows: [tableData[1], tableData[3]],
+        total: 2000,
+        current: 10,
+        perPage: 20,
+        order: 'is-centered',
+        size: '',
+        isSimple: false
+      }
+    }
+  }
 </script>
