@@ -6,6 +6,7 @@ import Home from '@/components/home/home.vue';
 import EventCreate from '@/components/event/create.vue';
 import Layout from '@/components/layout/Layout.vue';
 // 异步加载的模块
+// 异步加载的模块
 var Notfound = function (resolve, reject) {
   require.ensure(['@/components/notfound/notfound.vue'], function () {
     resolve(require('@/components/notfound/notfound.vue'));
@@ -118,7 +119,6 @@ routes.push({
   }
 });
 
-export default
-new Router({
+export default new Router({
   routes: routes
 });

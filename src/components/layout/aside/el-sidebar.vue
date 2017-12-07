@@ -14,10 +14,6 @@
     </el-menu>
 </template>
 <script>
-  function startWith(str, start){
-     var reg=new RegExp("^"+str);
-     return reg.test(str);
-   }
     export default {
         data() {
             return {

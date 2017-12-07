@@ -28,3 +28,41 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+scss
+npm install node-sass sass-loader --save-dev
+
+
+```
+ /**
+    * 样式命名规范
+    * - 要么使用 scoped
+    * - 要么所有样式都基于组件的名称来做 BEM 的命名规范
+    *   例如: app.vue 组件的名字为 app
+    *         那么样式应该是 .app {} .app__element {} .app--modifier {}
+    */
+   /*
+    .app,
+    .app__main-box,
+    .app__router-nav-box,
+    .app__main-content-box {
+        height: 100%;
+    }
+    .app__navbar {
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+    }
+    .app__main-box {
+        padding-top: 0px;
+    }
+    .app__router-nav-box {
+        overflow: auto;
+    }
+    .app__main-content-box {
+        overflow: auto;
+        padding-top: 5px;
+    }
+  */
+```
