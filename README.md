@@ -29,9 +29,13 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+```
+npm install --registry=https://registry.npm.taobao.org
+```
 scss
+```
 npm install node-sass sass-loader --save-dev
-
+```
 
 ```
  /**
