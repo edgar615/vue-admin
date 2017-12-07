@@ -36,7 +36,18 @@ scss
 ```
 npm install node-sass sass-loader --save-dev
 ```
-
+```
+会自动安装bulma
+npm install buefy
+```
+```
+npm install bulma
+```
+```
+安装扩展
+npm install bulma-extensions 全部
+npm install bulma-divider 具体的扩展
+```
 ```
  /**
     * 样式命名规范
