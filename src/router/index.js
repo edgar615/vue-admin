@@ -5,7 +5,7 @@ import Router from 'vue-router'
 import Home from '@/components/home/home.vue';
 import EventCreate from '@/components/event/create.vue';
 import Layout from '@/components/layout/Layout.vue';
-// 异步加载的模块
+
 // 异步加载的模块
 var Notfound = function (resolve, reject) {
   require.ensure(['@/components/notfound/notfound.vue'], function () {
@@ -24,6 +24,13 @@ var UserList = function (resolve, reject) {
     resolve(require('@/components/user/list.vue'));
   });
 };
+
+var DevicePage = function (resolve, reject) {
+  require.ensure(['@/components/device/page.vue'], function () {
+    resolve(require('@/components/device/page.vue'));
+  });
+};
+
 var Recharge = function (resolve, reject) {
   require.ensure(['@/components/user/recharge.vue'], function () {
     resolve(require('@/components/user/recharge.vue'));
@@ -106,6 +113,25 @@ var routes = [{
     component: Account,
     meta: {
       name: '账户信息'
+    }
+  }]
+},{
+  path: '/device',
+  component: Layout,
+  meta: {
+    name: '设备'
+  },
+  children: [{
+    path: '',
+    redirect: 'list',
+    meta: {
+      hidden: true
+    }
+  },{
+    path: 'list',
+    component: DevicePage,
+    meta: {
+      name: '设备列表'
     }
   }]
 }];

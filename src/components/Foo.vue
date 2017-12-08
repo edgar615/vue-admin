@@ -6,7 +6,7 @@
 </ul>
 </template>
 <script>
-import { getList } from '@/api/foo'
+import { getList } from '@/api/foo';
 
 export default {
   data() {

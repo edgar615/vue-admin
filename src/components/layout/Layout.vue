@@ -26,26 +26,3 @@
         }
     };
 </script>
-<style lang="scss" scoped>
-   .is-sidebar-menu {
-     padding: 2.5rem;
-     background: #4a4a4a;
-   }
-   .columns.is-fullheight {
-     min-height: calc(100vh - ( 3.25rem - .75rem ) );
-     max-height: calc(100vh - ( 3.25rem - .75rem ) );
-     display: flex;
-     flex-direction: row;
-     justify-content: stretch;
-     padding-top: 1.25rem;
-   }
-   .columns.is-fullheight .column {
-     overflow-y: auto;
-   }
-
-   .is-main-content {
-     padding-left: 2.25rem;
-     /*background: #dbdbdb;*/
-   }
-
-</style>

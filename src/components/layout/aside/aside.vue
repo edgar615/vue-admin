@@ -40,8 +40,4 @@
         }
     };
 </script>
-<style lang="scss" scoped>
-  .is-sidebar-menu li a {
-    color: white;
-  }
-</style>
+
