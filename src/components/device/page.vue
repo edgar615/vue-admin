@@ -2,10 +2,10 @@
   <section>
     <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
     <!--如果一行放不下，用多个section-->
-    <section class="mb-1">
+    <div class="mb-1">
       <b-field grouped group-multiline>
-        <b-input v-model="query.macAddress" placeholder="MAC地址"></b-input>
-        <b-select placeholder="设备类型" v-model="query.type">
+        <b-input v-model="filters.macAddress" placeholder="MAC地址"></b-input>
+        <b-select placeholder="设备类型" v-model="filters.type">
           <option value="">设备类型</option>
           <option
             v-for="option in deviceTypes"
@@ -15,41 +15,48 @@
           </option>
         </b-select>
         <b-field>
-          <b-radio-button v-model="query.isOnline"
+          <b-radio-button v-model="filters.isOnline"
                           native-value="true"
                           type="is-success">
             <b-icon icon="link"></b-icon>
             <span>在线</span>
           </b-radio-button>
 
-          <b-radio-button v-model="query.isOnline"
+          <b-radio-button v-model="filters.isOnline"
                           native-value="false"
                           type="is-warning">
             <b-icon icon="unlink"></b-icon>
             <span>离线</span>
           </b-radio-button>
 
-          <b-radio-button v-model="query.isOnline"
+          <b-radio-button v-model="filters.isOnline"
                           native-value="">
             全部
           </b-radio-button>
         </b-field>
         <p class="control ml-1">
-          <button class="button is-primary">Search</button>
-        </p>
-      </b-field>
-    </section>
-
-    <section class="mb-1 is-right">
-      <b-field grouped group-multiline position="is-right">
-        <p class="control ml-1">
-          <button class="button">
-            <b-icon icon="plus"></b-icon>
-            <span>新增</span>
+          <button class="button is-primary" @click="onQuery">
+            <b-icon icon="search"></b-icon>
+            <span>查询</span>
           </button>
         </p>
       </b-field>
-    </section>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="buttons">
+        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length">
+          <b-icon icon="trash"></b-icon>
+          <span>删除</span>
+        </span>
+        <span class="button is-purple">
+           <b-icon icon="plus"></b-icon>
+          <span>新增</span>
+        </span>
+        <span class="button is-danger">Cancel</span>
+      </div>
+    </div>
+
     <!--buefy的表格组件，具体用法查阅文档-->
     <b-table
       bordered
@@ -69,7 +76,10 @@
       backend-sorting
       :default-sort-direction="defaultSortOrder"
       :default-sort="[sortField, sortOrder]"
-      @sort="onSort">
+      @sort="onSort"
+
+      :checked-rows.sync="checkedRows"
+      checkable>
 
       <template slot-scope="props">
 
@@ -85,10 +95,20 @@
           {{ typeName(props.row.type) }}
         </b-table-column>
 
-        <b-table-column field="username" label="拥有者" centered>
+        <b-table-column field="username" label="所有人" centered>
           {{ props.row.username }}
         </b-table-column>
 
+        <b-table-column field="isOnline" label="在线" centered>
+          <span class="tag" :class="onlineClass(props.row.isOnline)">{{ onlineName(props.row.isOnline) }}</span>
+        </b-table-column>
+
+        <b-table-column label="操作">
+          <button class="button is-danger">
+            <b-icon icon="trash"></b-icon>
+            <span>删除</span>
+          </button>
+        </b-table-column>
       </template>
     </b-table>
   </section>
@@ -100,13 +120,14 @@
   export default {
     data() {
       return {
-        query: {
+        filters: {
         },
         pagination: {},
         loading: false,
         sortField: 'deviceId',
         sortOrder: 'desc',
         defaultSortOrder: 'desc',
+        checkedRows: [],
         deviceTypes : [
           {value : 1,text: "T1"},
           {value : 2,text: "猫眼"},
@@ -141,20 +162,43 @@
       this.loadAsyncData({page:this.pagination.page})
     },
     /*
+     * 批量删除
+     */
+     onDeleteCheckedRows() {
+      var checkedIds = this.checkedRows.map(function(item) {
+        return item.deviceId;
+      })
+      console.log(checkedIds);
+    },
+    /*
+     * 查询
+     */
+    onQuery() {
+      console.log(this.filters);
+//      this.filters.page = 1;
+      //Object.assign(this.filters, {page:1})filters是通过get/set方法处理，这个方法不能正常使用
+      this.loadAsyncData(Object.assign(this.filters, {page:1}));
+    },
+    /*
      * Type style in relation to the value
      */
-    type(value) {
-      if (!value) {
-        return "";
+    onlineClass(value) {
+      if (value == undefined) {
+        return "is-black";
       }
-      const number = parseFloat(value)
-      if (number < 6) {
-        return 'is-danger'
-      } else if (number >= 6 && number < 8) {
-        return 'is-warning'
-      } else if (number >= 8) {
-        return 'is-success'
+      if (value) {
+        return "is-success";
       }
+      return "is-danger";
+    },
+    onlineName(value) {
+      if (value == undefined) {
+        return "未知";
+      }
+      if (value) {
+        return "在线";
+      }
+      return "离线";
     },
     typeName(value) {
       if (value == 1) {
