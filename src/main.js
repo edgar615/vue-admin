@@ -7,6 +7,7 @@ import store from './store'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import '@/styles/style.css'
+//import '@/styles/vars.scss' //自定义风格
 
 Vue.config.productionTip = false
 

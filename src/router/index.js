@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Home from '@/components/home/home.vue';
 import EventCreate from '@/components/event/create.vue';
 import Layout from '@/components/layout/Layout.vue';
+import Login from '@/views/login/login.vue'
 
 // 异步加载的模块
 var Notfound = function (resolve, reject) {
@@ -26,8 +27,8 @@ var UserList = function (resolve, reject) {
 };
 
 var DevicePage = function (resolve, reject) {
-  require.ensure(['@/components/device/page.vue'], function () {
-    resolve(require('@/components/device/page.vue'));
+  require.ensure(['@/views/device/page.vue'], function () {
+    resolve(require('@/views/device/page.vue'));
   });
 };
 
@@ -60,30 +61,11 @@ var routes = [{
     component: Home
   }]
 }, {
-  path: '/event',
-  component: Layout,
+  path: '/login',
+  component: Login,
   meta: {
-    name: '活动'
-  },
-  children: [{
-    path: '', // 默认路径
-    redirect: 'create',
-    meta: {
-      hidden: true // 隐藏的路由不会在路由菜单中显示出来
-    }
-  }, {
-    path: 'create',
-    component: EventCreate,
-    meta: {
-      name: '创建'
-    }
-  }, {
-    path: 'list',
-    component: EventList,
-    meta: {
-      name: '管理'
-    }
-  }]
+    name: '登录'
+  }
 }, {
   path: '/user',
   component: Layout,
