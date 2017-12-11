@@ -8,7 +8,7 @@
         <b-select placeholder="设备类型" v-model="filters.type">
           <option value="">设备类型</option>
           <option
-            v-for="option in deviceTypes"
+            v-for="option in dictList('deviceType')"
             :value="option.value"
             :key="option.value">
             {{ option.text }}
@@ -64,7 +64,7 @@
       hoverable
       mobile-cards
 
-      :data="pagination.records"
+      :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
       :loading="loading"
       paginated
       backend-pagination
@@ -92,7 +92,7 @@
         </b-table-column>
 
         <b-table-column field="type" label="类型" numeric centered >
-          {{ typeName(props.row.type) }}
+          {{ dictText("deviceType",props.row.type) }}
         </b-table-column>
 
         <b-table-column field="username" label="所有人" centered>
@@ -100,7 +100,7 @@
         </b-table-column>
 
         <b-table-column field="isOnline" label="在线" centered>
-          <span class="tag" :class="onlineClass(props.row.isOnline)">{{ onlineName(props.row.isOnline) }}</span>
+          <span class="tag" :class="onlineClass(props.row.isOnline)">{{ dictText("isOnline",props.row.isOnline) }}</span>
         </b-table-column>
 
         <b-table-column label="操作">
@@ -109,6 +109,19 @@
             <span>删除</span>
           </button>
         </b-table-column>
+      </template>
+      <template slot="empty">
+        <section class="section">
+          <div class="content has-text-grey has-text-centered">
+            <p>
+              <b-icon
+                icon="frown-o"
+                size="is-large">
+              </b-icon>
+            </p>
+            <p>无数据.</p>
+          </div>
+        </section>
       </template>
     </b-table>
   </section>
@@ -127,13 +140,7 @@
         sortField: 'deviceId',
         sortOrder: 'desc',
         defaultSortOrder: 'desc',
-        checkedRows: [],
-        deviceTypes : [
-          {value : 1,text: "T1"},
-          {value : 2,text: "猫眼"},
-          {value : 3,text: "F1"},
-          {value : 4,text: "201"}
-        ]
+        checkedRows: []
       }
     },
     methods: {
@@ -141,6 +148,16 @@
        * Load async data
        */
       loadAsyncData(params) {
+        if (params == undefined) {
+          params = {};
+        }
+        //如果表格没有拍下，不需要这些操作
+        var sort = this.sortField;
+        if (this.sortOrder == 'desc') {
+          sort = "-" + sort;
+        }
+        params.sort = sort;
+        params = Object.assign(this.filters, params);
         this.loading = true
         devicePage(params).then(response => {
           this.pagination = response.data;
@@ -151,15 +168,17 @@
      * Handle page-change event
      */
     onPageChange(page) {
-      this.loadAsyncData({page:page});
+      if (this.pagination.page != page) {
+        this.loadAsyncData({page:page});
+      }
     },
     /*
      * Handle sort event
      */
     onSort(field, order) {
-      this.sortField = field
-      this.sortOrder = order
-      this.loadAsyncData({page:this.pagination.page})
+      this.sortField = field;
+      this.sortOrder = order;
+      this.loadAsyncData()
     },
     /*
      * 批量删除
@@ -168,16 +187,14 @@
       var checkedIds = this.checkedRows.map(function(item) {
         return item.deviceId;
       })
-      console.log(checkedIds);
     },
     /*
      * 查询
      */
     onQuery() {
-      console.log(this.filters);
 //      this.filters.page = 1;
       //Object.assign(this.filters, {page:1})filters是通过get/set方法处理，这个方法不能正常使用
-      this.loadAsyncData(Object.assign(this.filters, {page:1}));
+      this.loadAsyncData();
     },
     /*
      * Type style in relation to the value
@@ -189,16 +206,13 @@
       if (value) {
         return "is-success";
       }
-      return "is-danger";
+      return "is-dark";
     },
-    onlineName(value) {
-      if (value == undefined) {
-        return "未知";
-      }
-      if (value) {
-        return "在线";
-      }
-      return "离线";
+    dictText(name, value) {
+      return this.$store.getters.dictText(name, value);
+    },
+    dictList(name) {
+      return this.$store.getters.dictList(name);
     },
     typeName(value) {
       if (value == 1) {
@@ -223,7 +237,7 @@
     */
   },
   mounted() {
-    this.loadAsyncData({page:1})
+    this.loadAsyncData();
   }
   }
 </script>
