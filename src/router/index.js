@@ -8,12 +8,7 @@ import Layout from '@/components/layout/Layout.vue';
 import Login from '@/views/login/login.vue'
 
 // 异步加载的模块
-var Notfound = function (resolve, reject) {
-  require.ensure(['@/components/notfound/notfound.vue'], function () {
-    resolve(require('@/components/notfound/notfound.vue'));
-  });
-};
-
+var Notfound =  resolve => require(['@/components/notfound/notfound.vue'], resolve);
 var EventList = function (resolve, reject) {
   require.ensure(['@/components/event/list.vue'], function () {
     resolve(require('@/components/event/list.vue'));
@@ -58,7 +53,10 @@ var routes = [{
   },
   children: [{
     path: '', // 默认路由
-    component: Home
+    component: Home,
+    meta: {
+      hidden: true
+    }
   }]
 }, {
   path: '/login',
@@ -104,21 +102,22 @@ var routes = [{
     name: '设备'
   },
   children: [{
-    path: '',
-    redirect: 'list',
-    meta: {
-      hidden: true
-    }
-  },{
     path: 'list',
     component: DevicePage,
     meta: {
       name: '设备列表'
     }
+  },{
+    path: '',
+    redirect: 'list',
+    meta: {
+      hidden: true
+    }
   }]
 }];
 
-// 在最后添加处理 404 路由
+// 在最后添加处理 404 路由，由于是动态加载，所以要改在动态加载之后添加
+/*
 routes.push({
   path: '*', // 匹配未找到路由的情况, 类似 404 页面
   component: Notfound,
@@ -126,7 +125,7 @@ routes.push({
     hidden: true
   }
 });
-
+*/
 export default new Router({
   routes: routes
 });

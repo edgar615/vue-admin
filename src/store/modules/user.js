@@ -1,5 +1,4 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { getInfo } from '@/api/login'
 
 const user = {
   state: {
@@ -33,21 +32,6 @@ const user = {
 //Action 可以包含任意异步操作。mutations是同步
 //通过dispatch分发store.dispatch('increment')
 actions: {
-    // 登录
-    Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
-      return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          const data = response.data
-          setToken(data.token)
-          commit('SET_TOKEN', data.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
-      })
-    },
-
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {

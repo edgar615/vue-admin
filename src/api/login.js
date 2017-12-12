@@ -19,6 +19,10 @@ export function login(username, password) {
   });
 }
 
+export function getPermission() {
+  return request.get('/v1/auth/systems')
+}
+
 export function getInfo(token) {
   return request({
     url: '/v1/auth/user/info',

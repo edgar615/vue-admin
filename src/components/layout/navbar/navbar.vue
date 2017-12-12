@@ -16,32 +16,16 @@
         <a class="navbar-item" href="https://bulma.io/">
           Home
         </a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="/documentation/overview/start/">
-            Docs
+        <a class="navbar-item" href="https://bulma.io/"  v-for="system in systems">
+          {{system.name}}
+        </a>
+        <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
+          <a class="navbar-link">
+            更多
           </a>
           <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="/documentation/overview/start/">
-              Overview
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/modifiers/syntax/">
-              Modifiers
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-              Columns
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-              Layout
-            </a>
-            <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-              Form
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-              Elements
-            </a>
-            <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-              Components
+            <a class="navbar-item" href="/documentation/overview/start/"  v-for="system in groupSystems">
+              {{system.name}}
             </a>
           </div>
         </div>
@@ -78,7 +62,25 @@
     export default {
         data() {
             return {
+              systems: [],
+              groupSystems: []
             };
+        },
+        mounted() {
+          var systemArray = [];
+          var groupSystem = [];
+          this.$store.getters.systems.forEach(function(item, index, input) {
+            if (index < 5) {
+              systemArray.push(item);
+            } else {
+              groupSystem.push(item);
+            }
+          });
+          this.systems = systemArray;
+          this.groupSystems = groupSystem;
+          if (systemArray.length > 0) {
+            this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
+          }
         }
     };
 </script>

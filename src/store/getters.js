@@ -1,5 +1,7 @@
 const getters = {
   token: state => state.user.token,
+  activeSystem: state => state.permission.activeSystem,
+  systems: state => state.permission.systems,
   dictList: (state) => (dictName, dictValue) => {
   if (state.dict.data[dictName] == undefined) {
     return [];
@@ -18,6 +20,18 @@ const getters = {
       }
     });
     return dictText;
+  },
+  menuList: (state) => () => {
+  var menus = [];
+  state.permission.systems.forEach(function(item, index, input) {
+    const systemIdentifer = state.permission.activeSystem
+    if (item.sysIdentifier == systemIdentifer) {
+      if (item.menus) {
+        menus = item.menus;
+      }
+    }
+  });
+    return menus;
   }
 }
 export default getters

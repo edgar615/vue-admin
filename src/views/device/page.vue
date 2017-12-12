@@ -53,7 +53,6 @@
            <b-icon icon="plus"></b-icon>
           <span>新增</span>
         </span>
-        <span class="button is-danger">Cancel</span>
       </div>
     </div>
 
