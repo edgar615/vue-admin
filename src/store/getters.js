@@ -1,4 +1,5 @@
 const getters = {
+  token: state => state.user.token,
   dictList: (state) => (dictName, dictValue) => {
   if (state.dict.data[dictName] == undefined) {
     return [];

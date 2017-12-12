@@ -53,9 +53,11 @@
         const vm = this
         vm.loading = true
         login(this.username, this.password).then(response => {
-        console.log(response.data);
         vm.loading = false;
-      }) .catch(function (error) {
+        //跳转首页
+        this.$store.commit('SET_TOKEN', response.data.token)
+        this.$router.push({ path: '/' })
+      }).catch(function (error) {
         var msg = "登录失败!";
         vm.loading = false;
         if (error.response) {
