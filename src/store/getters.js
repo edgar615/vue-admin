@@ -21,6 +21,15 @@ const getters = {
     });
     return dictText;
   },
+  systemList: (state) => () => {
+    const systemArray = [];
+    state.permission.systems.forEach(function(item, index, input) {
+      if (item.menus && item.menus.length > 0) {
+        systemArray.push(item);
+      }
+    });
+   return systemArray;
+  },
   menuList: (state) => () => {
   var menus = [];
   state.permission.systems.forEach(function(item, index, input) {

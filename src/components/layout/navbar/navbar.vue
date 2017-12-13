@@ -62,24 +62,30 @@
     export default {
         data() {
             return {
-              systems: [],
-              groupSystems: []
             };
         },
-        mounted() {
-          var systemArray = [];
-          var groupSystem = [];
-          this.$store.getters.systems.forEach(function(item, index, input) {
-            if (index < 5) {
-              systemArray.push(item);
-            } else {
-              groupSystem.push(item);
+        computed: {
+          //仅显示有菜单的子系统
+          groupSystems() {
+            var groupSystem = [];
+            this.$store.getters.systemList().forEach(function(item, index, input) {
+              if (index >= 5) {
+                groupSystem.push(item);
+              }
+            });
+            return groupSystem;
+          },
+          systems() {
+            var systemArray = [];
+            this.$store.getters.systemList().forEach(function(item, index, input) {
+              if (index < 5) {
+                systemArray.push(item);
+              }
+            });
+            if (systemArray.length > 0) {
+              this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
             }
-          });
-          this.systems = systemArray;
-          this.groupSystems = groupSystem;
-          if (systemArray.length > 0) {
-            this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
+            return systemArray;
           }
         }
     };

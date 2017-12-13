@@ -19,7 +19,6 @@ export default {
           })
         }
       })
-    console.log(routes);
     routes.push({
       path: '*', // 匹配未找到路由的情况, 类似 404 页面
       component: resolve => require(['@/components/notfound/notfound.vue'], resolve),

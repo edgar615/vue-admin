@@ -20,7 +20,9 @@ export function login(username, password) {
 }
 
 export function getPermission() {
-  return request.get('/v1/auth/systems')
+  return request.get('/v1/auth/systems', {
+    params:{type : 2}
+  })
 }
 
 export function getInfo(token) {
