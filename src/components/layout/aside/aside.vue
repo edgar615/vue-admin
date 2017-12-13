@@ -36,12 +36,6 @@
             curSystem() {
               return this.$store.getters.activeSystem;
             },
-            level1() {
-              // 默认打开所有一级菜单
-                return this.$router.options.routes.map(function(route) {
-                    return route.path;
-                });
-            },
            curRoute() {
               //根据匹配地址判断打开的一级菜单
                return this.$route.matched.map(function(route) {

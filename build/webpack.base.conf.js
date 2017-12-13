@@ -42,7 +42,8 @@ module.exports = {
   externals: {
   // 指定别名
     'vue':'Vue',
-    'vue-router':'VueRouter'
+    'vue-router':'VueRouter',
+    'vuex':'Vuex'
   },
   module: {
     rules: [

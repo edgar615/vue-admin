@@ -5,12 +5,12 @@
 </template>
 
 <script>
+  import lazyLoading from '@/router/lazyLoading'
 export default {
   name: 'app',
   created() {
-    console.log("created");
-    this.$store.dispatch('GetPermission').then(res => {
-      var routes = [];
+      this.$store.dispatch('GetPermission').then(res => {
+        var routes = [];
       res.data.forEach(function(item, index, input) {
         //从system中提取menu
         if (item.menus) {
@@ -19,28 +19,20 @@ export default {
           })
         }
       })
-    routes.push({
-      path: '*', // 匹配未找到路由的情况, 类似 404 页面
-      component: resolve => require(['@/components/notfound/notfound.vue'], resolve),
-      meta: {
+      console.log(routes)
+      routes.push({
+          path: '*', // 匹配未找到路由的情况, 类似 404 页面
+          component: resolve => require(['@/components/notfound/notfound.vue'], resolve),
+        meta: {
         hidden: true
       }
     });
-      this.$router.addRoutes(routes) // 动态添加可访问路由表
+    this.$router.addRoutes(routes) // 动态添加可访问路由表
     //next(to.path); // hack方法 确保addRoutes已完成
-    }).catch(err => {
-      console.log(err);
-    });
-    //this.$router.push({ path: '/' })
-    /*
-    let isLogin = isLogin() ;
-    if (isLogin) {
-      if (this.$route.path != '/login') {
-        this.setAdminMenus();
-      }
-    } else {
-      this.$router.replace('/login');
-    }*/
+  }).catch(err => {
+    console.log(err);
+  });
+
   }
 }
 
@@ -50,16 +42,16 @@ export default {
  * @return:fmRouters [Array]  格式化后的addRoutes()可用的参数
  **/
 function rFormat(menu) {
+  var comp = menu.path;
+  if (comp.substring(0,1) == "/") {
+    comp = comp.substring(1);
+  }
   var router = {
-    path : "/" + menu.sysMenuId,
-    component : resolve => require(['@/components/layout/Layout.vue'], resolve),
+    path : menu.path,
+    component: lazyLoading(comp, menu.parentId == -1),
     meta: {
       name : menu.name
-    },
-  children: [{
-    path: '', // 默认路由
-    component: resolve => require(['@/components/home/home.vue'], resolve)
-  }]
+    }
   }
   return router;
 }

@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+//import Vue from 'vue'
+//import Vuex from 'vuex'
 import dict from './modules/dict'
 import user from './modules/user'
 import permission from './modules/permission'

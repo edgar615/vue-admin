@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+//import Vue from 'vue'
+//import Router from 'vue-router'
 
 // 初始化加载的模块
-import Home from '@/components/home/home.vue';
-import EventCreate from '@/components/event/create.vue';
-import Layout from '@/components/layout/Layout.vue';
+import Home from '@/components/home/home.vue'
+import EventCreate from '@/components/event/create.vue'
+import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
 
 // 异步加载的模块
@@ -21,11 +21,7 @@ var UserList = function (resolve, reject) {
   });
 };
 
-var DevicePage = function (resolve, reject) {
-  require.ensure(['@/views/device/page.vue'], function () {
-    resolve(require('@/views/device/page.vue'));
-  });
-};
+var DevicePage = () => import('@/views/device/page.vue');
 
 var Recharge = function (resolve, reject) {
   require.ensure(['@/components/user/recharge.vue'], function () {
@@ -39,7 +35,7 @@ var Account = function (resolve, reject) {
   });
 };
 
-Vue.use(Router)
+Vue.use(VueRouter)
 var routes = [{
   path: '/',
   component: Layout,
@@ -126,6 +122,6 @@ routes.push({
   }
 });
 */
-export default new Router({
+export default new VueRouter({
   routes: routes
 });
