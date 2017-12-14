@@ -38,7 +38,7 @@
 
 <script>
   import { login } from '@/api/login';
-
+  import dynamicRouter from '@/router/dynamicRouter'
   export default {
     data() {
       return {
@@ -56,6 +56,7 @@
         vm.loading = false;
         //跳转首页
         this.$store.commit('SET_TOKEN', response.data.token)
+        dynamicRouter(response.data.token, this.$router, this.$store)
         this.$router.push({ path: '/' })
       }).catch(function (error) {
         var msg = "登录失败!";

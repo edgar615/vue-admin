@@ -43,6 +43,21 @@ Vue.use(Buefy, {
  }
  */
 /* eslint-disable no-new */
+
+router.beforeEach((to, from, next) => {
+  if (to.path == "/login") {
+  next()
+} else {
+  if (store.getters.token) {
+    next()
+  } else {
+    next("/login")
+  }
+
+}
+
+})
+
 new Vue({
   el: '#app',
   router,

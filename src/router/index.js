@@ -122,6 +122,8 @@ routes.push({
   }
 });
 */
-export default new VueRouter({
+const router = new VueRouter({
   routes: routes
-});
+})
+
+export default router;
