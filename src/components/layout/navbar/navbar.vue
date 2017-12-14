@@ -16,7 +16,7 @@
         <a class="navbar-item" href="https://bulma.io/">
           Home
         </a>
-        <a class="navbar-item" href="https://bulma.io/"  v-for="system in systems">
+        <a class="navbar-item" href="#"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
           {{system.name}}
         </a>
         <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
@@ -24,7 +24,7 @@
             更多
           </a>
           <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="/documentation/overview/start/"  v-for="system in groupSystems">
+            <a class="navbar-item" href="#"  v-for="system in groupSystems" @click="selectSystem(system.sysIdentifier)">
               {{system.name}}
             </a>
           </div>
@@ -32,26 +32,18 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="field is-grouped">
-            <p class="control">
-              <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://localhost:4000" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&amp;hashtags=bulmaio&amp;url=http://localhost:4000&amp;via=jgthms">
-              <span class="icon">
-                <i class="fa fa-twitter"></i>
-              </span>
-              <span>
-                Tweet
-              </span>
-              </a>
-            </p>
-            <p class="control">
-              <a class="button is-primary" href="https://github.com/jgthms/bulma/archive/0.5.1.zip">
-              <span class="icon">
-                <i class="fa fa-download"></i>
-              </span>
-                <span>Download</span>
-              </a>
-            </p>
+        <div class="navbar-item is-hoverable">
+          <a class="navbar-link is-primary">
+            <span>{{user.username}}</span>
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="#" >
+              个人资料
+            </a>
+            <a class="navbar-item" href="#" @click="logout">
+              <b-icon icon="sign-out"></b-icon>
+              <span>退出</span>
+            </a>
           </div>
         </div>
       </div>
@@ -63,6 +55,18 @@
         data() {
             return {
             };
+        },
+        methods: {
+          logout() {
+            this.$store.dispatch('Logout').then(res => {
+              this.$router.push("/login");
+              }).catch(err => {
+                console.log(err);
+            });
+          },
+          selectSystem(sysIdentifier) {
+              this.$store.commit('ACTIVE_SYSTEM', sysIdentifier)
+          }
         },
         computed: {
           //仅显示有菜单的子系统
@@ -86,6 +90,9 @@
               this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
             }
             return systemArray;
+          },
+          user() {
+            return this.$store.getters.user
           }
         }
     };

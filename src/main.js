@@ -46,16 +46,14 @@ Vue.use(Buefy, {
 
 router.beforeEach((to, from, next) => {
   if (to.path == "/login") {
-  next()
-} else {
-  if (store.getters.token) {
     next()
   } else {
-    next("/login")
+    if (store.getters.token) {
+      next()
+    } else {
+      next("/login")
+    }
   }
-
-}
-
 })
 
 new Vue({

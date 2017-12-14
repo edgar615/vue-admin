@@ -3,7 +3,7 @@
   <aside class="menu">
     <!-- 使用路由生成菜单 -->
     <p class="menu-label">
-      Dashboard
+      {{curSystem}}
     </p>
     <ul class="menu-list">
       <template v-for="menu in asideMenus" v-if="!menu.hidden">

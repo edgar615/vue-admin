@@ -3,12 +3,12 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">登录</h3>
-          <p class="subtitle has-text-grey">OM管理平台</p>
+          <h3 class="title has-text-grey">OM管理平台</h3>
+          <p class="subtitle has-text-grey">登录</p>
           <div class="box">
-            <figure class="avatar">
+            <!--<figure class="avatar">
               <img src="https://placehold.it/128x128">
-            </figure>
+            </figure>-->
             <form>
               <div class="field">
                 <div class="control">
@@ -59,19 +59,8 @@
         dynamicRouter(response.data.token, this.$router, this.$store)
         this.$router.push({ path: '/' })
       }).catch(function (error) {
-        var msg = "登录失败!";
         vm.loading = false;
-        if (error.response) {
-          msg += "错误：" + error.response.data.code
-        }
-        vm.$snackbar.open({
-          message: msg,
-          type: 'is-warning',
-          actionText: null,
-          duration: 1000,
-          queue: false
-        })
-      });
+      })
     }
    }
   }
@@ -91,7 +80,7 @@
     box-shadow: none;
   }
   .box {
-    margin-top: 5rem;
+    margin-top: 1rem;
   }
   .avatar {
     margin-top: -70px;

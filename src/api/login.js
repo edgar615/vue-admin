@@ -25,11 +25,9 @@ export function getPermission() {
   })
 }
 
-export function getInfo(token) {
-  return request({
-    url: '/v1/auth/user/info',
-    method: 'get',
-    params: { token }
+export function getInfo() {
+  return request.get('/v1/auth/info', {
+    params:{type : 2}
   })
 }
 

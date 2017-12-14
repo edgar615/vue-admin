@@ -43,7 +43,8 @@ module.exports = {
   // 指定别名
     'vue':'Vue',
     'vue-router':'VueRouter',
-    'vuex':'Vuex'
+    'vuex':'Vuex',
+    'toastr.js':'toastr'
   },
   module: {
     rules: [

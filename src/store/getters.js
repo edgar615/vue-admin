@@ -1,5 +1,6 @@
 const getters = {
   token: state => state.user.token,
+  user: state => state.permission.user,
   activeSystem: state => state.permission.activeSystem,
   systems: state => state.permission.systems,
   dictList: (state) => (dictName, dictValue) => {
