@@ -44,7 +44,8 @@ module.exports = {
     'vue':'Vue',
     'vue-router':'VueRouter',
     'vuex':'Vuex',
-    'toastr.js':'toastr'
+    'vue-i18n': "VueI18n",
+    'vee-validate':'VeeValidate'
   },
   module: {
     rules: [

@@ -11,17 +11,26 @@
             </figure>-->
             <form>
               <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="email" placeholder="用户名" autofocus="" v-model="username">
+                <div class="control" :class="{'has-icons-right': errors.has('username') }" >
+                  <input name="username" v-validate="'required|alpha_dash'" class="is-large input" :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
+                         data-vv-as="用户名" v-model="username">
+                    <span class="icon is-small is-right has-text-danger" v-show="errors.has('username')">
+                      <i class="fa fa-warning"></i>
+                    </span>
                 </div>
+                <p v-show="errors.has('username')" class="help is-danger has-text-left is-size-6">{{ errors.first('username') }}</p>
               </div>
-
               <div class="field">
-                <div class="control">
-                  <input class="input is-large" type="password" placeholder="密码" v-model="password">
+                <div class="control" :class="{'has-icons-right': errors.has('password') }" >
+                  <input name="password" v-validate="'required|max:16'" class="is-large input" :class="{'is-danger': errors.has('password') }" type="password" placeholder="密码"
+                         data-vv-as="密码" v-model="password">
+                  <span class="icon is-small is-right has-text-danger" v-show="errors.has('password')">
+                      <i class="fa fa-warning"></i>
+                    </span>
                 </div>
+                <p v-show="errors.has('password')" class="help is-danger has-text-left is-size-6">{{ errors.first('password') }}</p>
               </div>
-              <a class="button is-block is-info is-large" @click="login">登录</a>
+              <a class="button is-block is-info is-large" @click="login" :disabled='errors.any()'>登录</a>
             </form>
           </div>
           <p class="has-text-grey">
@@ -46,21 +55,25 @@
       }
     },
     methods: {
-      /*
-       * Load async data
-       */
       login() {
         const vm = this
-        vm.loading = true
-        login(this.username, this.password).then(response => {
-        vm.loading = false;
-        //跳转首页
-        this.$store.commit('SET_TOKEN', response.data.token)
-        dynamicRouter(response.data.token, this.$router, this.$store)
-        this.$router.push({ path: '/' })
-      }).catch(function (error) {
-        vm.loading = false;
-      })
+        this.$validator.validateAll().then((result) => {
+          if (result) {
+            vm.loading = true
+            login(this.username, this.password).then(response => {
+              vm.loading = false;
+            //跳转首页
+            this.$store.commit('SET_TOKEN', response.data.token)
+            dynamicRouter(response.data.token, this.$router, this.$store)
+            this.$router.push({ path: '/' })
+          }).catch(function (error) {
+            vm.loading = false;
+          })
+          return;
+        }
+      });
+
+
     }
    }
   }

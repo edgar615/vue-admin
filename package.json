@@ -14,7 +14,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "0.17.1"
+    "axios": "0.17.1",
+    "vue-form": "^4.7.0",
+    "vue-validator": "^3.0.0-alpha.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

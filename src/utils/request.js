@@ -24,7 +24,7 @@ service.interceptors.request.use(config => {
 // respone拦截器
 service.interceptors.response.use(
   response => {
-  return response.data
+  return response
   },  error => {
     var msg = "登录失败!";
     if (error.response) {
