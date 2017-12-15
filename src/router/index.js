@@ -3,37 +3,13 @@
 
 // 初始化加载的模块
 import Home from '@/components/home/home.vue'
-import EventCreate from '@/components/event/create.vue'
+import Notfound from '@/components/error/page-404.vue'
+import ErrorPage from '@/components/error/page-500.vue'
 import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
 
 // 异步加载的模块
-var Notfound =  resolve => require(['@/components/notfound/notfound.vue'], resolve);
-var EventList = function (resolve, reject) {
-  require.ensure(['@/components/event/list.vue'], function () {
-    resolve(require('@/components/event/list.vue'));
-  });
-};
-
-var UserList = function (resolve, reject) {
-  require.ensure(['@/components/user/list.vue'], function () {
-    resolve(require('@/components/user/list.vue'));
-  });
-};
-
-var DevicePage = () => import('@/views/device/page.vue');
-
-var Recharge = function (resolve, reject) {
-  require.ensure(['@/components/user/recharge.vue'], function () {
-    resolve(require('@/components/user/recharge.vue'));
-  });
-};
-
-var Account = function (resolve, reject) {
-  require.ensure(['@/components/user/account.vue'], function () {
-    resolve(require('@/components/user/account.vue'));
-  });
-};
+//var Notfound =  resolve => require(['@/components/notfound/page-404.vue'], resolve);
 
 Vue.use(VueRouter)
 var routes = [{
@@ -61,55 +37,11 @@ var routes = [{
     name: '登录'
   }
 }, {
-  path: '/user',
-  component: Layout,
+  path: '/500',
+  component: ErrorPage,
   meta: {
-    name: '账户'
-  },
-  children: [{
-    path: '',
-    redirect: 'list',
-    meta: {
-      hidden: true
-    }
-  }, {
-    path: 'list',
-    component: UserList,
-    meta: {
-      name: '用户列表'
-    }
-  }, {
-    path: 'recharge',
-    component: Recharge,
-    meta: {
-      name: '账户充值'
-    }
-  }, {
-    path: 'account',
-    component: Account,
-    meta: {
-      name: '账户信息'
-    }
-  }]
-},{
-  path: '/device',
-  component: Layout,
-  meta: {
-    name: '设备'
-  },
-  children: [{
-    path: 'list',
-    component: DevicePage,
-    meta: {
-      name: '设备列表'
-    }
-  },{
-    path: '',
-    redirect: 'list',
-    meta: {
-      hidden: true
-    }
-  }]
+    name: '系统错误'
+  }
 }];
 
 // 在最后添加处理 404 路由，由于是动态加载，所以要改在动态加载之后添加

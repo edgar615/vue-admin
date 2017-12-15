@@ -26,7 +26,7 @@ service.interceptors.response.use(
   response => {
   return response
   },  error => {
-    var msg = "登录失败!";
+    var msg = "接口调用失败!";
     if (error.response) {
       var code = error.response.data.code;
       if (code == 1003) {

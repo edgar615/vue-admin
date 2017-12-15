@@ -1,4 +1,4 @@
-import NotFound from '@/components/notfound/notfound.vue'
+import NotFound from '@/components/error/page-404.vue'
 import lazyLoading from '@/router/lazyLoading'
 function rFormat(menu, parent) {
   var comp = createComp(menu);
@@ -17,6 +17,15 @@ function rFormat(menu, parent) {
     var children = [];
     menu.children.forEach(function(item, index, input) {
       children.push(rFormat(item, menu));
+      if (item.acquiescent) {
+        children.push({
+          path: '',
+          redirect: item.path,
+          meta: {
+            hidden: true
+          }
+        })
+      }
     })
     router.children = children;
   }
@@ -31,28 +40,33 @@ function createComp(menu) {
 }
 
 var dynamicRouter = function (token, router, store) {
-  store.dispatch('GetPermission').then(res => {
-    var routes = [];
-    res.data.forEach(function(item, index, input) {
-      //从system中提取menu
-      if (item.menus) {
-        item.menus.forEach(function(menu, menuIndex, menuArray) {
-          routes.push(rFormat(menu));
-        })
-      }
-    })
-    routes.push({
+  return new Promise((resolve, reject) => {
+      store.dispatch('GetPermission').then(res => {
+      var routes = [];
+      res.data.forEach(function(item, index, input) {
+        //从system中提取menu
+        if (item.menus) {
+          item.menus.forEach(function(menu, menuIndex, menuArray) {
+            routes.push(rFormat(menu));
+          })
+        }
+      })
+      routes.push({
         path: '*', // 匹配未找到路由的情况, 类似 404 页面
         component:NotFound,
         meta: {
-        hidden: true
-      }
+          hidden: true
+        }
+      });
+      router.addRoutes(routes) // 动态添加可访问路由表
+      return resolve(routes);
+      //next(to.path); // hack方法 确保addRoutes已完成
+    }).catch(err => {
+      return reject(err)
     });
-  router.addRoutes(routes) // 动态添加可访问路由表
-  //next(to.path); // hack方法 确保addRoutes已完成
-  }).catch(err => {
-    console.log(err);
-  });
+})
+
+
 };
 
 export default dynamicRouter;

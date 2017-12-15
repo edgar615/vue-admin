@@ -30,7 +30,12 @@
                 </div>
                 <p v-show="errors.has('password')" class="help is-danger has-text-left is-size-6">{{ errors.first('password') }}</p>
               </div>
-              <a class="button is-block is-info is-large" @click="login" :disabled='errors.any()'>登录</a>
+              <a class="button is-block is-info is-large" @click="login" :disabled='errors.any()' :class="{'is-loading' : loading}">
+                 <span class="icon">
+                      <i class="fa fa-sign-in"></i>
+                    </span>
+                登录
+              </a>
             </form>
           </div>
           <p class="has-text-grey">
@@ -40,8 +45,6 @@
         </div>
       </div>
     </div>
-
-    <b-loading :active.sync="loading"></b-loading>
   </section>
 </template>
 
@@ -61,11 +64,19 @@
           if (result) {
             vm.loading = true
             login(this.username, this.password).then(response => {
-              vm.loading = false;
             //跳转首页
             this.$store.commit('SET_TOKEN', response.data.token)
-            dynamicRouter(response.data.token, this.$router, this.$store)
-            this.$router.push({ path: '/' })
+            dynamicRouter(this.$store.getters.token, this.$router, this.$store).then(resp => {
+              vm.loading = false;
+             this.$router.push({ path: '/' })
+              }).catch(err => {
+               vm.loading = false;
+              this.$toast.open({
+                duration: 1500,
+                message: "获取系统数据失败",
+                type: 'is-danger'
+              })
+            })
           }).catch(function (error) {
             vm.loading = false;
           })

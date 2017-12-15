@@ -1,17 +1,31 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
+    <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">页面加载中</span></div>
   </div>
 </template>
 
 <script>
   import dynamicRouter from '@/router/dynamicRouter'
-  import NotFound from '@/components/notfound/notfound.vue'
+  import NotFound from '@/components/error/page-404.vue'
 export default {
   name: 'app',
   created() {
+      const vm = this
       if (this.$store.getters.token) {
-        dynamicRouter(this.$store.getters.token, this.$router, this.$store)
+        vm.loading = true;
+        dynamicRouter(this.$store.getters.token, this.$router, this.$store).then(resp => {
+          vm.loading = false;
+        }).catch(err => {
+          vm.loading = false;
+            this.$toast.open({
+              duration: 1500,
+              message: "获取系统数据失败",
+              type: 'is-danger'
+            })
+        })
       } else {
         var routes = [];
         routes.push({

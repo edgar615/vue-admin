@@ -7,16 +7,11 @@ import store from './store'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import '@/styles/style.css'
+import '@/styles/bulma-pageloader.css'
 import zh_CN from '@/utils/zh-CN'
 //import '@/styles/vars.scss' //自定义风格
 
 Vue.config.productionTip = false
-Vue.config.errorHandler = function (err, vm, info) {
-  // handle error
-  // `info` is a Vue-specific error info, e.g. which lifecycle hook
-  // the error was found in. Only available in 2.2.0+
-  console.log(err);
-}
 
 Vue.use(VeeValidate, {
   locale: 'zh_CN',
