@@ -18,14 +18,14 @@
           <b-radio-button v-model="filters.internal"
                           native-value="true"
                           type="is-success">
-            <b-icon icon="link"></b-icon>
+            <b-icon icon="user-secret"></b-icon>
             <span>内部访问</span>
           </b-radio-button>
 
           <b-radio-button v-model="filters.internal"
                           native-value="false"
                           type="is-warning">
-            <b-icon icon="unlink"></b-icon>
+            <b-icon icon="folder-open"></b-icon>
             <span>公开</span>
           </b-radio-button>
 
@@ -103,32 +103,22 @@
         </b-table-column>
 
         <b-table-column label="操作">
-          <button class="button is-danger">
+          <button class="button is-danger" @click="onDelete(props.row.subsystemId)">
             <b-icon icon="trash"></b-icon>
             <span>删除</span>
           </button>
         </b-table-column>
       </template>
       <template slot="empty">
-        <section class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>
-              <b-icon
-                icon="frown-o"
-                size="is-large">
-              </b-icon>
-            </p>
-            <p>无数据</p>
-          </div>
-        </section>
+        <EmptyTable></EmptyTable>
       </template>
     </b-table>
   </section>
 </template>
 
 <script>
-  import { systemPage } from '@/api/backend/system';
-
+  import { systemPage, deleteSystem } from '@/api/backend/system';
+  import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
       return {
@@ -141,6 +131,9 @@
         defaultSortOrder: 'asc',
         checkedRows: []
       }
+    },
+    components: {
+      EmptyTable
     },
     methods: {
       /*
@@ -221,7 +214,12 @@
       } else {
         return "未知";
       }
-    }
+    },
+      onDelete(id) {
+        deleteSystem(id).then(response => {
+          this.loadAsyncData({page:this.pagination.page});
+        });
+      }
   },
   filters: {
     /**

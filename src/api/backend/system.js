@@ -10,3 +10,10 @@ export function systemPage(params) {
     params: params
   })
 }
+
+export function deleteSystem(id) {
+  return request({
+    url: '/v1/system/' + id,
+    method: 'delete'
+  })
+}

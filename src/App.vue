@@ -3,7 +3,7 @@
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
-    <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">页面加载中</span></div>
+    <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">拼命加载中</span></div>
   </div>
 </template>
 
@@ -12,6 +12,11 @@
   import NotFound from '@/components/error/page-404.vue'
 export default {
   name: 'app',
+  data () {
+    return {
+      loading: false
+    }
+  },
   created() {
       const vm = this
       if (this.$store.getters.token) {
@@ -20,11 +25,7 @@ export default {
           vm.loading = false;
         }).catch(err => {
           vm.loading = false;
-            this.$toast.open({
-              duration: 1500,
-              message: "获取系统数据失败",
-              type: 'is-danger'
-            })
+          this.$router.push("/500")
         })
       } else {
         var routes = [];
@@ -36,9 +37,7 @@ export default {
         }
       });
       this.$router.addRoutes(routes) // 动态添加可访问路由表
-  }
-
-
+    }
   }
 }
 
