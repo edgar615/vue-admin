@@ -2,7 +2,7 @@
   <section>
     <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
     <!--如果一行放不下，用多个section-->
-    <div class="mb-1">
+    <div>
       <b-field grouped group-multiline>
         <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
         <b-select placeholder="类型" v-model="filters.type">
@@ -43,7 +43,7 @@
       </b-field>
     </div>
 
-    <div class="field is-grouped">
+    <div class="field is-grouped mt-3">
       <div class="buttons">
         <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
               :class="{'is-loading' : deleting}">

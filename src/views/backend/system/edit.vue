@@ -16,7 +16,7 @@
       <b-field label="排序"  :class="{'has-icons-right': errors.has('sorted') }"
                :type="errors.has('sorted') ? 'is-danger' : ''" :message="errors.first('sorted')">
         <b-input name="sorted" expanded v-model="model.sorted"
-                 v-validate="'required|digits|min_value:0|max_value:9999'"
+                 v-validate="'required|numeric|min_value:0|max_value:9999'"
                  data-vv-as="排序">
         </b-input>
       </b-field>

@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">OM管理平台</h3>
+          <h3 class="title has-text-grey">VUE ADMIN</h3>
           <p class="subtitle has-text-grey">登录</p>
           <div class="box">
             <!--<figure class="avatar">
