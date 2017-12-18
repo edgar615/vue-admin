@@ -10,11 +10,25 @@
   justify-content: stretch;
   padding-top: 0.75rem;
   padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 .columns.is-fullheight .column {
   overflow-y: auto;
 }
 
+.columns.is-halfheight {
+  min-height: calc(50vh - ( 3.25rem - .75rem ) );
+  max-height: calc(50vh - ( 3.25rem - .75rem ) );
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  padding-top: 0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.columns.is-halfheight .column {
+  overflow-y: auto;
+}
 .is-main-content {
   padding-left: 2.25rem;
   /*background: #dbdbdb;*/

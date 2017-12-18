@@ -16,7 +16,7 @@
         <a class="navbar-item" href="https://bulma.io/">
           Home
         </a>
-        <a class="navbar-item" href="#"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
+        <a class="navbar-item"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
           {{system.name}}
         </a>
         <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
@@ -65,7 +65,13 @@
             });
           },
           selectSystem(sysIdentifier) {
+              //刷新左边侧边栏
               this.$store.commit('ACTIVE_SYSTEM', sysIdentifier)
+            //跳转到新页面
+            const menus = this.$store.getters.menuList();
+            if (menus.length > 0 && menus[0].path) {
+              this.$router.push(menus[0].path)
+            }
           }
         },
         computed: {
@@ -86,7 +92,8 @@
                 systemArray.push(item);
               }
             });
-            if (systemArray.length > 0) {
+            const activeSystem = this.$store.getters.activeSystem;
+            if (systemArray.length > 0 && ( activeSystem == undefined || activeSystem == '')) {
               this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
             }
             return systemArray;

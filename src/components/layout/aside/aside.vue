@@ -3,7 +3,7 @@
   <aside class="menu">
     <!-- 使用路由生成菜单 -->
     <p class="menu-label">
-      {{curSystem.name}}
+      {{curSystemName}}
     </p>
     <ul class="menu-list">
       <template v-for="menu in asideMenus" v-if="!menu.hidden">
@@ -33,8 +33,12 @@
               //以前直接使用 $router.options.routes显示菜单，与后端结合之后，直接通过菜单计算
               return this.$store.getters.menuList();
             },
-            curSystem() {
-              return this.$store.getters.currentSystem();
+            curSystemName() {
+              const curSystem= this.$store.getters.currentSystem();
+              if (curSystem) {
+                return curSystem.name;
+              }
+            return "";
             },
            curRoute() {
               //根据匹配地址判断打开的一级菜单
