@@ -1,48 +1,41 @@
 <template>
   <section class="columns">
     <div class="column is-half">
-      <b-field label="标识符" horizontal class="static-field">
-        <p class="control">
-          {{model.sysIdentifier}}
-        </p>
+      <b-field label="标识符" horizontal
+               :type="errors.has('sysIdentifier') ? 'is-danger' : ''" :message="errors.first('sysIdentifier')">
+        <b-input name="sysIdentifier" v-model="model.sysIdentifier"
+                 v-validate="'required|max:64|alpha_dash'"  data-vv-as="标识符"></b-input>
       </b-field>
 
-      <!--horizontal使用:message="errors.first('sorted')
-     "显示错误提示会导致元素向左便宜，垂直布局没这个问题，可以直接使用:message显示错误提示-->
       <b-field label="名称" horizontal
-               :type="errors.has('name') ? 'is-danger' : ''">
+               :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
         <b-input name="name" v-model="model.name"
                  v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
-        <p class="help is-danger" v-show="errors.has('name')">
-          {{errors.first('name')}}
-        </p>
       </b-field>
 
-      <b-field label="排序" horizontal :class="{'has-icons-right': errors.has('sorted') }"
-               :type="errors.has('sorted') ? 'is-danger' : ''">
-        <b-input name="sorted" expanded v-model="model.sorted"
-                 v-validate="'required|numeric|min_value:0|max_value:9999'"
-                 data-vv-as="排序">
-        </b-input>
-        <p class="help is-danger" v-show="errors.has('sorted')">
-          {{errors.first('sorted')}}
-        </p>
+      <b-field grouped>
+        <b-field label="排序"  :class="{'has-icons-right': errors.has('sorted') }"
+                 :type="errors.has('sorted') ? 'is-danger' : ''" :message="errors.first('sorted')">
+          <b-input name="sorted" expanded v-model="model.sorted"
+                   v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序"
+                   class="w-50">
+          </b-input>
+        </b-field>
+        <b-field label="类型"  :class="{'has-icons-right': errors.has('type') }"
+                 :type="errors.has('type') ? 'is-danger' : ''" :message="errors.first('type')">
+          <b-select name="type"  expanded  v-model="model.type"
+                    v-validate="'required'" data-vv-as="类型">
+            <option
+              v-for="option in dictList('systemType')"
+              :value="option.value"
+              :key="option.value">
+              {{ option.text }}
+            </option>
+          </b-select>
+        </b-field>
       </b-field>
 
-      <b-field  label="类型" horizontal class="static-field">
-        <p class="control">
-          {{ dictText("systemType",model.type) }}
-        </p>
-      </b-field>
-
-      <b-field  label="内部访问" horizontal class="static-field">
-        <p class="control">
-        <span class="tag is-info">
-          {{ dictText("internal",model.internal) }}
-          </span>
-        </p>
-      </b-field>
-
+      <!--<b-field class="is-grouped is-grouped-centered">-->
       <b-field>
         <p class="control">
           <button class="button is-primary" @click="save" :disabled='errors.any()'
@@ -57,11 +50,11 @@
         </p>
       </b-field>
     </div>
-    <b-loading :active.sync="loading"></b-loading>
+
   </section>
 </template>
 <script>
-  import { getSystem, updateSystem } from '@/api/backend/system';
+  import { addSystem } from '@/api/backend/system';
   export default {
     data() {
     return {
@@ -93,16 +86,15 @@
           this.$validator.validateAll().then((result) => {
               if (result) {
               vm.saving = true
-              updateSystem(vm.$route.params.id, this.model).then(response => {
+              addSystem(this.model).then(response => {
                 vm.saving = false;
                 this.$router.push({ path: '/backend/system' })
+              }).catch(err =>{
+                  vm.saving = false;
               })
             }
           });
       }
-    },
-  created () {
-      this.loadAsyncData();
     }
   }
 </script>
