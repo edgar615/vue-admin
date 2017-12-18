@@ -9,6 +9,7 @@
   flex-direction: row;
   justify-content: stretch;
   padding-top: 1rem;
+  padding-left: 0.75rem;
 }
 .columns.is-fullheight .column {
   overflow-y: auto;
@@ -23,6 +24,9 @@
   color: white;
 }
 
+.static-field p.control {
+  margin-top: 0.25rem;
+}
 
 /*下面是辅助样式*/
 

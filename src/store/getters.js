@@ -31,6 +31,16 @@ const getters = {
     });
    return systemArray;
   },
+  currentSystem: (state) => () => {
+    var currentSystem;
+    state.permission.systems.forEach(function(item, index, input) {
+      const systemIdentifer = state.permission.activeSystem
+      if (item.sysIdentifier == systemIdentifer) {
+        currentSystem = item;
+      }
+    });
+    return currentSystem;
+  },
   menuList: (state) => () => {
   var menus = [];
   state.permission.systems.forEach(function(item, index, input) {

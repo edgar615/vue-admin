@@ -1,7 +1,7 @@
 <template>
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
-      <li v-bind:class="activeBreadcrumb(route.path)" v-for="route in $route.matched" v-if="route.path != '/'" :key="route.path" >
+      <li v-bind:class="activeBreadcrumb(route)" v-for="route in $route.matched" v-if="route.path != '/'" :key="route.path" >
         <router-link :to="{path: route.path}">{{ route.meta.name }} </router-link>
       </li>
     </ul>
@@ -14,9 +14,9 @@
             };
         },
        methods: {
-        activeBreadcrumb: function(path) {
+        activeBreadcrumb: function(route) {
           var curPath =  this.$route.path;
-          if (path == curPath) {
+          if (route.regex.test(curPath)) {
             return "is-active";
           }
           return "";

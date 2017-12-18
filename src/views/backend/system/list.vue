@@ -5,8 +5,8 @@
     <div class="mb-1">
       <b-field grouped group-multiline>
         <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
-        <b-select placeholder="设备类型" v-model="filters.type">
-          <option value="">类型</option>
+        <b-select placeholder="类型" v-model="filters.type">
+          <option value="">请选择</option>
           <option
             v-for="option in dictList('systemType')"
             :value="option.value"
@@ -45,14 +45,16 @@
 
     <div class="field is-grouped">
       <div class="buttons">
-        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length">
+        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
+              :class="{'is-loading' : deleting}">
           <b-icon icon="trash"></b-icon>
           <span>删除</span>
         </span>
-        <span class="button is-purple">
-           <b-icon icon="plus"></b-icon>
+        <router-link to="/backend/system/add"
+                     exact class="button is-dark">
+          <b-icon icon="plus"></b-icon>
           <span>新增</span>
-        </span>
+        </router-link>
       </div>
     </div>
 
@@ -103,9 +105,17 @@
         </b-table-column>
 
         <b-table-column label="操作">
-          <button class="button is-danger" @click="onDelete(props.row.subsystemId)">
+          <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
+                       exact class="button is-info" title="查看">
+            <b-icon icon="info-circle"></b-icon>
+          </router-link>
+          <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
+                       exact class="button" title="修改">
+            <b-icon icon="pencil"></b-icon>
+          </router-link>
+          <button class="button is-danger" @click="onDelete(props.row.subsystemId)"
+                  title="删除" :class="{'is-loading' : deleting}">
             <b-icon icon="trash"></b-icon>
-            <span>删除</span>
           </button>
         </b-table-column>
       </template>
@@ -117,7 +127,7 @@
 </template>
 
 <script>
-  import { systemPage, deleteSystem } from '@/api/backend/system';
+  import { systemPage, deleteSystem,batchDeleteSystem } from '@/api/backend/system';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -126,6 +136,7 @@
         },
         pagination: {},
         loading: false,
+        deleting: false,
         sortField: 'sorted',
         sortOrder: 'asc',
         defaultSortOrder: 'asc',
@@ -177,8 +188,16 @@
      */
     onDeleteCheckedRows() {
       var checkedIds = this.checkedRows.map(function(item) {
-        return item.deviceId;
+        return item.subsystemId;
       })
+        const vm = this;
+        vm.deleting = true;
+        batchDeleteSystem(checkedIds).then(response => {
+          vm.deleting = false;
+          this.loadAsyncData({page:this.pagination.page});
+      }).catch(err => {
+          vm.deleting = false;
+      });
     },
     /*
      * 查询
@@ -206,18 +225,14 @@
     dictList(name) {
       return this.$store.getters.dictList(name);
     },
-    typeName(value) {
-      if (value == 1) {
-        return "T1";
-      } else if (value == 3) {
-        return "F1";
-      } else {
-        return "未知";
-      }
-    },
       onDelete(id) {
+        const vm = this;
+        vm.deleting = true;
         deleteSystem(id).then(response => {
+          vm.deleting = false;
           this.loadAsyncData({page:this.pagination.page});
+        }).catch(err => {
+          vm.deleting = false;
         });
       }
   },
@@ -233,7 +248,7 @@
      }
      */
   },
-  mounted() {
+  created() {
     this.loadAsyncData();
   }
   }

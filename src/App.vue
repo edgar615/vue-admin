@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
+    <router-view></router-view>
     <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">拼命加载中</span></div>
   </div>
 </template>

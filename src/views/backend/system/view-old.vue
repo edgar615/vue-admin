@@ -1,71 +1,80 @@
 <template>
-  <section class="hero is-success is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">OM管理平台</h3>
-          <p class="subtitle has-text-grey">登录</p>
-          <div class="box">
-            <!--<figure class="avatar">
-              <img src="https://placehold.it/128x128">
-            </figure>-->
-            <form>
-              <b-field
-                :type="errors.has('username') ? 'is-danger' : ''"
-                :message="errors.first('username')">
-                <b-input type="text"
-                         size="is-large"
-                         placeholder="用户名"
-                         data-vv-as="用户名"
-                         name="username" v-validate="'required|email'" v-model="username">
-                </b-input>
-              </b-field>
-              <b-field
-                :type="errors.has('password') ? 'is-danger' : ''"
-                :message="errors.first('password')">
-                <b-input type="password"
-                         size="is-large"
-                         placeholder="密码"
-                         data-vv-as="密码"
-                         name="password" v-validate="'required|max:5'" v-model="password">
-                </b-input>
-              </b-field>
+  <section>
 
-              <a class="button is-block is-info is-large" @click="login" :disabled='errors.any()'>登录</a>
-            </form>
-          </div>
-          <p class="has-text-grey">
-            <a href="../">注册</a> &nbsp;·&nbsp;
-            <a href="../">忘记密码</a> &nbsp;·&nbsp;
+    <div class="columns">
+      <div class="column is-half">
+        <b-field horizontal label="系统标识符" class="static-field">
+          <p class="control">
+            {{model.sysIdentifier}}
           </p>
-        </div>
+        </b-field>
       </div>
     </div>
 
-    <b-loading :active.sync="loading"></b-loading>
+    <div class="columns">
+      <div class="column is-half">
+        <b-field horizontal label="名称">
+          <b-input name="name" expanded v-model="model.name"></b-input>
+        </b-field>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-4">
+        <b-field horizontal label="排序" class="static-field">
+          <b-input name="sort" expanded v-model="model.sorted"></b-input>
+        </b-field>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <b-field horizontal label="类型" class="static-field">
+          <b-input name="type" expanded  v-model="model.type"></b-input>
+        </b-field>
+      </div>
+    </div>
+
+    <b-field horizontal><!-- Label left empty for spacing -->
+      <p class="control">
+        <button class="button" @click="back">
+          <b-icon icon="undo"></b-icon>
+          <span>返回</span>
+        </button>
+      </p>
+    </b-field>
+
   </section>
 </template>
-
 <script>
-  import { login } from '@/api/login';
-  import dynamicRouter from '@/router/dynamicRouter'
+  import { getSystem } from '@/api/backend/system';
   export default {
     data() {
-      return {
-        loading: false
+    return {
+      model: {
       }
-    },
-    methods: {
-      login() {
-        const vm = this
-        this.$validator.validateAll().then((result) => {
-          if (result) {
-        return;
-      }
+    }
+  },
+  methods: {
+    loadAsyncData() {
+      this.loading = true
+      getSystem(this.$route.params.id).then(response => {
+        this.model = response.data;
+      this.loading = false;
     });
-
-
-  }
+    },
+    dictText(name, value) {
+      return this.$store.getters.dictText(name, value);
+    },
+    back() {
+      this.$router.back();
+    }
+  },
+  created () {
+    this.loadAsyncData();
   }
   }
 </script>
+<style>
+
+</style>
