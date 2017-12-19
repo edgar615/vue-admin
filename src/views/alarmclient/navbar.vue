@@ -6,7 +6,7 @@
           <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </a>-->
         <a class="navbar-item brand-text" href="#">
-          Bulma Admin
+          智慧消防运营服务平台
         </a>
         <div class="navbar-burger burger" data-target="navMenu">
           <span></span>
@@ -15,41 +15,13 @@
         </div>
       </div>
 
-      <div id="navMenu" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
-            Home
-          </a>
-          <a class="navbar-item"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
-            {{system.name}}
-          </a>
-          <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
-            <a class="navbar-link">
-              更多
-            </a>
-            <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#"  v-for="system in groupSystems" @click="selectSystem(system.sysIdentifier)">
-                {{system.name}}
-              </a>
-            </div>
-          </div>
-        </div>
 
         <div class="navbar-end">
-          <div class="navbar-item is-hoverable">
-            <a class="navbar-link is-primary">
-              <span>{{user.username}}</span>
-            </a>
-            <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#" >
-                个人资料
-              </a>
-              <a class="navbar-item" href="#" @click="logout">
-                <b-icon icon="sign-out"></b-icon>
-                <span>退出</span>
-              </a>
-            </div>
-          </div>
+          <a class="navbar-item" href="#" @click="logout">
+            <b-icon icon="user"></b-icon>
+            <span>退出</span>
+          </a>
+        </div>
           <a class="navbar-item" href="#" @click="logout">
             <b-icon icon="sign-out"></b-icon>
             <span>退出</span>
