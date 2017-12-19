@@ -1,3 +1,36 @@
+/*导航*/
+nav.navbar {
+  border-top: 4px solid #276cda;
+  /*margin-bottom: 1rem;*/
+}
+.navbar-item.brand-text {
+  font-weight: 300;
+}
+.navbar-item, .navbar-link {
+  font-size: 14px;
+  font-weight: 700;
+}
+/************/
+
+/*侧边栏*/
+.menu-label {
+  color: #8F99A3;
+  letter-spacing: 1.3;
+  font-weight: 700;
+}
+/************/
+
+/**/
+/*.hero.welcome.is-info {
+  background: #36D1DC;
+  background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+  background: linear-gradient(to right, #5B86E5, #36D1DC);
+}*/
+.hero.welcome .title, .hero.welcome .subtitle {
+  color: hsl(192, 17%, 99%);
+}
+
+/*布局*/
 .is-sidebar-menu {
   padding: 2.5rem;
   background: #4a4a4a;
@@ -30,9 +63,10 @@
   overflow-y: auto;
 }
 .is-main-content {
-  padding-left: 2.25rem;
-  /*background: #dbdbdb;*/
+  padding-left: 1.25rem;
+  background: #ECF0F3;
 }
+/************/
 
 .is-sidebar-menu li a {
   color: white;

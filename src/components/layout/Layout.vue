@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
        <Navbar></Navbar>
       <!-- Main container -->
       <div class="columns is-fullheight">

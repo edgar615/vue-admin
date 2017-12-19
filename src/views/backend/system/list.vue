@@ -2,127 +2,145 @@
   <section>
     <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
     <!--如果一行放不下，用多个section-->
-    <div>
-      <b-field grouped group-multiline>
-        <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
-        <b-select placeholder="类型" v-model="filters.type">
-          <option value="">请选择</option>
-          <option
-            v-for="option in dictList('systemType')"
-            :value="option.value"
-            :key="option.value">
-            {{ option.text }}
-          </option>
-        </b-select>
-        <b-field>
-          <b-radio-button v-model="filters.internal"
-                          native-value="true"
-                          type="is-success">
-            <b-icon icon="user-secret"></b-icon>
-            <span>内部访问</span>
-          </b-radio-button>
-
-          <b-radio-button v-model="filters.internal"
-                          native-value="false"
-                          type="is-warning">
-            <b-icon icon="folder-open"></b-icon>
-            <span>公开</span>
-          </b-radio-button>
-
-          <b-radio-button v-model="filters.internal"
-                          native-value="">
-            全部
-          </b-radio-button>
-        </b-field>
-        <p class="control ml-1">
-          <button class="button is-primary" @click="onQuery">
-            <b-icon icon="search"></b-icon>
-            <span>查询</span>
-          </button>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          查询
         </p>
-      </b-field>
+        <a href="#" class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </span>
+        </a>
+      </header>
+      <div class="card-content">
+        <b-field grouped group-multiline>
+          <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
+          <b-select placeholder="类型" v-model="filters.type">
+            <option value="">请选择</option>
+            <option
+              v-for="option in dictList('systemType')"
+              :value="option.value"
+              :key="option.value">
+              {{ option.text }}
+            </option>
+          </b-select>
+          <b-field>
+            <b-radio-button v-model="filters.internal"
+                            native-value="true"
+                            type="is-success">
+              <b-icon icon="user-secret"></b-icon>
+              <span>内部访问</span>
+            </b-radio-button>
+
+            <b-radio-button v-model="filters.internal"
+                            native-value="false"
+                            type="is-warning">
+              <b-icon icon="folder-open"></b-icon>
+              <span>公开</span>
+            </b-radio-button>
+
+            <b-radio-button v-model="filters.internal"
+                            native-value="">
+              全部
+            </b-radio-button>
+          </b-field>
+          <p class="control ml-1">
+            <button class="button is-primary" @click="onQuery">
+              <b-icon icon="search"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </b-field>
+      </div>
     </div>
 
-    <div class="field is-grouped mt-3">
-      <div class="buttons">
+    <div class="card mt-3">
+      <div class="card-content">
+        <div class="field is-grouped">
+          <div class="buttons">
         <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
               :class="{'is-loading' : deleting}">
           <b-icon icon="trash"></b-icon>
           <span>删除</span>
         </span>
-        <router-link to="/backend/system/add"
-                     exact class="button is-dark">
-          <b-icon icon="plus"></b-icon>
-          <span>新增</span>
-        </router-link>
+            <router-link to="/backend/system/add"
+                         exact class="button is-dark">
+              <b-icon icon="plus"></b-icon>
+              <span>新增</span>
+            </router-link>
+          </div>
+        </div>
+
+        <!--buefy的表格组件，具体用法查阅文档-->
+        <b-table
+          bordered
+          striped
+          hoverable
+          mobile-cards
+
+          :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
+          :loading="loading"
+          paginated
+          backend-pagination
+          :total="pagination.totalRecords"
+          :per-page="pagination.pageSize"
+          :current-page="pagination.page"
+          @page-change="onPageChange"
+
+          backend-sorting
+          :default-sort-direction="defaultSortOrder"
+          :default-sort="[sortField, sortOrder]"
+          @sort="onSort"
+
+          :checked-rows.sync="checkedRows"
+          checkable>
+
+          <template slot-scope="props">
+
+            <b-table-column field="sorted" label="排序" numeric sortable centered>
+              {{ props.row.sorted }}
+            </b-table-column>
+
+            <b-table-column field="name" label="名称" centered>
+              {{ props.row.name }}
+            </b-table-column>
+
+            <b-table-column field="sysIdentifier" label="标识符" centered>
+              {{ props.row.sysIdentifier }}
+            </b-table-column>
+
+            <b-table-column field="type" label="类型" numeric centered >
+              {{ dictText("systemType",props.row.type) }}
+            </b-table-column>
+
+            <b-table-column field="internal" label="内部?" centered>
+              <span class="tag" :class="internalClass(props.row.internal)">{{ dictText("internal",props.row.internal) }}</span>
+            </b-table-column>
+
+            <b-table-column label="操作">
+              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
+                           exact class="button is-info" title="查看">
+                <b-icon icon="info-circle"></b-icon>
+              </router-link>
+              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
+                           exact class="button" title="修改">
+                <b-icon icon="pencil"></b-icon>
+              </router-link>
+              <button class="button is-danger" @click="onDelete(props.row.subsystemId)"
+                      title="删除" :class="{'is-loading' : deleting}">
+                <b-icon icon="trash"></b-icon>
+              </button>
+            </b-table-column>
+          </template>
+          <template slot="empty">
+            <EmptyTable></EmptyTable>
+          </template>
+        </b-table>
       </div>
     </div>
 
-    <!--buefy的表格组件，具体用法查阅文档-->
-    <b-table
-      bordered
-      striped
-      hoverable
-      mobile-cards
 
-      :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
-      :loading="loading"
-      paginated
-      backend-pagination
-      :total="pagination.totalRecords"
-      :per-page="pagination.pageSize"
-      :current-page="pagination.page"
-      @page-change="onPageChange"
-
-      backend-sorting
-      :default-sort-direction="defaultSortOrder"
-      :default-sort="[sortField, sortOrder]"
-      @sort="onSort"
-
-      :checked-rows.sync="checkedRows"
-      checkable>
-
-      <template slot-scope="props">
-
-        <b-table-column field="sorted" label="排序" numeric sortable centered>
-          {{ props.row.sorted }}
-        </b-table-column>
-
-        <b-table-column field="name" label="名称" centered>
-          {{ props.row.name }}
-        </b-table-column>
-
-        <b-table-column field="sysIdentifier" label="标识符" centered>
-          {{ props.row.sysIdentifier }}
-        </b-table-column>
-
-        <b-table-column field="type" label="类型" numeric centered >
-          {{ dictText("systemType",props.row.type) }}
-        </b-table-column>
-
-        <b-table-column field="internal" label="内部?" centered>
-          <span class="tag" :class="internalClass(props.row.internal)">{{ dictText("internal",props.row.internal) }}</span>
-        </b-table-column>
-
-        <b-table-column label="操作">
-          <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
-                       exact class="button is-info" title="查看">
-            <b-icon icon="info-circle"></b-icon>
-          </router-link>
-          <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
-                       exact class="button" title="修改">
-            <b-icon icon="pencil"></b-icon>
-          </router-link>
-          <button class="button is-danger" @click="onDelete(props.row.subsystemId)"
-                  title="删除" :class="{'is-loading' : deleting}">
-            <b-icon icon="trash"></b-icon>
-          </button>
-        </b-table-column>
-      </template>
-      <template slot="empty">
-        <EmptyTable></EmptyTable>
-      </template>
-    </b-table>
   </section>
 </template>
 

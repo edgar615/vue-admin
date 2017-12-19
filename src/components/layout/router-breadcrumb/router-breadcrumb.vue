@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb bg-white" aria-label="breadcrumbs">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
       <li :class="activeBreadcrumb(route)" v-for="route in $route.matched" v-if="route.path != '/'" :key="route.path" >
         <router-link :to="{path: route.path}">{{ route.meta.name }} </router-link>
