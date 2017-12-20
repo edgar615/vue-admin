@@ -19,7 +19,7 @@
         <div class="navbar-end">
           <a class="navbar-item" href="#" @click="logout">
             <b-icon icon="user"></b-icon>
-            <span>退出</span>
+            <span>{{user.username}}</span>
           </a>
         </div>
           <a class="navbar-item" href="#" @click="logout">

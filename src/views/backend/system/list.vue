@@ -120,14 +120,14 @@
 
             <b-table-column label="操作">
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
-                           exact class="button is-info" title="查看">
+                           exact class="button is-info is-small" title="查看">
                 <b-icon icon="info-circle"></b-icon>
               </router-link>
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
-                           exact class="button" title="修改">
+                           exact class="button is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
               </router-link>
-              <button class="button is-danger" @click="onDelete(props.row.subsystemId)"
+              <button class="button is-danger is-small" @click="onDelete(props.row.subsystemId)"
                       title="删除" :class="{'is-loading' : deleting}">
                 <b-icon icon="trash"></b-icon>
               </button>

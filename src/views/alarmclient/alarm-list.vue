@@ -2,18 +2,45 @@
   <div class="card mb-3">
     <header class="card-header">
       <p class="card-header-title">
-        警情列表
+        <b-taglist>
+          <b-tag type="is-primary" size="is-medium">警情：{{tableDataSimple.length}}</b-tag>
+          <b-tag type="is-success" size="is-medium" v-show="sockState">通信正常 </b-tag>
+          <b-tag type="is-danger" size="is-medium" v-show="!sockState">通信故障</b-tag>
+          <b-tag type="is-info" size="is-medium">警情加载中<b-icon icon="spinner"></b-icon> </b-tag>
+        </b-taglist>
       </p>
+      <p class="card-header-title">
+        <a href="#" class="button is-primary">
+        <span class="icon">
+          <i class="fa fa-bars"></i>
+        </span>
+          <span>颜色设置</span>
+        </a>
+        <a href="#" class="button is-info">
+        <span class="icon">
+          <i class="fa fa-columns"></i>
+        </span>
+          <span>警情分栏</span>
+        </a>
+      </p>
+
     </header>
     <div class="card-content">
       <b-table
         narrowed
+        paginated
+        per-page="10"
         :data="tableDataSimple"
         :opened-detailed="defaultOpenedDetails"
         detailed
         detail-key="level"
+        :row-class="(row, index) => row.level % 5 === 1 ? 'bg-danger' : ''"
       >
-
+       <template slot-scope="props" slot="header">
+            <b-tooltip :active="!!props.column.meta" :label="props.column.meta" dashed>
+                {{ props.column.label }}
+            </b-tooltip>
+        </template>
         <template slot-scope="props">
           <b-table-column label="级别" width="50"  numeric>
             {{ props.row.level }}
@@ -23,7 +50,7 @@
             {{ new Date(props.row.date).toLocaleDateString() }}
           </b-table-column>
 
-          <b-table-column label="用户编号">
+          <b-table-column label="编号">
             {{ props.row.alarmUserCode }}
           </b-table-column>
 
@@ -39,13 +66,24 @@
             {{ props.row.alarmType }}
           </b-table-column>
 
-          <b-table-column label="安全管理人">
-            {{ props.row.fullname }} {{ props.row.tel }}
-          </b-table-column>
-
-          <b-table-column label="兼职管理员">
+          <b-table-column label="姓名" meta="安全管理人姓名">
             {{ props.row.fullname }}
           </b-table-column>
+
+          <b-table-column label="电话" meta="安全管理人电话">
+            {{ props.row.tel }}
+          </b-table-column>
+
+          <b-table-column label="管理人" meta="专兼职消防管理人姓名">
+            {{ props.row.fullname }}
+          </b-table-column>
+
+          <b-table-column label="操作">
+              <button class="button is-primary is-small" @click="handleAlarm">
+                <b-icon icon="check-square-o"></b-icon>
+                <span>处理</span>
+              </button>
+            </b-table-column>
         </template>
 
         <template slot="detail" slot-scope="props">
@@ -90,8 +128,12 @@
 <script>
   //websocket，没有这部分需要可以删除
   import EventBus from '@/sock/vertx-eventbus'
+  import AlarmHandle from '@/views/alarmclient/alarm-handle'
 
   export default {
+    components: {
+      AlarmHandle
+    },
     data() {
       const tableDataSimple = [
         { 'level': 1, 'alarmUserCode': '00000001', 'alarmUserName': 'Simmons', 'date':
@@ -117,24 +159,53 @@
       ]
 
       return {
+        sockState: false,
         tableDataSimple,
         defaultOpenedDetails: [1]
       }
     },
+  methods: {
+    addAlarm(alarm) {
+      alarm.level = this.tableDataSimple.length + 1;
+      this.tableDataSimple.push(alarm);
+    },
+    handleAlarm() {
+      this.$modal.open({
+        parent: this,
+        scroll: 'clip',
+        component: AlarmHandle,
+        hasModalCard: true,
+        width : 960
+      })
+    }
+  },
   created() {
     const eb = new EventBus("http://localhost:9090/eventbus", {
       vertxbus_ping_interval : 1000
     });
     const vm = this;
     eb.onopen = function () {
+      vm.sockState = true;
       vm.$toast.open({
         duration: 1500,
         position: 'is-bottom',
         message: '警情推送服务连接成功',
         type: 'is-success'
       })
+      eb.registerHandler("news-feed", function (err, msg) {
+        const alarm = { 'alarmUserCode': '00000002', 'alarmUserName': 'Lee', 'date':
+          '2016-12-06 14:38:38', 'alarmCate': '设备报警' , 'alarmType': '火警',  'fullname': '张三', 'tel': '12345678'}
+        vm.addAlarm(alarm);
+        vm.$toast.open({
+          duration: 1500,
+          position: 'is-bottom',
+          message: '用户报警',
+          type: 'is-warning'
+        })
+      });
     };
     eb.onclose = function () {
+      vm.sockState = false;
       vm.$toast.open({
         duration: 1500,
         position: 'is-bottom',
