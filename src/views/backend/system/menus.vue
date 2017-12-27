@@ -5,24 +5,18 @@
                   @item-click="itemClick"></vue-tree>
       </div>
       <div class="column is-two-fifths" v-show="viewMenu">
-        <b-field label="名称">
+        <b-field label="名称" horizontal class="static-field">
           <p class="control static-field">{{model.name}}</p>
         </b-field>
-        <b-field label="路径">
-          <p class="control static-field">{{model.path}}</p>
+        <b-field label="路径" horizontal class="static-field">
+          <p class="control">{{model.path}}</p>
         </b-field>
-        <div class="field">
-          <b-switch :value="model.hidden"
-                    type="is-info" disabled>
-            隐藏，不显示在菜单上
-        </b-switch>
-        </div>
-        <div class="field">
-          <b-switch :value="model.acquiescent"
-                    type="is-info" disabled>
-            默认地址，每个父菜单只有一个默认地址
-        </b-switch>
-        </div>
+        <b-field label="隐藏?" horizontal class="static-field">
+          <p class="control">{{model.hidden}}</p>
+        </b-field>
+        <b-field label="默认地址?" horizontal class="static-field">
+          <p class="control">{{model.acquiescent}}</p>
+        </b-field>
         <b-field><!-- Label left empty for spacing -->
           <p class="control">
             <button class="button is-primary" @click="onAdd(model.sysMenuId)" v-show="model.parentId == -1">
@@ -42,37 +36,37 @@
         </b-field>
       </div>
       <div class="column is-two-fifths" v-show="addMenu">
-        <b-field label="名称"   :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
+        <jcc-field label="名称"  horizontal :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
           <b-input name="name" v-model="model.name"
-                   v-validate="'required|max:64|alpha_dash'"  data-vv-as="名称"></b-input>
-        </b-field>
-        <b-field label="路径"   :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')">
+                   v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
+        </jcc-field>
+        <jcc-field label="路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')">
           <b-input name="path" v-model="model.path"
                    v-validate="'required|max:64|alpha_dash'"  data-vv-as="路径"></b-input>
-        </b-field>
-        <b-field label="排序"   :message="errors.first('sorted')"
+        </jcc-field>
+        <jcc-field label="排序" horizontal  :message="errors.first('sorted')"
                  :type="errors.has('sorted') ? 'is-danger' : ''">
           <b-input name="sorted" expanded v-model="model.sorted"
                    v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序">
           </b-input>
-        </b-field>
-        <div class="field">
+        </jcc-field>
+        <jcc-field class="field" horizontal message="不显示在菜单上">
           <b-switch v-model="model.hidden"
                     true-value="true"
                     false-value="false"
                     type="is-info">
-            隐藏，不显示在菜单上
+            隐藏
         </b-switch>
-        </div>
-        <div class="field">
+        </jcc-field>
+        <jcc-field class="field" horizontal message="每个父菜单只有一个默认地址">
           <b-switch v-model="model.acquiescent"
                     true-value="true"
                     false-value="false"
                     type="is-info">
-            默认地址，每个父菜单只有一个默认地址
+            默认地址
         </b-switch>
-        </div>
-        <b-field><!-- Label left empty for spacing -->
+        </jcc-field>
+        <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control">
             <button class="button is-primary" @click="save" :disabled='errors.any()'
                     :class="{'is-loading' : saving}">

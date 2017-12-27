@@ -5,17 +5,17 @@
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// color
+// color http://flatuicolors.com/
 $dark-blue: #071e3d;
 $dark-blue-invert: findColorInvert($dark-blue);
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //导航
-$navbar-item-hover-color: #fff;
-$navbar-item-hover-background-color: #235b94;
-$navbar-dropdown-background-color: $info;
-$navbar-background-color:#071e3d;
+//$navbar-item-hover-color: #fff;
+//$navbar-item-hover-background-color: #235b94;
+//$navbar-dropdown-background-color: $info;
+//$navbar-background-color:#071e3d;
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -28,21 +28,21 @@ $navbar-background-color:#071e3d;
 ////////////////////////////////////////////////
 // Table
 
-$table-color: #fff !default
-$table-background-color: #081a3a !default
-$table-cell-border: 1px solid #193972 !default
+//$table-color: #fff !default
+//$table-background-color: #081a3a !default
+//$table-cell-border: 1px solid #193972 !default
 //$table-cell-border-width: 0 0 1px !default
 //$table-cell-padding: 0.5em 0.75em !default
 //$table-cell-heading-color: $text-strong !default
 //$table-head-cell-border-width: 0 0 2px !default
-$table-head-cell-color: #fff !default
+//$table-head-cell-color: #fff !default
 //$table-foot-cell-border-width: 2px 0 0 !default
-$table-foot-cell-color: #fff !default
+//$table-foot-cell-color: #fff !default
 //$table-row-hover-background-color: $primary !default
 //$table-row-active-background-color: $primary !default
 //$table-row-active-color: $primary !default
-$table-striped-row-even-background-color: #0a2148 !default
-$table-striped-row-even-hover-background-color: #1081e2 !default
+//$table-striped-row-even-background-color: #0a2148 !default
+//$table-striped-row-even-hover-background-color: #1081e2 !default
 ////无效
 //.b-table .table.is-bordered th.is-current-sort, .b-table .table.is-bordered th.is-sortable:hover{
 //  background-color:#0a2148;
@@ -75,11 +75,38 @@ $table-striped-row-even-hover-background-color: #1081e2 !default
 //  color: #fff;
 //}
 
-$input-color: #fff !default
 $addColors: (
-  "dark-blue":($dark-blue, $dark-blue-invert)
+  "dark-blue":($dark-blue, $dark-blue-invert),
+  "primary":($purple, $purple-invert)
 );
 $colors: map-merge($colors, $addColors);
+
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 根据颜色自动生成bg-$color的背景色
+@each $name, $pair in $colors {
+  //$color: nth($pair, 1)
+  //$color-invert: nth($pair, 2)
+  .bg-#{$name} {
+    background-color: nth($pair, 1);
+    color: nth($pair, 2);
+  }
+  .is-sidebar-menu {
+    padding: 2rem;
+    border-top: 1px solid nth($pair, 2);
+    box-sizing: border-box;
+    &.is-#{$name} {
+      background-color: nth($pair, 1);
+      color: nth($pair, 2);
+      & li a {
+        font-size: 14px;
+        //font-size: $size-7;
+        color: nth($pair, 2);
+      }
+    }
+  }
+}
 
 // Import Bulma and Buefy styles
 @import "~bulma";

@@ -9,6 +9,8 @@ import 'buefy/lib/buefy.css'
 import '@/styles/bulma-pageloader.css'
 import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
+//Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
+import JccField from '@/components/field'
 import '@/styles/vars.scss' //自定义风格
 import '@/styles/style.css'
 
@@ -31,7 +33,7 @@ Vue.use(Buefy, {
   defaultIconPack: "fa"
 })
 
-
+Vue.component('jcc-field', JccField)
 /*
  {
  defaultIconPack: "mdi" //Icon pack used internally and on the Icon component attribute — Material Design Icons or FontAwesome可选 	mdi, fa

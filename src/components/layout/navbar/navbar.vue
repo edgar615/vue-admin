@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar has-shadow">
+  <nav class="navbar is-white has-shadow">
     <div class="container">
       <div class="navbar-brand">
         <!--<a class="navbar-item" href="https://bulma.io">
@@ -37,7 +37,7 @@
 
         <div class="navbar-end">
           <div class="navbar-item is-hoverable">
-            <a class="navbar-link is-primary">
+            <a class="navbar-link">
               <span>{{user.username}}</span>
             </a>
             <div class="navbar-dropdown is-boxed">

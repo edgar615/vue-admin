@@ -1,7 +1,7 @@
 <template>
     <div class="main-content">
         <RouterBreadcrumb></RouterBreadcrumb>
-        <router-view class="main-content__router-view"></router-view>
+        <router-view class="pl-3 pr-3"></router-view>
     </div>
 </template>
 <script>

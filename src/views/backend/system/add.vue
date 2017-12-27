@@ -3,25 +3,23 @@
       <div class="card-content">
           <!--horizontal使用:message="errors.first('sorted')
         "显示错误提示会导致元素向左便宜，垂直布局没这个问题，可以直接使用:message显示错误提示-->
-          <b-field label="标识符" horizontal
-                   :type="errors.has('sysIdentifier') ? 'is-danger' : ''">
+          <jcc-field label="标识符" horizontal
+                   :type="errors.has('sysIdentifier') ? 'is-danger' : ''"
+                    :message="errors.first('sysIdentifier')">
             <b-input name="sysIdentifier" v-model="model.sysIdentifier"
                      v-validate="'required|max:64|alpha_dash'"  data-vv-as="标识符"></b-input>
-            <p class="help is-danger" v-show="errors.has('sysIdentifier')">
-              {{errors.first('sysIdentifier')}}
-            </p>
-          </b-field>
+          </jcc-field>
 
-          <b-field label="名称" horizontal
+          <jcc-field label="名称" horizontal
                    :type="errors.has('name') ? 'is-danger' : ''">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
             <p class="help is-danger" v-show="errors.has('name')">
               {{errors.first('name')}}
             </p>
-          </b-field>
+          </jcc-field>
 
-          <b-field label="排序" horizontal :class="{'has-icons-right': errors.has('sorted') }"
+          <jcc-field label="排序" horizontal :class="{'has-icons-right': errors.has('sorted') }"
                    :type="errors.has('sorted') ? 'is-danger' : ''">
             <b-input name="sorted" expanded v-model="model.sorted"
                      v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序">
@@ -29,8 +27,8 @@
             <p class="help is-danger" v-show="errors.has('sorted')">
               {{errors.first('sorted')}}
             </p>
-          </b-field>
-          <b-field label="类型" horizontal
+          </jcc-field>
+          <jcc-field label="类型" horizontal
                    :type="errors.has('type') ? 'is-danger' : ''">
             <b-select name="type"  expanded  v-model="model.type"
                       v-validate="'required'" data-vv-as="类型">
@@ -44,7 +42,7 @@
             <p class="help is-danger" v-show="errors.has('type')">
               {{errors.first('type')}}
             </p>
-          </b-field>
+          </jcc-field>
         <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control btn_margin">
             <button class="button is-primary" @click="save" :disabled='errors.any()'
