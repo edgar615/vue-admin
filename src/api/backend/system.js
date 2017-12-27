@@ -16,7 +16,7 @@ export function updateSystem(id, system) {
 }
 
 export function addSystem(system) {
-  return request.post('/v1/system/', system);
+  return request.post('/v1/system', system);
 }
 
 export function deleteSystem(id) {
@@ -25,4 +25,24 @@ export function deleteSystem(id) {
 
 export function batchDeleteSystem(ids) {
   return request.delete('/v1/system', {data: {ids : ids}});
+}
+
+export function menuList(id) {
+  return request.get('/v1/menu/tree', {params: {systemId: id}});
+}
+
+export function getMenu(id) {
+  return request.get('/v1/menu/' + id);
+}
+
+export function addMenu(system) {
+  return request.post('/v1/menu', system);
+}
+
+export function deleteMenu(id) {
+  return request.delete('/v1/menu/' + id);
+}
+
+export function updateMenu(id, menu) {
+  return request.put('/v1/menu/' + id, menu);
 }

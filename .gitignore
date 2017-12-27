@@ -16,3 +16,7 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+# ÆäËûÄ£¿é
+src/views/iot/
+src/views/ops/

@@ -16,6 +16,8 @@
   "dependencies": {
     "axios": "0.17.1",
     "vue-form": "^4.7.0",
+    "vue-layer": "^0.8.4",
+    "vue-simple-tree": "^2.2.1",
     "vue-validator": "^3.0.0-alpha.2"
   },
   "devDependencies": {

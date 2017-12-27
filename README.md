@@ -50,6 +50,14 @@ npm install bulma
 npm install bulma-extensions 全部
 npm install bulma-divider 具体的扩展
 ```
+树插件
+```
+npm install vue-simple-tree
+```
+layer提示框插件
+```
+npm install vue-layer
+```
 ```
  /**
     * 样式命名规范

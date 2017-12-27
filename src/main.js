@@ -6,13 +6,19 @@ import router from './router'
 import store from './store'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
-import '@/styles/style.css'
 import '@/styles/bulma-pageloader.css'
+import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
-//import '@/styles/vars.scss' //自定义风格
+import '@/styles/vars.scss' //自定义风格
+import '@/styles/style.css'
 
 Vue.config.productionTip = false
 
+//弹框
+import layer from 'vue-layer'
+Vue.prototype.$layer = layer(Vue);
+
+//校验
 Vue.use(VeeValidate, {
   locale: 'zh_CN',
   delay: 500,
@@ -20,9 +26,11 @@ Vue.use(VeeValidate, {
     zh_CN
   }
 });
+//Buefy组件
 Vue.use(Buefy, {
   defaultIconPack: "fa"
 })
+
 
 /*
  {

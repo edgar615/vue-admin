@@ -35,7 +35,7 @@
 
             <b-radio-button v-model="filters.internal"
                             native-value="false"
-                            type="is-warning">
+                            type="is-success">
               <b-icon icon="folder-open"></b-icon>
               <span>公开</span>
             </b-radio-button>
@@ -65,7 +65,7 @@
           <span>删除</span>
         </span>
             <router-link to="/backend/system/add"
-                         exact class="button is-dark">
+                         exact class="button is-primary">
               <b-icon icon="plus"></b-icon>
               <span>新增</span>
             </router-link>
@@ -94,7 +94,8 @@
           @sort="onSort"
 
           :checked-rows.sync="checkedRows"
-          checkable>
+          checkable
+        >
 
           <template slot-scope="props">
 
@@ -131,6 +132,10 @@
                       title="删除" :class="{'is-loading' : deleting}">
                 <b-icon icon="trash"></b-icon>
               </button>
+              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/menus' }"
+                           exact class="button is-info is-small" title="菜单管理">
+                <b-icon icon="bars"></b-icon>
+              </router-link>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -146,6 +151,7 @@
 
 <script>
   import { systemPage, deleteSystem,batchDeleteSystem } from '@/api/backend/system';
+  import { deleteConfirm } from '@/utils/dialog';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -205,17 +211,19 @@
      * 批量删除
      */
     onDeleteCheckedRows() {
-      var checkedIds = this.checkedRows.map(function(item) {
-        return item.subsystemId;
-      })
-        const vm = this;
+      const vm = this;
+      deleteConfirm(vm, () => {
+        var checkedIds = vm.checkedRows.map(function(item) {
+          return item.subsystemId;
+        })
         vm.deleting = true;
         batchDeleteSystem(checkedIds).then(response => {
           vm.deleting = false;
           this.loadAsyncData({page:this.pagination.page});
-      }).catch(err => {
+        }).catch(err => {
           vm.deleting = false;
-      });
+        });
+      })
     },
     /*
      * 查询
@@ -245,13 +253,15 @@
     },
       onDelete(id) {
         const vm = this;
-        vm.deleting = true;
-        deleteSystem(id).then(response => {
-          vm.deleting = false;
-          this.loadAsyncData({page:this.pagination.page});
-        }).catch(err => {
-          vm.deleting = false;
-        });
+        deleteConfirm(vm,() => {
+          vm.deleting = true;
+          deleteSystem(id).then(response => {
+            vm.deleting = false;
+            this.loadAsyncData({page:this.pagination.page});
+          }).catch(err => {
+            vm.deleting = false;
+          });
+        })
       }
   },
   filters: {
@@ -271,3 +281,41 @@
   }
   }
 </script>
+
+<style scoped>
+  input{
+    border:1px solid #a8a8a8;
+
+  }
+
+  input::-webkit-input-placeholder {
+    color: #999;
+  }
+  input:focus::-webkit-input-placeholder {
+    color: red;
+  }
+
+  /* Firefox < 19 */
+  input:-moz-placeholder {
+    color: #999;
+  }
+  input:focus:-moz-placeholder {
+    color: red;
+  }
+
+  /* Firefox > 19 */
+  input::-moz-placeholder {
+    color: #999;
+  }
+  input:focus::-moz-placeholder {
+    color: red;
+  }
+
+  /* Internet Explorer 10 */
+  input:-ms-input-placeholder {
+    color: #999;
+  }
+  input:focus:-ms-input-placeholder {
+    color: red;
+  }
+</style>

@@ -4,13 +4,13 @@
     <Navbar></Navbar>
     <!-- Main container -->
     <div class="columns is-halfheight">
-      <div class="column bg-white">
-        <Content></Content>
+      <div class="column">
+        <AlarmList></AlarmList>
       </div>
     </div>
     <div class="columns is-halfheight">
-      <div class="column">
-        <AlarmList></AlarmList>
+      <div class="column" style="color: #2576e7; font-size: 12px;">
+        <Content></Content>
       </div>
     </div>
   </div>

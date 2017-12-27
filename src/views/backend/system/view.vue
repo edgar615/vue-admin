@@ -33,15 +33,15 @@
           </span>
           </p>
         </b-field>
+        <b-field horizontal><!-- Label left empty for spacing -->
+          <p class="control btn_margin">
+            <button class="button is-primary" @click="back">
+              <b-icon icon="undo"></b-icon>
+              <span>返回</span>
+            </button>
+          </p>
+        </b-field>
       </div>
-      <footer class="card-footer">
-        <p class="card-footer-item">
-          <button class="button" @click="back">
-            <b-icon icon="undo"></b-icon>
-            <span>返回</span>
-          </button>
-            </p>
-      </footer>
     </div>
     <b-loading :active.sync="loading"></b-loading>
   </section>

@@ -2,173 +2,84 @@
 @import "~bulma/sass/utilities/_all";
 
 //https://bulma.io/documentation/overview/variables/
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-// 1. Initial variables
-// Colors
-// Colors
-$black:        hsl(0, 0%, 4%) !default
-$black-bis:    hsl(0, 0%, 7%) !default
-$black-ter:    hsl(0, 0%, 14%) !default
-
-$grey-darker:  hsl(0, 0%, 21%) !default
-$grey-dark:    hsl(0, 0%, 29%) !default
-$grey:         hsl(0, 0%, 48%) !default
-$grey-light:   hsl(0, 0%, 71%) !default
-$grey-lighter: hsl(0, 0%, 86%) !default
-
-$white-ter:    hsl(0, 0%, 96%) !default
-$white-bis:    hsl(0, 0%, 98%) !default
-$white:        hsl(0, 0%, 100%) !default
-
-$orange:       hsl(14,  100%, 53%) !default
-$yellow:       hsl(48,  100%, 67%) !default
-$green:        hsl(141, 71%,  48%) !default
-$turquoise:    hsl(171, 100%, 41%) !default
-$blue:         hsl(217, 71%,  53%) !default
-$purple:       hsl(271, 100%, 71%) !default
-$red:          hsl(348, 100%, 61%) !default
-
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
-
-
-// Typography
-$family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default
-$family-monospace: monospace !default
-$render-mode: optimizeLegibility !default
-
-$size-1: 3rem !default
-$size-2: 2.5rem !default
-$size-3: 2rem !default
-$size-4: 1.5rem !default
-$size-5: 1.25rem !default
-$size-6: 1rem !default
-$size-7: 0.75rem !default
-
-$weight-light: 300 !default
-$weight-normal: 400 !default
-$weight-semibold: 500 !default
-$weight-bold: 700 !default
-
-// Body
-$body-background: #fff !default
-$body-size: 16px !default
-
-// Responsiveness
-// 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
-$tablet: 769px !default
-// 960px container + 40px
-$desktop: 1000px !default
-// 1152px container + 40
-$widescreen: 1192px !default
-// 1344px container + 40
-$fullhd: 1384px !default
-
-// Miscellaneous
-$easing: ease-out !default
-$radius-small: 2px !default
-$radius: 3px !default
-$radius-large: 5px !default
-$speed: 86ms !default
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// 2. Primary colors
-
-$primary: $turquoise !default
-
-$info: $blue !default
-$success: $green !default
-$warning: $yellow !default
-$danger: $red !default
-
-$light: $white-ter !default
-$dark: $grey-darker !default
+// color
+$dark-blue: #071e3d;
+$dark-blue-invert: findColorInvert($dark-blue);
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// 3. Applied variables
-
-// Invert colors
-$orange-invert: findColorInvert($orange) !default
-$yellow-invert: findColorInvert($yellow) !default
-$green-invert: findColorInvert($green) !default
-$turquoise-invert: findColorInvert($turquoise) !default
-$blue-invert: findColorInvert($blue) !default
-$purple-invert: findColorInvert($purple) !default
-$red-invert: findColorInvert($red) !default
-
-$primary-invert: $turquoise-invert !default
-$info-invert: $blue-invert !default
-$success-invert: $green-invert !default
-$warning-invert: $yellow-invert !default
-$danger-invert: $red-invert !default
-$light-invert: $dark !default
-$dark-invert: $light !default
-
-// General colors
-$background: $white-ter !default
-
-$border: $grey-lighter !default
-$border-hover: $grey-light !default
-
-// Text colors
-$text: $grey-dark !default
-$text-invert: findColorInvert($text) !default
-$text-light: $grey !default
-$text-strong: $grey-darker !default
-
-// Code colors
-$code: $red !default
-$code-background: $background !default
-
-$pre: $text !default
-$pre-background: $background !default
-
-// Link colors
-$link: $primary !default
-$link-invert: $primary-invert !default
-$link-visited: $purple !default
-
-$link-hover: $grey-darker !default
-$link-hover-border: $grey-light !default
-
-$link-focus: $grey-darker !default
-$link-focus-border: $primary !default
-
-$link-active: $grey-darker !default
-$link-active-border: $grey-dark !default
-
-// Typography
-$family-primary: $family-sans-serif !default
-$family-code: $family-monospace !default
-
-$size-small: $size-7 !default
-$size-normal: $size-6 !default
-$size-medium: $size-5 !default
-$size-large: $size-4 !default
+//导航
+$navbar-item-hover-color: #fff;
+$navbar-item-hover-background-color: #235b94;
+$navbar-dropdown-background-color: $info;
+$navbar-background-color:#071e3d;
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// 4. Lists and maps
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-$colors: (
-  "white": ($white, $black),
-  "black": ($black, $white),
-  "light": ($light, $light-invert),
-  "dark": ($dark, $dark-invert),
-  "primary": ($primary, $primary-invert),
-  "info": ($info, $info-invert),
-  "success": ($success, $success-invert),
-  "warning": ($warning, $warning-invert),
-  "danger": ($danger, $danger-invert),
-  "twitter": ($twitter, $twitter-invert)
+//breadcrumb
+//$breadcrumb-item-color: #1f91d6;
+//$breadcrumb-item-hover-color: #4099FF !default
+//$breadcrumb-item-active-color: #1f91d6 !default
+//$breadcrumb-item-separator-color: #fff !default
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Table
+
+$table-color: #fff !default
+$table-background-color: #081a3a !default
+$table-cell-border: 1px solid #193972 !default
+//$table-cell-border-width: 0 0 1px !default
+//$table-cell-padding: 0.5em 0.75em !default
+//$table-cell-heading-color: $text-strong !default
+//$table-head-cell-border-width: 0 0 2px !default
+$table-head-cell-color: #fff !default
+//$table-foot-cell-border-width: 2px 0 0 !default
+$table-foot-cell-color: #fff !default
+//$table-row-hover-background-color: $primary !default
+//$table-row-active-background-color: $primary !default
+//$table-row-active-color: $primary !default
+$table-striped-row-even-background-color: #0a2148 !default
+$table-striped-row-even-hover-background-color: #1081e2 !default
+////无效
+//.b-table .table.is-bordered th.is-current-sort, .b-table .table.is-bordered th.is-sortable:hover{
+//  background-color:#0a2148;
+//  border:1px solid #193972;
+//  color: #fff;
+//}
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Card
+//$card-color: $text !default
+//$card-background-color: #081a3a !default
+////box-shadow: h-shadow水平阴影 v-shadow垂直阴影 blur模糊距离 spread阴影的尺寸 color阴影的颜色 inset将外部阴影 (outset) 改为内部阴影;
+////box-shadow 向框添加一个或多个阴影。该属性是由逗号分隔的阴影列表，每个阴影由 2-4 个长度值、可选的颜色值以及可选的 inset 关键词来规定。省略长度的值是0
+//$card-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default
+//
+//$card-header-color: $white !default
+//$card-header-shadow: 0 1px 2px rgba($black, 0.1) !default
+//$card-header-weight: $weight-bold !default
+//
+//$card-footer-border-top: 1px solid $border !default
+//
+//.card-header{
+//  background:#193972;
+//}
+//.card-header-title{
+//  font-size: 14px;
+//}
+//
+//.card-header-icon{
+//  color: #fff;
+//}
+
+$input-color: #fff !default
+$addColors: (
+  "dark-blue":($dark-blue, $dark-blue-invert)
 );
-
-$sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 !default
-
-$navbar-height: 3.25rem !default
+$colors: map-merge($colors, $addColors);
 
 // Import Bulma and Buefy styles
 @import "~bulma";
