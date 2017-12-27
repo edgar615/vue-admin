@@ -11,23 +11,19 @@
           <!--horizontal使用:message="errors.first('sorted')
          "显示错误提示会导致元素向左便宜，垂直布局没这个问题，可以直接使用:message显示错误提示-->
           <jcc-field label="名称" horizontal
-                   :type="errors.has('name') ? 'is-danger' : ''">
+                   :type="errors.has('name') ? 'is-danger' : ''"
+                     :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
-            <p class="help is-danger" v-show="errors.has('name')">
-              {{errors.first('name')}}
-            </p>
           </jcc-field>
 
-          <jcc-field label="排序" horizontal :class="{'has-icons-right': errors.has('sorted') }"
-                   :type="errors.has('sorted') ? 'is-danger' : ''">
+          <jcc-field label="排序" horizontal
+                   :type="errors.has('sorted') ? 'is-danger' : ''"
+                     :message="errors.first('sorted')">
             <b-input name="sorted" expanded v-model="model.sorted"
                      v-validate="'required|numeric|min_value:0|max_value:9999'"
                      data-vv-as="排序">
             </b-input>
-            <p class="help is-danger" v-show="errors.has('sorted')">
-              {{errors.first('sorted')}}
-            </p>
           </jcc-field>
 
           <jcc-field  label="类型" horizontal class="static-field">
