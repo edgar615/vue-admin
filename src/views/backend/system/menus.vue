@@ -1,12 +1,12 @@
 <template>
  <section>
    <div class="columns">
-     <div class="column is-one-fifth bg-white">
+     <div class="column is-one-fifth bg-dark-blue" style="height: 80vh;">
        <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                  @item-click="itemClick"></vue-tree>
      </div>
      <div class="column is-two-fifths is-two-fifths-box" v-show="viewMenu">
-       <div class="menus_box">
+       <div class="menus_box bg-dark-blue">
          <b-field label="名称" horizontal class="static-field">
            <p class="control static-field">{{model.name}}</p>
          </b-field>

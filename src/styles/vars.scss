@@ -247,8 +247,6 @@ $addColors: (
 );
 $colors: map-merge($colors, $addColors);
 
-@import "./skins/dark-blue";
-
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
@@ -274,7 +272,8 @@ $colors: map-merge($colors, $addColors);
     }
   }
 }
-
+@import "./skins/dark-blue";
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import "./skins/dark-blue-extensions";

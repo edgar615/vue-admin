@@ -66,23 +66,6 @@ nav.navbar {
 
 /************/
 
-/*根据主题颜色来修改*/
-/*如果修改了一些组件的颜色，有些没提供动态修改方式的样式在这里修改*/
-.b-table .table.is-bordered th.is-current-sort, .b-table .table.is-bordered th.is-sortable:hover {
-  background-color:#071e3d;
-  border:1px solid #2779BD;
-  color: #fff;
-}
-.card-header{
-  background: #324D76;
-}
-.card-header-title{
-    font-size: 14px;
-}
-.card-header-icon{
-    color: #fff;
-  }
-/************/
 .static-field p.control {
   margin-top: 0.25rem;
 }
