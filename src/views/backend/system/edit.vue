@@ -46,7 +46,7 @@
               <b-icon icon="check-circle"></b-icon>
               <span>保存</span>
             </button>
-            <button class="button is-primary" @click="back">
+            <button class="button" @click="back">
               <b-icon icon="undo"></b-icon>
               <span>返回</span>
             </button>

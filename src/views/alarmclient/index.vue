@@ -3,13 +3,13 @@
     <!--没有使用layout中的导航栏-->
     <Navbar></Navbar>
     <!-- Main container -->
-    <div class="columns is-halfheight">
-      <div class="column">
+    <div class="columns is-halfheight bg-dark-blue-light">
+      <div class="column is-size-7">
         <AlarmList></AlarmList>
       </div>
     </div>
-    <div class="columns is-halfheight">
-      <div class="column" style="color: #2576e7; font-size: 12px;">
+    <div class="columns is-halfheight bg-dark-blue-light">
+      <div class="column is-size-7">
         <Content></Content>
       </div>
     </div>

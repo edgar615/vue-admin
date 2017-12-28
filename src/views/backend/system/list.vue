@@ -28,7 +28,7 @@
           <b-field>
             <b-radio-button v-model="filters.internal"
                             native-value="true"
-                            type="is-success">
+                            type="is-success" class="is-dark-blue-lighter">
               <b-icon icon="user-secret"></b-icon>
               <span>内部访问</span>
             </b-radio-button>
