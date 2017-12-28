@@ -8,80 +8,246 @@
 // color http://flatuicolors.com/
 $dark-blue: #071e3d;
 $dark-blue-invert: findColorInvert($dark-blue);
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-//导航
-//$navbar-item-hover-color: #fff;
-//$navbar-item-hover-background-color: #235b94;
-//$navbar-dropdown-background-color: $info;
-//$navbar-background-color:#071e3d;
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-//breadcrumb
-//$breadcrumb-item-color: #1f91d6;
-//$breadcrumb-item-hover-color: #4099FF !default
-//$breadcrumb-item-active-color: #1f91d6 !default
-//$breadcrumb-item-separator-color: #fff !default
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-// Table
-
-//$table-color: #fff !default
-//$table-background-color: #081a3a !default
-//$table-cell-border: 1px solid #193972 !default
-//$table-cell-border-width: 0 0 1px !default
-//$table-cell-padding: 0.5em 0.75em !default
-//$table-cell-heading-color: $text-strong !default
-//$table-head-cell-border-width: 0 0 2px !default
-//$table-head-cell-color: #fff !default
-//$table-foot-cell-border-width: 2px 0 0 !default
-//$table-foot-cell-color: #fff !default
-//$table-row-hover-background-color: $primary !default
-//$table-row-active-background-color: $primary !default
-//$table-row-active-color: $primary !default
-//$table-striped-row-even-background-color: #0a2148 !default
-//$table-striped-row-even-hover-background-color: #1081e2 !default
-////无效
-//.b-table .table.is-bordered th.is-current-sort, .b-table .table.is-bordered th.is-sortable:hover{
-//  background-color:#0a2148;
-//  border:1px solid #193972;
-//  color: #fff;
-//}
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-// Card
-//$card-color: $text !default
-//$card-background-color: #081a3a !default
-////box-shadow: h-shadow水平阴影 v-shadow垂直阴影 blur模糊距离 spread阴影的尺寸 color阴影的颜色 inset将外部阴影 (outset) 改为内部阴影;
-////box-shadow 向框添加一个或多个阴影。该属性是由逗号分隔的阴影列表，每个阴影由 2-4 个长度值、可选的颜色值以及可选的 inset 关键词来规定。省略长度的值是0
-//$card-shadow: 0 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1) !default
-//
-//$card-header-color: $white !default
-//$card-header-shadow: 0 1px 2px rgba($black, 0.1) !default
-//$card-header-weight: $weight-bold !default
-//
-//$card-footer-border-top: 1px solid $border !default
-//
-//.card-header{
-//  background:#193972;
-//}
-//.card-header-title{
-//  font-size: 14px;
-//}
-//
-//.card-header-icon{
-//  color: #fff;
-//}
+$dark-blue-lighter: #324D76;
+$dark-blue-lighter-invert: findColorInvert($dark-blue);
+$dark-blue-light: #173256;
+$dark-blue-light-invert: findColorInvert($dark-blue);
+$dark-blue-dark: #021126;
+$dark-blue-dark-invert: findColorInvert($dark-blue);
+$dark-blue-darker: #010812;
+$dark-blue-darker-invert: findColorInvert($dark-blue);
+//Grey
+$grey: #B8C2CC;
+$grey-invert: findColorInvert($grey);
+$grey-lightest: #F8FAFC;
+$grey-lightest-invert: findColorInvert($grey-lightest);
+$grey-lighter: #F1F5F8;
+$grey-lighter-invert: findColorInvert($grey-lighter);
+$grey-light: #DAE1E7;
+$grey-light-invert: findColorInvert($grey-light);
+$grey-dark: #8795A1;
+$grey-dark-invert: findColorInvert($grey-dark);
+$grey-darker: #606F7B;
+$grey-darker-invert: findColorInvert($grey-darker);
+$grey-darkest: #3D4852;
+$grey-darkest-invert: findColorInvert($grey-darkest);
+//Red
+$red: #E3342F;
+$red-invert: findColorInvert($red);
+$red-lightest: #FCEBEA;
+$red-lightest-invert: findColorInvert($red-lightest);
+$red-lighter: #F9ACAA;
+$red-lighter-invert: findColorInvert($red-lighter);
+$red-light: #EF5753;
+$red-light-invert: findColorInvert($red-light);
+$red-dark: #CC1F1A;
+$red-dark-invert: findColorInvert($red-dark);
+$red-darker: #621B18;
+$red-darker-invert: findColorInvert($red-darker);
+$red-darkest: #3B0D0C;
+$red-darkest-invert: findColorInvert($red-darkest);
+//Orange
+$orange: #F6993F;
+$orange-invert: findColorInvert($orange);
+$orange-lightest: #FFF5EB;
+$orange-lightest-invert: findColorInvert($orange-lightest);
+$orange-lighter: #FCD9B6;
+$orange-lighter-invert: findColorInvert($orange-lighter);
+$orange-light: #FAAD63;
+$orange-light-invert: findColorInvert($orange-light);
+$orange-dark: #DE751F;
+$orange-dark-invert: findColorInvert($orange-dark);
+$orange-darker: #613B1F;
+$orange-darker-invert: findColorInvert($orange-darker);
+$orange-darkest: #462A16;
+$orange-darkest-invert: findColorInvert($orange-darkest);
+//Yellow
+$yellow: #FFED4A;
+$yellow-invert: findColorInvert($yellow);
+$yellow-lightest: #FCFBEB;
+$yellow-lightest-invert: findColorInvert($yellow-lightest);
+$yellow-lighter: #FFF9C2;
+$yellow-lighter-invert: findColorInvert($yellow-lighter);
+$yellow-light: #FFF382;
+$yellow-light-invert: findColorInvert($yellow-light);
+$yellow-dark: #F2D024;
+$yellow-dark-invert: findColorInvert($yellow-dark);
+$yellow-darker: #684F1D;
+$yellow-darker-invert: findColorInvert($yellow-darker);
+$yellow-darkest: #453411;
+$yellow-darkest-invert: findColorInvert($yellow-darkest);
+//green
+$green: #38C172;
+$green-invert: findColorInvert($green);
+$green-lightest: #E3FCEC;
+$green-lightest-invert: findColorInvert($green-lightest);
+$green-lighter: #A2F5BF;
+$green-lighter-invert: findColorInvert($green-lighter);
+$green-light: #51D88A;
+$green-light-invert: findColorInvert($green-light);
+$green-dark: #1F9D55;
+$green-dark-invert: findColorInvert($green-dark);
+$green-darker: #1A4731;
+$green-darker-invert: findColorInvert($green-darker);
+$green-darkest: #0F2F21;
+$green-darkest-invert: findColorInvert($green-darkest);
+//teal
+$teal: #4DC0B5;
+$teal-invert: findColorInvert($teal);
+$teal-lightest: #E8FFFE;
+$teal-lightest-invert: findColorInvert($teal-lightest);
+$teal-lighter: #A0F0ED;
+$teal-lighter-invert: findColorInvert($teal-lighter);
+$teal-light: #64D5CA;
+$teal-light-invert: findColorInvert($teal-light);
+$teal-dark: #38A89D;
+$teal-dark-invert: findColorInvert($teal-dark);
+$teal-darker: #20504F;
+$teal-darker-invert: findColorInvert($teal-darker);
+$teal-darkest: #0D3331;
+$teal-darkest-invert: findColorInvert($teal-darkest);
+//Blue
+$blue: #3490DC;
+$blue-invert: findColorInvert($blue);
+$blue-lightest: #EFF8FF;
+$blue-lightest-invert: findColorInvert($blue-lightest);
+$blue-lighter: #BCDEFA;
+$blue-lighter-invert: findColorInvert($blue-lighter);
+$blue-light: #6CB2EB;
+$blue-light-invert: findColorInvert($blue-light);
+$blue-dark: #2779BD;
+$blue-dark-invert: findColorInvert($blue-dark);
+$blue-darker: #1C3D5A;
+$blue-darker-invert: findColorInvert($blue-darker);
+$blue-darkest: #12283A;
+$blue-darkest-invert: findColorInvert($blue-darkest);
+//Indigo
+$indigo: #6574CD;
+$indigo-invert: findColorInvert($indigo);
+$indigo-lightest: #E6E8FF;
+$indigo-lightest-invert: findColorInvert($indigo-lightest);
+$indigo-lighter: #B2B7FF;
+$indigo-lighter-invert: findColorInvert($indigo-lighter);
+$indigo-light: #7886D7;
+$indigo-light-invert: findColorInvert($indigo-light);
+$indigo-dark: #5661B3;
+$indigo-dark-invert: findColorInvert($indigo-dark);
+$indigo-darker: #2F365F;
+$indigo-darker-invert: findColorInvert($indigo-darker);
+$indigo-darkest: #191E38;
+$indigo-darkest-invert: findColorInvert($indigo-darkest);
+//Purple
+$purple: #9561E2;
+$purple-invert: findColorInvert($purple);
+$purple-lightest: #F3EBFF;
+$purple-lightest-invert: findColorInvert($purple-lightest);
+$purple-lighter: #D6BBFC;
+$purple-lighter-invert: findColorInvert($purple-lighter);
+$purple-light: #A779E9;
+$purple-light-invert: findColorInvert($purple-light);
+$purple-dark: #794ACF;
+$purple-dark-invert: findColorInvert($purple-dark);
+$purple-darker: #382B5F;
+$purple-darker-invert: findColorInvert($purple-darker);
+$purple-darkest: #21183C;
+$purple-darkest-invert: findColorInvert($purple-darkest);
+//pink
+$pink: #F66D9B;
+$pink-invert: findColorInvert($pink);
+$pink-lightest: #FFEBEF;
+$pink-lightest-invert: findColorInvert($pink-lightest);
+$pink-lighter: #FFBBCA;
+$pink-lighter-invert: findColorInvert($pink-lighter);
+$pink-light: #FA7EA8;
+$pink-light-invert: findColorInvert($pink-light);
+$pink-dark: #EB5286;
+$pink-dark-invert: findColorInvert($pink-dark);
+$pink-darker: #6F213F;
+$pink-darker-invert: findColorInvert($pink-darker);
+$pink-darkest: #451225;
+$pink-darkest-invert: findColorInvert($pink-darkest);
 
 $addColors: (
+  "grey":($grey, $grey-invert),
+  "grey-lightest":($grey-lightest, $grey-lightest-invert),
+  "grey-lighter":($grey-lighter, $grey-lighter-invert),
+  "grey-light":($grey-light, $grey-light-invert),
+  "grey-dark":($grey-dark, $grey-dark-invert),
+  "grey-darker":($grey-darker, $grey-darker-invert),
+  "grey-darkest":($grey-darkest, $grey-darkest-invert),
+  "red":($red, $red-invert),
+  "red-lightest":($red-lightest, $red-lightest-invert),
+  "red-lighter":($red-lighter, $red-lighter-invert),
+  "red-light":($red-light, $red-light-invert),
+  "red-dark":($red-dark, $red-dark-invert),
+  "red-darker":($red-darker, $red-darker-invert),
+  "red-darkest":($red-darkest, $red-darkest-invert),
+  "orange":($orange, $orange-invert),
+  "orange-lightest":($orange-lightest, $orange-lightest-invert),
+  "orange-lighter":($orange-lighter, $orange-lighter-invert),
+  "orange-light":($orange-light, $orange-light-invert),
+  "orange-dark":($orange-dark, $orange-dark-invert),
+  "orange-darker":($orange-darker, $orange-darker-invert),
+  "orange-darkest":($orange-darkest, $orange-darkest-invert),
+  "yellow":($yellow, $yellow-invert),
+  "yellow-lightest":($yellow-lightest, $yellow-lightest-invert),
+  "yellow-lighter":($yellow-lighter, $yellow-lighter-invert),
+  "yellow-light":($yellow-light, $yellow-light-invert),
+  "yellow-dark":($yellow-dark, $yellow-dark-invert),
+  "yellow-darker":($yellow-darker, $yellow-darker-invert),
+  "yellow-darkest":($yellow-darkest, $yellow-darkest-invert),
+  "green":($green, $green-invert),
+  "green-lightest":($green-lightest, $green-lightest-invert),
+  "green-lighter":($green-lighter, $green-lighter-invert),
+  "green-light":($green-light, $green-light-invert),
+  "green-dark":($green-dark, $green-dark-invert),
+  "green-darker":($green-darker, $green-darker-invert),
+  "green-darkest":($green-darkest, $green-darkest-invert),
+  "teal":($teal, $teal-invert),
+  "teal-lightest":($teal-lightest, $teal-lightest-invert),
+  "teal-lighter":($teal-lighter, $teal-lighter-invert),
+  "teal-light":($teal-light, $teal-light-invert),
+  "teal-dark":($teal-dark, $teal-dark-invert),
+  "teal-darker":($teal-darker, $teal-darker-invert),
+  "teal-darkest":($teal-darkest, $teal-darkest-invert),
+  "blue":($blue, $blue-invert),
+  "blue-lightest":($blue-lightest, $blue-lightest-invert),
+  "blue-lighter":($blue-lighter, $blue-lighter-invert),
+  "blue-light":($blue-light, $blue-light-invert),
+  "blue-dark":($blue-dark, $blue-dark-invert),
+  "blue-darker":($blue-darker, $blue-darker-invert),
+  "blue-darkest":($blue-darkest, $blue-darkest-invert),
+  "indigo":($indigo, $indigo-invert),
+  "indigo-lightest":($indigo-lightest, $indigo-lightest-invert),
+  "indigo-lighter":($indigo-lighter, $indigo-lighter-invert),
+  "indigo-light":($indigo-light, $indigo-light-invert),
+  "indigo-dark":($indigo-dark, $indigo-dark-invert),
+  "indigo-darker":($indigo-darker, $indigo-darker-invert),
+  "indigo-darkest":($indigo-darkest, $indigo-darkest-invert),
+  "purple":($purple, $purple-invert),
+  "purple-lightest":($purple-lightest, $purple-lightest-invert),
+  "purple-lighter":($purple-lighter, $purple-lighter-invert),
+  "purple-light":($purple-light, $purple-light-invert),
+  "purple-dark":($purple-dark, $purple-dark-invert),
+  "purple-darker":($purple-darker, $purple-darker-invert),
+  "purple-darkest":($purple-darkest, $purple-darkest-invert),
+  "pink":($pink, $pink-invert),
+  "pink-lightest":($pink-lightest, $pink-lightest-invert),
+  "pink-lighter":($pink-lighter, $pink-lighter-invert),
+  "pink-light":($pink-light, $pink-light-invert),
+  "pink-dark":($pink-dark, $pink-dark-invert),
+  "pink-darker":($pink-darker, $pink-darker-invert),
+  "pink-darkest":($pink-darkest, $pink-darkest-invert),
   "dark-blue":($dark-blue, $dark-blue-invert),
+  "dark-blue-lighter":($dark-blue-lighter, $dark-blue-lighter-invert),
+  "dark-blue-light":($dark-blue-light, $dark-blue-light-invert),
+  "dark-blue-dark":($dark-blue-dark, $dark-blue-dark-invert),
+  "dark-blue-darker":($dark-blue-darker, $dark-blue-darker-invert),
   "primary":($purple, $purple-invert)
 );
 $colors: map-merge($colors, $addColors);
 
-
+@import "./skins/dark-blue";
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
@@ -94,7 +260,7 @@ $colors: map-merge($colors, $addColors);
   }
   .is-sidebar-menu {
     padding: 2rem;
-    border-top: 1px solid nth($pair, 2);
+    //border-top: 1px solid nth($pair, 2);
     box-sizing: border-box;
     &.is-#{$name} {
       background-color: nth($pair, 1);

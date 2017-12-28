@@ -3,10 +3,10 @@
        <Navbar></Navbar>
       <!-- Main container -->
       <div class="columns is-fullheight">
-        <div class="column is-2 is-sidebar-menu is-hidden-mobile is-dark-blue">
+        <div class="column is-2 is-sidebar-menu is-hidden-mobile is-dark-blue-dark">
             <Aside></Aside>
         </div>
-        <div class="column is-main-content bg-light is-paddingless">
+        <div class="column is-main-content is-paddingless bg-dark-blue-light">
           <MainContent></MainContent>
         </div>
       </div>

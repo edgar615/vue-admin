@@ -1,0 +1,74 @@
+
+//背景色
+//$background:$dark-blue-light;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//导航
+//$navbar-item-hover-color: #fff;
+//$navbar-item-hover-background-color: #235b94;
+//$navbar-dropdown-background-color: $info;
+//$navbar-background-color:#071e3d;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//menu
+$menu-item-hover-background-color:$blue;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//breadcrumb
+//$breadcrumb-item-color: #1f91d6;
+$breadcrumb-item-hover-color: $dark-blue-invert !default
+$breadcrumb-item-active-color: $dark-blue-invert !default
+$breadcrumb-item-separator-color: $dark-blue-invert !default
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Table
+
+$table-color: $dark-blue-invert !default
+$table-background-color: $dark-blue !default
+$table-cell-border: 1px solid $blue-dark !default
+$table-cell-border-width: 0 0 1px !default
+//$table-cell-padding: 0.5em 0.75em !default
+//$table-cell-heading-color: $text-strong !default
+//$table-head-cell-border-width: 0 0 2px !default
+$table-head-cell-color: $dark-blue-invert !default
+//$table-foot-cell-border-width: 2px 0 0 !default
+//$table-foot-cell-color: #fff !default
+//$table-row-hover-background-color: $primary !default
+//$table-row-active-background-color: $primary !default
+//$table-row-active-color: $primary !default
+$table-striped-row-even-background-color: $dark-blue-lighter !default
+$table-striped-row-even-hover-background-color:  $dark-blue-light !default
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Card
+$card-color: $dark-blue-invert !default
+$card-background-color: $dark-blue !default
+////box-shadow: h-shadow水平阴影 v-shadow垂直阴影 blur模糊距离 spread阴影的尺寸 color阴影的颜色 inset将外部阴影 (outset) 改为内部阴影;
+////box-shadow 向框添加一个或多个阴影。该属性是由逗号分隔的阴影列表，每个阴影由 2-4 个长度值、可选的颜色值以及可选的 inset 关键词来规定。省略长度的值是0
+$card-shadow: 0 2px 3px rgba($dark-blue-lighter, 0.1), 0 0 0 1px rgba($dark-blue-lighter, 0.1) !default
+$card-header-color: $white !default
+$card-header-shadow: 0 1px 2px rgba($dark-blue-lighter, 0.1) !default
+$card-header-weight: $weight-bold !default
+//$card-footer-border-top: 1px solid $border !default
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Card
+$modal-card-head-background-color:$dark-blue-light !default;
+$modal-card-title-color:$dark-blue-invert;
+$modal-card-head-padding:10px;
+$modal-card-title-size:$size-6;
+$modal-card-body-background-color:$dark-blue-light !default;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// Tabs
+$tabs-link-color: $dark-blue-invert !default
+$tabs-toggle-link-active-background-color:$dark-blue;
+$tabs-toggle-link-hover-background-color:$dark-blue-lighter;
+$tabs-link-hover-color: $dark-blue-invert !default
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// input
+$input-color:$dark-blue-invert;
+$input-border-color:$dark-blue-light;
+$input-background-color: $dark-blue-lighter;

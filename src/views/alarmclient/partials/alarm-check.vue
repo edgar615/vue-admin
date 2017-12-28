@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="card mt-1">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
           联动录像
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="card mt-1">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
           视频直播

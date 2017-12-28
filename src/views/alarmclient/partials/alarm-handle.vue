@@ -72,7 +72,7 @@
         </div>
       </div>
     </div>
-    <div class="card mt-1">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
           警情信息
@@ -122,7 +122,7 @@
         </div>
       </div>
     </div>
-    <div class="card mt-1">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
           同时处理
@@ -156,7 +156,7 @@
         </b-field>
       </div>
     </div>
-    <div class="card mt-1">
+    <div class="card">
       <header class="card-header">
         <p class="card-header-title">
           警情处理
