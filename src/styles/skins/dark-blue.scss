@@ -58,6 +58,7 @@ $card-header-weight: $weight-bold !default
 ////////////////////////////////////////////////
 // Card
 $modal-card-head-background-color:$dark-blue-light !default;
+$modal-card-head-border-bottom:1px solid $border-color;
 $modal-card-title-color:$dark-blue-invert;
 $modal-card-head-padding:10px;
 $modal-card-title-size:$size-6;
@@ -66,8 +67,9 @@ $modal-card-body-background-color:$dark-blue-light !default;
 ////////////////////////////////////////////////
 // Tabs
 $tabs-link-color: $dark-blue-invert !default
-$tabs-toggle-link-active-background-color:$dark-blue;
+$tabs-toggle-link-active-background-color:$dark-blue-dark;
 $tabs-toggle-link-hover-background-color:$dark-blue-lighter;
+$tabs-toggle-link-border-color:$border-color !default;
 $tabs-link-hover-color: $dark-blue-invert !default
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
