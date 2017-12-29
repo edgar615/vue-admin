@@ -96,6 +96,11 @@ nav.navbar {
   margin-top: 0.25rem;
 }
 
+.is-narrow .static-field.is-horizontal {
+  margin-bottom: 0px;
+}
+
+
 .border-0 {
   border: 0 !important;
 }
