@@ -1,6 +1,8 @@
 
 //背景色
 //$background:$dark-blue-light;
+$body-background-color: $dark-blue-light !default
+$border-color: #1a7ec1;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //导航
@@ -12,6 +14,7 @@
 ////////////////////////////////////////////////
 //menu
 $menu-item-hover-background-color:$blue;
+$menu-item-color:$dark-blue-dark-invert;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //breadcrumb
@@ -25,7 +28,7 @@ $breadcrumb-item-separator-color: $dark-blue-invert !default
 
 $table-color: $dark-blue-invert !default
 $table-background-color: $dark-blue !default
-$table-cell-border: 1px solid $blue-dark !default
+$table-cell-border: 1px solid $border-color !default
 $table-cell-border-width: 0 0 1px !default
 //$table-cell-padding: 0.5em 0.75em !default
 //$table-cell-heading-color: $text-strong !default
@@ -70,9 +73,10 @@ $tabs-link-hover-color: $dark-blue-invert !default
 ////////////////////////////////////////////////
 // input
 $input-color:$dark-blue-invert;
-$input-border-color:$dark-blue-light;
+$input-border-color:$border-color;
 $input-background-color: $dark-blue-lighter;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //button
-//$button-background-color:$dark-blue-light !default;
+$button-background-color:#0c2551 !default;
+$button-border-color:$border-color !default;

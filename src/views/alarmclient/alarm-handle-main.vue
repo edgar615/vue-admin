@@ -4,7 +4,7 @@
         <p class="modal-card-title">警情处理</p>
       </header>
       <section class="modal-card-body">
-        <b-tabs type="is-toggle"  expanded v-model="tabsIndex">
+        <b-tabs type="is-toggle" size="is-small"  expanded v-model="tabsIndex">
           <b-tab-item label="警情信息" icon="exclamation-circle">
             <AlarmHandle></AlarmHandle>
           </b-tab-item>

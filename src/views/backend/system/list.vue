@@ -35,7 +35,7 @@
 
             <b-radio-button v-model="filters.internal"
                             native-value="false"
-                            type="is-success">
+                            type="is-info">
               <b-icon icon="folder-open"></b-icon>
               <span>公开</span>
             </b-radio-button>
@@ -77,6 +77,7 @@
           bordered
           striped
           hoverable
+          narrowed
           mobile-cards
 
           :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"

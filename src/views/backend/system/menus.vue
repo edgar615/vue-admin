@@ -1,12 +1,12 @@
 <template>
  <section>
-   <div class="columns">
-     <div class="column is-one-fifth bg-dark-blue" style="height: 80vh;">
+   <div class="columns is-full-content">
+     <div class="column is-one-fifth bg-main">
        <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                  @item-click="itemClick"></vue-tree>
      </div>
-     <div class="column is-two-fifths is-two-fifths-box" v-show="viewMenu">
-       <div class="menus_box bg-dark-blue">
+     <div class="column bg-main ml-2" v-show="viewMenu">
+       <div class="menus_box">
          <b-field label="名称" horizontal class="static-field">
            <p class="control static-field">{{model.name}}</p>
          </b-field>
@@ -39,7 +39,7 @@
        </div>
      </div>
 
-     <div class="column is-two-fifths is-two-fifths-box" v-show="addMenu">
+     <div class="column bg-main ml-2" v-show="addMenu">
        <div class="menus_box">
          <jcc-field label="名称"  horizontal :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
            <b-input name="name" v-model="model.name"

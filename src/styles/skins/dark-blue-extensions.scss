@@ -1,5 +1,13 @@
 /*根据主题颜色来修改*/
 /*如果修改了一些组件的颜色，有些没提供动态修改方式的样式在这里修改*/
+
+//背景色
+.bg-main {
+  background-color:$dark-blue-dark;
+  color: $dark-blue-dark-invert;
+}
+
+.b-table .table{border-collapse:collapse;}
 .b-table .table.is-bordered th.is-current-sort, .b-table .table.is-bordered th.is-sortable:hover {
   background-color:$dark-blue;
   border:1px solid $blue-dark;

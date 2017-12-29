@@ -8,28 +8,28 @@
                      :type="errors.has('sysIdentifier') ? 'is-danger' : ''"
                      :message="errors.first('sysIdentifier')">
             <b-input name="sysIdentifier" v-model="model.sysIdentifier"
-                     v-validate="'required|max:64|alpha_dash'"  data-vv-as="标识符"></b-input>
+                     v-validate="'required|max:64|alpha_dash'"  data-vv-as="标识符" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="名称" horizontal
                      :type="errors.has('name') ? 'is-danger' : ''"
                      :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
-                     v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
+                     v-validate="'required|max:64'"  data-vv-as="名称" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="排序" horizontal
                      :type="errors.has('sorted') ? 'is-danger' : ''"
                      :message="errors.first('sorted')">
             <b-input name="sorted" expanded v-model="model.sorted"
-                     v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序">
+                     v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序" class="w-25">
             </b-input>
           </jcc-field>
           <jcc-field label="类型" horizontal
                      :type="errors.has('type') ? 'is-danger' : ''"
                      :message="errors.first('type')">
             <b-select name="type"  expanded  v-model="model.type"
-                      v-validate="'required'" data-vv-as="类型">
+                      v-validate="'required'" data-vv-as="类型" class="w-15">
               <option
                 v-for="option in dictList('systemType')"
                 :value="option.value"

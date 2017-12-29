@@ -1,6 +1,6 @@
 <template>
     <!-- 使用路由生成菜单 -->
-  <aside class="menu">
+  <aside class="menu is-size-6">
     <!-- 使用路由生成菜单 -->
     <p class="menu-label">
       {{curSystemName}}

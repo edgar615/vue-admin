@@ -60,12 +60,38 @@ nav.navbar {
   overflow-y: auto;
 }
 
+.columns.is-full-content {
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  margin-top: 0.5rem;
+}
+.columns.is-full-content .column {
+  overflow-y: auto;
+}
+
 .is-main-content {
   padding-left: 1.25rem;
 }
 
 /************/
+/*表单长度控制*/
+.input-ll{
+  width: 500px;
+}
 
+.input-l{
+  width: 400px;
+}
+
+.input-ss{
+  width: 200px;
+}
+
+.input-s{
+  width: 100px;
+}
 .static-field p.control {
   margin-top: 0.25rem;
 }
@@ -124,6 +150,11 @@ nav.navbar {
   clear: both;
   content: "";
 }
+
+.w-15 {
+  width: 15% !important;
+}
+
 
 .w-25 {
   width: 25% !important;
