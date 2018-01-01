@@ -21,14 +21,12 @@
             <b-icon icon="user"></b-icon>
             <span>{{user.username}}</span>
           </a>
-        </div>
           <a class="navbar-item" href="#" @click="logout">
             <b-icon icon="sign-out"></b-icon>
             <span>退出</span>
           </a>
         </div>
       </div>
-    </div>
   </nav>
 </template>
 <script>
