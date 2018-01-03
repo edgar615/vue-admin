@@ -1,16 +1,22 @@
 <template>
     <!-- 使用路由生成菜单 -->
-  <aside class="menu is-size-6">
+  <aside class="menu is-size-7">
     <!-- 使用路由生成菜单 -->
     <p class="menu-label">
       {{curSystemName}}
     </p>
     <ul class="menu-list">
       <template v-for="menu in asideMenus" v-if="!menu.hidden">
-        <li><router-link :to="{path: menu.path}" active-class="is-active" exact :key="menu.path">{{ menu.name }}</router-link>
+        <li><router-link :to="{path: menu.path}" active-class="is-active" exact :key="menu.path">
+          <b-icon :icon="menu.icon"></b-icon>
+          <span>{{ menu.name }}</span>
+          </router-link>
           <ul  v-if="menu.children && menu.children.length > 0">
             <li v-for="child in menu.children" v-if="!child.hidden" :key="menu.path + '/' + child.path">
-              <router-link :to="{path: menu.path + '/' + child.path}" active-class="is-active" exact>{{ child.name }}</router-link>
+              <router-link :to="{path: menu.path + '/' + child.path}" active-class="is-active" exact>
+                <b-icon :icon="child.icon"></b-icon>
+                <span>{{ child.name }}</span>
+              </router-link>
             </li>
           </ul>
         </li>
@@ -20,7 +26,7 @@
 </template>
 <script>
     export default {
-        data() {
+       data() {
             return {
             };
         },
