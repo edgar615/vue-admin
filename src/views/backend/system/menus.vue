@@ -47,7 +47,7 @@
          </jcc-field>
          <jcc-field label="路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')">
            <b-input name="path" v-model="model.path"
-                    v-validate="'required|max:64|alpha_dash'"  data-vv-as="路径"  style="width: 400px;"></b-input>
+                    v-validate="'required|max:64'"  data-vv-as="路径"  style="width: 400px;"></b-input>
          </jcc-field>
          <jcc-field label="排序" horizontal  :message="errors.first('sorted')"
                     :type="errors.has('sorted') ? 'is-danger' : ''">

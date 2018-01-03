@@ -2,6 +2,7 @@
 //背景色
 //$background:$dark-blue-light;
 $body-background-color: $dark-blue-light !default
+$body-color: $dark-blue-light-invert !default
 $border-color: #1a7ec1;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -79,6 +80,22 @@ $input-border-color:$border-color;
 $input-background-color: $dark-blue-lighter;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
+// input
+$checkbox-active-background-color: $dark-blue-lighter !default;
+$checkbox-checkmark-color: $dark-blue-lighter-invert !default;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
 //button
 $button-background-color:$grey !default;
 $button-border-color:$border-color !default;
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//pagination
+$pagination-color:$dark-blue-invert !default;
+$pagination-border-color:$border-color !default;
+$pagination-hover-color: $dark-blue-invert !default
+$pagination-hover-border-color:$border-color !default;
+$pagination-active-color:$dark-blue-dark !default;
+$pagination-current-background-color:$dark-blue-light !default;
+$pagination-disabled-background-color:$dark-blue-lighter !default;
+$pagination-disabled-border-color:$border-color !default;
