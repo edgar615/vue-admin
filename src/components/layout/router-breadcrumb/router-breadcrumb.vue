@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb pl-3 mb-2" aria-label="breadcrumbs">
+  <nav class="breadcrumb pl-3 mb-2 is-size-7" aria-label="breadcrumbs">
     <ul>
       <li :class="activeBreadcrumb(route)" v-for="(route, index) in $route.matched" v-if="route.path != '/'" :key="route.path" >
         <span class="icon is-small" v-show="index == 0"><i class="fa fa-caret-right"></i></span>

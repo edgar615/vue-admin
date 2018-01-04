@@ -23,3 +23,44 @@
   color: $dark-blue-invert;
 }
 /************/
+
+//vue-layer
+.notify .notify-alert h2.notice-title{
+  background: $dark-blue !important;
+  border-bottom: 1px solid $border-color !important;
+}
+.notify .notify-main{
+  background: $dark-blue-light !important;
+  border: 1px solid $dark-blue-light !important;
+  color: $dark-blue-light-invert !important;
+}
+
+.notify-content{
+  font-size: 14px;
+}
+
+
+.btn-primary{
+  background: $blue-dark !important;
+  border: 1px solid $blue-dark !important;
+  border-radius: 3px !important;
+}
+
+.btn-primary:hover{
+  background: $dark-blue !important;
+  border: 1px solid $dark-blue !important;
+}
+
+.btn-default{
+  background: $grey !important;
+  border: 1px solid $grey !important;
+  color: $grey-invert !important;
+  border-radius: 3px !important;
+}
+
+.btn-default:hover{
+  background: $grey-dark !important;
+  border: 1px solid $grey-dark !important;
+  color: $grey-dark-invert !important;
+}
+/************/

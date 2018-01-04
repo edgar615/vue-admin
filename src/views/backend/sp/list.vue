@@ -79,11 +79,6 @@
           :current-page="pagination.page"
           @page-change="onPageChange"
 
-          backend-sorting
-          :default-sort-direction="defaultSortOrder"
-          :default-sort="[sortField, sortOrder]"
-          @sort="onSort"
-
           :checked-rows.sync="checkedRows"
           checkable
         >
@@ -141,7 +136,7 @@
 </template>
 
 <script>
-  import { systemPage, deleteSystem,batchDeleteSystem } from '@/api/backend/system';
+  import { spPage, deleteSp,batchSp } from '@/api/backend/sp';
   import { deleteConfirm } from '@/utils/dialog';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
@@ -152,9 +147,6 @@
         pagination: {},
         loading: false,
         deleting: false,
-        sortField: 'sorted',
-        sortOrder: 'asc',
-        defaultSortOrder: 'asc',
         checkedRows: []
       }
     },
@@ -169,18 +161,12 @@
         if (params == undefined) {
           params = {};
         }
-        //如果表格没有拍下，不需要这些操作
-        var sort = this.sortField;
-        if (this.sortOrder == 'desc') {
-          sort = "-" + sort;
-        }
-        params.sort = sort;
         params = Object.assign(this.filters, params);
         this.loading = true
-        systemPage(params).then(response => {
+        spPage(params).then(response => {
           this.pagination = response.data;
-        this.loading = false;
-      });
+           this.loading = false;
+        });
     },
     /*
      * Handle page-change event
@@ -189,14 +175,6 @@
       if (this.pagination.page != page) {
         this.loadAsyncData({page:page});
       }
-    },
-    /*
-     * Handle sort event
-     */
-    onSort(field, order) {
-      this.sortField = field;
-      this.sortOrder = order;
-      this.loadAsyncData()
     },
     /*
      * 批量删除
@@ -208,7 +186,7 @@
           return item.subsystemId;
         })
         vm.deleting = true;
-        batchDeleteSystem(checkedIds).then(response => {
+        batchDeleteSp(checkedIds).then(response => {
           vm.deleting = false;
           this.loadAsyncData({page:this.pagination.page});
         }).catch(err => {
@@ -246,7 +224,7 @@
         const vm = this;
         deleteConfirm(vm,() => {
           vm.deleting = true;
-          deleteSystem(id).then(response => {
+          deleteSp(id).then(response => {
             vm.deleting = false;
             this.loadAsyncData({page:this.pagination.page});
           }).catch(err => {
@@ -254,18 +232,6 @@
           });
         })
       }
-  },
-  filters: {
-    /**
-     * Filter to truncate string, accepts a length parameter
-     */
-    /*
-     truncate(value, length) {
-     return value.length > length
-     ? value.substr(0, length) + '...'
-     : value
-     }
-     */
   },
   created() {
     this.loadAsyncData();
