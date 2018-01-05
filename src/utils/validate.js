@@ -1,33 +1,38 @@
-/**
- * Created by jiachenpan on 16/11/18.
- */
+import request from '@/utils/request'
 
-export function isvalidUsername(str) {
-  const valid_map = ['admin', 'editor']
-  return valid_map.indexOf(str.trim()) >= 0
-}
+VeeValidate.Validator.extend('alpha_underscore', {
+    getMessage: field => 'The ' + field + ' field may contain alpha-numeric characters as well as underscores..',
+  validate: value => /^[_A-z0-9]{1,}$/.test(value)
+});
 
-/* 合法uri*/
-export function validateURL(textval) {
-  const urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
-  return urlregex.test(textval)
-}
+VeeValidate.Validator.extend('alpha_symbol', {
+    getMessage: field => 'The ' + field + ' field may contain alpha-numeric characters as well as ` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ? ',
+  validate: value => /^[_A-z0-9\/`\/'~!@#\$%\^&*\(\)-=_\+;:,./<>\?]{1,}$/.test(value)
+});
 
-/* 小写字母*/
-export function validateLowerCase(str) {
-  const reg = /^[a-z]+$/
-  return reg.test(str)
-}
+VeeValidate.Validator.extend('menu', {
+    getMessage: field => 'The ' + field + ' field may contain alpha-numeric characters as well as : /',
+  validate: value => /^[_A-z0-9:/]{1,}$/.test(value)
+});
 
-/* 大写字母*/
-export function validateUpperCase(str) {
-  const reg = /^[A-Z]+$/
-  return reg.test(str)
-}
-
-/* 大小写字母*/
-export function validatAlphabets(str) {
-  const reg = /^[A-Za-z]+$/
-  return reg.test(str)
-}
+VeeValidate.Validator.extend('remote', {
+    getMessage: field => 'The ' + field + ' field has already exists',
+    validate(value,[url]) {
+      if (url == undefined) {
+        return false;
+      }
+    return new Promise((resolve, reject)  => {
+        const params = {data: value, ignoreError: true};
+       request.get(url, {params: params}).then(res => {
+        resolve({
+                  valid: true
+                });
+        }).catch(err => {
+          resolve({
+              valid: false
+            });
+        });
+    });
+  }
+});
 

@@ -1,12 +1,12 @@
 const messages = {
     after: (field, [target]) => ` ${field} 必须在${target}之后`,
-    alpha_dash: (field) => ` ${field} 能够包含字母数字字符，包括破折号、下划线`,
-    alpha_num: (field) => `${field} 只能包含字母数字字符`,
-    alpha_spaces: (field) => ` ${field} 只能包含字母字符，包括空格`,
-    alpha: (field) => ` ${field} 只能包含字母字符`,
+    alpha_dash: (field) => ` ${field} 只能包含字母、数字、下划线_和破折号-`,
+    alpha_num: (field) => ` ${field} 只能包含字母、数字`,
+    alpha_spaces: (field) => ` ${field} 只能包含字母、数字和空格`,
+    alpha: (field) => ` ${field} 只能包含字母`,
     before: (field, [target]) => ` ${field} 必须在${target}之前`,
     between: (field, [min, max]) => ` ${field} 必须在${min}与${max}之间`,
-    confirmed: (field, [confirmedField]) => ` ${field} 不能和${confirmedField}匹配`,
+    confirmed: (field, [confirmedField]) => ` ${field} 必须和${confirmedField}相同`,
     date_between: (field, [min, max]) => ` ${field} 必须在${min}和${max}之间`,
     date_format: (field, [format]) => ` ${field} 必须在在${format}格式中`,
     decimal: (field, [decimals = '*'] = []) => ` ${field} 必须是数字的而且能够包含${decimals === '*' ? '' : decimals}小数点`,
@@ -16,7 +16,7 @@ const messages = {
     ext: (field) => ` ${field} 必须是有效的文件`,
     image: (field) => ` ${field} 必须是图片`,
     in: (field) => ` ${field} 必须是一个有效值`,
-    ip: (field) => ` ${field} 必须是一个有效的地址`,
+    ip: (field) => ` ${field} 必须是一个有效的IP地址`,
     max: (field, [length]) => ` ${field} 不能大于${length}字符`,
     max_value: (field, [max]) => ` ${field} 必须小于或等于${max}`,
     mimes: (field) => ` ${field} 必须是有效的文件类型`,
@@ -27,7 +27,12 @@ const messages = {
     regex: (field) => ` ${field} 格式无效`,
     required: (field) => `请输入 ${field}`,
     size: (field, [size]) => ` ${field} 必须小于${size}`,
-    url: (field) => ` ${field} 不是有效的url`
+    url: (field) => ` ${field} 不是有效的url`,
+    //自定义的查询
+    alpha_underscore: (field) => ` ${field} 只能包含字母、数字和下划线`,
+    alpha_symbol: (field) => ` ${field} 只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号`,
+    menu: (field) => ` ${field} 只能包含字母、数字和 / : 中的特殊符号`,
+    remote: (field) => ` ${field} 已存在`
 };
 
 const locale = {

@@ -26,6 +26,10 @@ service.interceptors.response.use(
   response => {
   return response
   },  error => {
+    if (error.config.params
+      && error.config.params.ignoreError == true) {
+      return Promise.reject(error);
+    }
     var msg = "接口调用失败!";
     if (error.response) {
       var code = error.response.data.code;

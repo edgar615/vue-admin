@@ -28,14 +28,14 @@
 
           <jcc-field  label="类型" horizontal class="static-field">
             <p class="control">
-              {{ dictText("systemType",model.type) }}
+              {{ dictText(this, "systemType",model.type) }}
             </p>
           </jcc-field>
 
           <jcc-field  label="内部访问" horizontal class="static-field">
             <p class="control">
             <span class="tag is-info">
-              {{ dictText("internal",model.internal) }}
+              {{ dictText(this, "internal",model.internal) }}
               </span>
             </p>
           </jcc-field>
@@ -58,7 +58,6 @@
   </section>
 </template>
 <script>
-  import { getSystem, updateSystem } from '@/api/backend/system';
   export default {
     data() {
     return {
@@ -69,37 +68,16 @@
     }
   },
   methods: {
-    loadAsyncData() {
-      this.loading = true
-      getSystem(this.$route.params.id).then(response => {
-        this.model = response.data;
-        this.loading = false;
-      });
-    },
-      dictText(name, value) {
-        return this.$store.getters.dictText(name, value);
-      },
-      dictList(name) {
-        return this.$store.getters.dictList(name);
-      },
       back() {
         this.$router.back();
       },
       save() {
-          const vm = this
-          this.$validator.validateAll().then((result) => {
-              if (result) {
-              vm.saving = true
-              updateSystem(vm.$route.params.id, this.model).then(response => {
-                vm.saving = false;
-                this.$router.push({ path: '/backend/system' })
-              })
-            }
-          });
+        const vm = this
+        vm.updateModel(vm, "/v1/system", vm.$route.params.id, () => vm.$router.push({ path: '/backend/system' }))
       }
     },
   created () {
-      this.loadAsyncData();
+    this.getModel(this, "/v1/system", this.$route.params.id)
     }
   }
 </script>

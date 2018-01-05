@@ -16,11 +16,17 @@ import '@/styles/style.css'
 
 Vue.config.productionTip = false
 
+//CRUD基本方法，减少页面开发量
+import ApiUtil from '@/utils/util'
+Vue.use(ApiUtil);
+
 //弹框
 import layer from 'vue-layer'
 Vue.prototype.$layer = layer(Vue);
 
 //校验
+import '@/utils/validate'
+
 Vue.use(VeeValidate, {
   locale: 'zh_CN',
   delay: 500,
@@ -28,9 +34,12 @@ Vue.use(VeeValidate, {
     zh_CN
   }
 });
+
 //Buefy组件
 Vue.use(Buefy, {
   defaultIconPack: "fa"
+  ,defaultDayNames: ["日", "一", "二", "三", "四", "五", "六"]
+  ,defaultMonthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
 })
 
 Vue.component('jcc-field', JccField)

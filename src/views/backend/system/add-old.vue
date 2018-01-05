@@ -65,16 +65,6 @@
     }
   },
   methods: {
-    loadAsyncData() {
-      this.loading = true
-      getSystem(this.$route.params.id).then(response => {
-        this.model = response.data;
-        this.loading = false;
-      });
-    },
-      dictText(name, value) {
-        return this.$store.getters.dictText(name, value);
-      },
       dictList(name) {
         return this.$store.getters.dictList(name);
       },

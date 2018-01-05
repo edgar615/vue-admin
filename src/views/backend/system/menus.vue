@@ -1,7 +1,7 @@
 <template>
  <section>
    <div class="columns is-full-content">
-     <div class="column is-one-fifth bg-main is-size-7">
+     <div class="column is-one-fifth bg-main is-size-7 border-1">
        <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                  @item-click="itemClick"></vue-tree>
      </div>
@@ -12,6 +12,9 @@
          </b-field>
          <b-field label="路径" horizontal class="static-field">
            <p class="control">{{model.path}}</p>
+         </b-field>
+         <b-field label="图标" horizontal class="static-field">
+           <p class="control">{{model.icon}}</p>
          </b-field>
          <b-field label="隐藏?" horizontal class="static-field">
            <p class="control">{{model.hidden}}</p>
@@ -47,7 +50,11 @@
          </jcc-field>
          <jcc-field label="路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')">
            <b-input name="path" v-model="model.path"
-                    v-validate="'required|max:64'"  data-vv-as="路径"  style="width: 400px;"></b-input>
+                    v-validate="'required|max:64|menu'"  data-vv-as="路径"  style="width: 400px;"></b-input>
+         </jcc-field>
+         <jcc-field label="图标" horizontal  :type="errors.has('icon') ? 'is-danger' : ''" :message="errors.first('icon')">
+           <b-input name="icon" v-model="model.icon"
+                    v-validate="'required|max:32'"  data-vv-as="图标" class="input-l"></b-input>
          </jcc-field>
          <jcc-field label="排序" horizontal  :message="errors.first('sorted')"
                     :type="errors.has('sorted') ? 'is-danger' : ''">

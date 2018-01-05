@@ -8,7 +8,7 @@
                      :type="errors.has('sysIdentifier') ? 'is-danger' : ''"
                      :message="errors.first('sysIdentifier')">
             <b-input name="sysIdentifier" v-model="model.sysIdentifier"
-                     v-validate="'required|max:64|alpha_dash'"  data-vv-as="标识符" class="w-25"></b-input>
+                     v-validate="'required|max:64|alpha_underscore|remote:/v1/system/idetifier-vertify'"  data-vv-as="标识符" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="名称" horizontal
@@ -31,7 +31,7 @@
             <b-select name="type"  expanded  v-model="model.type"
                       v-validate="'required'" data-vv-as="类型" class="w-15">
               <option
-                v-for="option in dictList('systemType')"
+                v-for="option in dictList(this, 'systemType')"
                 :value="option.value"
                 :key="option.value">
                 {{ option.text }}
@@ -56,7 +56,6 @@
     </section>
 </template>
 <script>
-  import { addSystem } from '@/api/backend/system';
   export default {
     data() {
     return {
@@ -67,35 +66,12 @@
     }
   },
   methods: {
-    loadAsyncData() {
-      this.loading = true
-      getSystem(this.$route.params.id).then(response => {
-        this.model = response.data;
-        this.loading = false;
-      });
-    },
-      dictText(name, value) {
-        return this.$store.getters.dictText(name, value);
-      },
-      dictList(name) {
-        return this.$store.getters.dictList(name);
-      },
       back() {
         this.$router.back();
       },
       save() {
           const vm = this
-          this.$validator.validateAll().then((result) => {
-              if (result) {
-              vm.saving = true
-              addSystem(this.model).then(response => {
-                vm.saving = false;
-                this.$router.push({ path: '/backend/system' })
-              }).catch(err =>{
-                  vm.saving = false;
-              })
-            }
-          });
+          this.saveMode(vm, "/v1/system",() => vm.$router.push({ path: '/backend/system' }));
       }
     }
   }

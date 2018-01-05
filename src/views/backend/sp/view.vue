@@ -2,9 +2,9 @@
   <section>
     <div class="card">
       <div class="card-content">
-        <b-field label="系统标识符" horizontal class="static-field">
+        <b-field label="编码" horizontal class="static-field">
           <p class="control">
-            {{model.sysIdentifier}}
+            {{model.companyCode}}
           </p>
         </b-field>
 
@@ -14,23 +14,26 @@
           </p>
         </b-field>
 
-        <b-field label="排序" horizontal class="static-field">
+        <b-field label="地址" horizontal class="static-field">
           <p class="control">
-            {{model.sorted}}
+            {{model.address}}
           </p>
         </b-field>
 
-        <b-field label="类型" horizontal class="static-field">
+        <b-field label="状态" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, "systemType",model.type) }}
+            {{ dictText(this, "companyState",model.state) }}
           </p>
         </b-field>
 
-        <b-field label="内部访问" horizontal  class="static-field">
+        <b-field label="联系电话" horizontal  class="static-field">
           <p class="control">
-        <span class="tag is-info">
-          {{ dictText("internal",model.internal) }}
-          </span>
+            {{model.hotline}}
+          </p>
+        </b-field>
+        <b-field label="主页" horizontal  class="static-field">
+          <p class="control">
+            {{model.homepage}}
           </p>
         </b-field>
         <b-field horizontal><!-- Label left empty for spacing -->
@@ -61,7 +64,7 @@
       }
     },
   created () {
-      this.getModel(this, "/v1/system", this.$route.params.id)
+      this.getModel(this, "/v1/sp", this.$route.params.id)
     }
   }
 </script>

@@ -11,12 +11,12 @@ export function getSystem(id) {
   return request.get('/v1/system/' + id);
 }
 
-export function updateSystem(id, system) {
-  return request.put('/v1/system/' + id, system);
+export function updateSystem(id, model) {
+  return request.put('/v1/system/' + id, model);
 }
 
-export function addSystem(system) {
-  return request.post('/v1/system', system);
+export function addSystem(model) {
+  return request.post('/v1/system', model);
 }
 
 export function deleteSystem(id) {
@@ -35,14 +35,14 @@ export function getMenu(id) {
   return request.get('/v1/menu/' + id);
 }
 
-export function addMenu(system) {
-  return request.post('/v1/menu', system);
+export function addMenu(model) {
+  return request.post('/v1/menu', model);
 }
 
 export function deleteMenu(id) {
   return request.delete('/v1/menu/' + id);
 }
 
-export function updateMenu(id, menu) {
-  return request.put('/v1/menu/' + id, menu);
+export function updateMenu(id, model) {
+  return request.put('/v1/menu/' + id, model);
 }

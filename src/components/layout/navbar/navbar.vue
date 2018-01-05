@@ -6,7 +6,7 @@
           <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </a>-->
         <a class="navbar-item brand-text" href="#">
-          智慧消防
+          智慧消防联网报警综合管理平台
         </a>
         <div class="navbar-burger burger" data-target="navMenu">
           <span></span>
@@ -17,9 +17,6 @@
 
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
-            Home
-          </a>
           <a class="navbar-item"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
             {{system.name}}
           </a>

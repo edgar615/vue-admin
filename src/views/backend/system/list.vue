@@ -9,7 +9,7 @@
           <b-select placeholder="类型" v-model="filters.type">
             <option value="">请选择</option>
             <option
-              v-for="option in dictList('systemType')"
+              v-for="option in dictList(this, 'systemType')"
               :value="option.value"
               :key="option.value">
               {{ option.text }}
@@ -36,7 +36,7 @@
             </b-radio-button>
           </b-field>
           <p class="control ml-1">
-            <button class="button is-primary" @click="onQuery">
+            <button class="button is-primary" @click="loadAsyncData">
               <b-icon icon="search"></b-icon>
               <span>查询</span>
             </button>
@@ -103,11 +103,11 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型" numeric centered >
-              {{ dictText("systemType",props.row.type) }}
+              {{ dictText(this, "systemType",props.row.type) }}
             </b-table-column>
 
             <b-table-column field="internal" label="内部?" centered>
-              <span class="tag" :class="internalClass(props.row.internal)">{{ dictText("internal",props.row.internal) }}</span>
+              <span class="tag" :class="internalClass(props.row.internal)">{{ dictText(this, "internal",props.row.internal) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -141,8 +141,6 @@
 </template>
 
 <script>
-  import { systemPage, deleteSystem,batchDeleteSystem } from '@/api/backend/system';
-  import { deleteConfirm } from '@/utils/dialog';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -166,21 +164,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        if (params == undefined) {
-          params = {};
-        }
-        //如果表格没有拍下，不需要这些操作
-        var sort = this.sortField;
-        if (this.sortOrder == 'desc') {
-          sort = "-" + sort;
-        }
-        params.sort = sort;
-        params = Object.assign(this.filters, params);
-        this.loading = true
-        systemPage(params).then(response => {
-          this.pagination = response.data;
-        this.loading = false;
-      });
+        this.page(this, "/v1/system/page", params)
     },
     /*
      * Handle page-change event
@@ -203,26 +187,10 @@
      */
     onDeleteCheckedRows() {
       const vm = this;
-      deleteConfirm(vm, () => {
-        var checkedIds = vm.checkedRows.map(function(item) {
-          return item.subsystemId;
-        })
-        vm.deleting = true;
-        batchDeleteSystem(checkedIds).then(response => {
-          vm.deleting = false;
-          this.loadAsyncData({page:this.pagination.page});
-        }).catch(err => {
-          vm.deleting = false;
-        });
+      var checkedIds = vm.checkedRows.map(function(item) {
+        return item.subsystemId;
       })
-    },
-    /*
-     * 查询
-     */
-    onQuery() {
-//      this.filters.page = 1;
-      //Object.assign(this.filters, {page:1})filters是通过get/set方法处理，这个方法不能正常使用
-      this.loadAsyncData();
+      this.batchDeleteModel(vm, "/v1/system", checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
     },
     /*
      * Type style in relation to the value
@@ -236,23 +204,9 @@
       }
       return "is-dark";
     },
-    dictText(name, value) {
-      return this.$store.getters.dictText(name, value);
-    },
-    dictList(name) {
-      return this.$store.getters.dictList(name);
-    },
       onDelete(id) {
         const vm = this;
-        deleteConfirm(vm,() => {
-          vm.deleting = true;
-          deleteSystem(id).then(response => {
-            vm.deleting = false;
-            this.loadAsyncData({page:this.pagination.page});
-          }).catch(err => {
-            vm.deleting = false;
-          });
-        })
+        this.deleteModel(vm, "/v1/system", id, () => this.loadAsyncData({page:this.pagination.page}));
       }
   },
   filters: {

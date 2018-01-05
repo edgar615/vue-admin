@@ -16,25 +16,12 @@ const dict_data = {
     text : "后台服务",
     value : 3
   }],
-  "isOnline" : [{
-    text : "在线",
-    value : true
-  }, {
-    text : "离线",
-    value : false
-  }],
-  "deviceType" : [{
-    text : "T1",
+  "companyState" : [{
+    text : "活动",
     value : 1
   },{
-    text : "猫眼",
+    text : "锁定",
     value : 2
-  },{
-    text : "F1",
-    value : 3
-  },{
-    text : "201",
-    value : 4
   }]
 };
 

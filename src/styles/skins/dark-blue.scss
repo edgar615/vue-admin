@@ -3,7 +3,7 @@
 //$background:$dark-blue-light;
 $body-background-color: $dark-blue-light !default
 $body-color: $dark-blue-light-invert !default
-$border-color: #1a7ec1;
+$border-color: #11507a;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //导航
@@ -17,6 +17,7 @@ $border-color: #1a7ec1;
 $menu-item-hover-background-color:$blue;
 $menu-item-color:$dark-blue-dark-invert;
 $menu-list-border-left: 0px solid $border;
+$menu-label-color:#5f90d2;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 //breadcrumb
@@ -41,8 +42,8 @@ $table-head-cell-color: $dark-blue-invert !default
 //$table-row-hover-background-color: $primary !default
 //$table-row-active-background-color: $primary !default
 //$table-row-active-color: $primary !default
-$table-striped-row-even-background-color: $dark-blue-lighter !default
-$table-striped-row-even-hover-background-color:  $dark-blue-light !default
+$table-striped-row-even-background-color: $dark-blue-light !default
+$table-striped-row-even-hover-background-color:  $dark-blue-lighter !default
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // Card
@@ -75,13 +76,14 @@ $tabs-toggle-link-border-color:$border-color !default;
 $tabs-link-hover-color: $dark-blue-invert !default
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// input
+// input label
+$label-color:$dark-blue-invert;
 $input-color:$dark-blue-invert;
 $input-border-color:$border-color;
 $input-background-color: $dark-blue-lighter;
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-// input
+// checkbox
 $checkbox-active-background-color: $dark-blue-lighter !default;
 $checkbox-checkmark-color: $dark-blue-lighter-invert !default;
 ////////////////////////////////////////////////

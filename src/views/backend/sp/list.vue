@@ -5,38 +5,28 @@
     <div class="card">
       <div class="card-content">
         <b-field grouped group-multiline>
-          <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
-          <b-select placeholder="类型" v-model="filters.type">
-            <option value="">请选择</option>
-            <option
-              v-for="option in dictList('systemType')"
-              :value="option.value"
-              :key="option.value">
-              {{ option.text }}
-            </option>
-          </b-select>
+          <b-input v-model="filters.companyCode" placeholder="编码"></b-input>
+          <b-input v-model="filters.name" placeholder="名称"></b-input>
           <b-field>
-            <b-radio-button v-model="filters.internal"
-                            native-value="true"
-                            type="is-success" class="is-dark-blue-lighter">
-              <b-icon icon="user-secret"></b-icon>
-              <span>内部访问</span>
+            <b-radio-button v-model="filters.state"
+                            native-value="1"
+                            type="is-success">
+              <b-icon icon="unlock"></b-icon>
+              <span>活动</span>
             </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
-                            native-value="false"
-                            type="is-info">
-              <b-icon icon="folder-open"></b-icon>
-              <span>公开</span>
+            <b-radio-button v-model="filters.state"
+                            native-value="2"
+                            type="is-dark" class="is-dark-blue-lighter">
+              <b-icon icon="lock"></b-icon>
+              <span>锁定</span>
             </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
+            <b-radio-button v-model="filters.state"
                             native-value="">
               全部
             </b-radio-button>
           </b-field>
           <p class="control ml-1">
-            <button class="button is-primary" @click="onQuery">
+            <button class="button is-primary" @click="loadAsyncData">
               <b-icon icon="search"></b-icon>
               <span>查询</span>
             </button>
@@ -49,12 +39,7 @@
       <div class="card-content">
         <div class="field is-grouped">
           <div class="buttons">
-        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
-              :class="{'is-loading' : deleting}">
-          <b-icon icon="trash"></b-icon>
-          <span>删除</span>
-        </span>
-            <router-link to="/backend/system/add"
+            <router-link to="/backend/sp/add"
                          exact class="button is-primary">
               <b-icon icon="plus"></b-icon>
               <span>新增</span>
@@ -79,49 +64,43 @@
           :current-page="pagination.page"
           @page-change="onPageChange"
 
-          :checked-rows.sync="checkedRows"
-          checkable
         >
 
           <template slot-scope="props">
 
-            <b-table-column field="sorted" label="排序" numeric sortable centered>
-              {{ props.row.sorted }}
+            <b-table-column field="sorted" label="编码" numeric centered>
+              {{ props.row.companyCode }}
             </b-table-column>
 
             <b-table-column field="name" label="名称" centered>
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="sysIdentifier" label="标识符" centered>
-              {{ props.row.sysIdentifier }}
+            <b-table-column field="state" label="状态" centered>
+              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
             </b-table-column>
 
-            <b-table-column field="type" label="类型" numeric centered >
-              {{ dictText("systemType",props.row.type) }}
-            </b-table-column>
-
-            <b-table-column field="internal" label="内部?" centered>
-              <span class="tag" :class="internalClass(props.row.internal)">{{ dictText("internal",props.row.internal) }}</span>
+            <b-table-column field="address" label="地址" centered>
+              {{ props.row.address }}
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
+              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/view' }"
                            exact class="button is-info is-small" title="查看">
                 <b-icon icon="info-circle"></b-icon>
               </router-link>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
+              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/edit' }"
                            exact class="button is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
               </router-link>
-              <button class="button is-danger is-small" @click="onDelete(props.row.subsystemId)"
-                      title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="trash"></b-icon>
+              <button class="button is-danger is-small" @click="doLock(props.row.companyId)"
+                      title="锁定" v-show="props.row.state == 1">
+                <b-icon icon="lock"></b-icon>
               </button>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/menus' }"
-                           exact class="button is-info is-small" title="菜单管理">
-                <b-icon icon="bars"></b-icon>
-              </router-link>
+              <button class="button is-danger is-small" @click="doUnLock(props.row.companyId)"
+                      title="解锁" v-show="props.row.state == 2">
+                <b-icon icon="unlock"></b-icon>
+              </button>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -136,8 +115,7 @@
 </template>
 
 <script>
-  import { spPage, deleteSp,batchSp } from '@/api/backend/sp';
-  import { deleteConfirm } from '@/utils/dialog';
+  import {lock, unLock} from '@/api/backend/sp';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -145,9 +123,7 @@
         filters: {
         },
         pagination: {},
-        loading: false,
-        deleting: false,
-        checkedRows: []
+        loading: false
       }
     },
     components: {
@@ -158,15 +134,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        if (params == undefined) {
-          params = {};
-        }
-        params = Object.assign(this.filters, params);
-        this.loading = true
-        spPage(params).then(response => {
-          this.pagination = response.data;
-           this.loading = false;
-        });
+        this.page(this, "/v1/sp/page", params)
     },
     /*
      * Handle page-change event
@@ -176,62 +144,25 @@
         this.loadAsyncData({page:page});
       }
     },
-    /*
-     * 批量删除
-     */
-    onDeleteCheckedRows() {
-      const vm = this;
-      deleteConfirm(vm, () => {
-        var checkedIds = vm.checkedRows.map(function(item) {
-          return item.subsystemId;
-        })
-        vm.deleting = true;
-        batchDeleteSp(checkedIds).then(response => {
-          vm.deleting = false;
-          this.loadAsyncData({page:this.pagination.page});
-        }).catch(err => {
-          vm.deleting = false;
-        });
-      })
-    },
-    /*
-     * 查询
-     */
-    onQuery() {
-//      this.filters.page = 1;
-      //Object.assign(this.filters, {page:1})filters是通过get/set方法处理，这个方法不能正常使用
-      this.loadAsyncData();
-    },
-    /*
-     * Type style in relation to the value
-     */
-    internalClass(value) {
+    stateClass(value) {
       if (value == undefined) {
         return "is-black";
       }
-      if (value) {
+      if (value == 1) {
         return "is-success";
       }
       return "is-dark";
     },
-    dictText(name, value) {
-      return this.$store.getters.dictText(name, value);
+    doLock(id) {
+      lock(id).then(response => {
+        this.loadAsyncData({page:this.pagination.page});
+      })
     },
-    dictList(name) {
-      return this.$store.getters.dictList(name);
-    },
-      onDelete(id) {
-        const vm = this;
-        deleteConfirm(vm,() => {
-          vm.deleting = true;
-          deleteSp(id).then(response => {
-            vm.deleting = false;
-            this.loadAsyncData({page:this.pagination.page});
-          }).catch(err => {
-            vm.deleting = false;
-          });
-        })
-      }
+    doUnLock(id) {
+      unLock(id).then(response => {
+        this.loadAsyncData({page:this.pagination.page});
+      })
+    }
   },
   created() {
     this.loadAsyncData();

@@ -3,7 +3,7 @@
        <Navbar></Navbar>
       <!-- Main container -->
       <div class="columns is-fullheight">
-        <div class="column is-2 is-sidebar-menu is-hidden-mobile bg-main">
+        <div class="column is-2 is-sidebar-menu is-hidden-mobile bg-aside">
             <Aside></Aside>
         </div>
         <div class="column is-main-content is-paddingless">
