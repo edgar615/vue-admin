@@ -6,7 +6,6 @@ import router from './router'
 import store from './store'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
-import '@/styles/bulma-pageloader.css'
 import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
 //Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个

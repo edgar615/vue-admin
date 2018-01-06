@@ -8,7 +8,7 @@
 // color http://flatuicolors.com/
 $dark-blue: #071e3d;
 $dark-blue-invert: findColorInvert($dark-blue);
-$dark-blue-lighter: #324D76;
+$dark-blue-lighter: #173256;
 $dark-blue-lighter-invert: findColorInvert($dark-blue);
 $dark-blue-light: #0d2950;
 $dark-blue-light-invert: findColorInvert($dark-blue);
@@ -276,4 +276,5 @@ $colors: map-merge($colors, $addColors);
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import './pageloader';
 @import "./skins/dark-blue-extensions";
