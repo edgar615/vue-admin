@@ -5,5 +5,5 @@ const prodEnv = require('./prod.env')
 module.exports = merge(prodEnv, {
   useEslint: false,
   NODE_ENV: '"development"',
-  BASE_API: '"http://test.ihorn.com.cn:9099"'
+  BASE_API: '"http://www.edgar615.com:9000"'
 })
