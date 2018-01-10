@@ -78,6 +78,15 @@
              默认地址
          </b-switch>
          </jcc-field>
+         <jcc-field class="field" horizontal message="辅助功能，自动生成CRUD菜单"
+                    v-show="model.parentId == -1">
+           <b-switch v-model="model.autoGen"
+                     true-value="true"
+                     false-value="false"
+                     type="is-info">
+             自动生成CRUD菜单
+         </b-switch>
+         </jcc-field>
          <b-field horizontal><!-- Label left empty for spacing -->
            <p class="control">
              <button class="button is-primary" @click="save" :disabled='errors.any()'

@@ -3,7 +3,7 @@
     <ul>
       <li :class="activeBreadcrumb(route)" v-for="(route, index) in $route.matched" v-if="route.path != '/'" :key="route.path" >
         <span class="icon is-small" v-show="index == 0"><i class="fa fa-caret-right"></i></span>
-        <router-link :to="{path: route.path}">{{ route.meta.name }} </router-link>
+        <router-link :to="{path: route.path}"><b-icon size="is-small" :icon="route.meta.icon"></b-icon><span>{{ route.meta.name }} </span></router-link>
       </li>
     </ul>
   </nav>

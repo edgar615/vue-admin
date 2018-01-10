@@ -10,6 +10,7 @@ function rFormat(menu, parent) {
     component: lazyLoading(comp, menu.parentId == -1),
     meta: {
       name : menu.name,
+      icon: menu.icon,
       hidden: menu.hidden
     }
   }
