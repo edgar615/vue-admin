@@ -16,6 +16,9 @@
          <b-field label="图标" horizontal class="static-field">
            <p class="control">{{model.icon}}</p>
          </b-field>
+         <b-field label="排序" horizontal class="static-field">
+           <p class="control">{{model.sorted}}</p>
+         </b-field>
          <b-field label="隐藏?" horizontal class="static-field">
            <p class="control">{{model.hidden}}</p>
          </b-field>

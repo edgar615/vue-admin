@@ -18,6 +18,11 @@
                      v-validate="'required|max:64'"  data-vv-as="名称" class="w-25"></b-input>
           </jcc-field>
 
+          <jcc-field label="图标" horizontal  :type="errors.has('icon') ? 'is-danger' : ''" :message="errors.first('icon')">
+            <b-input name="icon" v-model="model.icon"
+                     v-validate="'required|max:32'"  data-vv-as="图标" class="input-l"></b-input>
+          </jcc-field>
+
           <jcc-field label="排序" horizontal
                      :type="errors.has('sorted') ? 'is-danger' : ''"
                      :message="errors.first('sorted')">

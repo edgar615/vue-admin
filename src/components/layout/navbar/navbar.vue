@@ -17,16 +17,18 @@
 
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)">
-            {{system.name}}
+          <a class="navbar-item"  v-for="system in systems" @click="selectSystem(system.sysIdentifier)" :key="system.subSystemId">
+            <b-icon size="is-small" :icon="system.icon"></b-icon>
+            <span>{{system.name}}</span>
           </a>
           <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
             <a class="navbar-link">
               更多
             </a>
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#"  v-for="system in groupSystems" @click="selectSystem(system.sysIdentifier)">
-                {{system.name}}
+              <a class="navbar-item" href="#"  v-for="system in groupSystems" @click="selectSystem(system.sysIdentifier)" :key="system.subSystemId">
+                <b-icon size="is-small" :icon="system.icon"></b-icon>
+                <span>{{system.name}}</span>
               </a>
             </div>
           </div>
