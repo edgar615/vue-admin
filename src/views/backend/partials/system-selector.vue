@@ -47,21 +47,6 @@
 
     <div class="card mt-3">
       <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
-        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
-              :class="{'is-loading' : deleting}">
-          <b-icon icon="trash"></b-icon>
-          <span>删除</span>
-        </span>
-            <router-link to="/backend/system/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
-        </div>
-
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -79,20 +64,10 @@
           :current-page="pagination.page"
           @page-change="onPageChange"
 
-          backend-sorting
-          :default-sort-direction="defaultSortOrder"
-          :default-sort="[sortField, sortOrder]"
-          @sort="onSort"
-
-          :checked-rows.sync="checkedRows"
-          checkable
+          :rowClass="rowClass"
         >
 
           <template slot-scope="props">
-
-            <b-table-column field="sorted" label="排序" numeric sortable centered>
-              {{ props.row.sorted }}
-            </b-table-column>
 
             <b-table-column field="name" label="名称" centered>
               {{ props.row.name }}
@@ -115,22 +90,10 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
-                           exact class="button is-info is-small" title="查看">
-                <b-icon icon="info-circle"></b-icon>
-              </router-link>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="pencil"></b-icon>
-              </router-link>
-              <button class="button is-danger is-small" @click="onDelete(props.row.subsystemId)"
-                      title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="trash"></b-icon>
+              <button class="button is-primary is-small" @click="doSelectSystem(props.row)"
+                      title="选择" v-show="!appNotExists(props.row.applicationId)">
+                <b-icon icon="check-circle-o"></b-icon>
               </button>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/menus' }"
-                           exact class="button is-info is-small" title="菜单管理">
-                <b-icon icon="bars"></b-icon>
-              </router-link>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -147,26 +110,36 @@
 <script>
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
+    props: {
+      applications: Array
+    },
     data() {
       return {
         filters: {
         },
         pagination: {},
-        loading: false,
-        deleting: false,
-        sortField: 'sorted',
-        sortOrder: 'asc',
-        defaultSortOrder: 'asc',
-        checkedRows: []
+        loading: false
       }
     },
     components: {
       EmptyTable
     },
     methods: {
-      /*
-       * Load async data
-       */
+      rowClass(row, index) {
+          if (this.appNotExists(row.applicationId)) {
+              return "bg-primary";
+          }
+          return '';
+      },
+      appNotExists(id) {
+          var exists = false;
+        this.applications.forEach(function(item, index, input) {
+            if (item.applicationId == id) {
+              exists = true;
+            }
+        })
+        return exists;
+      },
       loadAsyncData(params) {
         this.page(this, "/v1/system/page", params)
     },
@@ -178,27 +151,6 @@
         this.loadAsyncData({page:page});
       }
     },
-    /*
-     * Handle sort event
-     */
-    onSort(field, order) {
-      this.sortField = field;
-      this.sortOrder = order;
-      this.loadAsyncData()
-    },
-    /*
-     * 批量删除
-     */
-    onDeleteCheckedRows() {
-      const vm = this;
-      var checkedIds = vm.checkedRows.map(function(item) {
-        return item.subsystemId;
-      })
-      this.batchDeleteModel(vm, "/v1/system", checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
-    },
-    /*
-     * Type style in relation to the value
-     */
     internalClass(value) {
       if (value == undefined) {
         return "is-black";
@@ -208,22 +160,9 @@
       }
       return "is-dark";
     },
-      onDelete(id) {
-        const vm = this;
-        this.deleteModel(vm, "/v1/system", id, () => this.loadAsyncData({page:this.pagination.page}));
+      doSelectSystem(sys) {
+        this.$emit('onSelectSystem', sys)
       }
-  },
-  filters: {
-    /**
-     * Filter to truncate string, accepts a length parameter
-     */
-    /*
-     truncate(value, length) {
-     return value.length > length
-     ? value.substr(0, length) + '...'
-     : value
-     }
-     */
   },
   created() {
     this.loadAsyncData();
