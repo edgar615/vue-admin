@@ -8,8 +8,6 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
-//Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
-import JccField from '@/components/field'
 import '@/styles/vars.scss' //自定义风格
 import '@/styles/style.css'
 
@@ -41,7 +39,11 @@ Vue.use(Buefy, {
   ,defaultMonthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
 })
 
+//Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
+import JccField from '@/components/field'
+import JccMetaInput from '@/components/meta'
 Vue.component('jcc-field', JccField)
+Vue.component('jcc-meta-input', JccMetaInput)
 /*
  {
  defaultIconPack: "mdi" //Icon pack used internally and on the Icon component attribute — Material Design Icons or FontAwesome可选 	mdi, fa

@@ -29,7 +29,7 @@
         <b-field label="内部访问" horizontal  class="static-field">
           <p class="control">
         <span class="tag is-info">
-          {{ dictText("internal",model.internal) }}
+          {{ dictText(this, "internal",model.internal) }}
           </span>
           </p>
         </b-field>

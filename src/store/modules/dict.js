@@ -22,6 +22,16 @@ const dict_data = {
   },{
     text : "锁定",
     value : 2
+  }],
+  "metadataType" : [{
+    text : "整数",
+    value : 1
+  },{
+    text : "字符串",
+    value : 2
+  },{
+    text : "布尔",
+    value : 3
   }]
 };
 

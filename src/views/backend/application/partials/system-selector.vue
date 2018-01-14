@@ -91,7 +91,7 @@
 
             <b-table-column label="操作">
               <button class="button is-primary is-small" @click="doSelectSystem(props.row)"
-                      title="选择" v-show="!appNotExists(props.row.applicationId)">
+                      title="选择" v-show="!appNotExists(props.row.subsystemId)">
                 <b-icon icon="check-circle-o"></b-icon>
               </button>
             </b-table-column>
@@ -134,7 +134,7 @@
       appNotExists(id) {
           var exists = false;
         this.applications.forEach(function(item, index, input) {
-            if (item.applicationId == id) {
+            if (item.subsystemId == id) {
               exists = true;
             }
         })

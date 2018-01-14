@@ -1,7 +1,7 @@
 <template>
  <section>
    <div class="columns is-full-content">
-     <div class="column is-one-fifth bg-main is-size-7 border-1">
+     <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
        <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                  @item-click="itemClick"></vue-tree>
      </div>

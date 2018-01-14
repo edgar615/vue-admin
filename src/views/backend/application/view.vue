@@ -14,23 +14,9 @@
           </p>
         </b-field>
 
-        <b-field label="排序" horizontal class="static-field">
+        <b-field :label="meta.alias" horizontal class="static-field" v-for="meta in metadatas" :key="meta.metadataId">
           <p class="control">
-            {{model.sorted}}
-          </p>
-        </b-field>
-
-        <b-field label="类型" horizontal class="static-field">
-          <p class="control">
-            {{ dictText(this, "systemType",model.type) }}
-          </p>
-        </b-field>
-
-        <b-field label="内部访问" horizontal  class="static-field">
-          <p class="control">
-        <span class="tag is-info">
-          {{ dictText("internal",model.internal) }}
-          </span>
+            {{model[meta.name]}}
           </p>
         </b-field>
         <b-field horizontal><!-- Label left empty for spacing -->
@@ -47,27 +33,38 @@
   </section>
 </template>
 <script>
+  import {getMeta} from "@/api/backend/system";
+  import {getApp} from '@/api/application'
   export default {
-    props: {
-      systemId: String
-    },
     data() {
         return {
-          loading: false,
-          model: {
-          }
+          loading:false,
+          model: {},
+          metadatas : []
         }
       },
-      methods: {
-        },
-      watch: {
-        systemId: function (newSystemId) {
-            console.log(newSystemId);
-          this.getModel(this, "/v1/system", newSystemId)
-        }
+    mounted() {
+      // this.$validator.attach({ name: 'test', rules: {required:true}, alias:'测试'})
     },
-      created () {
-        }
+      methods: {
+        back() {
+          this.$router.back();
+        },
+          loadApplication() {
+            const vm = this;
+            vm.loading = true;
+            getApp(vm.$route.params.id).then(appResp=> {
+              vm.model = appResp.data;
+              getMeta(appResp.data.sysIdentifier).then(metaResp => {
+                vm.metadatas = metaResp.data;
+                vm.loading = false;
+              })
+            })
+          },
+        },
+      created() {
+      this.loadApplication()
+    }
   }
 </script>
 <style>

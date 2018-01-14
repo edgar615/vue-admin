@@ -49,14 +49,16 @@
       <!--.step-->
       <SpSelector @onSelectSp="onSelectSp" v-show="step == 0"></SpSelector>
       <SystemSelector @onSelectSystem="onSelectSystem" v-show="step == 1" :applications="applications"></SystemSelector>
-      <SystemField :systemId="systemModel.subsystemId" v-show="step == 2" ></SystemField>
+      <SystemField @onCreateApp="onCreateApp" :companyCode="spModel.companyCode" :model="systemModel" :systemId="systemId" v-show="step == 2" ></SystemField>
+      <ApplicationField  :applicationId="applicationId" v-show="step == 3" ></ApplicationField>
     </section>
 </template>
 <script>
   import {applicationList} from '@/api/backend/sp';
-  import SpSelector from '@/views/backend/partials/sp-selector.vue';
-  import SystemSelector from '@/views/backend/partials/system-selector.vue';
-  import SystemField from '@/views/backend/partials/system-field.vue';
+  import SpSelector from '@/views/backend/application/partials/sp-selector.vue';
+  import SystemSelector from '@/views/backend/application/partials/system-selector.vue';
+  import SystemField from '@/views/backend/application/partials/system-field.vue';
+  import ApplicationField from '@/views/backend/application/partials/application-field.vue';
   export default {
     data() {
       return {
@@ -64,10 +66,12 @@
           spModel: {},
           systemModel: {},
           applications: [],
+          systemId: -1,
+          applicationId: -1
       }
     },
     components: {
-      SpSelector,SystemSelector
+      SpSelector,SystemSelector,SystemField,ApplicationField
     },
     computed: {
 
@@ -84,17 +88,20 @@
       },
       onSelectSp(sp) {
           const vm = this;
-        vm.step = 1;
-        vm.spModel = sp;
-//          applicationList(sp.companyCode).then(response => {
-//            vm.applications = response.data;
-//            vm.step = 1;
-//            vm.spModel = sp;
-//          })
+         applicationList(sp.companyCode).then(response => {
+           vm.applications = response.data;
+           vm.step = 1;
+           vm.spModel = sp;
+         })
       },
       onSelectSystem(system) {
         this.step = 2;
         this.systemModel = system;
+        this.systemId = system.subsystemId
+      },
+      onCreateApp(appId) {
+        this.step = 3;
+        this.applicationId = appId;
       }
     },
     created() {

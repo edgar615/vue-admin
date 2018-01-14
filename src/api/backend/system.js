@@ -46,3 +46,7 @@ export function deleteMenu(id) {
 export function updateMenu(id, model) {
   return request.put('/v1/menu/' + id, model);
 }
+
+export function getMeta(subcate) {
+  return request.get('/v1/metadata/application/' + subcate);
+}
