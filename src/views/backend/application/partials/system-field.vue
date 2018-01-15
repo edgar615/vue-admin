@@ -26,7 +26,7 @@
           </p>
         </b-field>
 
-        <jcc-meta-input :model="model" :meta="meta" v-for="meta in metadatas" :key="meta.metadataId"></jcc-meta-input>
+        <jcc-meta-input :horizontal="true" :model="model" :meta="meta" v-for="meta in metadatas" :key="meta.metadataId"></jcc-meta-input>
         <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control btn_margin">
             <button class="button is-primary" @click="onSave">

@@ -1,4 +1,11 @@
 const dict_data = {
+  "bool" : [{
+    text : "是",
+    value : true
+  }, {
+    text : "否",
+    value : false
+  }],
   "internal" : [{
     text : "是",
     value : true
@@ -15,6 +22,9 @@ const dict_data = {
   },{
     text : "后台服务",
     value : 3
+  },{
+    text : "微信公众号/小程序",
+    value : 4
   }],
   "companyState" : [{
     text : "活动",

@@ -6,35 +6,6 @@
       <div class="card-content">
         <b-field grouped group-multiline>
           <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
-          <b-select placeholder="类型" v-model="filters.type">
-            <option value="">请选择</option>
-            <option
-              v-for="option in dictList(this, 'systemType')"
-              :value="option.value"
-              :key="option.value">
-              {{ option.text }}
-            </option>
-          </b-select>
-          <b-field>
-            <b-radio-button v-model="filters.internal"
-                            native-value="true"
-                            type="is-success" class="is-dark-blue-lighter">
-              <b-icon icon="user-secret"></b-icon>
-              <span>内部访问</span>
-            </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
-                            native-value="false"
-                            type="is-info">
-              <b-icon icon="folder-open"></b-icon>
-              <span>公开</span>
-            </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
-                            native-value="">
-              全部
-            </b-radio-button>
-          </b-field>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
               <b-icon icon="search"></b-icon>
@@ -63,8 +34,6 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
-
-          :rowClass="rowClass"
         >
 
           <template slot-scope="props">
@@ -111,7 +80,11 @@
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     props: {
-      applications: Array
+      applications: Array,
+      companyId: {
+          type: String,
+          default: -1
+      }
     },
     data() {
       return {
@@ -125,12 +98,6 @@
       EmptyTable
     },
     methods: {
-      rowClass(row, index) {
-          if (this.appNotExists(row.applicationId)) {
-              return "bg-primary";
-          }
-          return '';
-      },
       appNotExists(id) {
           var exists = false;
         this.applications.forEach(function(item, index, input) {
@@ -141,7 +108,7 @@
         return exists;
       },
       loadAsyncData(params) {
-        this.page(this, "/v1/system/page", params)
+        this.page(this, "/v1/sp/"+ this.companyId + '/system', params)
     },
     /*
      * Handle page-change event
@@ -164,8 +131,12 @@
         this.$emit('onSelectSystem', sys)
       }
   },
-  created() {
-    this.loadAsyncData();
+  watch : {
+        companyId(newCompanyId) {
+          if (newCompanyId && newCompanyId != -1) {
+            this.loadAsyncData();
+          }
+        }
   }
   }
 </script>

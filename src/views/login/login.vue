@@ -12,7 +12,7 @@
             <form>
               <div class="field">
                 <div class="control" :class="{'has-icons-right': errors.has('username') }" >
-                  <input name="username" v-validate="'required|alpha_dash'" class="is-medium input" :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
+                  <input name="username" v-validate="'required'" class="is-medium input" :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
                          data-vv-as="用户名" v-model="username">
                     <span class="icon is-small is-right has-text-danger" v-show="errors.has('username')">
                       <i class="fa fa-warning"></i>

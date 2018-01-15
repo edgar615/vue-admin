@@ -10,6 +10,10 @@ export function unLock(id) {
   return request.put(base + '/' + id + '/unlock', {});
 }
 
-export function applicationList(companyCode) {
-  return request.get(base + '/' + companyCode + '/application', {});
+export function systemPage(companyId) {
+  return request.get(base + '/' + companyId + '/system', {});
+}
+
+export function applicationList(companyId) {
+  return request.get(base + '/' + companyId + '/application', {});
 }

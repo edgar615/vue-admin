@@ -25,6 +25,20 @@
          <b-field label="默认地址?" horizontal class="static-field">
            <p class="control">{{model.acquiescent}}</p>
          </b-field>
+         <b-field label="SP访问" horizontal  class="static-field">
+           <p class="control">
+            <span class="tag is-info">
+            {{ dictText(this, "bool",model.spVisible) }}
+            </span>
+             </p>
+         </b-field>
+         <b-field label="SO访问" horizontal  class="static-field">
+           <p class="control">
+            <span class="tag is-info">
+              {{ dictText(this, "bool",model.soVisible) }}
+              </span>
+           </p>
+         </b-field>
          <b-field><!-- Label left empty for spacing -->
            <p class="control" style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
              <button class="button is-primary" @click="onAdd(model.sysMenuId)" v-show="model.parentId == -1">
@@ -79,6 +93,22 @@
                      false-value="false"
                      type="is-info">
              默认地址
+         </b-switch>
+         </jcc-field>
+         <jcc-field class="field" horizontal message="SP访问权限为'false'时，SP用户无法访问，但不影响创建应用">
+           <b-switch v-model="model.spVisible "
+                     true-value="true"
+                     false-value="false"
+                     type="is-info">
+             SP访问权限
+         </b-switch>
+         </jcc-field>
+         <jcc-field class="field" horizontal message="SO访问权限为'false'时，SO用户无法访问，也不能给SO创建这个应用">
+           <b-switch v-model="model.soVisible "
+                     true-value="true"
+                     false-value="false"
+                     type="is-info">
+             SO访问权限
          </b-switch>
          </jcc-field>
          <jcc-field class="field" horizontal message="辅助功能，自动生成CRUD菜单"

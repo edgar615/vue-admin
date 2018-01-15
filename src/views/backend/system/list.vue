@@ -110,8 +110,15 @@
                {{ props.row.icon }}
             </b-table-column>
 
-            <b-table-column field="internal" label="内部?" centered>
+            <b-table-column field="internal" label="内部访问?" centered>
               <span class="tag" :class="internalClass(props.row.internal)">{{ dictText(this, "internal",props.row.internal) }}</span>
+            </b-table-column>
+
+            <b-table-column field="spVisible" label="SP访问?" centered>
+              {{ dictText(this, "bool",props.row.spVisible) }}
+            </b-table-column>
+            <b-table-column field="spVisible" label="SO访问?" centered>
+              {{ dictText(this, "bool",props.row.soVisible) }}
             </b-table-column>
 
             <b-table-column label="操作">

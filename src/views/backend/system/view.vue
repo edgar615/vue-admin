@@ -33,6 +33,20 @@
           </span>
           </p>
         </b-field>
+        <b-field label="SP访问" horizontal  class="static-field">
+          <p class="control">
+        <span class="tag is-info">
+          {{ dictText(this, "bool",model.spVisible) }}
+          </span>
+          </p>
+        </b-field>
+        <b-field label="SO访问" horizontal  class="static-field">
+          <p class="control">
+        <span class="tag is-info">
+          {{ dictText(this, "bool",model.soVisible) }}
+          </span>
+          </p>
+        </b-field>
         <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control btn_margin">
             <button class="button is-primary" @click="back">

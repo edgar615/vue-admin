@@ -48,7 +48,7 @@
       </div>
       <!--.step-->
       <SpSelector @onSelectSp="onSelectSp" v-show="step == 0"></SpSelector>
-      <SystemSelector @onSelectSystem="onSelectSystem" v-show="step == 1" :applications="applications"></SystemSelector>
+      <SystemSelector :companyId="companyId" @onSelectSystem="onSelectSystem" v-show="step == 1" :applications="applications"></SystemSelector>
       <SystemField @onCreateApp="onCreateApp" :companyCode="spModel.companyCode" :model="systemModel" :systemId="systemId" v-show="step == 2" ></SystemField>
       <ApplicationField  :applicationId="applicationId" v-show="step == 3" ></ApplicationField>
     </section>
@@ -66,6 +66,7 @@
           spModel: {},
           systemModel: {},
           applications: [],
+          companyId : -1,
           systemId: -1,
           applicationId: -1
       }
@@ -88,7 +89,8 @@
       },
       onSelectSp(sp) {
           const vm = this;
-         applicationList(sp.companyCode).then(response => {
+          vm.companyId = sp.companyId;
+         applicationList(sp.companyId).then(response => {
            vm.applications = response.data;
            vm.step = 1;
            vm.spModel = sp;

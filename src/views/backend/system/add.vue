@@ -20,7 +20,7 @@
 
           <jcc-field label="图标" horizontal  :type="errors.has('icon') ? 'is-danger' : ''" :message="errors.first('icon')">
             <b-input name="icon" v-model="model.icon"
-                     v-validate="'required|max:32'"  data-vv-as="图标" class="input-l"></b-input>
+                     v-validate="'required|max:32'"  data-vv-as="图标" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="排序" horizontal
@@ -42,6 +42,30 @@
                 {{ option.text }}
               </option>
             </b-select>
+          </jcc-field>
+          <jcc-field class="field" horizontal message="内部访问的系统不对外公开，SP、SO均无法访问">
+            <b-switch v-model="model.internal"
+                      true-value="true"
+                      false-value="false"
+                      type="is-info">
+              内部访问
+          </b-switch>
+          </jcc-field>
+          <jcc-field class="field" horizontal message="SP访问权限为'false'时，SP用户无法访问，但不影响创建应用">
+            <b-switch v-model="model.spVisible "
+                      true-value="true"
+                      false-value="false"
+                      type="is-info">
+              SP访问权限
+          </b-switch>
+          </jcc-field>
+          <jcc-field class="field" horizontal message="SO访问权限为'false'时，SO用户无法访问，也不能给SO创建这个应用">
+            <b-switch v-model="model.soVisible "
+                      true-value="true"
+                      false-value="false"
+                      type="is-info">
+              SO访问权限
+          </b-switch>
           </jcc-field>
           <b-field horizontal><!-- Label left empty for spacing -->
             <p class="control btn_margin">
