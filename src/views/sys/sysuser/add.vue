@@ -2,30 +2,6 @@
     <section>
       <div class="card">
         <div class="card-content">
-          <jcc-field label="名称" horizontal
-                     :type="errors.has('name') ? 'is-danger' : ''"
-                     :message="errors.first('name')">
-            <b-input name="name" v-model="model.name"
-                     v-validate="'required|max:64'"  data-vv-as="名称" class="w-50"></b-input>
-          </jcc-field>
-          <jcc-field label="地址" horizontal
-                     :type="errors.has('address') ? 'is-danger' : ''"
-                     :message="errors.first('address')">
-            <b-input name="address" v-model="model.address"
-                     v-validate="'required|max:128'"  data-vv-as="地址" class="w-75"></b-input>
-          </jcc-field>
-          <jcc-field label="联系电话" horizontal
-                     :type="errors.has('hotline') ? 'is-danger' : ''"
-                     :message="errors.first('hotline')">
-            <b-input name="hotline" v-model="model.hotline"
-                     v-validate="'max:64'"  data-vv-as="联系电话" class="w-25"></b-input>
-          </jcc-field>
-          <jcc-field label="主页" horizontal
-                     :type="errors.has('homepage') ? 'is-danger' : ''"
-                     :message="errors.first('homepage')">
-            <b-input name="homepage" v-model="model.homepage"
-                     v-validate="'max:1024|url'"  data-vv-as="主页"></b-input>
-          </jcc-field>
 
           <jcc-field label="用户名" horizontal
                      :type="errors.has('username') ? 'is-danger' : ''"
@@ -34,9 +10,12 @@
                      v-validate="'required|max:60|min:3|email|remote:/v1/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
             </b-input>
           </jcc-field>
-         <!--
-         message可以直接使用数组，也可以实现的复杂一些
-         :message="['6到20个字符，只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号', errors.first('password')]"-->
+          <jcc-field label="姓名" horizontal
+                     :type="errors.has('fullname') ? 'is-danger' : ''"
+                     :message="errors.first('fullname')">
+            <b-input name="fullname" v-model="model.fullname"
+                     v-validate="'required|max:32'"  data-vv-as="姓名" class="w-25"></b-input>
+          </jcc-field>
           <jcc-field label="密码" horizontal
                      :type="errors.has('password') ? 'is-danger' : ''"
                      :message="errors.has('password') ? errors.first('password') : '6到20个字符，只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号'"
@@ -74,7 +53,6 @@
     </section>
 </template>
 <script>
-  import { addSp } from '@/api/backend/sp';
   export default {
     data() {
     return {
@@ -90,7 +68,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/v1/sp",() => vm.$router.push({ path: '/backend/sp' }));
+        vm.saveMode(vm, "/v1/sysuser",() => vm.$router.push({ path: '/sys/sysuser' }));
       }
     }
   }

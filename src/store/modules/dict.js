@@ -33,6 +33,13 @@ const dict_data = {
     text : "锁定",
     value : 2
   }],
+  "userState" : [{
+    text : "活动",
+    value : 1
+  },{
+    text : "锁定",
+    value : 2
+  }],
   "metadataType" : [{
     text : "整数",
     value : 1

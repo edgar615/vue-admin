@@ -5,8 +5,7 @@
     <div class="card">
       <div class="card-content">
         <b-field grouped group-multiline>
-          <b-input v-model="filters.companyCode" placeholder="编码"></b-input>
-          <b-input v-model="filters.name" placeholder="名称"></b-input>
+          <b-input v-model="filters.username" placeholder="用户名"></b-input>
           <b-field>
             <b-radio-button v-model="filters.state"
                             native-value="1"
@@ -39,7 +38,7 @@
       <div class="card-content">
         <div class="field is-grouped">
           <div class="buttons">
-            <router-link to="/backend/sp/add"
+            <router-link to="/sys/sysuser/add"
                          exact class="button is-primary">
               <b-icon icon="plus"></b-icon>
               <span>新增</span>
@@ -68,39 +67,39 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="companyCode" label="公司编码" centered>
-              {{ props.row.companyCode }}
+            <b-table-column field="username" label="用户名" centered>
+              {{ props.row.username }}
             </b-table-column>
 
-            <b-table-column field="name" label="名称" centered>
-              {{ props.row.name }}
+            <b-table-column field="fullname" label="姓名" centered>
+              {{ props.row.fullname }}
             </b-table-column>
 
             <b-table-column field="state" label="状态" centered>
-              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
-            </b-table-column>
-
-            <b-table-column field="address" label="地址" centered>
-              {{ props.row.address }}
+              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "userState",props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/view' }"
+              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/view' }"
                            exact class="button is-info is-small" title="查看">
                 <b-icon icon="info-circle"></b-icon>
               </router-link>
-              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/edit' }"
+              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/edit' }"
                            exact class="button is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
               </router-link>
-              <button class="button is-danger is-small" @click="doLock(props.row.companyId)"
+              <button class="button is-danger is-small" @click="doLock(props.row.sysUserId)"
                       title="锁定" v-show="props.row.state == 1">
                 <b-icon icon="lock"></b-icon>
               </button>
-              <button class="button is-danger is-small" @click="doUnLock(props.row.companyId)"
+              <button class="button is-danger is-small" @click="doUnLock(props.row.sysUserId)"
                       title="解锁" v-show="props.row.state == 2">
                 <b-icon icon="unlock"></b-icon>
               </button>
+              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/permit' }"
+                           exact class="button is-info is-small" title="授权">
+                <b-icon icon="key"></b-icon>
+              </router-link>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -115,7 +114,7 @@
 </template>
 
 <script>
-  import {lock, unLock} from '@/api/backend/sp';
+  import {lock, unLock} from '@/api/sys/sysuser';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -134,7 +133,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/sp/page", params)
+        this.page(this, "/v1/sysuser/page", params)
     },
     /*
      * Handle page-change event
