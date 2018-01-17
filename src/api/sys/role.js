@@ -21,3 +21,15 @@ export function deleteRole(id) {
 export function updateRole(id, model) {
   return request.put('/v1/role/' + id, model);
 }
+
+export function getSystem(id) {
+  return request.get('/v1/role/' + id + "/available-permission");
+}
+
+export function getPermitted(id) {
+  return request.get('/v1/role/' + id + "/permission");
+}
+
+export function permit(model) {
+  return request.post('/v1/role/permit', model)
+}
