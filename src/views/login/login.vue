@@ -1,16 +1,17 @@
 <template>
   <section class="hero is-success is-fullheight">
     <div class="hero-body">
-      <div class="container has-text-centered">
+      <div class="container">
         <div class="column is-4 is-offset-4">
          <!-- <p class="subtitle has-text-grey">登录</p>-->
           <div class="box">
-            <h3 class="title is-4">智慧消防物联网综合管理平台</h3>
+            <h3 class="title is-4 has-text-centered">智慧消防物联网综合管理平台</h3>
             <!--<figure class="avatar">
               <img src="https://placehold.it/128x128">
             </figure>-->
             <form>
               <div class="field">
+                <label class="label">用户名</label>
                 <div class="control" :class="{'has-icons-right': errors.has('username') }" >
                   <input name="username" v-validate="'required'" class="is-medium input" :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
                          data-vv-as="用户名" v-model="username">
@@ -21,6 +22,7 @@
                 <p v-show="errors.has('username')" class="help is-danger has-text-left">{{ errors.first('username')}}</p>
               </div>
               <div class="field">
+                <label class="label">密码</label>
                 <div class="control" :class="{'has-icons-right': errors.has('password') }" >
                   <input name="password" v-validate="'required|max:16'" class="is-medium input" :class="{'is-danger': errors.has('password') }" type="password" placeholder="密码"
                          data-vv-as="密码" v-model="password">
@@ -111,6 +113,9 @@
   .box {
     margin-top: 1rem;
     padding: 30px 40px;
+  }
+  .label {
+    color: #333;
   }
   .avatar {
     margin-top: -70px;

@@ -55,7 +55,7 @@
       </div>
 
       <div class="column bg-main ml-2 is-size-7 border-1" v-show="rolePermit" style="height: 500px;">
-        <button class="button is-primary is-small" @click="savePermit" :disabled='errors.any()'
+        <button class="button is-primary is-small" @click="savePermit" :disabled='permitTreeData.length == 0'
                 :class="{'is-loading' : saving}">
           <b-icon icon="check-circle"></b-icon>
           <span>保存</span>
