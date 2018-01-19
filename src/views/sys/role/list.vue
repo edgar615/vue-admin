@@ -47,7 +47,7 @@
               <button class="button is-primary" @click="save"
                       :class="{'is-loading' : saving}">
                 <b-icon icon="check-circle"></b-icon>
-                <span>保存授权</span>
+                <span>保存</span>
               </button>
             </p>
           </b-field>
@@ -58,7 +58,7 @@
         <button class="button is-primary is-small" @click="savePermit" :disabled='permitTreeData.length == 0'
                 :class="{'is-loading' : saving}">
           <b-icon icon="check-circle"></b-icon>
-          <span>保存</span>
+          <span>保存授权</span>
         </button>
         <vue-tree v-model="permitCheckedIds" :tree-data="permitTreeData" :options="permitOptions"></vue-tree>
       </div>
