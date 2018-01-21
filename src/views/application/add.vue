@@ -54,11 +54,11 @@
     </section>
 </template>
 <script>
-  import {applicationList} from '@/api/backend/sp';
-  import SpSelector from '@/views/backend/application/partials/sp-selector.vue';
-  import SystemSelector from '@/views/backend/application/partials/system-selector.vue';
-  import SystemField from '@/views/backend/application/partials/system-field.vue';
-  import ApplicationField from '@/views/backend/application/partials/application-field.vue';
+  import {applicationList} from '@/api/company';
+  import SpSelector from '@/views/application/partials/sp-selector.vue';
+  import SystemSelector from '@/views/application/partials/system-selector.vue';
+  import SystemField from '@/views/application/partials/system-field.vue';
+  import ApplicationField from '@/views/application/partials/application-field.vue';
   export default {
     data() {
       return {

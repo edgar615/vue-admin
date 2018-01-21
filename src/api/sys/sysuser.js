@@ -18,7 +18,10 @@ export function getPermitted(id) {
   return request.get(base + "/" + id + "/roles");
 }
 
-export function permit(id, model) {
-  return request.post(base + "/" + id + "/permit", model);
+export function addRole(userId, roleId) {
+  return request.post(base + "/" + userId + "/add-role", {roleId: roleId});
 }
 
+export function deleteRole(userId, roleId) {
+  return request.post(base + "/" + userId + "/delete-role", {roleId: roleId});
+}

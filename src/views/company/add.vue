@@ -74,7 +74,6 @@
     </section>
 </template>
 <script>
-  import { addSp } from '@/api/backend/sp';
   export default {
     data() {
     return {
@@ -90,7 +89,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/v1/sp",() => vm.$router.push({ path: '/backend/sp' }));
+        vm.saveMode(vm, "/v1/company",() => vm.$router.push({ path: '/company' }));
       }
     }
   }

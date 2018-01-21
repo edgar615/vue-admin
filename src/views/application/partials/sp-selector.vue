@@ -1,7 +1,5 @@
 <template>
   <section>
-    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
-    <!--如果一行放不下，用多个section-->
     <div class="card">
       <div class="card-content">
         <b-field grouped group-multiline>
@@ -37,16 +35,6 @@
 
     <div class="card mt-3">
       <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
-            <router-link to="/backend/sp/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
-        </div>
-
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -68,7 +56,7 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="companyCode" label="公司编码" centered>
+            <b-table-column field="sorted" label="编码" numeric centered>
               {{ props.row.companyCode }}
             </b-table-column>
 
@@ -85,21 +73,9 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/view' }"
-                           exact class="button is-info is-small" title="查看">
-                <b-icon icon="info-circle"></b-icon>
-              </router-link>
-              <router-link :to="{path:  '/backend/sp/' +props.row.companyId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="pencil"></b-icon>
-              </router-link>
-              <button class="button is-danger is-small" @click="doLock(props.row.companyId)"
-                      title="锁定" v-show="props.row.state == 1">
-                <b-icon icon="lock"></b-icon>
-              </button>
-              <button class="button is-danger is-small" @click="doUnLock(props.row.companyId)"
-                      title="解锁" v-show="props.row.state == 2">
-                <b-icon icon="unlock"></b-icon>
+              <button class="button is-primary is-small" @click="doSelectSp(props.row)"
+                      title="选择">
+                <b-icon icon="check-circle-o"></b-icon>
               </button>
             </b-table-column>
           </template>
@@ -109,13 +85,10 @@
         </b-table>
       </div>
     </div>
-
-
   </section>
 </template>
 
 <script>
-  import {lock, unLock} from '@/api/backend/sp';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -134,38 +107,31 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/sp/page", params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+        this.page(this, "/v1/company/page", params)
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange(page) {
+        if (this.pagination.page != page) {
+          this.loadAsyncData({page:page});
+        }
+      },
+      stateClass(value) {
+        if (value == undefined) {
+          return "is-black";
+        }
+        if (value == 1) {
+          return "is-success";
+        }
+        return "is-dark";
+      },
+      doSelectSp(sp) {
+          this.$emit('onSelectSp', sp)
       }
     },
-    stateClass(value) {
-      if (value == undefined) {
-        return "is-black";
-      }
-      if (value == 1) {
-        return "is-success";
-      }
-      return "is-dark";
-    },
-    doLock(id) {
-      lock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
-    },
-    doUnLock(id) {
-      unLock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
+    created() {
+      this.loadAsyncData();
     }
-  },
-  created() {
-    this.loadAsyncData();
-  }
   }
 </script>

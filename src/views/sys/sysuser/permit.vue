@@ -4,7 +4,7 @@
       <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
         <vue-tree :tree-data="permitTreeData" :options="permitOptions" @item-click="savePermit"></vue-tree>
       </div>
-      <div class="column is-one-fifth bg-main is-size-7 border-1">
+      <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
         <b-table
           narrowed
           bordered
@@ -28,7 +28,7 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <button class="button is-danger is-small" title="删除">
+              <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)" title="删除">
                 <b-icon icon="trash"></b-icon>
               </button>
             </b-table-column>
@@ -40,7 +40,7 @@
 </template>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import { getAvailableRole, getPermitted, permit } from '@/api/sys/sysuser';
+  import { getAvailableRole, getPermitted, addRole, deleteRole } from '@/api/sys/sysuser';
   import { deleteConfirm, successToast } from '@/utils/dialog';
   export default {
     components: {
@@ -68,35 +68,35 @@
       };
     },
     methods: {
-      savePermit(id) {
-        console.log(id);
-//           const roles = [];
-//         const permitModel = {
-//           sysUserId : this.$route.params.id,
-//           roles: this.permitCheckedIds
-//         }
-//         const vm = this;
-//         permit(this.$route.params.id, permitModel).then(response => {
-//           vm.saving = false;
-//           successToast(vm)
-// //          vm.loadAsyncData();
-//         }).catch(err =>{
-//           vm.saving = false;
-//         })
+      savePermit(roleId) {
+        const  vm = this;
+        addRole(this.$route.params.id, roleId).then(response => {
+          vm.loadPermitted();
+        })
       },
-      loadAsyncData() {
+      deletePermit(roleId) {
+        const  vm = this;
+        deleteRole(this.$route.params.id, roleId).then(response => {
+          vm.loadPermitted();
+        })
+      },
+      loadPermitted() {
         const  vm = this;
         vm.loading = true;
-        getAvailableRole().then(response => {
-          const vm = this;
-          vm.permitTreeData = response.data;
-        })
         getPermitted(this.$route.params.id).then(response => {
           vm.loading = false;
           vm.roles = response.data;
         }).catch(err =>{
           vm.loading = false;
         })
+      },
+      loadAsyncData() {
+        const  vm = this;
+        getAvailableRole().then(response => {
+          const vm = this;
+          vm.permitTreeData = response.data;
+        })
+        this.loadPermitted();
       }
     },
     created() {
