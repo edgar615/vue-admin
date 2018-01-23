@@ -80,14 +80,6 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/view' }"
-                           exact class="button is-info is-small" title="查看">
-                <b-icon icon="info-circle"></b-icon>
-              </router-link>
-              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="pencil"></b-icon>
-              </router-link>
               <button class="button is-danger is-small" @click="doLock(props.row.sysUserId)"
                       title="锁定" v-show="props.row.state == 1">
                 <b-icon icon="lock"></b-icon>

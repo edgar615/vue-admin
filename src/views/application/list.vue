@@ -73,11 +73,11 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/application/' +props.row.applicationId + '/view' }"
+              <router-link :to="{path:  '/application/' +props.row.applicationId + '/view' }"
                            exact class="button is-info is-small" title="查看">
                 <b-icon icon="info-circle"></b-icon>
               </router-link>
-              <router-link :to="{path:  '/backend/application/' +props.row.applicationId + '/edit' }"
+              <router-link :to="{path:  '/application/' +props.row.applicationId + '/edit' }"
                            exact class="button is-link is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
               </router-link>

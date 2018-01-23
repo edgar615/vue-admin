@@ -70,14 +70,21 @@
     methods: {
       savePermit(roleId) {
         const  vm = this;
-        addRole(this.$route.params.id, roleId).then(response => {
-          vm.loadPermitted();
-        })
+        const id =  vm.$layer.confirm("确定要授予这个角色吗?", {
+          title: '注意'
+        }, ()  => {
+          vm.$layer.close(id);
+          addRole(vm.$route.params.id, roleId).then(response => {
+            vm.loadPermitted();
+          })
+        });
       },
       deletePermit(roleId) {
         const  vm = this;
-        deleteRole(this.$route.params.id, roleId).then(response => {
-          vm.loadPermitted();
+        deleteConfirm(vm, () => {
+          deleteRole(vm.$route.params.id, roleId).then(response => {
+            vm.loadPermitted();
+          })
         })
       },
       loadPermitted() {

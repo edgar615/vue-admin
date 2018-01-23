@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app-content">
     <router-view></router-view>
-    <div class="pageloader is-dark-blue" :class="{'is-active' : loading}"><span class="title">拼命加载中</span></div>
+    <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">拼命加载中</span></div>
   </div>
 </template>
 
@@ -23,7 +23,14 @@ export default {
           vm.loading = false;
         }).catch(err => {
           vm.loading = false;
-          this.$router.push("/500")
+          var nextPath = "/500";
+          if (err.response) {
+            var code = err.response.data.code;
+            if (code == '1005' || code == '1021') {
+              nextPath = "/401"
+            }
+          }
+          this.$router.push(nextPath)
         })
       } else {
         var routes = [];

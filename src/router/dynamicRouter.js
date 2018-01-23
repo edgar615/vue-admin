@@ -1,5 +1,8 @@
 import NotFound from '@/components/error/page-404.vue'
+import ChangePwd from '@/views/profile/password.vue'
 import lazyLoading from '@/router/lazyLoading'
+import Layout from '@/components/layout/Layout.vue'
+
 function rFormat(menu, parent) {
   var comp = createComp(menu);
   if (parent) {
@@ -51,6 +54,24 @@ var dynamicRouter = function (token, router, store) {
             routes.push(rFormat(menu));
           })
         }
+      })
+      routes.push({
+        path: '/profile',
+          component: Layout,
+          meta: {
+            name: '个人资料',
+            icon: 'user-o',
+            hidden: true
+        },
+        children: [{
+          path: 'changepwd',
+          component: ChangePwd,
+          meta: {
+            name: '修改密码',
+            icon: 'shield',
+            hidden: true
+          }
+        }]
       })
       routes.push({
         path: '*', // 匹配未找到路由的情况, 类似 404 页面

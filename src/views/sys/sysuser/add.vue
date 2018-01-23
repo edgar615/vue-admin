@@ -25,12 +25,12 @@
                      type="password" password-reveal>
             </b-input>
           </jcc-field>
-          <jcc-field label="确认密码" horizontal
+          <jcc-field label="再次输入密码" horizontal
                      :type="errors.has('confirmedPassword') ? 'is-danger' : ''"
                      :message="errors.first('confirmedPassword')"
           >
             <b-input name="confirmedPassword" expanded v-model="model.confirmedPassword"
-                     v-validate="'required|confirmed:password'"  data-vv-as="确认密码" class="w-25"
+                     v-validate="'required|confirmed:password'"  data-vv-as="再次输入密码" class="w-25"
                      type="password" password-reveal>
             </b-input>
           </jcc-field>

@@ -64,6 +64,8 @@
           :current-page="pagination.page"
           @page-change="onPageChange"
 
+          detailed
+          detail-key="companyId"
         >
 
           <template slot-scope="props">
@@ -80,15 +82,15 @@
               <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
             </b-table-column>
 
-            <b-table-column field="address" label="地址" centered>
-              {{ props.row.address }}
+            <b-table-column field="name" label="添加时间" centered>
+              {{ props.row.addOn }}
+            </b-table-column>
+
+            <b-table-column field="name" label="管理员账号" centered>
+              {{ props.row.username }}
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/company/' +props.row.companyId + '/view' }"
-                           exact class="button is-info is-small" title="查看">
-                <b-icon icon="info-circle"></b-icon>
-              </router-link>
               <router-link :to="{path:  '/company/' +props.row.companyId + '/edit' }"
                            exact class="button is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
@@ -105,6 +107,27 @@
           </template>
           <template slot="empty">
             <EmptyTable></EmptyTable>
+          </template>
+          <template slot="detail" slot-scope="props">
+            <div class="columns is-size-7">
+              <div class="column">
+                <b-field label="地址" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.address}}
+                 </p>
+                </b-field>
+                <b-field label="主页" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.homepage}}
+                 </p>
+                </b-field>
+                <b-field label="热线电话" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.hotline}}
+                 </p>
+                </b-field>
+              </div>
+            </div>
           </template>
         </b-table>
       </div>

@@ -5,6 +5,7 @@
 import Home from '@/components/home/home.vue'
 import Notfound from '@/components/error/page-404.vue'
 import ErrorPage from '@/components/error/page-500.vue'
+import TokenPage from '@/components/error/page-401.vue'
 import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
 
@@ -41,6 +42,12 @@ var routes = [{
   component: ErrorPage,
   meta: {
     name: '系统错误'
+  }
+}, {
+  path: '/401',
+  component: TokenPage,
+  meta: {
+    name: '无效Token'
   }
 }];
 

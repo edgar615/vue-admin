@@ -33,8 +33,9 @@ service.interceptors.response.use(
     var msg = "接口调用失败!";
     if (error.response) {
       var code = error.response.data.code;
-      if (code == 1003) {
-        msg = '用户名或密码错误';
+      var msg = store.getters.dictText("errorCode", code);
+      if (msg == '') {
+        msg = '接口调用失败';
       }
     }
     Vue.prototype.$toast.open({
