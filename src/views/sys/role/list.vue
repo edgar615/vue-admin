@@ -55,7 +55,7 @@
       </div>
 
       <div class="column bg-main ml-2 is-size-7 border-1" v-show="rolePermit">
-        <span>设置角色对应的功能权限</span>
+        <span class="is-size-6">设置角色对应的功能权限</span>
         <span class="ml-5">
           <button class="button is-link is-small" @click="onCheckAll" :disabled='permitTreeData.length == 0'>
           <span v-show="checkAll">清空</span>
@@ -69,7 +69,7 @@
         </span>
 
         <div v-for="system in permitTreeData" :key="system.id">
-          <div class="mt-3 mb-3 is-size-5">{{system.name}}</div>
+          <div class="mt-3 mb-3 is-size-6">{{system.name}}</div>
           <div class="columns" v-for="level1 in system.permissions" :key="level1.id">
             <div class="column is-3 bg-dark-blue border-1 has-text-right" style="padding: auto;">
               <span>{{level1.name}}</span>
