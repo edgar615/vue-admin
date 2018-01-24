@@ -54,13 +54,46 @@
         </div>
       </div>
 
-      <div class="column bg-main ml-2 is-size-7 border-1" v-show="rolePermit" style="height: 500px;">
+      <div class="column bg-main ml-2 is-size-7 border-1" v-show="rolePermit">
+        <span>设置角色对应的功能权限</span>
+        <span class="ml-5">
+          <button class="button is-link is-small" @click="onCheckAll" :disabled='permitTreeData.length == 0'>
+          <span v-show="checkAll">清空</span>
+         <span v-show="!checkAll">全选</span>
+        </button>
         <button class="button is-primary is-small" @click="savePermit" :disabled='permitTreeData.length == 0'
                 :class="{'is-loading' : saving}">
           <b-icon icon="check-circle"></b-icon>
           <span>保存授权</span>
         </button>
-        <vue-tree v-model="permitCheckedIds" :tree-data="permitTreeData" :options="permitOptions"></vue-tree>
+        </span>
+
+        <div v-for="system in permitTreeData" :key="system.id">
+          <div class="mt-3 mb-3 is-size-5">{{system.name}}</div>
+          <div class="columns" v-for="level1 in system.menus" :key="level1.id">
+            <div class="column is-3 bg-dark-blue border-1 has-text-right" style="padding: auto;">
+              <span>{{level1.name}}</span>
+              <div class="mt-1">
+              <button class="button is-link is-small" @click="onCheckLevel1(level1)">
+                全选
+              </button>
+              <button class="button is-link is-small" @click="onUnCheckLevel1(level1)">
+                清空
+              </button>
+            </div>
+            </div>
+            <div class="column border-1"  style="padding: auto;">
+              <label class="checkbox-block"  v-for="level2 in level1.children" :key="level2.id">
+                <b-checkbox
+                    v-model="permitModel.permissions"
+                    :native-value="level2.id">
+                    {{level2.name}}
+                </b-checkbox>
+                </label>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -76,8 +109,14 @@
     data() {
       return {
 //        subsystemId: this.$route.params.id,
+        checkAll : false,
+        allPermssions:[],
         deleting: false,
-        model : {},
+        permitModel: {
+          permissions: []
+        },
+        model : {
+        },
         saving: false,
         addRole : false,
         viewRole: false,
@@ -93,23 +132,17 @@
           showDelete: false,
           showAdd: false
         },
-        // tree数据
+        // 功能权限
         permitTreeData: [],
-        // 复选ids,可传入id数组作为初始选中状态,如[3,4,8]
-        permitCheckedIds: [],
-        // 设置项
-        permitOptions: {
-          // Number,初始化时展开层级,根节点为0,默认0
-          depthOpen: 6,
-//          idsWithParent: false,
-          checkbox: true,
-          showEdit: false,
-          showDelete: false,
-          showAdd: false
-        }
       };
     },
     methods: {
+      removeArray(array, element) {
+          const index = array.indexOf(element);
+          if (index !== -1) {
+            array.splice(index, 1);
+          }
+        },
       onAdd(id) {
         this.addRole = true;
         this.viewRole = false;
@@ -135,22 +168,31 @@
         this.viewRole = false;
         this.rolePermit = false;
       },
-      savePermit(id) {
-          const systems = [];
-          const menus = [];
-        this.permitCheckedIds.forEach(function(item, index, input) {
-            if ((typeof  item) == 'string') {
-                if (item.substr(0, 2) == 's-') {
-                  systems.push(item.substr(2))
-                }
-            } else {
-                menus.push(item);
-            }
+      onCheckAll() {
+         if (this.checkAll) {
+           this.checkAll = false;
+            this.permitModel.permissions = [];
+         } else {
+           this.checkAll = true;
+             this.permitModel.permissions = this.allPermssions;
+         }
+      },
+      onCheckLevel1(level1) {
+        const childPermissions =level1.children.map(function(item, index, input) {
+          return item.id;
         })
+        this.permitModel.permissions = Array.from(new Set(Array.concat(this.permitModel.permissions, childPermissions)));
+      },
+      onUnCheckLevel1(level1) {
+          const vm = this;
+        level1.children.forEach(function(item, index, input) {
+          vm.removeArray(vm.permitModel.permissions, item.id)
+        })
+      },
+      savePermit(id) {
         const permitModel = {
             roleId : this.model.sysRoleId,
-          systems: systems,
-          menus: menus
+          menus: this.permitModel.permissions
         }
         const vm = this;
         permit(permitModel).then(response => {
@@ -167,24 +209,20 @@
         this.rolePermit = true;
         getSystem(id).then(response => {
             const vm = this;
-          vm.permitTreeData = [];
+          vm.permitTreeData = response.data;
+          var allPermssions = [];
             response.data.forEach(function(item, index, input) {
-                const sysData = {};
-                sysData.parentId = -1;
-                //子系统的ID用s-开头，用于区分
-                sysData.id = "s-" + item.subsystemId;
-                sysData.name = item.name;
-                sysData.children = item.menus;
-              vm.permitTreeData.push(sysData);
+              item.menus.forEach(function(level1) {
+                  allPermssions.push(level1.id);
+                allPermssions = Array.concat(allPermssions, level1.children.map(function(level2) {
+                    return level2.id;
+                }))
+              })
             })
+          this.allPermssions = allPermssions;
         })
         getPermitted(id).then(response => {
-          const vm = this;
-          vm.permitCheckedIds = []
-          response.data.systems.forEach(function(item, index, input) {
-            vm.permitCheckedIds.push("s-" + item);
-          })
-          vm.permitCheckedIds = vm.permitCheckedIds.concat(response.data.menus);
+          this.permitModel.permissions = response.data.menus;
         })
       },
       onDelete(id) {
@@ -243,3 +281,17 @@
   };
 </script>
 
+<style>
+
+  /**-二级菜单的checkbox-*/
+  label.checkbox-block {
+    display: block;
+    margin-bottom: 5px;
+    float: left;
+    width: 15%;
+    margin-left:18px;
+  }
+  label.checkbox-block input[type='checkbox'] {
+    margin-left:-18px;
+  }
+</style>
