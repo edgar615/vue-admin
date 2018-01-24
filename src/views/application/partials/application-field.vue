@@ -2,6 +2,9 @@
   <section>
     <div class="card">
       <div class="card-content">
+        <div class="notification is-success">
+          应用创建成功
+        </div>
         <b-field label="系统标识符" horizontal class="static-field">
           <p class="control">
             {{model.sysIdentifier}}

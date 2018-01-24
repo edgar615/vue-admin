@@ -70,7 +70,7 @@
 
         <div v-for="system in permitTreeData" :key="system.id">
           <div class="mt-3 mb-3 is-size-5">{{system.name}}</div>
-          <div class="columns" v-for="level1 in system.menus" :key="level1.id">
+          <div class="columns" v-for="level1 in system.permissions" :key="level1.id">
             <div class="column is-3 bg-dark-blue border-1 has-text-right" style="padding: auto;">
               <span>{{level1.name}}</span>
               <div class="mt-1">
@@ -192,7 +192,7 @@
       savePermit(id) {
         const permitModel = {
             roleId : this.model.sysRoleId,
-          menus: this.permitModel.permissions
+             permissions : this.permitModel.permissions
         }
         const vm = this;
         permit(permitModel).then(response => {
@@ -212,7 +212,7 @@
           vm.permitTreeData = response.data;
           var allPermssions = [];
             response.data.forEach(function(item, index, input) {
-              item.menus.forEach(function(level1) {
+              item.permissions.forEach(function(level1) {
                   allPermssions.push(level1.id);
                 allPermssions = Array.concat(allPermssions, level1.children.map(function(level2) {
                     return level2.id;
@@ -222,7 +222,7 @@
           this.allPermssions = allPermssions;
         })
         getPermitted(id).then(response => {
-          this.permitModel.permissions = response.data.menus;
+          this.permitModel.permissions = response.data.permissions;
         })
       },
       onDelete(id) {

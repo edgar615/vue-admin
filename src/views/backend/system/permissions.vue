@@ -41,7 +41,7 @@
          </b-field>
          <b-field><!-- Label left empty for spacing -->
            <p class="control" style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
-             <button class="button is-primary" @click="onAdd(model.sysMenuId)" v-show="model.parentId == -1">
+             <button class="button is-primary" @click="onAdd(model.sysPermissionId)" v-show="model.parentId == -1">
                <b-icon icon="plus"></b-icon>
                <span>新增子菜单</span>
              </button>
@@ -49,7 +49,7 @@
                <b-icon icon="pencil"></b-icon>
                <span>修改</span>
              </button>
-             <button class="button is-danger" style="height: 2.4em;" @click="onDelete(model.sysMenuId)"
+             <button class="button is-danger" style="height: 2.4em;" @click="onDelete(model.sysPermissionId)"
                      :class="{'is-loading' : deleting}">
                <b-icon icon="trash"></b-icon>
                <span>删除</span>
@@ -207,8 +207,8 @@
         vm.$validator.validateAll().then((result) => {
           if (result) {
             vm.saving = true
-            if (vm.model.sysMenuId) {
-              updateMenu(vm.model.sysMenuId, vm.model).then(response => {
+            if (vm.model.sysPermissionId) {
+              updateMenu(vm.model.sysPermissionId, vm.model).then(response => {
                 vm.saving = false;
                 successToast(vm)
                 vm.loadAsyncData();

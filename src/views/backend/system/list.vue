@@ -134,7 +134,7 @@
                       title="删除" :class="{'is-loading' : deleting}">
                 <b-icon icon="trash"></b-icon>
               </button>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/menus' }"
+              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }"
                            exact class="button is-info is-small" title="菜单管理">
                 <b-icon icon="bars"></b-icon>
               </router-link>

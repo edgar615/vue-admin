@@ -49,8 +49,8 @@ var dynamicRouter = function (token, router, store) {
       var routes = [];
       res.data.forEach(function(item, index, input) {
         //从system中提取menu
-        if (item.menus) {
-          item.menus.forEach(function(menu, menuIndex, menuArray) {
+        if (item.permissions) {
+          item.permissions.forEach(function(menu, menuIndex, menuArray) {
             routes.push(rFormat(menu));
           })
         }

@@ -25,7 +25,7 @@ const getters = {
   systemList: (state) => () => {
     const systemArray = [];
     state.permission.systems.forEach(function(item, index, input) {
-      if (item.menus && item.menus.length > 0) {
+      if (item.permissions && item.permissions.length > 0) {
         systemArray.push(item);
       }
     });
@@ -46,8 +46,8 @@ const getters = {
   state.permission.systems.forEach(function(item, index, input) {
     const systemIdentifer = state.permission.activeSystem
     if (item.sysIdentifier == systemIdentifer) {
-      if (item.menus) {
-        menus = item.menus;
+      if (item.permissions) {
+        menus = item.permissions;
       }
     }
   });
