@@ -33,7 +33,7 @@
                 <p v-show="errors.has('password')" class="help is-danger has-text-left">{{ errors.first('password')}}</p>
               </div>
               <p class="has-text-grey">
-                <a href="../" style="float: left">注册帐号</a>
+                <a href="../" style="float: left">注册</a>
                 <a href="../" style="float: right">忘记密码</a>
               <div style="clear: both;"></div>
               </p>

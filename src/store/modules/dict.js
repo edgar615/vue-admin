@@ -135,7 +135,7 @@ const dict_data = {
     text : "服务到期",
     value : 1026
   },{
-    text : "账号被锁定",
+    text : "帐号被锁定",
     value : 1027
   },{
     text : "缺少必要头信息",

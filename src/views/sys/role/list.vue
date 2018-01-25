@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="ml-2">
     <div class="columns is-full-content">
       <div class="column is-one-fifth  is-size-7 border-1">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"

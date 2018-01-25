@@ -86,7 +86,7 @@
               {{ props.row.addOn }}
             </b-table-column>
 
-            <b-table-column field="name" label="管理员账号" centered>
+            <b-table-column field="name" label="管理员" centered>
               {{ props.row.username }}
             </b-table-column>
 

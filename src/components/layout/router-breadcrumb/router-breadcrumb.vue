@@ -1,8 +1,7 @@
 <template>
-  <nav class="breadcrumb pl-3 mb-2 is-size-7" aria-label="breadcrumbs">
+  <nav class="breadcrumb pl-3 ml-3 mt-1 mb-2 is-size-7" aria-label="breadcrumbs">
     <ul>
-      <li :class="activeBreadcrumb(route)" v-for="(route, index) in $route.matched" v-if="route.path != '/'" :key="route.path" >
-        <span class="icon is-small" v-show="index == 0"><i class="fa fa-caret-right"></i></span>
+      <li :class="index == breadcrumbMenu.length -1 ? 'is-active' : '' " v-for="(route, index) in breadcrumbMenu" v-if="route.path != '/'" :key="route.path" >
         <router-link :to="{path: route.path}"><b-icon size="is-small" :icon="route.meta.icon"></b-icon><span>{{ route.meta.name }} </span></router-link>
       </li>
     </ul>
@@ -14,13 +13,9 @@
             return {
             };
         },
-       methods: {
-        activeBreadcrumb: function(route) {
-          var curPath =  this.$route.path;
-          if (route.regex.test(curPath)) {
-            return "is-active";
-          }
-          return "";
+       computed: {
+         breadcrumbMenu() {
+           return this.$route.matched
         }
       },
     };

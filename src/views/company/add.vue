@@ -27,7 +27,7 @@
                      v-validate="'max:1024|url'"  data-vv-as="主页"></b-input>
           </jcc-field>
 
-          <jcc-field label="用户名" horizontal
+          <jcc-field label="管理员用户名" horizontal
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"

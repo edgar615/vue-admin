@@ -32,8 +32,13 @@ nav.navbar {
   //border-top: 1px solid $border-color;
   color: $dark-blue-invert;
 }
+.bg-aside div.active {
+  background-color:$dark-blue-light;
+  //border-top: 1px solid $border-color;
+  color: $dark-blue-light-invert;
+}
 .side-menu .title {
-  padding: 10px 12px 0px 14px;
+  padding: 10px 12px 3px 3px;
   color: $dark-blue-invert;
   font-size: 14px;
 }
@@ -135,6 +140,11 @@ nav.navbar {
 /*.is-main-content {
   padding-left: 0.75rem;
 }*/
+
+//面包屑的左边框
+.breadcrumb {
+  border-left: 2px solid $grey !important;
+}
 
 //边框
 .border-1 {
