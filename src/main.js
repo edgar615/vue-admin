@@ -9,7 +9,6 @@ import 'buefy/lib/buefy.css'
 import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
 import '@/styles/vars.scss' //自定义风格
-import '@/styles/style.css'
 
 Vue.config.productionTip = false
 
@@ -77,6 +76,13 @@ router.beforeEach((to, from, next) => {
       next("/login")
     }
   }
+})
+
+router.afterEach((to, from) => {
+  if (to.meta && to.meta.menuId) {
+    store.commit('ACTIVE_LEVEL2_MENU', [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
+  }
+
 })
 
 new Vue({

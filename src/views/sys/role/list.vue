@@ -1,11 +1,11 @@
 <template>
   <section>
     <div class="columns is-full-content">
-      <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
+      <div class="column is-one-fifth  is-size-7 border-1">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                   @item-click="itemClick"></vue-tree>
       </div>
-      <div class="column bg-main ml-2" v-show="viewRole">
+      <div class="column border-1  ml-2" v-show="viewRole">
         <div class="menus_box">
           <b-field label="名称" horizontal class="static-field">
             <p class="control static-field">{{model.name}}</p>
@@ -36,11 +36,11 @@
         </div>
       </div>
 
-      <div class="column bg-main ml-2" v-show="addRole">
+      <div class="column border-1  ml-2" v-show="addRole">
         <div class="menus_box">
           <jcc-field label="名称"  horizontal :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
-                     v-validate="'required|max:64'"  data-vv-as="名称"  style="width: 400px;"></b-input>
+                     v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
           </jcc-field>
           <b-field horizontal><!-- Label left empty for spacing -->
             <p class="control">
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="column bg-main ml-2 is-size-7 border-1" v-show="rolePermit">
+      <div class="column  ml-2 is-size-7 border-1" v-show="rolePermit">
         <span class="is-size-6">设置角色对应的功能权限</span>
         <span class="ml-5">
           <button class="button is-link is-small" @click="onCheckAll" :disabled='permitTreeData.length == 0'>
@@ -68,10 +68,10 @@
         </button>
         </span>
 
-        <div v-for="system in permitTreeData" :key="system.id">
+        <div v-for="system in permitTreeData" :key="system.id" class="m-1">
           <div class="mt-3 mb-3 is-size-6">{{system.name}}</div>
           <div class="columns" v-for="level1 in system.permissions" :key="level1.id">
-            <div class="column is-3 bg-dark-blue border-1 has-text-right" style="padding: auto;">
+            <div class="column is-3 border-1 has-text-right" style="padding: auto;">
               <span>{{level1.name}}</span>
               <div class="mt-1">
               <button class="button is-link is-small" @click="onCheckLevel1(level1)">

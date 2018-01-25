@@ -20,10 +20,58 @@ nav.navbar {
   font-size: 14px;
 }
 .is-sidebar-menu {
-  padding: 1.5rem;
+  /*padding: 1.5rem;*/
 }
 .menu-list .ul {
   margin-left: 1rem;
+}
+
+//默认
+.bg-aside {
+  background-color:$dark-blue;
+  //border-top: 1px solid $border-color;
+  color: $dark-blue-invert;
+}
+.side-menu .title {
+  padding: 10px 12px 0px 14px;
+  color: $dark-blue-invert;
+  font-size: 14px;
+}
+
+.side-menu a {
+  color: $dark-blue-invert;
+  display: block;
+  padding: 10px 12px 10px 14px;
+  text-decoration: none;
+}
+.side-menu a:hover {
+  background-color: $indigo-lighter;
+  color: $indigo-lighter-invert;
+}
+
+.side-menu a.active {
+  background-color: $indigo-light;
+  color: $indigo-light-invert;
+}
+
+.bg-subaside {
+  background-color:#DAE1E7;
+  color: findColorInvert(#DAE1E7);
+}
+
+.sub-menu a {
+  color: $black;
+  display: block;
+  padding: 10px 12px 10px 14px;
+  text-decoration: none;
+}
+.sub-menu a:hover {
+  background-color: #ccc;
+}
+
+.sub-menu a.active {
+  background-color: #ffffff;
+  color: $black;
 }
 /************/
 
@@ -88,6 +136,10 @@ nav.navbar {
   padding-left: 0.75rem;
 }*/
 
+//边框
+.border-1 {
+  border: 1px solid $grey !important;
+}
 /************/
 /*表单长度控制*/
 .input-ll{

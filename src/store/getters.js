@@ -2,6 +2,8 @@ const getters = {
   token: state => state.user.token,
   user: state => state.permission.user,
   activeSystem: state => state.permission.activeSystem,
+  activeLevel1: state => state.permission.activeLevel1Menu,
+  activeLevel2: state => state.permission.activeLevel2Menu,
   systems: state => state.permission.systems,
   dictList: (state) => (dictName, dictValue) => {
   if (state.dict.data[dictName] == undefined) {
@@ -34,18 +36,37 @@ const getters = {
   currentSystem: (state) => () => {
     var currentSystem;
     state.permission.systems.forEach(function(item, index, input) {
-      const systemIdentifer = state.permission.activeSystem
-      if (item.sysIdentifier == systemIdentifer) {
+      const subsystemId = state.permission.activeSystem
+      if (item.subsystemId == subsystemId) {
         currentSystem = item;
       }
     });
     return currentSystem;
   },
+  currentLevel1Menu: (state) => () => {
+    var level1Menu;
+    var currentSystem;
+  const subsystemId = state.permission.activeSystem
+  state.permission.systems.forEach(function(item, index, input) {
+      if (item.subsystemId == subsystemId) {
+        currentSystem = item;
+      }
+    });
+    if (currentSystem) {
+      const level1Id = state.permission.activeLevel1Menu;
+      currentSystem.permissions.forEach(function(item) {
+          if (level1Id == item.sysPermissionId && item.children) {
+            level1Menu = item;
+          }
+      })
+    }
+    return level1Menu;
+  },
   menuList: (state) => () => {
   var menus = [];
   state.permission.systems.forEach(function(item, index, input) {
-    const systemIdentifer = state.permission.activeSystem
-    if (item.sysIdentifier == systemIdentifer) {
+    const subsystemId = state.permission.activeSystem
+    if (item.subsystemId == subsystemId) {
       if (item.permissions) {
         menus = item.permissions;
       }

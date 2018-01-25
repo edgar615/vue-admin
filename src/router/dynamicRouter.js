@@ -14,7 +14,10 @@ function rFormat(menu, parent) {
     meta: {
       name : menu.name,
       icon: menu.icon,
-      hidden: menu.hidden
+      hidden: menu.hidden,
+      subsystemId: menu.subsystemId,
+      menuId: menu.sysPermissionId,
+      parentId: menu.parentId
     }
   }
   if (menu.children) {

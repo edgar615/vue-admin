@@ -10,6 +10,7 @@ $baseColors: (
 );
 $skinColors: map-merge($darkBlueColors, $baseColors);
 $colors: map-merge($colors,$skinColors);
+$body-background-color: #F8FAFC !default
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -36,10 +37,12 @@ $colors: map-merge($colors,$skinColors);
     }
   }
 }
-@import "./skins/dark-blue";
+
+//@import "./skins/dark-blue";
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 @import './pageloader';
 @import './bulma-steps';
-@import "./skins/dark-blue-extensions";
+@import "./_style";
+//@import "./skins/dark-blue-extensions";

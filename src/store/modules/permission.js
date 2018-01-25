@@ -3,6 +3,8 @@ import { getPermission, getInfo } from '@/api/login'
 const permission = {
   state: {
     activeSystem: '',
+    activeLevel1Menu: '',
+    activeLevel2Menu: '',
     systems: [],
     user : {}
   },
@@ -10,9 +12,18 @@ const permission = {
     SET_PERMISSION: (state, systems) => {
       state.systems = systems
     },
-    ACTIVE_SYSTEM: (state, systemIdentifer) => {
-      state.activeSystem = systemIdentifer
+    ACTIVE_SYSTEM: (state, subsystemId) => {
+      state.activeSystem = subsystemId
     },
+  ACTIVE_LEVEL1_MENU: (state, [subsystemId, menuId]) => {
+     state.activeSystem = subsystemId;
+    state.activeLevel1Menu = menuId;
+  },
+  ACTIVE_LEVEL2_MENU: (state,  [subsystemId, level1Id, level2Id]) => {
+    state.activeSystem = subsystemId;
+    state.activeLevel1Menu = level1Id;
+    state.activeLevel2Menu = level2Id
+  },
     SET_USER: (state, user) => {
       state.user = user
     }

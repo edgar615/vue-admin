@@ -35,6 +35,15 @@
 
     <div class="card mt-3">
       <div class="card-content">
+        <div class="field is-grouped">
+          <div class="buttons">
+            <router-link to="/application/add"
+                         exact class="button is-primary">
+              <b-icon icon="plus"></b-icon>
+              <span>新增</span>
+            </router-link>
+          </div>
+        </div>
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered

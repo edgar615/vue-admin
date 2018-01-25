@@ -42,41 +42,9 @@
               }).catch(err => {
                 console.log(err);
             });
-          },
-          selectSystem(sysIdentifier) {
-              //刷新左边侧边栏
-              this.$store.commit('ACTIVE_SYSTEM', sysIdentifier)
-            //跳转到新页面
-            const menus = this.$store.getters.menuList();
-            if (menus.length > 0 && menus[0].path) {
-              this.$router.push(menus[0].path)
-            }
           }
         },
         computed: {
-          //仅显示有菜单的子系统
-          groupSystems() {
-            var groupSystem = [];
-            this.$store.getters.systemList().forEach(function(item, index, input) {
-              if (index >= 5) {
-                groupSystem.push(item);
-              }
-            });
-            return groupSystem;
-          },
-          systems() {
-            var systemArray = [];
-            this.$store.getters.systemList().forEach(function(item, index, input) {
-              if (index < 5) {
-                systemArray.push(item);
-              }
-            });
-            const activeSystem = this.$store.getters.activeSystem;
-            if (systemArray.length > 0 && ( activeSystem == undefined || activeSystem == '')) {
-              this.$store.commit('ACTIVE_SYSTEM', systemArray[0].sysIdentifier)
-            }
-            return systemArray;
-          },
           user() {
             return this.$store.getters.user
           }
