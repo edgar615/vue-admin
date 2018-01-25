@@ -1,7 +1,7 @@
 <template>
-  <section class="ml-2">
-    <div class="columns is-full-content">
-      <div class="column is-one-fifth  is-size-7 border-1">
+  <section class="ml-2 mt-3">
+    <div class="columns">
+      <div class="column is-one-fifth  is-size-7 border-1 box-shadow">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                   @item-click="itemClick"></vue-tree>
       </div>
@@ -293,5 +293,10 @@
   }
   label.checkbox-block input[type='checkbox'] {
     margin-left:-18px;
+  }
+
+  div.border-1 {
+    margin-right:-1px;
+    margin-bottom:-1px;
   }
 </style>

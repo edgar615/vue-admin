@@ -6,7 +6,8 @@ nav.navbar {
 .navbar-item.brand-text {
   font-weight: 700;
   font-size: 16px;
-  padding-right: 8rem;
+  margin-left: 1.75rem;
+  margin-right: 5rem;
 }
 .navbar-item, .navbar-link {
   font-size: 13px;
@@ -33,14 +34,19 @@ nav.navbar {
   color: $dark-blue-invert;
 }
 .bg-aside div.active {
-  background-color:$dark-blue-light;
+  background-color:$dark-blue-lighter;
   //border-top: 1px solid $border-color;
-  color: $dark-blue-light-invert;
+  color: $dark-blue-lighter-invert;
 }
-.side-menu .title {
-  padding: 10px 12px 3px 3px;
+a.menu-title {
+  padding: 5px;
   color: $dark-blue-invert;
-  font-size: 14px;
+  text-decoration: none;
+  display: block;
+  /*font-size: 14px;*/
+}
+a.menu-title:hover {
+  color: $dark-blue-invert;
 }
 
 .side-menu a {
@@ -81,6 +87,9 @@ nav.navbar {
 /************/
 
 /*面包屑*/
+.breadcrumb {
+  border-left: 3px solid $primary !important;
+}
 
 .breadcrumb .icon:first-child {
   margin-right: 0.3em;
@@ -108,8 +117,8 @@ nav.navbar {
   padding-right: 0.75rem;
 }
 .columns.is-fullheight .is-main-content {
-  overflow-y: auto;
-  overflow-x: auto;
+  /*overflow-y: auto;
+  overflow-x: auto;*/
 }
 
 .columns.is-halfheight {
@@ -141,12 +150,11 @@ nav.navbar {
   padding-left: 0.75rem;
 }*/
 
-//面包屑的左边框
-.breadcrumb {
-  border-left: 2px solid $grey !important;
-}
-
 //边框
+.box-shadow {
+  box-shadow: 0 2px 3px $grey, 0 0 0 1px $grey;
+  box-size: border-box;
+}
 .border-1 {
   border: 1px solid $grey !important;
 }
