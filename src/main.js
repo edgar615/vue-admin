@@ -68,7 +68,11 @@ Vue.component('jcc-meta-input', JccMetaInput)
 
 router.beforeEach((to, from, next) => {
   if (to.path == "/login") {
-  next()
+    if (store.getters.token) {
+      next("/")
+    } else {
+      next()
+    }
 } else {
   if (store.getters.token) {
     next()
