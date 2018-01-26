@@ -4,6 +4,7 @@ const getters = {
   activeSystem: state => state.permission.activeSystem,
   activeLevel1: state => state.permission.activeLevel1Menu,
   activeLevel2: state => state.permission.activeLevel2Menu,
+  menuIds: state => state.permission.menuIds,
   systems: state => state.permission.systems,
   dictList: (state) => (dictName, dictValue) => {
   if (state.dict.data[dictName] == undefined) {

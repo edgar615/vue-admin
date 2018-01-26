@@ -6,6 +6,7 @@ import Home from '@/components/home/home.vue'
 import Notfound from '@/components/error/page-404.vue'
 import ErrorPage from '@/components/error/page-500.vue'
 import TokenPage from '@/components/error/page-401.vue'
+import AuthPage from '@/components/error/page-403.vue'
 import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
 
@@ -49,6 +50,12 @@ var routes = [{
   meta: {
     name: '无效Token'
   }
+}, {
+  path: '/403',
+  component: AuthPage,
+  meta: {
+    name: '权限不足'
+  }
 }];
 
 // 在最后添加处理 404 路由，由于是动态加载，所以要改在动态加载之后添加
@@ -62,6 +69,7 @@ routes.push({
 });
 */
 const router = new VueRouter({
+ /* mode: 'history',*/
   routes: routes
 })
 
