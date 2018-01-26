@@ -71,8 +71,17 @@
             login(this.username, this.password).then(response => {
             //跳转首页
             this.$store.commit('SET_TOKEN', response.data.token)
-            //刷新页面
-              window.location.reload();
+            dynamicRouter(this.$store.getters.token, this.$router, this.$store).then(resp => {
+              vm.loading = false;
+             this.$router.push({ path: '/' })
+              }).catch(err => {
+               vm.loading = false;
+              this.$toast.open({
+                duration: 1500,
+                message: "获取系统数据失败",
+                type: 'is-danger'
+              })
+            })
           }).catch(function (error) {
             vm.loading = false;
           })

@@ -67,24 +67,37 @@ Vue.component('jcc-meta-input', JccMetaInput)
 /* eslint-disable no-new */
 
 router.beforeEach((to, from, next) => {
-  //在不刷新页面的情况下，不同权限的用户重复登录会导致有些用户可以访问他没有权限的页面，这里根据meta再次判断一下路由权限，没有权限的直接跳转到403
   if (to.path == "/login") {
+  next()
+} else {
+  if (store.getters.token) {
     next()
   } else {
-    if (store.getters.token) {
-      const menuIds = store.getters.menuIds;
-      if (menuIds.length > 0 && to.meta && to.meta.menuId) {
-        if (menuIds.indexOf(to.meta.menuId) == -1) {
-          next("/403")
-          return;
-        }
-      }
-      next()
-    } else {
-      next("/login")
-    }
+    next("/login")
   }
+}
 })
+
+// router.beforeEach((to, from, next) => {
+//   //在不刷新页面的情况下，不同权限的用户重复登录会导致有些用户可以访问他没有权限的页面，这里根据meta再次判断一下路由权限，没有权限的直接跳转到403
+//   if (to.path == "/login") {
+//     next()
+//   } else {
+//     if (store.getters.token) {
+//       //登录之后使用reload方法将整个页面刷新，避免下列问题：不同的两个菜单ID，对应的同一个地址切换用户之后会出现403
+//       const menuIds = store.getters.menuIds;
+//       if (menuIds.length > 0 && to.meta && to.meta.menuId) {
+//         if (menuIds.indexOf(to.meta.menuId) == -1) {
+//           next("/403")
+//           return;
+//         }
+//       }
+//       next()
+//     } else {
+//       next("/login")
+//     }
+//   }
+// })
 
 router.afterEach((to, from) => {
   if (to.meta && to.meta.menuId) {

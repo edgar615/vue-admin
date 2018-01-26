@@ -12,20 +12,20 @@ const permission = {
   mutations: {
     SET_PERMISSION: (state, systems) => {
       state.systems = systems
-      const menuArray = []
-        systems.forEach(function(item, index, input) {
-        if (item.permissions) {
-          item.permissions.forEach(function(level1) {
-            menuArray.push(level1.sysPermissionId);
-            if (level1.children) {
-              level1.children.forEach(function(level2) {
-                menuArray.push(level2.sysPermissionId)
-              })
-            }
-          })
-        }
-      });
-      state.menuIds = menuArray;
+      // const menuArray = []
+      //   systems.forEach(function(item, index, input) {
+      //   if (item.permissions) {
+      //     item.permissions.forEach(function(level1) {
+      //       menuArray.push(level1.sysPermissionId);
+      //       if (level1.children) {
+      //         level1.children.forEach(function(level2) {
+      //           menuArray.push(level2.sysPermissionId)
+      //         })
+      //       }
+      //     })
+      //   }
+      // });
+      // state.menuIds = menuArray;
     },
     ACTIVE_SYSTEM: (state, subsystemId) => {
       state.activeSystem = subsystemId
