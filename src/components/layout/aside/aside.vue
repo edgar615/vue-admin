@@ -44,13 +44,7 @@
           },
            systemList() {
              return this.$store.getters.systemList()
-           },
-           curRoute() {
-              //根据匹配地址判断打开的一级菜单
-               return this.$route.matched.map(function(route) {
-                    return route.path;
-                });
-            }
+           }
         }
     };
 </script>

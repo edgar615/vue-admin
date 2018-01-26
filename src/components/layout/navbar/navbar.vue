@@ -6,7 +6,7 @@
           <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </a>-->
         <a class="navbar-item brand-text" href="#">
-          智慧消防联网报警综合管理平台
+          XXXX综合管理平台
         </a>
         <div class="navbar-burger burger" data-target="navMenu">
           <span></span>

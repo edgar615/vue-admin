@@ -10,19 +10,22 @@
          <b-field label="名称" horizontal class="static-field">
            <p class="control static-field">{{model.name}}</p>
          </b-field>
-         <b-field label="路径" horizontal class="static-field">
+         <b-field label="权限值" horizontal class="static-field">
+           <p class="control">{{model.permission}}</p>
+         </b-field>
+         <b-field label="菜单路径" horizontal class="static-field" v-show="model.type == 1">
            <p class="control">{{model.path}}</p>
          </b-field>
-         <b-field label="图标" horizontal class="static-field">
+         <b-field label="图标" horizontal class="static-field" v-show="model.type == 1">
            <p class="control">{{model.icon}}</p>
          </b-field>
          <b-field label="排序" horizontal class="static-field">
            <p class="control">{{model.sorted}}</p>
          </b-field>
-         <b-field label="隐藏?" horizontal class="static-field">
+         <b-field label="隐藏?" horizontal class="static-field" v-show="model.type == 1">
            <p class="control">{{model.hidden}}</p>
          </b-field>
-         <b-field label="默认地址?" horizontal class="static-field">
+         <b-field label="默认地址?" horizontal class="static-field" v-show="model.type == 1">
            <p class="control">{{model.acquiescent}}</p>
          </b-field>
          <b-field label="SP访问" horizontal  class="static-field">
@@ -43,7 +46,7 @@
            <p class="control" style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
              <button class="button is-primary" @click="onAdd(model.sysPermissionId)" v-show="model.parentId == -1">
                <b-icon icon="plus"></b-icon>
-               <span>新增子菜单</span>
+               <span>新增权限</span>
              </button>
              <button class="button is-primary" @click="onEdit">
                <b-icon icon="pencil"></b-icon>
@@ -60,26 +63,48 @@
      </div>
 
      <div class="column bg-main ml-2" v-show="addMenu">
+       {{errors}}
        <div class="menus_box">
+         <jcc-field label="类型" horizontal
+                    :type="errors.has('type') ? 'is-danger' : ''"
+                    :message="errors.first('type')">
+           <b-select name="type"  expanded  v-model="model.type"
+                     v-validate="'required'" data-vv-as="类型" class="w-15">
+             <option
+               v-for="option in dictList(this, 'permissionType')"
+               :value="option.value"
+               :key="option.value">
+               {{ option.text }}
+              </option>
+           </b-select>
+         </jcc-field>
+
          <jcc-field label="名称"  horizontal :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
            <b-input name="name" v-model="model.name"
-                    v-validate="'required|max:64'"  data-vv-as="名称"  style="width: 400px;"></b-input>
+                    v-validate="'required|max:64'"  data-vv-as="名称" class="w-25"></b-input>
          </jcc-field>
-         <jcc-field label="路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')">
+         <jcc-field label="权限值"  horizontal :type="errors.has('permission') ? 'is-danger' : ''" :message="errors.first('permission')">
+           <b-input name="permission" v-model="model.permission"
+                    v-validate="'max:64|alpha_underscore'"  data-vv-as="权限值" class="w-25"></b-input>
+         </jcc-field>
+         <jcc-field label="菜单路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')"
+              v-show="model.type == 1">
            <b-input name="path" v-model="model.path"
-                    v-validate="'required|max:64|menu'"  data-vv-as="路径"  style="width: 400px;"></b-input>
+                    v-validate="model.type == 1 ? 'required|max:64|menu' : '' "  data-vv-as="菜单路径" class="w-25"></b-input>
          </jcc-field>
-         <jcc-field label="图标" horizontal  :type="errors.has('icon') ? 'is-danger' : ''" :message="errors.first('icon')">
+         <jcc-field label="图标" horizontal  :type="errors.has('icon') ? 'is-danger' : ''" :message="errors.first('icon')"
+                    v-show="model.type == 1">
            <b-input name="icon" v-model="model.icon"
-                    v-validate="'required|max:32'"  data-vv-as="图标" class="input-l"></b-input>
+                    v-validate="model.type == 1 ? 'required|max:32' : '' "  data-vv-as="图标" class="w-25"></b-input>
          </jcc-field>
          <jcc-field label="排序" horizontal  :message="errors.first('sorted')"
                     :type="errors.has('sorted') ? 'is-danger' : ''">
            <b-input name="sorted" expanded v-model="model.sorted"
-                    v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序"  style="width: 100px;">
+                    v-validate="'required|numeric|min_value:0|max_value:9999'"  data-vv-as="排序"  class="w-25">
            </b-input>
          </jcc-field>
-         <jcc-field class="field" horizontal message="不显示在菜单上">
+         <jcc-field class="field" horizontal message="不显示在菜单上"
+                    v-show="model.type == 1">
            <b-switch v-model="model.hidden"
                      true-value="true"
                      false-value="false"
@@ -87,7 +112,8 @@
              隐藏
          </b-switch>
          </jcc-field>
-         <jcc-field class="field" horizontal message="每个父菜单只有一个默认地址">
+         <jcc-field class="field" horizontal message="每个父菜单只有一个默认地址"
+                    v-show="model.type == 1">
            <b-switch v-model="model.acquiescent"
                      true-value="true"
                      false-value="false"
@@ -112,7 +138,7 @@
          </b-switch>
          </jcc-field>
          <jcc-field class="field" horizontal message="辅助功能，自动生成CRUD菜单"
-                    v-show="model.parentId == -1">
+                    v-show="model.parentId == -1 && model.type == 1">
            <b-switch v-model="model.autoGen"
                      true-value="true"
                      false-value="false"

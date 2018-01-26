@@ -1,4 +1,11 @@
 const dict_data = {
+  "permissionType" : [{
+    text : "菜单+权限",
+    value : 1
+  }, {
+    text : "权限",
+    value : 2
+  }],
   "bool" : [{
     text : "是",
     value : true
