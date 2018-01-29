@@ -12,7 +12,7 @@ VeeValidate.Validator.extend('alpha_symbol', {
 
 VeeValidate.Validator.extend('menu', {
     getMessage: field => 'The ' + field + ' field may contain alpha-numeric characters as well as : /',
-  validate: value => /^[_A-z0-9:/]{1,}$/.test(value)
+  validate: value => /^[-_A-z0-9:/]{1,}$/.test(value)
 });
 
 VeeValidate.Validator.extend('remote', {

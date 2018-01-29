@@ -63,7 +63,6 @@
      </div>
 
      <div class="column bg-main ml-2" v-show="addMenu">
-       {{errors}}
        <div class="menus_box">
          <jcc-field label="类型" horizontal
                     :type="errors.has('type') ? 'is-danger' : ''"

@@ -52,7 +52,7 @@
           </b-switch>
           </jcc-field>
           <jcc-field class="field" horizontal message="SP访问权限为'false'时，SP用户无法访问，但不影响创建应用">
-            <b-switch v-model="model.spVisible "
+            <b-switch v-model="model.spVisible"
                       true-value="true"
                       false-value="false"
                       type="is-info">
@@ -60,7 +60,7 @@
           </b-switch>
           </jcc-field>
           <jcc-field class="field" horizontal message="SO访问权限为'false'时，SO用户无法访问，也不能给SO创建这个应用">
-            <b-switch v-model="model.soVisible "
+            <b-switch v-model="model.soVisible"
                       true-value="true"
                       false-value="false"
                       type="is-info">
