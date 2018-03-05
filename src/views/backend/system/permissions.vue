@@ -84,7 +84,7 @@
          </jcc-field>
          <jcc-field label="权限值"  horizontal :type="errors.has('permission') ? 'is-danger' : ''" :message="errors.first('permission')">
            <b-input name="permission" v-model="model.permission"
-                    v-validate="'max:64|alpha_underscore'"  data-vv-as="权限值" class="w-25"></b-input>
+                    v-validate="'max:64|alpha_symbol'"  data-vv-as="权限值" class="w-25"></b-input>
          </jcc-field>
          <jcc-field label="菜单路径" horizontal  :type="errors.has('path') ? 'is-danger' : ''" :message="errors.first('path')"
               v-show="model.type == 1">
