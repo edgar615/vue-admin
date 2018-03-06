@@ -159,9 +159,21 @@ const dict_data = {
   }]
 };
 
+//孩子的字典
+const child_dict = {
+  "promotionState" : [{
+    text : "未发布",
+    value : 1
+  }, {
+    text : "已发布",
+    value : 2
+  }]
+};
+
+
 const dict = new Vuex.Store({
   state: {
-    data: dict_data
+    data: Object.assign(dict_data, child_dict)
   },
   mutations: {
   }
