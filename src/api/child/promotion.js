@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
-const base = "/v1/promotion";
+const base = "/cs/promotion";
 
-export function publish(id ) {
+export function publishPromotion(id ) {
   return request.put(base + '/' + id + '/publish', {});
 }

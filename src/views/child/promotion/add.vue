@@ -20,6 +20,12 @@
             <b-input name="timeDesc" v-model="model.timeDesc"
                      v-validate="'max:64'"  data-vv-as="活动时间"></b-input>
           </jcc-field>
+          <jcc-field label="活动图片" horizontal
+                     :type="errors.has('pictures') ? 'is-danger' : ''"
+                     :message="errors.first('address')">
+            <b-input name="pictures" v-model="model.pictures"
+                     v-validate="'required|max:1024|url'"  data-vv-as="活动图片" class="w-75"></b-input>
+          </jcc-field>
 
           <b-field horizontal><!-- Label left empty for spacing -->
             <p class="control btn_margin">
@@ -54,7 +60,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/v1/promotion",() => vm.$router.push({ path: '/child/promotion' }));
+        vm.saveMode(vm, "/cs/promotion",() => vm.$router.push({ path: '/child/promotion' }));
       }
     }
   }

@@ -88,7 +88,7 @@
                            exact class="button is-small" title="修改">
                 <b-icon icon="pencil"></b-icon>
               </router-link>
-              <button class="button is-danger is-small" @click="publish(props.row.promotionId)"
+              <button class="button is-danger is-small" @click="doPublish(props.row.promotionId)"
                       title="发布" v-show="props.row.state == 1">
                 <b-icon icon="unlock"></b-icon>
               </button>
@@ -117,7 +117,7 @@
 </template>
 
 <script>
-  import {publish} from '@/api/child/promotion';
+  import {publishPromotion} from '@/api/child/promotion';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -136,7 +136,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/promotion/page", params)
+        this.page(this, "/cs/promotion/page", params)
     },
     /*
      * Handle page-change event
@@ -155,8 +155,8 @@
       }
       return "is-dark";
     },
-    doUnLock(id) {
-      publish(id).then(response => {
+    doPublish(id) {
+      publishPromotion(id).then(response => {
         this.loadAsyncData({page:this.pagination.page});
       })
     }
