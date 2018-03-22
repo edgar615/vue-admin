@@ -7,12 +7,16 @@
 $primary: $purple;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
-  "primary":($purple, $purple-invert)
+  "primary":($purple, $purple-invert),
+  "bg-navbar" : ($dark-blue, $dark-blue-invert),
 );
-$skinColors: map-merge($darkBlueColors, $baseColors);
-$colors: map-merge($colors,$skinColors);
+$colors: map-merge($colors,$baseColors);
 $body-background-color: #F8FAFC !default
 
+$aside-background-color: $dark-blue !default
+$aside-active-background-color: $dark-blue-lighter !default
+$side-menu-hover-background-color: $indigo-lighter !default
+$side-menu-active-background-color: $indigo-light !default
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色

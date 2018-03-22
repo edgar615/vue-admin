@@ -29,40 +29,40 @@ nav.navbar {
 
 //默认
 .bg-aside {
-  background-color:$dark-blue;
+  background-color:$aside-background-color;
   //border-top: 1px solid $border-color;
-  color: $dark-blue-invert;
+  color: findColorInvert($aside-background-color);
 }
 .bg-aside div.active {
-  background-color:$dark-blue-lighter;
+  background-color:$aside-active-background-color;
   //border-top: 1px solid $border-color;
-  color: $dark-blue-lighter-invert;
+  color: findColorInvert($aside-active-background-color);
 }
 a.menu-title {
   padding: 5px;
-  color: $dark-blue-invert;
+  color: findColorInvert($aside-background-color);
   text-decoration: none;
   display: block;
   /*font-size: 14px;*/
 }
 a.menu-title:hover {
-  color: $dark-blue-invert;
+  color: findColorInvert($aside-background-color);
 }
 
 .side-menu a {
-  color: $dark-blue-invert;
+  color: findColorInvert($aside-background-color);
   display: block;
   padding: 10px 12px 10px 14px;
   text-decoration: none;
 }
 .side-menu a:hover {
-  background-color: $indigo-lighter;
-  color: $indigo-lighter-invert;
+  background-color: $side-menu-hover-background-color;
+  color: findColorInvert($side-menu-hover-background-color);
 }
 
 .side-menu a.active {
-  background-color: $indigo-light;
-  color: $indigo-light-invert;
+  background-color: $side-menu-active-background-color;
+  color: findColorInvert($side-menu-active-background-color);
 }
 
 .bg-subaside {
