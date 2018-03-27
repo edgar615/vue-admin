@@ -13,6 +13,7 @@ $baseColors: (
 $colors: map-merge($colors,$baseColors);
 $body-background-color: #F8FAFC !default
 
+$logo-background-color: #ffffff !default;
 $aside-background-color: $dark-blue !default
 $aside-active-background-color: $dark-blue-lighter !default
 $side-menu-hover-background-color: $indigo-lighter !default

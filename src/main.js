@@ -12,6 +12,10 @@ import '@/styles/vars.scss' //自定义风格
 
 Vue.config.productionTip = false
 
+//项目名
+Vue.prototype.$appName = 'XXXX综合管理平台'
+Vue.prototype.$showLogo = false
+
 //CRUD基本方法，减少页面开发量
 import ApiUtil from '@/utils/util'
 Vue.use(ApiUtil);
