@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb pl-3 ml-3 mt-1 mb-2 is-size-7" aria-label="breadcrumbs">
+  <nav class="breadcrumb pl-3 ml-3 mt-1 mb-2 is-size-7" aria-label="breadcrumbs" v-show="showBreadcrumb != false">
     <ul>
       <li :class="index == breadcrumbMenu.length -1 ? 'is-active' : '' " v-for="(route, index) in breadcrumbMenu" v-if="route.path != '/'" :key="route.path" >
         <router-link :to="{path: route.path}">
@@ -10,15 +10,22 @@
   </nav>
 </template>
 <script>
-    export default {
-        data() {
-            return {
-            };
-        },
-       computed: {
-         breadcrumbMenu() {
-           return this.$route.matched
-        }
+  export default {
+    data() {
+      return {
+      };
+    },
+    computed: {
+      breadcrumbMenu() {
+        return this.$route.matched
       },
-    };
+      showBreadcrumb() {
+        const matched = this.$route.matched;
+        if (matched) {
+          return matched[matched.length - 1].meta.showBreadcrumb;
+        }
+        return false;
+      }
+    },
+  };
 </script>

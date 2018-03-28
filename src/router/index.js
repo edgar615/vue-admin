@@ -23,13 +23,16 @@ var routes = [{
     // When navigating to this named route (:to="{name: '首页'"),
     // the default child route will not be rendered.
     // Remove the name from this route and use the name of the default child route for named links instead.
-    name: '首页'
+    name: '首页',
+    icon: 'home'
   },
   children: [{
     path: '', // 默认路由
     component: Home,
     meta: {
-      hidden: true
+      hidden: true,
+      icon: 'home',
+      showBreadcrumb: false
     }
   }]
 }, {

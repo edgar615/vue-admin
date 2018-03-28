@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-1">
     <section class="hero is-info welcome">
       <div class="hero-body">
         <h1 class="title">
@@ -42,11 +42,11 @@
 </template>
 
 <script>
-export default {
-  name: 'Home',
-  data () {
-    return {
+  export default {
+    name: 'Home',
+    data () {
+      return {
+      }
     }
   }
-}
 </script>

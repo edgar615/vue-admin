@@ -5,7 +5,7 @@
         <div class="column is-4 is-offset-4">
          <!-- <p class="subtitle has-text-grey">登录</p>-->
           <div class="box">
-            <h3 class="title is-4 has-text-centered">{{$appName}}</h3>
+            <h3 class="title is-1 has-text-centered">{{$appName}}</h3>
             <!--<figure class="avatar">
               <img src="https://placehold.it/128x128">
             </figure>-->

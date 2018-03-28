@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 
 //项目名
 Vue.prototype.$appName = 'XXXX综合管理平台'
-Vue.prototype.$showLogo = false
+Vue.prototype.$showLogo = true
 
 //CRUD基本方法，减少页面开发量
 import ApiUtil from '@/utils/util'

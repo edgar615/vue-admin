@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar is-bg-navbar has-shadow">
     <div class="navbar-brand">
-      <!--<a class="navbar-item logo" v-show="$showLogo" href="#">
-        <img src="../../../assets/logo.png">
-      </a>-->
-      <a class="navbar-item brand-text" href="#">
+      <router-link class="navbar-item logo" v-show="$showLogo" to="/">
+        <img class="m-auto" src="../../../assets/logo.png">
+      </router-link>
+      <router-link class="navbar-item brand-text" to="/">
         {{$appName}}
-        </a>
+        </router-link>
       <div class="navbar-burger burger" data-target="navMenu">
         <span></span>
         <span></span>
