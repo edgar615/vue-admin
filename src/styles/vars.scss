@@ -7,7 +7,7 @@
 $main-color: #2ca563;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
-  "primary":($purple, $purple-invert),
+  "primary":($blue, $blue-invert),
   "bg-navbar" : ($main-color, findColorInvert($main-color)),
 );
 $colors: map-merge($colors,$baseColors);
