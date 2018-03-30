@@ -14,7 +14,7 @@ Vue.config.productionTip = false
 
 //项目名
 Vue.prototype.$appName = 'XXXX综合管理平台'
-Vue.prototype.$showLogo = true
+Vue.prototype.$showLogo = false
 
 //CRUD基本方法，减少页面开发量
 import ApiUtil from '@/utils/util'
@@ -110,7 +110,9 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
   if (to.meta && to.meta.menuId) {
     store.commit('ACTIVE_LEVEL2_MENU', [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
-  }
+  } else {
+  store.commit('ACTIVE_LEVEL2_MENU', ['', '', ''])
+}
 
 })
 

@@ -14,7 +14,7 @@
         <h2 class="subtitle mt-3">
           看起来系统出了点状况，工程师要被罚站啦
         </h2>
-        <router-link class="button is-primary" to="/" >
+        <router-link class="button" to="/" >
           返回首页
         </router-link>
       </div>

@@ -128,9 +128,9 @@
 }
 .nav.menu .nav-item .icon-btn {
   background-color: #FFFFFF;
-  border: 3px solid $primary;
+  border: 3px solid $main-color;
   border-radius: 100% 100% 100% 100%;
-  color: $primary;
+  color: $main-color;
   display: inline-block;
   font-size: 20px;
   height: 40px;
@@ -229,15 +229,15 @@ a.nav-item.is-tab {
 
 .nav-item a.is-tab:hover,
 a.nav-item.is-tab:hover {
-  border-bottom: 1px solid #1fc8db;
+  border-bottom: 1px solid $main-color;
   border-top: 1px solid transparent;
 }
 
 .nav-item a.is-tab.is-active,
 a.nav-item.is-tab.is-active {
-  border-bottom: 3px solid #1fc8db;
+  border-bottom: 3px solid  $main-color;
   border-top: 3px solid transparent;
-  color: #1fc8db;
+  color:  $main-color;
 }
 
 /*页面导航*/

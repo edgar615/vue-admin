@@ -197,10 +197,9 @@
 </script>
 
 <style scoped>
-
   .interactive-bg {
     height: 100vh;
-    background-color: #2ca563;
+    background-color: #3490DC;
     -webkit-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);
     -moz-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);
     box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);
@@ -210,10 +209,6 @@
     .interactive-bg{
       display: none
     }
-  }
-
-  .input {
-    border-radius: 50px;
   }
 
   .button {

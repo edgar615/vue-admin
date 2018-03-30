@@ -14,7 +14,7 @@
         <h2 class="subtitle mt-3">
           请点击下面的按钮返回登录页重新登录
         </h2>
-        <router-link class="button is-primary" to="/login" >
+        <router-link class="button" to="/login" >
           返回登录
         </router-link>
       </div>

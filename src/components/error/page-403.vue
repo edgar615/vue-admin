@@ -14,7 +14,7 @@
         <h2 class="subtitle mt-3">
           如需访问，请联系管理员给您开通权限
         </h2>
-        <router-link class="button is-primary" to="/" >
+        <router-link class="button" to="/" >
           返回首页
         </router-link>
       </div>

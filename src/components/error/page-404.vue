@@ -11,7 +11,7 @@
           </span>
           真不巧，您要访问的页面弄丢了
         </h1>
-        <router-link class="button is-primary" to="/" >
+        <router-link class="button" to="/" >
           返回首页
         </router-link>
       </div>

@@ -4,7 +4,7 @@
 //https://bulma.io/documentation/overview/variables/
 @import "./colors";
 
-$main-color: #2ca563;
+$main-color: $blue;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
   "primary":($blue, $blue-invert),
@@ -15,9 +15,9 @@ $body-background-color: #F8FAFC !default
 
 $logo-background-color: #ffffff !default;
 $aside-background-color: $main-color !default
-$aside-active-background-color: #258952 !default
-$side-menu-hover-background-color: #e9642a !default
-$side-menu-active-background-color: #e9642a !default
+$aside-active-background-color: $blue-dark !default
+$side-menu-hover-background-color: $orange-dark !default
+$side-menu-active-background-color: $orange-dark !default
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
@@ -51,4 +51,5 @@ $side-menu-active-background-color: #e9642a !default
 @import './pageloader';
 @import './bulma-steps';
 @import "./_style";
+@import "./nav";
 //@import "./skins/dark-blue-extensions";
