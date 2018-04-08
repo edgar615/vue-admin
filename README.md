@@ -91,3 +91,9 @@ npm install vue-layer
     }
   */
 ```
+
+富文本编辑器
+
+```
+npm install vue-html5-editor
+```

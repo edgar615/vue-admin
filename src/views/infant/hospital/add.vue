@@ -27,6 +27,9 @@
                      v-validate="'required|max:1024|url'"  data-vv-as="科室简介" class="w-75"></b-input>
           </jcc-field>
 
+          <jcc-field>
+            <vue-html5-editor :content="content" :height="500"></vue-html5-editor>
+          </jcc-field>
           <b-field horizontal><!-- Label left empty for spacing -->
             <p class="control btn_margin">
               <button class="button is-primary" @click="save" :disabled='errors.any()'
@@ -45,8 +48,9 @@
     </section>
 </template>
 <script>
+  import JccField from "../../../components/field/Field";
   export default {
-    data() {
+    components: {JccField}, data() {
     return {
       loading: false,
       saving: false,
