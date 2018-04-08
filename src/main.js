@@ -27,9 +27,7 @@ Vue.use(VueHtml5Editor,{
     // 上传参数,默认把图片转为base64而不上传
     // upload config,default null and convert image to base64
     upload: {
-      url: "http://localhost:9000/v1/file-upload",
-      headers: {},
-      params: {},
+      url: "http://localhost:9000/v1/file",
       fieldName: "file"
     },
     // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩
@@ -45,11 +43,7 @@ Vue.use(VueHtml5Editor,{
     uploadHandler(responseText){
       //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
       var json = JSON.parse(responseText)
-      if (!json.ok) {
-        alert(json.msg)
-      } else {
-        return json.data
-      }
+      return "http://localhost:9000/v1/file/" + json.result;
     }
   }
 
