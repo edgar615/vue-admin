@@ -5,6 +5,7 @@
 @import "./colors";
 
 $main-color: $blue;
+$main-color-dark: $blue-dark;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
   "primary":($blue, $blue-invert),
