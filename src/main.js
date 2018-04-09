@@ -16,39 +16,6 @@ Vue.config.productionTip = false
 Vue.prototype.$appName = 'XXXX综合管理平台'
 Vue.prototype.$showLogo = false
 
-//富文本编辑器，不使用的话删除
-import VueHtml5Editor from 'vue-html5-editor'
-Vue.use(VueHtml5Editor,{
-  // 配置图片模块
-  // config image module
-  image: {
-    // 文件最大体积，单位字节  max file size
-    sizeLimit: 512 * 1024,
-    // 上传参数,默认把图片转为base64而不上传
-    // upload config,default null and convert image to base64
-    upload: {
-      url: "http://localhost:9000/v1/file",
-      fieldName: "file"
-    },
-    // 压缩参数,默认使用localResizeIMG进行压缩,设置为null禁止压缩
-    // compression config,default resize image by localResizeIMG (https://github.com/think2011/localResizeIMG)
-    // set null to disable compression
-    compress: {
-      width: 1600,
-      height: 1600,
-      quality: 80
-    },
-    // 响应数据处理,最终返回图片链接
-    // handle response data，return image url
-    uploadHandler(responseText){
-      //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
-      var json = JSON.parse(responseText)
-      return "http://localhost:9000/v1/file/" + json.result;
-    }
-  }
-
-});
-
 //CRUD基本方法，减少页面开发量
 import ApiUtil from '@/utils/util'
 Vue.use(ApiUtil);
