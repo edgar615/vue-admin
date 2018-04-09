@@ -16,6 +16,29 @@ Vue.config.productionTip = false
 Vue.prototype.$appName = 'XXXX综合管理平台'
 Vue.prototype.$showLogo = false
 
+
+//富文本编辑器，不使用的话删除
+import VueHtml5Editor from 'vue-html5-editor'
+Vue.use(VueHtml5Editor,{
+  // 配置图片模块
+  image: {
+    // 文件最大体积，单位字节  max file size
+    sizeLimit: 512 * 1024,
+    // 上传参数,默认把图片转为base64而不上传
+    // upload config,default null and convert image to base64
+    upload: {
+      url: "http://www.edgar615.com:32881/v1/file",
+      fieldName: "file"
+    },
+    uploadHandler(responseText){
+      //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
+      var json = JSON.parse(responseText)
+      return "http://www.edgar615.com:32881/v1/file/" + json.result;
+    }
+  }
+
+});
+
 //CRUD基本方法，减少页面开发量
 import ApiUtil from '@/utils/util'
 Vue.use(ApiUtil);
