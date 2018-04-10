@@ -131,7 +131,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/application/page", params)
+        this.page(this, "/application/page", params)
     },
     /*
      * Handle page-change event

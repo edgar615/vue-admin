@@ -108,7 +108,7 @@
         return exists;
       },
       loadAsyncData(params) {
-        this.page(this, "/v1/company/"+ this.companyId + '/system', params)
+        this.page(this, "/company/"+ this.companyId + '/system', params)
     },
     /*
      * Handle page-change event

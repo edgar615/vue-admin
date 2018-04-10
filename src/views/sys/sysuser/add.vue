@@ -7,7 +7,7 @@
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"
-                     v-validate="'required|max:60|min:3|email|remote:/v1/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
+                     v-validate="'required|max:60|min:3|email|remote:/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
             </b-input>
           </jcc-field>
           <jcc-field label="姓名" horizontal
@@ -68,7 +68,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/v1/sysuser",() => vm.$router.push({ path: '/sys/sysuser' }));
+        vm.saveMode(vm, "/sysuser",() => vm.$router.push({ path: '/sys/sysuser' }));
       }
     }
   }
