@@ -125,7 +125,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/sysuser/page", params)
+        this.page(this, "/om/sysuser/page", params)
     },
     /*
      * Handle page-change event

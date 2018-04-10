@@ -27,13 +27,21 @@ Vue.use(VueHtml5Editor,{
     // 上传参数,默认把图片转为base64而不上传
     // upload config,default null and convert image to base64
     upload: {
+<<<<<<< HEAD
       url: "http://www.edgar615.com:32881/v1/file",
+=======
+      url: "http://www.edgar615.com:32881/om/file",
+>>>>>>> master
       fieldName: "file"
     },
     uploadHandler(responseText){
       //default accept json data like  {ok:false,msg:"unexpected"} or {ok:true,data:"image url"}
       var json = JSON.parse(responseText)
+<<<<<<< HEAD
       return "http://www.edgar615.com:32881/v1/file/" + json.result;
+=======
+      return "http://www.edgar615.com:32881/om/file/" + json.result;
+>>>>>>> master
     }
   }
 

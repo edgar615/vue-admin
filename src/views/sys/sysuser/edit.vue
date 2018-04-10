@@ -66,11 +66,11 @@
       },
       save() {
         const vm = this
-        vm.updateModel(vm, "/company", vm.$route.params.id, () => vm.$router.push({ path: '/company' }))
+        vm.updateModel(vm, "/om/company", vm.$route.params.id, () => vm.$router.push({ path: '/company' }))
       }
     },
   created () {
-    this.getModel(this, "/company", this.$route.params.id)
+    this.getModel(this, "/om/company", this.$route.params.id)
     }
   }
 </script>
