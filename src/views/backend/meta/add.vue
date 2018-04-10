@@ -143,7 +143,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/v1/metadata",() => vm.$router.push({ path: '/backend/meta' }));
+        vm.saveMode(vm, "/metadata",() => vm.$router.push({ path: '/backend/meta' }));
       }
     }
   }

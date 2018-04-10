@@ -8,7 +8,7 @@
                      :type="errors.has('sysIdentifier') ? 'is-danger' : ''"
                      :message="errors.first('sysIdentifier')">
             <b-input name="sysIdentifier" v-model="model.sysIdentifier"
-                     v-validate="'required|max:64|alpha_underscore|remote:/v1/system/idetifier-vertify'"  data-vv-as="标识符" class="w-25"></b-input>
+                     v-validate="'required|max:64|alpha_underscore|remote:/system/idetifier-vertify'"  data-vv-as="标识符" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="名称" horizontal
@@ -100,7 +100,7 @@
       },
       save() {
           const vm = this
-          this.saveMode(vm, "/v1/system",() => vm.$router.push({ path: '/backend/system' }));
+          this.saveMode(vm, "/system",() => vm.$router.push({ path: '/backend/system' }));
       }
     }
   }

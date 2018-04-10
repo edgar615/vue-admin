@@ -175,7 +175,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/system/page", params)
+        this.page(this, "/system/page", params)
     },
     /*
      * Handle page-change event
@@ -201,7 +201,7 @@
       var checkedIds = vm.checkedRows.map(function(item) {
         return item.subsystemId;
       })
-      this.batchDeleteModel(vm, "/v1/system", checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
+      this.batchDeleteModel(vm, "/system", checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
     },
     /*
      * Type style in relation to the value
@@ -217,7 +217,7 @@
     },
       onDelete(id) {
         const vm = this;
-        this.deleteModel(vm, "/v1/system", id, () => this.loadAsyncData({page:this.pagination.page}));
+        this.deleteModel(vm, "/system", id, () => this.loadAsyncData({page:this.pagination.page}));
       }
   },
   filters: {
