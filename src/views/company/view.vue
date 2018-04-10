@@ -64,7 +64,7 @@
       }
     },
   created () {
-      this.getModel(this, "/company", this.$route.params.id)
+      this.getModel(this, "/om/company", this.$route.params.id)
     }
   }
 </script>
