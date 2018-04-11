@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const base = "/v1/sysuser";
+const base = "/om/sysuser";
 
 export function lock(id ) {
   return request.put(base + '/' + id + '/lock', {});
@@ -11,7 +11,7 @@ export function unLock(id) {
 }
 
 export function getAvailableRole() {
-  return request.get('/v1/role/tree');
+  return request.get('/om/role/tree');
 }
 
 export function getPermitted(id) {

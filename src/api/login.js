@@ -13,20 +13,20 @@ export function login(username, password) {
     console.log(error);
   });
    */
-  return request.post('/v1/auth/login', {
+  return request.post('/om/auth/login', {
     username : username,
     password: password
   });
 }
 
 export function getPermission() {
-  return request.get('/v1/auth/systems', {
+  return request.get('/om/auth/systems', {
     params:{type : 2}
   })
 }
 
 export function getInfo() {
-  return request.get('/v1/auth/info', {
+  return request.get('/om/auth/info', {
     params:{type : 2}
   })
 }

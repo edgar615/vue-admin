@@ -143,11 +143,11 @@
       },
       save() {
         const vm = this
-        vm.updateModel(vm, "/v1/metadata", vm.$route.params.id, () => vm.$router.push({ path: '/backend/meta' }))
+        vm.updateModel(vm, "/om/metadata", vm.$route.params.id, () => vm.$router.push({ path: '/backend/meta' }))
       }
     },
     created () {
-      this.getModel(this, "/v1/metadata", this.$route.params.id)
+      this.getModel(this, "/om/metadata", this.$route.params.id)
     }
   }
 </script>

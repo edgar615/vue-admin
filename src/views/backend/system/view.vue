@@ -75,7 +75,7 @@
       }
     },
   created () {
-      this.getModel(this, "/v1/system", this.$route.params.id)
+      this.getModel(this, "/om/system", this.$route.params.id)
     }
   }
 </script>

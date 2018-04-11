@@ -169,7 +169,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/metadata/page", params)
+        this.page(this, "/om/metadata/page", params)
     },
     /*
      * Handle page-change event
@@ -181,7 +181,7 @@
     },
       doDelete(id) {
        const vm = this;
-        vm.deleteModel(vm, "/v1/metadata", id, () => vm.loadAsyncData({page:vm.pagination.page}));
+        vm.deleteModel(vm, "/om/metadata", id, () => vm.loadAsyncData({page:vm.pagination.page}));
     }
   },
   created() {

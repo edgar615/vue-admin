@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const base = "/v1/company";
+const base = "/om/company";
 
 export function lock(id ) {
   return request.put(base + '/' + id + '/lock', {});

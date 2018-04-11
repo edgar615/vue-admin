@@ -107,7 +107,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/v1/company/page", params)
+        this.page(this, "/om/company/page", params)
       },
       /*
        * Handle page-change event
