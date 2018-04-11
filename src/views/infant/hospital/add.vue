@@ -23,8 +23,8 @@
           <jcc-field label="科室简介" horizontal
                      :type="errors.has('deptBrief') ? 'is-danger' : ''"
                      :message="errors.first('deptBrief')">
-            <b-input name="pictures" v-model="model.deptBrief"
-                     v-validate="'required|max:1024|url'"  data-vv-as="科室简介" class="w-75"></b-input>
+            <b-input name="deptBrief" v-model="model.deptBrief"
+                     v-validate="'required|max:1024'"  data-vv-as="科室简介" class="w-75"></b-input>
           </jcc-field>
 
           <jcc-field>
@@ -64,7 +64,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/cs/promotion",() => vm.$router.push({ path: '/child/promotion' }));
+        vm.saveMode(vm, "/infant/hospital",() => vm.$router.push({ path: '/child/promotion' }));
       }
     }
   }
