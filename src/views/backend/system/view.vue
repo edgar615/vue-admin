@@ -61,6 +61,7 @@
   </section>
 </template>
 <script>
+  import { getSystem} from '@/api/backend/system';
   export default {
     data() {
     return {
@@ -75,7 +76,7 @@
       }
     },
   created () {
-      this.getModel(this, "/om/system", this.$route.params.id)
+      this.getModel(this, getSystem, this.$route.params.id)
     }
   }
 </script>

@@ -89,6 +89,7 @@
 </template>
 
 <script>
+  import {page} from '@/api/company';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -107,7 +108,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/om/company/page", params)
+        this.pageModel(this, page, params)
       },
       /*
        * Handle page-change event

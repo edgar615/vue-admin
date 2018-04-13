@@ -51,6 +51,7 @@
   </section>
 </template>
 <script>
+  import { update, get } from '@/api/company';
   export default {
     data() {
     return {
@@ -66,11 +67,11 @@
       },
       save() {
         const vm = this
-        vm.updateModel(vm, "/om/company", vm.$route.params.id, () => vm.$router.push({ path: '/company' }))
+        vm.updateModel(vm, update, vm.$route.params.id, () => vm.$router.push({ path: '/company' }))
       }
     },
   created () {
-    this.getModel(this, "/om/company", this.$route.params.id)
+    this.getModel(this, get, this.$route.params.id)
     }
   }
 </script>

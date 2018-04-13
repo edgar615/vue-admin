@@ -77,6 +77,7 @@
 </template>
 
 <script>
+  import {systemPage} from '@/api/company';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     props: {
@@ -108,7 +109,7 @@
         return exists;
       },
       loadAsyncData(params) {
-        this.page(this, "/om/company/"+ this.companyId + '/system', params)
+        this.pageModel(this, systemPage, params)
     },
     /*
      * Handle page-change event

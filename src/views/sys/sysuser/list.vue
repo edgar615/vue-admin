@@ -106,7 +106,7 @@
 </template>
 
 <script>
-  import {lock, unLock} from '@/api/sys/sysuser';
+  import {page, lock, unLock} from '@/api/sys/sysuser';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -125,7 +125,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/om/sysuser/page", params)
+        this.pageModel(this, page, params)
     },
     /*
      * Handle page-change event
