@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const base = "/om/auth";
+const base = "/auth";
 
 export function changePwd(model) {
   return request.put(base +  '/changepwd', model);

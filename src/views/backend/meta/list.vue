@@ -151,6 +151,9 @@
 </template>
 
 <script>
+
+  import { page, del } from '@/api/backend/meta';
+
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -169,7 +172,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/om/metadata/page", params)
+        this.pageModel(this, page, params)
     },
     /*
      * Handle page-change event
@@ -181,7 +184,7 @@
     },
       doDelete(id) {
        const vm = this;
-        vm.deleteModel(vm, "/om/metadata", id, () => vm.loadAsyncData({page:vm.pagination.page}));
+        vm.deleteModel(vm, del, id, () => vm.loadAsyncData({page:vm.pagination.page}));
     }
   },
   created() {

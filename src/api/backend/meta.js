@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const base = "/application";
+const base = "/metadata";
 
 export function page(params) {
   if (!params) {
@@ -9,19 +9,14 @@ export function page(params) {
   return request.get(base + '/page', {params: params});
 }
 
-export function lock(id ) {
-  return request.put(base + '/' + id + '/lock', {});
-}
-
-export function unLock(id) {
-  return request.put(base + '/' + id + '/unlock', {});
-}
-
-export function getApp(id ) {
+export function get(id ) {
   return request.get(base + '/' + id);
 }
+export function del(id ) {
+  return request.delete(base + '/' + id);
+}
 
-export function saveApp(model) {
+export function save(model) {
   return request.post(base, model);
 }
 

@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import {deleteConfirm} from '@/utils/dialog';
 
-function pageModel(vm, url, params) {
+function pageModel(vm, pageApi, params) {
   if (params == undefined) {
     params = {};
   }
@@ -15,17 +15,17 @@ function pageModel(vm, url, params) {
   }
   params = Object.assign(vm.filters, params);
   vm.loading = true
-  return request.get(url, {params: params}).then(response => {
+  return pageApi(params).then(response => {
     vm.pagination = response.data;
     vm.loading = false;
   }).catch(err => {
-      vm.loading = false;
+    vm.loading = false;
   })
 }
 
-function getModel(vm, url, id) {
+function getModel(vm, getApi, id) {
   vm.loading = true
-  request.get(url + '/' + id).then(response => {
+  getApi(id).then(response => {
     vm.model = response.data;
     vm.loading = false;
   }).catch(err => {
@@ -34,11 +34,11 @@ function getModel(vm, url, id) {
 
 }
 
-function updateModel(vm, url, id, callback) {
+function updateModel(vm, updateApi, id, callback) {
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
-      request.put(url + "/" + id, vm.model).then(response => {
+      updateApi(id, vm.model).then(response => {
         vm.saving = false;
       if (callback) {
         callback()
@@ -51,11 +51,11 @@ function updateModel(vm, url, id, callback) {
 
 }
 
-function saveModel(vm, url, callback) {
+function saveModel(vm, saveApi, callback) {
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
-      request.post(url, vm.model).then(response => {
+      saveApi(vm.model).then(response => {
         vm.saving = false;
         if (callback) {
           callback()
@@ -68,10 +68,10 @@ function saveModel(vm, url, callback) {
 
 }
 
-function deleteModel(vm, url, id, callback) {
+function deleteModel(vm, delApi, id, callback) {
   deleteConfirm(vm, () => {
     vm.deleting = true;
-    request.delete(url + '/' + id).then(response => {
+    delApi(id).then(response => {
       vm.deleting = false;
       if (callback) {
         callback()
@@ -82,10 +82,10 @@ function deleteModel(vm, url, id, callback) {
   })
 }
 
-function batchDeleteModel(vm, url, ids, callback) {
+function batchDeleteModel(vm, delApi, ids, callback) {
   deleteConfirm(vm, () => {
     vm.deleting = true;
-    request.delete(url, {data: {ids: ids}}).then(response => {
+    delApi({data: {ids: ids}}).then(response => {
       vm.deleting = false;
       if (callback) {
         callback()
@@ -111,7 +111,7 @@ export default{
     Vue.prototype.dictText = dictText
     Vue.prototype.dictList = dictList
     //分页
-    Vue.prototype.page = pageModel
+    Vue.prototype.pageModel = pageModel
     //查看
     Vue.prototype.getModel= getModel
     //删除

@@ -50,6 +50,7 @@
   </section>
 </template>
 <script>
+  import {  get } from '@/api/company';
   export default {
     data() {
     return {
@@ -64,7 +65,7 @@
       }
     },
   created () {
-      this.getModel(this, "/om/company", this.$route.params.id)
+      this.getModel(this, get, this.$route.params.id)
     }
   }
 </script>

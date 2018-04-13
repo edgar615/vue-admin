@@ -76,6 +76,7 @@
   </section>
 </template>
 <script>
+  import { updateSystem, getSystem} from '@/api/backend/system';
   export default {
     data() {
     return {
@@ -91,11 +92,11 @@
       },
       save() {
         const vm = this
-        vm.updateModel(vm, "/om/system", vm.$route.params.id, () => vm.$router.push({ path: '/backend/system' }))
+        vm.updateModel(vm, updateSystem, vm.$route.params.id, () => vm.$router.push({ path: '/backend/system' }))
       }
     },
   created () {
-    this.getModel(this, "/om/system", this.$route.params.id)
+    this.getModel(this, getSystem, this.$route.params.id)
     }
   }
 </script>

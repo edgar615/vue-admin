@@ -128,6 +128,7 @@
   </section>
 </template>
 <script>
+  import { get, update } from '@/api/backend/meta';
   export default {
     data() {
       return {
@@ -143,11 +144,11 @@
       },
       save() {
         const vm = this
-        vm.updateModel(vm, "/om/metadata", vm.$route.params.id, () => vm.$router.push({ path: '/backend/meta' }))
+        vm.updateModel(vm, update, vm.$route.params.id, () => vm.$router.push({ path: '/backend/meta' }))
       }
     },
     created () {
-      this.getModel(this, "/om/metadata", this.$route.params.id)
+      this.getModel(this, get, this.$route.params.id)
     }
   }
 </script>

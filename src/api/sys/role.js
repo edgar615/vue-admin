@@ -1,35 +1,35 @@
 import request from '@/utils/request'
 
-const base = "/om/role";
+const base = "/role";
 
 export function roleTree(id ) {
   return request.get(base + '/tree');
 }
 
 export function getRole(id) {
-  return request.get('/om/role/' + id);
+  return request.get('/role/' + id);
 }
 
 export function addRole(model) {
-  return request.post('/om/role', model);
+  return request.post('/role', model);
 }
 
 export function deleteRole(id) {
-  return request.delete('/om/role/' + id);
+  return request.delete('/role/' + id);
 }
 
 export function updateRole(id, model) {
-  return request.put('/om/role/' + id, model);
+  return request.put('/role/' + id, model);
 }
 
 export function getSystem(id) {
-  return request.get('/om/role/' + id + "/available-permission");
+  return request.get('/role/' + id + "/available-permission");
 }
 
 export function getPermitted(id) {
-  return request.get('/om/role/' + id + "/permission");
+  return request.get('/role/' + id + "/permission");
 }
 
 export function permit(model) {
-  return request.post('/om/role/permit', model)
+  return request.post('/role/permit', model)
 }

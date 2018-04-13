@@ -85,6 +85,8 @@
     </section>
 </template>
 <script>
+  import { addSystem} from '@/api/backend/system';
+
   export default {
     data() {
     return {
@@ -100,7 +102,7 @@
       },
       save() {
           const vm = this
-          this.saveMode(vm, "/om/system",() => vm.$router.push({ path: '/backend/system' }));
+          this.saveMode(vm, addSystem,() => vm.$router.push({ path: '/backend/system' }));
       }
     }
   }

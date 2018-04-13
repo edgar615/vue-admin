@@ -31,7 +31,7 @@
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"
-                     v-validate="'required|max:60|min:3|email|remote:/om/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
+                     v-validate="'required|max:60|min:3|email|remote:/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
             </b-input>
           </jcc-field>
          <!--
@@ -74,6 +74,7 @@
     </section>
 </template>
 <script>
+  import { save } from '@/api/company';
   export default {
     data() {
     return {
@@ -89,7 +90,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/om/company",() => vm.$router.push({ path: '/company' }));
+        vm.saveMode(vm, save,() => vm.$router.push({ path: '/company' }));
       }
     }
   }

@@ -128,6 +128,7 @@
     </section>
 </template>
 <script>
+  import { save } from '@/api/backend/meta';
   export default {
     data() {
     return {
@@ -143,7 +144,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/om/metadata",() => vm.$router.push({ path: '/backend/meta' }));
+        vm.saveMode(vm, save,() => vm.$router.push({ path: '/backend/meta' }));
       }
     }
   }

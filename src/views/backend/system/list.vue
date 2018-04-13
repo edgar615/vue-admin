@@ -152,6 +152,7 @@
 </template>
 
 <script>
+  import { systemPage, deleteSystem, batchDeleteSystem } from '@/api/backend/system';
   import EmptyTable from '@/components/EmptyTable.vue';
   export default {
     data() {
@@ -175,7 +176,7 @@
        * Load async data
        */
       loadAsyncData(params) {
-        this.page(this, "/om/system/page", params)
+        this.pageModel(this, systemPage, params)
     },
     /*
      * Handle page-change event
@@ -201,7 +202,7 @@
       var checkedIds = vm.checkedRows.map(function(item) {
         return item.subsystemId;
       })
-      this.batchDeleteModel(vm, "/om/system", checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
+      this.batchDeleteModel(vm, batchDeleteSystem, checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
     },
     /*
      * Type style in relation to the value
@@ -217,7 +218,7 @@
     },
       onDelete(id) {
         const vm = this;
-        this.deleteModel(vm, "/om/system", id, () => this.loadAsyncData({page:this.pagination.page}));
+        this.deleteModel(vm, deleteSystem, id, () => this.loadAsyncData({page:this.pagination.page}));
       }
   },
   filters: {

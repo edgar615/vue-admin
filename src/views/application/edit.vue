@@ -31,7 +31,7 @@
 </template>
 <script>
   import {getMeta} from "@/api/backend/system";
-  import {getApp} from '@/api/application'
+  import {getApp, update} from '@/api/application'
   export default {
     data() {
         return {
