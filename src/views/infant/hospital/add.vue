@@ -17,8 +17,8 @@
           <jcc-field label="图片列表" horizontal
                      :type="errors.has('pictures') ? 'is-danger' : ''"
                      :message="errors.first('pictures')">
-            <b-input name="timeDesc" v-model="model.pictures"
-                     v-validate="'max:64'"  data-vv-as="图片"></b-input>
+            <b-input name="pictures" v-model="model.pictures"
+                     v-validate="'max:2048'"  data-vv-as="图片"></b-input>
           </jcc-field>
           <jcc-field label="科室简介" horizontal
                      :type="errors.has('deptBrief') ? 'is-danger' : ''"
@@ -64,7 +64,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, "/infant/hospital",() => vm.$router.push({ path: '/child/promotion' }));
+        vm.saveMode(vm, "/infant/backend/hospital",() => vm.$router.push({ path: '/infant/backend' }));
       }
     }
   }
