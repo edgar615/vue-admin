@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app-content">
     <router-view></router-view>
-    <div class="pageloader is-info" :class="{'is-active' : loading}"><span class="title">拼命加载中</span></div>
+    <div class="pageloader is-info" :class="{'is-active' : loading}"></div>
   </div>
 </template>
 
