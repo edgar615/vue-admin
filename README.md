@@ -4,6 +4,20 @@ https://juejin.im/post/59097cd7a22b9d0065fb61d2
 
 > A Vue.js project
 
+
+npm使用registry这个属性指定仓库，因此配置这个属性即可。修改npm配置属性的几种方法详见官方文档。
+
+这里只贴出修改registry的方法，以下三种任意一种即可:
+
+    修改~/.npmrc文件(没有就自行新建一个)，写入registry = https://registry.npm.taobao.org
+    使用命令npm config set registry https://registry.npm.taobao.org(效果和上面等效)
+    添加环境变量NPＭ_CONFIG_REGISTRY=https://registry.npm.taobao.org
+
+同样的方法，将disturl这个配置同样指向: https://npm.taobao.org/dist, 任选一种方案:
+
+npm config set disturl https://npm.taobao.org/dist
+
+
 ## Build Setup
 
 ``` bash
