@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import Buefy from 'buefy'
-import 'buefy/lib/buefy.css'
+import 'buefy/dist/buefy.css'
 import '@/styles/bulma-timeline.css'
 import zh_CN from '@/utils/zh-CN'
 import '@/styles/vars.scss' //自定义风格
