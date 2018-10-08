@@ -6,6 +6,9 @@
         <div class="column is-1 is-sidebar-menu is-hidden-mobile bg-aside is-paddingless">
             <Aside></Aside>
         </div>
+        <div class="column is-1 is-sidebar-menu is-hidden-mobile bg-subaside is-paddingless" v-show="showLevel2Menu">
+          <SubAside></SubAside>
+        </div>
         <div class="column is-main-content is-paddingless">
           <MainContent></MainContent>
         </div>

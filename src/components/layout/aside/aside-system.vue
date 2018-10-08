@@ -1,5 +1,4 @@
 <template>
-  <!-- 使用路由生成菜单 -->
   <div>
     <!-- 使用路由生成菜单 -->
     <div  v-for="system in systemList" :class="activeSystem == system.subsystemId ? 'active pt-2 pb-2' : 'pt-2 pb-2' " >

@@ -41,9 +41,6 @@ function rFormat(menu, parent) {
     })
     router.children = children;
   }
-  if (menu.path == "/backend/system") {
-    console.log(router)
-  }
   return router;
 }
 function createComp(menu) {

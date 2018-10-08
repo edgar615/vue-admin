@@ -6,20 +6,7 @@
          :to="{path: level1.path}">
         <b-icon pack="fa" :icon="level1.icon" size="is-small"></b-icon>
         <span>{{level1.name}}</span>
-        <b-icon pack="fa" size="is-small" icon="angle-right" v-show="activeLevel1 != level1.sysPermissionId"
-                v-if="level1.nonHiddenChild"></b-icon>
-        <b-icon pack="fa" size="is-small" icon="angle-down" v-show="activeLevel1 == level1.sysPermissionId"
-                v-if="level1.nonHiddenChild"></b-icon>
       </router-link>
-      <div class="side-menu is-size-7 active" v-show="activeLevel1 == level1.sysPermissionId">
-        <!--v-if="!level2.hidden"-->
-        <router-link v-for="level2 in level1.children" v-if="!level2.hidden"
-                     :to="{path: level1.path + '/' + level2.path}"
-                     :class="activeLevel2 == level2.sysPermissionId ? 'active' : '' " exact :key="level2.sysPermissionId">
-          <b-icon pack="fa" :icon="level2.icon" size="is-small"></b-icon>
-          <span>{{ level2.name }}</span>
-        </router-link>
-      </div>
     </div>
   </div>
 </template>
@@ -52,8 +39,8 @@
           activeLevel1() {
               return  this.$store.getters.activeLevel1;
           },
-          activeLevel2() {
-            return  this.$store.getters.activeLevel2;
+          showAngle() {
+            return  this.$store.getters.activeLevel1;
           },
            systemList() {
              return this.$store.getters.systemList()
