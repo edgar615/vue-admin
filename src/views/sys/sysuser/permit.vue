@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
-        <vue-tree :tree-data="permitTreeData" :options="permitOptions" @item-click="savePermit"></vue-tree>
+        <vue-tree :tree-data="permitTreeData" :options="permitOptions" @handle="savePermit"></vue-tree>
       </div>
       <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
         <b-table
@@ -29,7 +29,7 @@
 
             <b-table-column label="操作">
               <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)" title="删除">
-                <b-icon icon="trash"></b-icon>
+                <b-icon pack="fa" icon="trash"></b-icon>
               </button>
             </b-table-column>
           </template>
@@ -58,6 +58,7 @@
         // 设置项
         permitOptions: {
           // Number,初始化时展开层级,根节点为0,默认0
+          label: "name",
           depthOpen: 10,
 //          idsWithParent: false,
           checkbox: false,
@@ -68,8 +69,9 @@
       };
     },
     methods: {
-      savePermit(roleId) {
+      savePermit(item) {
         const  vm = this;
+        const roleId = item.id;
         const id =  vm.$layer.confirm("确定要授予这个角色吗?", {
           title: '注意'
         }, ()  => {

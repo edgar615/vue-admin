@@ -1,41 +1,55 @@
 <template>
-    <!-- 使用路由生成菜单 -->
   <div>
+    {{curSystemName}}
     <!-- 使用路由生成菜单 -->
-   <div  v-for="system in systemList" :class="activeSystem == system.subsystemId ? 'active pt-2 pb-2' : 'pt-2 pb-2' " >
-       <a class="menu-title is-size-6" @click="onClickSystem(system.subsystemId)">
-         <b-icon size="is-small" icon="angle-right" v-show="subsystemId != system.subsystemId"></b-icon>
-         <b-icon size="is-small" icon="angle-down" v-show="subsystemId == system.subsystemId"></b-icon>
-         <span>{{system.name}}</span>
-      </a>
-     <div class="side-menu is-size-7" v-show="subsystemId == system.subsystemId">
-       <router-link v-for="menu in system.permissions" v-if="!menu.hidden"
-                    :to="{path: menu.path}" :class="activeLevel1 == menu.sysPermissionId ? 'active' : '' " exact :key="menu.sysPermissionId">
-         <b-icon :icon="menu.icon" size="is-small"></b-icon>
-         <span>{{ menu.name }}</span>
-       </router-link>
-     </div>
-   </div>
-
+    <div v-for="level1 in level1List" :key="level1.sysPermissionId">
+      <router-link class="menu-title is-size-7"
+         :to="{path: level1.path}">
+        <b-icon pack="fa" :icon="level1.icon" size="is-small"></b-icon>
+        <span>{{level1.name}}</span>
+        <b-icon pack="fa" size="is-small" icon="angle-right" v-show="activeLevel1 != level1.sysPermissionId"
+                v-if="level1.children && level1.children.length > 0"></b-icon>
+        <b-icon pack="fa" size="is-small" icon="angle-down" v-show="activeLevel1 == level1.sysPermissionId"
+                v-if="level1.children && level1.children.length > 0"></b-icon>
+      </router-link>
+      <div class="side-menu is-size-7" v-show="activeLevel1 == level1.sysPermissionId">
+        <!--v-if="!level2.hidden"-->
+        <router-link v-for="level2 in level1.children"
+                     :to="{path: level1.path + '/' + level2.path}"
+                     :class="activeLevel1 == level1.sysPermissionId ? 'active' : '' " exact :key="level2.sysPermissionId">
+          <b-icon pack="fa" :icon="level2.icon" size="is-small"></b-icon>
+          <span>{{ level2.name }}</span>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 <script>
     export default {
        data() {
             return {
-              subsystemId : this.$store.getters.activeSystem
             };
         },
      methods: {
-       onClickSystem(subsystemId) {
-         this.subsystemId = subsystemId;
-       }
      },
       //computed计算属性的方式在用属性时不用加(),而methods方式在使用时要像方法一样去用，必须加().
       //两种方式在缓存上也大有不同，利用computed计算属性是将 reverseMessage与message绑定，
       // 只有当message发生变化时才会触发reverseMessage，而methods方式是每次进入页面都要执行该方法，
       // 但是在利用实时信息时，比如显示当前进入页面的时间，必须用methods方式
         computed: {
+          curSystemName() {
+            const curSystem= this.$store.getters.currentSystem();
+            if (curSystem) {
+              return curSystem.name;
+            }
+            return "";
+          },
+          level1List() {
+            const menus = this.$store.getters.menuList();
+            return menus.filter(function(item, index, array) {
+              return item.level == 1;
+            });
+          },
           activeSystem() {
             var active = this.$store.getters.activeSystem;
             if (active != undefined && active != '') {

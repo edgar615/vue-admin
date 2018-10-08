@@ -8,7 +8,7 @@
                      :type="errors.has('sysIdentifier') ? 'is-danger' : ''"
                      :message="errors.first('sysIdentifier')">
             <b-input name="sysIdentifier" v-model="model.sysIdentifier"
-                     v-validate="'required|max:64|alpha_underscore|remote:/om/system/idetifier-vertify'"  data-vv-as="标识符" class="w-25"></b-input>
+                     v-validate="'required|max:64|alpha_underscore|remote:/system/idetifier-vertify'"  data-vv-as="标识符" class="w-25"></b-input>
           </jcc-field>
 
           <jcc-field label="名称" horizontal
@@ -51,31 +51,15 @@
               内部访问
           </b-switch>
           </jcc-field>
-          <jcc-field class="field" horizontal message="SP访问权限为'false'时，SP用户无法访问，但不影响创建应用">
-            <b-switch v-model="model.spVisible"
-                      true-value="true"
-                      false-value="false"
-                      type="is-info">
-              SP访问权限
-          </b-switch>
-          </jcc-field>
-          <jcc-field class="field" horizontal message="SO访问权限为'false'时，SO用户无法访问，也不能给SO创建这个应用">
-            <b-switch v-model="model.soVisible"
-                      true-value="true"
-                      false-value="false"
-                      type="is-info">
-              SO访问权限
-          </b-switch>
-          </jcc-field>
           <b-field horizontal><!-- Label left empty for spacing -->
             <p class="control btn_margin">
               <button class="button is-primary" @click="save" :disabled='errors.any()'
                       :class="{'is-loading' : saving}">
-                <b-icon icon="check-circle"></b-icon>
+                <b-icon pack="fa" icon="check-circle"></b-icon>
                 <span>保存</span>
               </button>
               <button class="button" @click="back">
-                <b-icon icon="undo"></b-icon>
+                <b-icon pack="fa" icon="undo"></b-icon>
                 <span>返回</span>
               </button>
             </p>

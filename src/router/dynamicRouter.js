@@ -8,16 +8,21 @@ function rFormat(menu, parent) {
   if (parent) {
     comp = createComp(parent) + "/" + comp
   }
+  var index = false;
+  if (menu.children && menu.children.length > 0) {
+    index = true;
+  }
   var router = {
     path : menu.path,
-    component: lazyLoading(comp, menu.parentId == -1),
+    component: lazyLoading(comp, index),
     meta: {
       name : menu.name,
       icon: menu.icon,
       hidden: menu.hidden,
       subsystemId: menu.subsystemId,
       menuId: menu.sysPermissionId,
-      parentId: menu.parentId
+      parentId: menu.parentId,
+      level: menu.level
     }
   }
   if (menu.children) {
@@ -35,6 +40,9 @@ function rFormat(menu, parent) {
       }
     })
     router.children = children;
+  }
+  if (menu.path == "/backend/system") {
+    console.log(router)
   }
   return router;
 }

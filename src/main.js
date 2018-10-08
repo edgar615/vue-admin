@@ -13,7 +13,7 @@ import '@/styles/vars.scss' //自定义风格
 Vue.config.productionTip = false
 
 //项目名
-Vue.prototype.$appName = 'XXXX综合管理平台'
+Vue.prototype.$appName = '它宝智能宠物店运营平台'
 Vue.prototype.$showLogo = false
 
 
@@ -60,7 +60,7 @@ Vue.use(VeeValidate, {
 
 //Buefy组件
 Vue.use(Buefy, {
-  defaultIconPack: "fa"
+  defaultIconPack: 'fas'
   ,defaultDayNames: ["日", "一", "二", "三", "四", "五", "六"]
   ,defaultMonthNames: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
 })
@@ -132,11 +132,14 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   if (to.meta && to.meta.menuId) {
-    store.commit('ACTIVE_LEVEL2_MENU', [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
+    if (to.meta.level == 1) {
+      store.commit('ACTIVE_LEVEL1_MENU', [to.meta.subsystemId, to.meta.menuId])
+    } else if (to.meta.level == 2) {
+      store.commit('ACTIVE_LEVEL2_MENU', [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
+    }
   } else {
   store.commit('ACTIVE_LEVEL2_MENU', ['', '', ''])
 }
-
 })
 
 new Vue({

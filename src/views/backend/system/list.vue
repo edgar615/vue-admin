@@ -15,29 +15,9 @@
               {{ option.text }}
             </option>
           </b-select>
-          <b-field>
-            <b-radio-button v-model="filters.internal"
-                            native-value="true"
-                            type="is-success" class="is-dark-blue-lighter">
-              <b-icon icon="user-secret"></b-icon>
-              <span>内部访问</span>
-            </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
-                            native-value="false"
-                            type="is-info">
-              <b-icon icon="folder-open"></b-icon>
-              <span>公开</span>
-            </b-radio-button>
-
-            <b-radio-button v-model="filters.internal"
-                            native-value="">
-              全部
-            </b-radio-button>
-          </b-field>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon icon="search"></b-icon>
+              <b-icon pack="fa" icon="search"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -51,12 +31,12 @@
           <div class="buttons">
         <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
               :class="{'is-loading' : deleting}">
-          <b-icon icon="trash"></b-icon>
+          <b-icon pack="fa" icon="trash"></b-icon>
           <span>删除</span>
         </span>
             <router-link to="/backend/system/add"
                          exact class="button is-primary">
-              <b-icon icon="plus"></b-icon>
+              <b-icon pack="fa" icon="plus"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
@@ -114,29 +94,22 @@
               <span class="tag" :class="internalClass(props.row.internal)">{{ dictText(this, "internal",props.row.internal) }}</span>
             </b-table-column>
 
-            <b-table-column field="spVisible" label="SP访问?" centered>
-              {{ dictText(this, "bool",props.row.spVisible) }}
-            </b-table-column>
-            <b-table-column field="spVisible" label="SO访问?" centered>
-              {{ dictText(this, "bool",props.row.soVisible) }}
-            </b-table-column>
-
             <b-table-column label="操作">
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
                            exact class="button is-info is-small" title="查看">
-                <b-icon icon="info-circle"></b-icon>
+                <b-icon pack="fa" icon="info-circle"></b-icon>
               </router-link>
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
                            exact class="button is-small" title="修改">
-                <b-icon icon="pencil"></b-icon>
+                <b-icon pack="fa" icon="pencil"></b-icon>
               </router-link>
               <button class="button is-danger is-small" @click="onDelete(props.row.subsystemId)"
                       title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="trash"></b-icon>
+                <b-icon pack="fa" icon="trash"></b-icon>
               </button>
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }"
                            exact class="button is-info is-small" title="菜单管理">
-                <b-icon icon="bars"></b-icon>
+                <b-icon pack="fa" icon="bars"></b-icon>
               </router-link>
             </b-table-column>
           </template>

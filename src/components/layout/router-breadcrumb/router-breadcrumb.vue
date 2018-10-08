@@ -3,7 +3,7 @@
     <ul>
       <li :class="index == breadcrumbMenu.length -1 ? 'is-active' : '' " v-for="(route, index) in breadcrumbMenu" v-if="route.path != '/'" :key="route.path" >
         <router-link :to="{path: route.path}">
-          <b-icon size="is-small" :icon="route.meta.icon"></b-icon>
+          <b-icon pack="fa" size="is-small" :icon="route.meta.icon"></b-icon>
           <span>{{ route.meta.name }} </span></router-link>
       </li>
     </ul>

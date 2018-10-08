@@ -7,7 +7,7 @@
           <b-input v-model="filters.subcategory" placeholder="亚类"></b-input>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon icon="search"></b-icon>
+              <b-icon pack="fa" icon="search"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -21,7 +21,7 @@
           <div class="buttons">
             <router-link to="/backend/meta/add"
                          exact class="button is-primary">
-              <b-icon icon="plus"></b-icon>
+              <b-icon pack="fa" icon="plus"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
@@ -71,11 +71,11 @@
             <b-table-column label="操作">
               <router-link :to="{path:  '/backend/meta/' +props.row.metadataId + '/edit' }"
                            exact class="button is-small" title="修改">
-                <b-icon icon="pencil"></b-icon>
+                <b-icon pack="fa" icon="pencil"></b-icon>
               </router-link>
               <button class="button is-danger is-small" @click="doDelete(props.row.metadataId)"
                       title="删除">
-                <b-icon icon="trash"></b-icon>
+                <b-icon pack="fa" icon="trash"></b-icon>
               </button>
             </b-table-column>
           </template>

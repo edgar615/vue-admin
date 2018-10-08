@@ -10,13 +10,13 @@
             <b-radio-button v-model="filters.state"
                             native-value="1"
                             type="is-success">
-              <b-icon icon="unlock"></b-icon>
+              <b-icon pack="fa" icon="unlock"></b-icon>
               <span>活动</span>
             </b-radio-button>
             <b-radio-button v-model="filters.state"
                             native-value="2"
                             type="is-dark" class="is-dark-blue-lighter">
-              <b-icon icon="lock"></b-icon>
+              <b-icon pack="fa" icon="lock"></b-icon>
               <span>锁定</span>
             </b-radio-button>
             <b-radio-button v-model="filters.state"
@@ -26,7 +26,7 @@
           </b-field>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon icon="search"></b-icon>
+              <b-icon pack="fa" icon="search"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -40,7 +40,7 @@
           <div class="buttons">
             <router-link to="/sys/sysuser/add"
                          exact class="button is-primary">
-              <b-icon icon="plus"></b-icon>
+              <b-icon pack="fa" icon="plus"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
@@ -82,15 +82,15 @@
             <b-table-column label="操作">
               <button class="button is-danger is-small" @click="doLock(props.row.sysUserId)"
                       title="锁定" v-show="props.row.state == 1">
-                <b-icon icon="lock"></b-icon>
+                <b-icon pack="fa" icon="lock"></b-icon>
               </button>
               <button class="button is-danger is-small" @click="doUnLock(props.row.sysUserId)"
                       title="解锁" v-show="props.row.state == 2">
-                <b-icon icon="unlock"></b-icon>
+                <b-icon pack="fa" icon="unlock"></b-icon>
               </button>
               <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/permit' }"
                            exact class="button is-info is-small" title="授权">
-                <b-icon icon="key"></b-icon>
+                <b-icon pack="fa" icon="key"></b-icon>
               </router-link>
             </b-table-column>
           </template>

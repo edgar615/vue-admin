@@ -2,7 +2,7 @@
   <section class="section">
     <div class="content has-text-grey has-text-centered">
       <p>
-        <b-icon
+        <b-icon pack="fa"
           icon="frown-o"
           size="is-large">
         </b-icon>

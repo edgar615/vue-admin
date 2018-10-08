@@ -10,6 +10,9 @@
           <b-field label="名称" horizontal class="static-field">
             <p class="control static-field">{{model.name}}</p>
           </b-field>
+          <b-field label="角色编码" horizontal class="static-field">
+            <p class="control static-field">{{model.roleCode}}</p>
+          </b-field>
           <b-field label="排序" horizontal class="static-field">
             <p class="control">{{model.sorted}}</p>
           </b-field>
@@ -19,18 +22,16 @@
                 <b-icon pack="fa" icon="plus"></b-icon>
                 <span>新增角色</span>
               </button>
-              <button class="button is-link" @click="onEdit"
-                      v-show="model.parentId != -1">
+              <button class="button is-link" @click="onEdit">
                 <b-icon pack="fa" icon="pencil"></b-icon>
                 <span>修改角色</span>
               </button>
               <button class="button is-danger" style="height: 2.4em;" @click="onDelete(model.sysRoleId)"
-                      :class="{'is-loading' : deleting}" v-show="model.parentId != -1">
+                      :class="{'is-loading' : deleting}">
                 <b-icon pack="fa" icon="trash"></b-icon>
                 <span>删除</span>
               </button>
-              <button class="button is-warning" style="height: 2.4em;" @click="onPermit(model.sysRoleId)"
-                      v-show="model.parentId != -1">
+              <button class="button is-warning" style="height: 2.4em;" @click="onPermit(model.sysRoleId)">
                 <b-icon pack="fa" icon="key"></b-icon>
                 <span>授权</span>
               </button>
@@ -44,6 +45,10 @@
           <jcc-field label="名称"  horizontal :type="errors.has('name') ? 'is-danger' : ''" :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'"  data-vv-as="名称"></b-input>
+          </jcc-field>
+          <jcc-field label="角色编码"  horizontal :type="errors.has('roleCode') ? 'is-danger' : ''" :message="errors.first('roleCode')">
+            <b-input name="roleCode" v-model="model.roleCode"
+                     v-validate="'required|max:64|alpha_underscore'"  data-vv-as="角色编码"></b-input>
           </jcc-field>
           <jcc-field label="排序" horizontal  :message="errors.first('sorted')"
                      :type="errors.has('sorted') ? 'is-danger' : ''">
@@ -281,7 +286,15 @@
         this.addRole = false;
         this.viewRole = false;
         roleTree().then(response => {
-          vm.treeData = response.data;
+          const data = {
+            id : -1,
+            name : '根目录',
+            children: []
+          }
+          if (response.data && response.data.length > 0) {
+            data.children =response.data;
+          }
+          vm.treeData = [data];
           vm.loading = false;
         });
       }

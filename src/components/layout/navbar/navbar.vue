@@ -15,6 +15,21 @@
     </div>
 
     <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a v-for="system in systems" class="navbar-item" :class="activeSystem == system.subsystemId ? 'bg-dark' : '' " @click="onClickSystem(system.subsystemId)">
+          {{system.name}}
+        </a>
+        <div class="navbar-item is-hoverable" v-if="groupSystems.length > 0">
+          <a class="navbar-link">
+            更多
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <a class="navbar-item" href="#"  v-for="system in groupSystems" @click="onClickSystem(system.subsystemId)">
+              {{system.name}}
+            </a>
+          </div>
+        </div>
+      </div>
 
       <div class="navbar-end">
         <a class="navbar-item">
@@ -34,7 +49,7 @@
           </div>
         </div>
         <a class="navbar-item" href="#" @click="logout">
-          <b-icon icon="sign-out"></b-icon>
+          <b-icon pack="fa" icon="sign-out"></b-icon>
         </a>
       </div>
     </div>
@@ -54,10 +69,44 @@
           console.log(err);
         });
       },
+      onClickSystem(subsystemId) {
+        this.$store.commit('ACTIVE_SYSTEM', subsystemId);
+        //跳转到新页面
+        const menus = this.$store.getters.menuList();
+        if (menus.length > 0 && menus[0].path) {
+          this.$router.push(menus[0].path)
+        }
+      }
     },
     computed: {
       user() {
         return this.$store.getters.user
+      },
+      groupSystems() {
+        var groupSystem = [];
+        this.$store.getters.systemList().forEach(function(item, index, input) {
+          if (index >= 5) {
+            groupSystem.push(item);
+          }
+        });
+        return groupSystem;
+      },
+      systems() {
+        var systemArray = [];
+        this.$store.getters.systemList().forEach(function(item, index, input) {
+          if (index < 5) {
+            systemArray.push(item);
+          }
+        });
+        const activeSystem = this.$store.getters.activeSystem;
+        if (systemArray.length > 0 && ( activeSystem == undefined || activeSystem == '')) {
+          this.$store.commit('ACTIVE_SYSTEM', systemArray[0].subsystemId)
+        }
+        return systemArray;
+      },
+      activeSystem() {
+        var active = this.$store.getters.activeSystem;
+        return active;
       }
     }
   };

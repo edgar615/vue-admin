@@ -9,13 +9,13 @@
             <b-radio-button v-model="filters.state"
                             native-value="1"
                             type="is-success">
-              <b-icon icon="unlock"></b-icon>
+              <b-icon pack="fa" icon="unlock"></b-icon>
               <span>活动</span>
             </b-radio-button>
             <b-radio-button v-model="filters.state"
                             native-value="2"
                             type="is-dark" class="is-dark-blue-lighter">
-              <b-icon icon="lock"></b-icon>
+              <b-icon pack="fa" icon="lock"></b-icon>
               <span>锁定</span>
             </b-radio-button>
             <b-radio-button v-model="filters.state"
@@ -25,7 +25,7 @@
           </b-field>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon icon="search"></b-icon>
+              <b-icon pack="fa" icon="search"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -75,7 +75,7 @@
             <b-table-column label="操作">
               <button class="button is-primary is-small" @click="doSelectSp(props.row)"
                       title="选择">
-                <b-icon icon="check-circle-o"></b-icon>
+                <b-icon pack="fa" icon="check-circle-o"></b-icon>
               </button>
             </b-table-column>
           </template>

@@ -30,7 +30,7 @@
         <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control btn_margin">
             <button class="button is-primary" @click="onSave">
-              <b-icon icon="check"></b-icon>
+              <b-icon pack="fa" icon="check"></b-icon>
               <span>创建应用</span>
             </button>
           </p>

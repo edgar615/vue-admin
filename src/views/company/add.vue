@@ -31,7 +31,7 @@
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"
-                     v-validate="'required|max:60|min:3|email|remote:/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
+                     v-validate="'required|max:60|min:3|alpha_underscore|remote:/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
             </b-input>
           </jcc-field>
          <!--
@@ -60,11 +60,11 @@
             <p class="control btn_margin">
               <button class="button is-primary" @click="save" :disabled='errors.any()'
                       :class="{'is-loading' : saving}">
-                <b-icon icon="check-circle"></b-icon>
+                <b-icon pack="fa" icon="check-circle"></b-icon>
                 <span>保存</span>
               </button>
               <button class="button" @click="back">
-                <b-icon icon="undo"></b-icon>
+                <b-icon pack="fa" icon="undo"></b-icon>
                 <span>返回</span>
               </button>
             </p>
