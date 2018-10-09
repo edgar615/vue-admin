@@ -33,6 +33,22 @@ const dict_data = {
     text : "微信公众号/小程序",
     value : 4
   }],
+  "companyType" : [{
+    text : "平台运营方",
+    value : 1
+  },{
+    text : "供应商",
+    value : 2
+  },{
+    text : "加盟商",
+    value : 3
+  },{
+    text : "门店",
+    value : 4
+  },{
+    text : "加盟商+门店",
+    value : 5
+  }],
   "companyState" : [{
     text : "活动",
     value : 1

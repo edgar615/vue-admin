@@ -19,7 +19,7 @@
         <b-field horizontal><!-- Label left empty for spacing -->
           <p class="control btn_margin">
             <button class="button is-primary" @click="back">
-              <b-icon pack="fa" icon="undo"></b-icon>
+              <b-icon icon="undo"></b-icon>
               <span>返回</span>
             </button>
           </p>

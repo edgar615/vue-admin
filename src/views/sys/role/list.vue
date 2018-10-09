@@ -16,22 +16,22 @@
           <b-field><!-- Label left empty for spacing -->
             <p class="control" style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
               <button class="button is-primary" @click="onAdd(model.sysRoleId)">
-                <b-icon pack="fa" icon="plus"></b-icon>
+                <b-icon icon="plus-circle-outline"></b-icon>
                 <span>新增角色</span>
               </button>
               <button class="button is-link" @click="onEdit"
                       v-show="model.parentId != -1">
-                <b-icon pack="fa" icon="pencil"></b-icon>
+                <b-icon icon="circle-edit-outline"></b-icon>
                 <span>修改角色</span>
               </button>
               <button class="button is-danger" style="height: 2.4em;" @click="onDelete(model.sysRoleId)"
                       :class="{'is-loading' : deleting}" v-show="model.parentId != -1">
-                <b-icon pack="fa" icon="trash"></b-icon>
+                <b-icon icon="delete-outline"></b-icon>
                 <span>删除</span>
               </button>
               <button class="button is-warning" style="height: 2.4em;" @click="onPermit(model.sysRoleId)"
                       v-show="model.parentId != -1">
-                <b-icon pack="fa" icon="key"></b-icon>
+                <b-icon icon="account-key"></b-icon>
                 <span>授权</span>
               </button>
             </p>
@@ -55,7 +55,7 @@
             <p class="control">
               <button class="button is-primary" @click="save"
                       :class="{'is-loading' : saving}">
-                <b-icon pack="fa" icon="check-circle"></b-icon>
+                <b-icon icon="check-circle"></b-icon>
                 <span>保存</span>
               </button>
             </p>
@@ -72,7 +72,7 @@
         </button>
         <button class="button is-primary is-small" @click="savePermit" :disabled='permitTreeData.length == 0'
                 :class="{'is-loading' : saving}">
-          <b-icon pack="fa" icon="check-circle"></b-icon>
+          <b-icon icon="check-circle"></b-icon>
           <span>保存授权</span>
         </button>
         </span>

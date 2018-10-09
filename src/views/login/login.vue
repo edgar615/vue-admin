@@ -16,7 +16,7 @@
                   <input name="username" v-validate="'required'" class="is-medium input" :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
                          data-vv-as="用户名" v-model="username">
                     <span class="icon is-small is-right has-text-danger" v-show="errors.has('username')">
-                      <i class="fa fa-warning"></i>
+                      <i class="mdi mdi-alert-circle-outline"></i>
                     </span>
                 </div>
                 <p v-show="errors.has('username')" class="help is-danger has-text-left">{{ errors.first('username')}}</p>
@@ -27,7 +27,7 @@
                   <input name="password" v-validate="'required|max:16'" class="is-medium input" :class="{'is-danger': errors.has('password') }" type="password" placeholder="密码"
                          data-vv-as="密码" v-model="password">
                   <span class="icon is-small is-right has-text-danger" v-show="errors.has('password')">
-                      <i class="fa fa-warning"></i>
+                      <i class="mdi mdi-alert-circle-outline"></i>
                     </span>
                 </div>
                 <p v-show="errors.has('password')" class="help is-danger has-text-left">{{ errors.first('password')}}</p>
@@ -38,7 +38,7 @@
               </p>
               <a class="button is-block is-info is-medium" style="font-size: 16px; height: 2.8em; line-height: 1.8em; "  @click="login" :disabled='errors.any()' :class="{'is-loading' : loading}">
                  <span class="icon">
-                      <i class="fa fa-sign-in"></i>
+                      <i class="mdi mdi-login"></i>
                  </span>&nbsp;&nbsp;
                 登录
               </a>

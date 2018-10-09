@@ -3,8 +3,8 @@
     <!-- 使用路由生成菜单 -->
     <div  v-for="system in systemList" :class="activeSystem == system.subsystemId ? 'active pt-2 pb-2' : 'pt-2 pb-2' " >
       <a class="menu-title is-size-6" @click="onClickSystem(system.subsystemId)">
-        <b-icon size="is-small" icon="angle-right" v-show="subsystemId != system.subsystemId"></b-icon>
-        <b-icon size="is-small" icon="angle-down" v-show="subsystemId == system.subsystemId"></b-icon>
+        <b-icon size="is-small" icon="chevron-right" v-show="subsystemId != system.subsystemId"></b-icon>
+        <b-icon size="is-small" icon="chevron-down" v-show="subsystemId == system.subsystemId"></b-icon>
         <span>{{system.name}}</span>
       </a>
       <div class="side-menu is-size-7" v-show="subsystemId == system.subsystemId">

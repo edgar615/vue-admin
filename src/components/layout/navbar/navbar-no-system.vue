@@ -34,7 +34,7 @@
           </div>
         </div>
         <a class="navbar-item" href="#" @click="logout">
-          <b-icon pack="fa" icon="sign-out"></b-icon>
+          <b-icon icon="logout"></b-icon>
         </a>
       </div>
     </div>

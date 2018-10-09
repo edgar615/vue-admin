@@ -17,7 +17,7 @@
           </b-select>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon pack="fa" icon="search"></b-icon>
+              <b-icon icon="magnify"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -31,12 +31,12 @@
           <div class="buttons">
         <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
               :class="{'is-loading' : deleting}">
-          <b-icon pack="fa" icon="trash"></b-icon>
+          <b-icon icon="delete-outline"></b-icon>
           <span>删除</span>
         </span>
             <router-link to="/backend/system/add"
                          exact class="button is-primary">
-              <b-icon pack="fa" icon="plus"></b-icon>
+              <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
@@ -97,19 +97,19 @@
             <b-table-column label="操作">
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/view' }"
                            exact class="button is-info is-small" title="查看">
-                <b-icon pack="fa" icon="info-circle"></b-icon>
+                <b-icon icon="information-outline"></b-icon>
               </router-link>
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/edit' }"
                            exact class="button is-small" title="修改">
-                <b-icon pack="fa" icon="pencil"></b-icon>
+                <b-icon icon="circle-edit-outline"></b-icon>
               </router-link>
               <button class="button is-danger is-small" @click="onDelete(props.row.subsystemId)"
                       title="删除" :class="{'is-loading' : deleting}">
-                <b-icon pack="fa" icon="trash"></b-icon>
+                <b-icon icon="delete-outline"></b-icon>
               </button>
               <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }"
                            exact class="button is-info is-small" title="菜单管理">
-                <b-icon pack="fa" icon="bars"></b-icon>
+                <b-icon icon="menu"></b-icon>
               </router-link>
             </b-table-column>
           </template>

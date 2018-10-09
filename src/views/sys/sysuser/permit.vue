@@ -29,7 +29,7 @@
 
             <b-table-column label="操作">
               <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)" title="删除">
-                <b-icon pack="fa" icon="trash"></b-icon>
+                <b-icon icon="delete-outline"></b-icon>
               </button>
             </b-table-column>
           </template>

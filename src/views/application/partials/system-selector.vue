@@ -8,7 +8,7 @@
           <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData">
-              <b-icon pack="fa" icon="search"></b-icon>
+              <b-icon icon="magnify"></b-icon>
               <span>查询</span>
             </button>
           </p>
@@ -25,6 +25,7 @@
           hoverable
           narrowed
           mobile-cards
+
 
           :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
           :loading="loading"
@@ -61,7 +62,7 @@
             <b-table-column label="操作">
               <button class="button is-primary is-small" @click="doSelectSystem(props.row)"
                       title="选择" v-show="!appNotExists(props.row.subsystemId)">
-                <b-icon pack="fa" icon="check-circle-o"></b-icon>
+                <b-icon icon="check-circle-o"></b-icon>
               </button>
             </b-table-column>
           </template>

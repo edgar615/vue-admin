@@ -34,7 +34,7 @@
           <p class="control btn_margin">
             <button class="button is-primary" @click="save" :disabled='errors.any()'
                     :class="{'is-loading' : saving}">
-              <b-icon pack="fa" icon="check-circle"></b-icon>
+              <b-icon icon="check-circle"></b-icon>
               <span>修改密码</span>
             </button>
           </p>

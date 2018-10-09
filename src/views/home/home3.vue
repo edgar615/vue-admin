@@ -1,7 +1,7 @@
 <template>
   <div class="nav menu mb-3">
     <div class="nav-left">
-      <a class="nav-item is-tab"><b-icon pack="fa" icon="plus" class="icon-btn"></b-icon></a>
+      <a class="nav-item is-tab"><b-icon icon="plus-circle-outline" class="icon-btn"></b-icon></a>
       <a class="nav-item is-tab">
 		  <span class="icon-btn is-info">
 			<i class="fa fa-print"></i>
@@ -15,7 +15,7 @@
       <div class="nav-item">
         <router-link to="/backend/system/add"
                      exact class="button is-primary is-tab">
-          <b-icon pack="fa" icon="plus"></b-icon>
+          <b-icon icon="plus-circle-outline"></b-icon>
           <span>新增</span>
         </router-link>
       </div>

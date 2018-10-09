@@ -31,16 +31,16 @@
          <b-field><!-- Label left empty for spacing -->
            <p class="control" style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
              <button class="button is-primary" @click="onAdd(model.sysPermissionId)" v-show="model.parentId == -1">
-               <b-icon pack="fa" icon="plus"></b-icon>
+               <b-icon icon="plus-circle-outline"></b-icon>
                <span>新增权限</span>
              </button>
              <button class="button is-primary" @click="onEdit">
-               <b-icon pack="fa" icon="pencil"></b-icon>
+               <b-icon icon="circle-edit-outline"></b-icon>
                <span>修改</span>
              </button>
              <button class="button is-danger" style="height: 2.4em;" @click="onDelete(model.sysPermissionId)"
                      :class="{'is-loading' : deleting}">
-               <b-icon pack="fa" icon="trash"></b-icon>
+               <b-icon icon="delete-outline"></b-icon>
                <span>删除</span>
              </button>
            </p>
@@ -119,7 +119,7 @@
            <p class="control">
              <button class="button is-primary" @click="save" :disabled='errors.any()'
                      :class="{'is-loading' : saving}">
-               <b-icon pack="fa" icon="check-circle"></b-icon>
+               <b-icon icon="check-circle"></b-icon>
                <span>保存</span>
              </button>
            </p>

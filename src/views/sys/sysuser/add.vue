@@ -39,11 +39,11 @@
             <p class="control btn_margin">
               <button class="button is-primary" @click="save" :disabled='errors.any()'
                       :class="{'is-loading' : saving}">
-                <b-icon pack="fa" icon="check-circle"></b-icon>
+                <b-icon icon="check-circle"></b-icon>
                 <span>保存</span>
               </button>
               <button class="button" @click="back">
-                <b-icon pack="fa" icon="undo"></b-icon>
+                <b-icon icon="undo"></b-icon>
                 <span>返回</span>
               </button>
             </p>

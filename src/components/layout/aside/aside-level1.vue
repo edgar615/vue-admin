@@ -4,7 +4,7 @@
     <div v-for="level1 in level1List" :key="level1.sysPermissionId">
       <router-link class="menu-title is-size-7"
          :to="{path: level1.path}">
-        <b-icon pack="fa" :icon="level1.icon" size="is-small"></b-icon>
+        <b-icon :icon="level1.icon" size="is-small"></b-icon>
         <span>{{level1.name}}</span>
       </router-link>
     </div>
