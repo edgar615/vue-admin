@@ -1,95 +1,3 @@
-/*导航*/
-nav.navbar {
-  /*border-top: 4px solid #276cda;*/
-  /*margin-bottom: 1rem;*/
-}
-.navbar .logo {
-  background-color: $logo-background-color;
-  min-width: 118px;
-}
-.navbar-item.brand-text {
-  font-weight: 700;
-  font-size: 16px;
-  /*margin-left: 1.75rem;*/
-  margin-right: 5rem;
-}
-.navbar-item, .navbar-link {
-  font-size: 13px;
-  font-weight: 700;
-}
-/************/
-
-/*侧边栏*/
-.menu-label {
-  font-weight: 700;
-  font-size: 14px;
-}
-.is-sidebar-menu {
-  /*padding: 1.5rem;*/
-}
-.menu-list .ul {
-  margin-left: 1rem;
-}
-
-//默认
-.bg-aside {
-  background-color:$aside-background-color;
-  //border-top: 1px solid $border-color;
-  color: findColorInvert($aside-background-color);
-}
-.bg-aside div.active {
-  background-color:$aside-active-background-color;
-  //border-top: 1px solid $border-color;
-  color: findColorInvert($aside-active-background-color);
-}
-a.menu-title {
-  padding: 5px;
-  color: findColorInvert($aside-background-color);
-  text-decoration: none;
-  display: block;
-  /*font-size: 14px;*/
-}
-a.menu-title:hover {
-  color: findColorInvert($aside-background-color);
-}
-
-.side-menu a {
-  color: findColorInvert($aside-background-color);
-  display: block;
-  padding: 10px 12px 10px 14px;
-  text-decoration: none;
-}
-.side-menu a:hover {
-  background-color: $side-menu-hover-background-color;
-  color: findColorInvert($side-menu-hover-background-color);
-}
-
-.side-menu a.active {
-  background-color: $side-menu-active-background-color;
-  color: findColorInvert($side-menu-active-background-color);
-}
-
-.bg-subaside {
-  background-color:#DAE1E7;
-  color: findColorInvert(#DAE1E7);
-}
-
-.sub-menu a {
-  color: $black;
-  display: block;
-  padding: 10px 12px 10px 14px;
-  text-decoration: none;
-}
-.sub-menu a:hover {
-  background-color: #ccc;
-}
-
-.sub-menu a.active {
-  background-color: #ffffff;
-  color: $black;
-}
-/************/
-
 /*面包屑*/
 .breadcrumb {
   border-left: 3px solid $main-color !important;
@@ -180,174 +88,105 @@ a.menu-title:hover {
   width: 100px;
 }
 .static-field p.control {
-  margin-top: 0.25rem;
+  //margin-top: 0.25rem;
 }
 
 .is-narrow .static-field.is-horizontal {
   margin-bottom: 0px;
 }
-/*vue-tree*/
-.vue-tree .vue-tree-item{
-  padding: 0.25rem 0;
+
+
+
+/* 三角形 */
+/* 等腰 */
+.isosceles-triangle-border-up{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 30px 15px;
+  /*border-width: 0 15px 26.0px 15px; 等边*/
+  border-color: transparent transparent #007bff transparent;
+}
+.isosceles-triangle-border-left-up{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 30px 0 0;
+  border-color: #007bff transparent transparent transparent;
+}
+.isosceles-triangle-border-left{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 30px 15px 0;
+  border-color: transparent #007bff transparent transparent;
+}
+.isosceles-triangle-border-left-down{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 0 0 30px;
+  border-color: transparent transparent transparent #007bff;
+}
+.isosceles-triangle-border-down{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 15px 0 15px;
+  border-color: #007bff transparent transparent transparent;
+}
+.isosceles-triangle-border-right-up{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 30px 30px 0;
+  border-color: transparent #007bff transparent transparent;
+}
+.isosceles-triangle-border-right{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 30px;
+  border-color: transparent transparent transparent #007bff;
+}
+.isosceles-triangle-border-right-down{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 30px 30px;
+  border-color: transparent transparent #007bff transparent;
 }
 
-/************/
-
-//vue-layer
-.btn-primary{
-  background: $main-color !important;
-  border: 1px solid $main-color !important;
+/* 等边*/
+.equilateral-triangle-border-up{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 26.0px 15px;
+  border-color: transparent transparent #007bff transparent;
 }
-
-.btn-primary:hover{
-  background: $main-color-dark !important;
-  border: 1px solid $main-color-dark !important;
+.equilateral-triangle-border-left{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 26.0px 15px 0;
+  border-color: transparent #007bff transparent transparent;
 }
-
-//.btn-default{
-//  background: $grey !important;
-//  border: 1px solid $grey !important;
-//  color: $grey-invert !important;
-//  border-radius: 3px !important;
-//}
-//
-//.btn-default:hover{
-//  background: $grey-dark !important;
-//  border: 1px solid $grey-dark !important;
-//  color: $grey-dark-invert !important;
-//}
-/************/
-
-/*form wizard*/
-/* ---------------------------------------------------------------------- */
-/*	Form Wizard
- /* ---------------------------------------------------------------------- */
-.swMain > ul {
-  display: table;
-  list-style: none;
-  margin: 0 0 20px 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
+.equilateral-triangle-border-down{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 26.0px 15px 0 15px;
+  border-color: #007bff transparent transparent transparent;
 }
-
-.swMain > ul li {
-  display: table-cell;
-  text-align: center;
-  width: 1%;
+.equilateral-triangle-border-right{
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 26.0px;
+  border-color: transparent transparent transparent #007bff;
 }
-
-.swMain > ul li > a:before {
-  border-top: 4px solid #CED1D6;
-  content: "";
-  display: block;
-  font-size: 0;
-  height: 1px;
-  overflow: hidden;
-  position: relative;
-  top: 21px;
-  width: 100%;
-  z-index: 1;
-}
-
-.swMain > ul li:first-child > a:before {
-  left: 50%;
-  max-width: 51%;
-}
-
-.swMain > ul li:last-child > a:before {
-  max-width: 50%;
-  width: 50%;
-}
-
-.swMain > ul li > a.selected:before, .swMain li > a.done:before {
-  border-color: #5293C4;
-}
-
-.swMain > ul .stepNumber {
-  background-color: #FFFFFF;
-  border: 5px solid #CED1D6;
-  border-radius: 100% 100% 100% 100%;
-  color: #546474;
-  display: inline-block;
-  font-size: 15px;
-  height: 40px;
-  line-height: 30px;
-  position: relative;
-  text-align: center;
-  width: 40px;
-  z-index: 2;
-}
-
-.swMain > ul li > a.selected .stepNumber {
-  border-color: #5293C4;
-}
-
-.swMain ul li > a.done .stepNumber {
-  border-color: #5293C4;
-  background-color: #5293C4;
-  color: #ffffff;
-  text-indent: -9999px;
-}
-
-.swMain ul li > a.done .stepNumber:before {
-  content: "\f00c";
-  display: inline;
-  float: right;
-  font-family: FontAwesome;
-  font-weight: 300;
-  height: auto;
-  text-shadow: none;
-  margin-right: 7px;
-  text-indent: 0;
-}
-
-.swMain > ul li .stepDesc {
-  color: #546474;
-  display: block;
-  font-size: 14px;
-  margin-top: 4px;
-  max-width: 100%;
-  table-layout: fixed;
-  text-align: center;
-  word-wrap: break-word;
-  z-index: 104;
-}
-
-.swMain > ul li > a.selected .stepDesc, .swMain li > a.done .stepDesc {
-  color: #546474;
-}
-
-.swMain > ul li > a:hover {
-  text-decoration: none;
-}
-
-.swMain > ul li > a.disabled {
-  cursor: default;
-}
-
-.swMain .progress {
-  margin-bottom: 30px;
-}
-
-.swMain .stepContainer {
-  height: auto !important;
-}
-
-.swMain .loader {
-  display: none;
-}
-
-.swMain [class^="button"], .swMain [class*=" button"] {
-  display: none;
-}
-
-.swMain .close {
-  display: none;
-}
-
-/*.form wizard*/
-
+/* . 三角形 */
 /*辅助样式*/
 .border-0 {
   border: 0 !important;

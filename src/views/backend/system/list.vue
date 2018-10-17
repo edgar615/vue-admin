@@ -10,9 +10,9 @@
             <option value="">请选择</option>
             <option
               v-for="option in dictList(this, 'systemType')"
-              :value="option.value"
-              :key="option.value">
-              {{ option.text }}
+              :value="option.dictValue"
+              :key="option.dictValue">
+              {{ option.dictText }}
             </option>
           </b-select>
           <p class="control ml-1">
@@ -82,16 +82,16 @@
               {{ props.row.sysIdentifier }}
             </b-table-column>
 
-            <b-table-column field="type" label="类型"  centered >
-              {{ dictText(this, "systemType",props.row.type) }}
+            <b-table-column field="type" label="类型" centered>
+              {{ dictText(this, 'systemType',props.row.type) }}
             </b-table-column>
 
-            <b-table-column field="type" label="图标"  centered >
-               {{ props.row.icon }}
+            <b-table-column field="type" label="图标" centered>
+              {{ props.row.icon }}
             </b-table-column>
 
             <b-table-column field="internal" label="内部访问?" centered>
-              <span class="tag" :class="internalClass(props.row.internal)">{{ dictText(this, "internal",props.row.internal) }}</span>
+              <span class="tag" :class="internalClass(props.row.internal)">{{ boolText(props.row.internal) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -107,8 +107,9 @@
                       title="删除" :class="{'is-loading' : deleting}">
                 <b-icon icon="delete-outline"></b-icon>
               </button>
-              <router-link :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }"
-                           exact class="button is-info is-small" title="菜单管理">
+              <router-link
+                :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }"
+                exact class="button is-info is-small" title="菜单管理">
                 <b-icon icon="menu"></b-icon>
               </router-link>
             </b-table-column>
@@ -125,13 +126,13 @@
 </template>
 
 <script>
-  import { systemPage, deleteSystem, batchDeleteSystem } from '@/api/backend/system';
-  import EmptyTable from '@/components/EmptyTable.vue';
+  import {systemPage, deleteSystem, batchDeleteSystem} from '@/api/backend/system'
+  import EmptyTable from '@/components/EmptyTable.vue'
+
   export default {
-    data() {
+    data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false,
         deleting: false,
@@ -148,66 +149,68 @@
       /*
        * Load async data
        */
-      loadAsyncData(params) {
+      loadAsyncData (params) {
         this.pageModel(this, systemPage, params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange (page) {
+        if (this.pagination.page !== page) {
+          this.loadAsyncData({page: page})
+        }
+      },
+      /*
+       * Handle sort event
+       */
+      onSort (field, order) {
+        this.sortField = field
+        this.sortOrder = order
+        this.loadAsyncData()
+      },
+      /*
+       * 批量删除
+       */
+      onDeleteCheckedRows () {
+        const vm = this
+        var checkedIds = vm.checkedRows.map(function (item) {
+          return item.subsystemId
+        })
+        this.batchDeleteModel(vm, batchDeleteSystem, checkedIds,
+          () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      /*
+       * Type style in relation to the value
+       */
+      internalClass (value) {
+        if (value === undefined) {
+          return 'is-black'
+        }
+        if (value) {
+          return 'is-success'
+        }
+        return 'is-dark'
+      },
+      onDelete (id) {
+        const vm = this
+        this.deleteModel(vm, deleteSystem, id,
+          () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
-    /*
-     * Handle sort event
-     */
-    onSort(field, order) {
-      this.sortField = field;
-      this.sortOrder = order;
+    filters: {
+      /**
+       * Filter to truncate string, accepts a length parameter
+       */
+      /*
+       truncate(value, length) {
+       return value.length > length
+       ? value.substr(0, length) + '...'
+       : value
+       }
+       */
+    },
+    created () {
       this.loadAsyncData()
-    },
-    /*
-     * 批量删除
-     */
-    onDeleteCheckedRows() {
-      const vm = this;
-      var checkedIds = vm.checkedRows.map(function(item) {
-        return item.subsystemId;
-      })
-      this.batchDeleteModel(vm, batchDeleteSystem, checkedIds, () => this.loadAsyncData({page:this.pagination.page}));
-    },
-    /*
-     * Type style in relation to the value
-     */
-    internalClass(value) {
-      if (value == undefined) {
-        return "is-black";
-      }
-      if (value) {
-        return "is-success";
-      }
-      return "is-dark";
-    },
-      onDelete(id) {
-        const vm = this;
-        this.deleteModel(vm, deleteSystem, id, () => this.loadAsyncData({page:this.pagination.page}));
-      }
-  },
-  filters: {
-    /**
-     * Filter to truncate string, accepts a length parameter
-     */
-    /*
-     truncate(value, length) {
-     return value.length > length
-     ? value.substr(0, length) + '...'
-     : value
-     }
-     */
-  },
-  created() {
-    this.loadAsyncData();
-  }
+    }
   }
 </script>

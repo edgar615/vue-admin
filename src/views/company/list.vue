@@ -79,7 +79,11 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态" centered>
-              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'companyState',props.row.state) }}</span>
+            </b-table-column>
+
+            <b-table-column field="state" label="类型" centered>
+              {{ dictText(this, 'companyType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="name" label="添加时间" centered>
@@ -114,17 +118,17 @@
                 <b-field label="地址" horizontal class="static-field">
                   <p class="control is-size-7">
                     {{ props.row.address}}
-                 </p>
+                  </p>
                 </b-field>
                 <b-field label="主页" horizontal class="static-field">
                   <p class="control is-size-7">
                     {{ props.row.homepage}}
-                 </p>
+                  </p>
                 </b-field>
                 <b-field label="热线电话" horizontal class="static-field">
                   <p class="control is-size-7">
                     {{ props.row.hotline}}
-                 </p>
+                  </p>
                 </b-field>
               </div>
             </div>
@@ -138,13 +142,13 @@
 </template>
 
 <script>
-  import {page, lock, unLock} from '@/api/company';
-  import EmptyTable from '@/components/EmptyTable.vue';
+  import {page, lock, unLock} from '@/api/company'
+  import EmptyTable from '@/components/EmptyTable.vue'
+
   export default {
-    data() {
+    data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false
       }
@@ -156,39 +160,39 @@
       /*
        * Load async data
        */
-      loadAsyncData(params) {
+      loadAsyncData (params) {
         this.pageModel(this, page, params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange (page) {
+        if (this.pagination.page != page) {
+          this.loadAsyncData({page: page})
+        }
+      },
+      stateClass (value) {
+        if (value == undefined) {
+          return 'is-black'
+        }
+        if (value == 1) {
+          return 'is-success'
+        }
+        return 'is-dark'
+      },
+      doLock (id) {
+        lock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
+      },
+      doUnLock (id) {
+        unLock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
       }
     },
-    stateClass(value) {
-      if (value == undefined) {
-        return "is-black";
-      }
-      if (value == 1) {
-        return "is-success";
-      }
-      return "is-dark";
-    },
-    doLock(id) {
-      lock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
-    },
-    doUnLock(id) {
-      unLock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
+    created () {
+      this.loadAsyncData()
     }
-  },
-  created() {
-    this.loadAsyncData();
-  }
   }
 </script>

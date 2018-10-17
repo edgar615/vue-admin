@@ -58,7 +58,7 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型" centered>
-              {{ dictText(this, "metadataType",props.row.type) }}
+              {{ dictText(this, 'metadataType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="name" label="属性名" centered>
@@ -83,64 +83,64 @@
             <EmptyTable></EmptyTable>
           </template>
           <template slot="detail" slot-scope="props">
-           <div class="columns is-size-7">
-             <div class="column">
-               <b-field label="必填项" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.required}}
-                 </p>
-               </b-field>
-               <b-field label="最小值" horizontal class="static-field" v-show="props.row.type == 1">
-                 <p class="control is-size-7">
-                   {{ props.row.minValue}}
-                 </p>
-               </b-field>
-               <b-field label="最小长度" horizontal class="static-field" v-show="props.row.type == 2">
-                 <p class="control is-size-7">
-                   {{ props.row.minLength}}
-                 </p>
-               </b-field>
-               <b-field label="默认值" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.defaultValues}}
-                 </p>
-               </b-field>
-             </div>
-             <div class="column">
-               <b-field label="不可修改" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.required}}
-                 </p>
-               </b-field>
-               <b-field label="最大值" horizontal class="static-field" v-show="props.row.type == 1">
-                 <p class="control is-size-7">
-                   {{ props.row.maxValue}}
-                 </p>
-               </b-field>
-               <b-field label="最大长度" horizontal class="static-field" v-show="props.row.type == 2">
-                 <p class="control is-size-7">
-                   {{ props.row.maxLength}}
-                 </p>
-               </b-field>
-               <b-field label="可能的值" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.possibleValues}}
-                 </p>
-               </b-field>
-             </div>
-             <div class="column">
-               <b-field label="唯一性" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.required}}
-                 </p>
-               </b-field>
-               <b-field label="正则" horizontal class="static-field">
-                 <p class="control is-size-7">
-                   {{ props.row.regex}}
-                 </p>
-               </b-field>
-             </div>
-           </div>
+            <div class="columns is-size-7">
+              <div class="column">
+                <b-field label="必填项" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.required}}
+                  </p>
+                </b-field>
+                <b-field label="最小值" horizontal class="static-field" v-show="props.row.type == 1">
+                  <p class="control is-size-7">
+                    {{ props.row.minValue}}
+                  </p>
+                </b-field>
+                <b-field label="最小长度" horizontal class="static-field" v-show="props.row.type == 2">
+                  <p class="control is-size-7">
+                    {{ props.row.minLength}}
+                  </p>
+                </b-field>
+                <b-field label="默认值" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.defaultValues}}
+                  </p>
+                </b-field>
+              </div>
+              <div class="column">
+                <b-field label="不可修改" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.required}}
+                  </p>
+                </b-field>
+                <b-field label="最大值" horizontal class="static-field" v-show="props.row.type == 1">
+                  <p class="control is-size-7">
+                    {{ props.row.maxValue}}
+                  </p>
+                </b-field>
+                <b-field label="最大长度" horizontal class="static-field" v-show="props.row.type == 2">
+                  <p class="control is-size-7">
+                    {{ props.row.maxLength}}
+                  </p>
+                </b-field>
+                <b-field label="可能的值" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.possibleValues}}
+                  </p>
+                </b-field>
+              </div>
+              <div class="column">
+                <b-field label="唯一性" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.required}}
+                  </p>
+                </b-field>
+                <b-field label="正则" horizontal class="static-field">
+                  <p class="control is-size-7">
+                    {{ props.row.regex}}
+                  </p>
+                </b-field>
+              </div>
+            </div>
           </template>
         </b-table>
       </div>
@@ -152,14 +152,14 @@
 
 <script>
 
-  import { page, del } from '@/api/backend/meta';
+  import {page, del} from '@/api/backend/meta'
 
-  import EmptyTable from '@/components/EmptyTable.vue';
+  import EmptyTable from '@/components/EmptyTable.vue'
+
   export default {
-    data() {
+    data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false
       }
@@ -171,24 +171,24 @@
       /*
        * Load async data
        */
-      loadAsyncData(params) {
+      loadAsyncData (params) {
         this.pageModel(this, page, params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange (page) {
+        if (this.pagination.page != page) {
+          this.loadAsyncData({page: page})
+        }
+      },
+      doDelete (id) {
+        const vm = this
+        vm.deleteModel(vm, del, id, () => vm.loadAsyncData({page: vm.pagination.page}))
       }
     },
-      doDelete(id) {
-       const vm = this;
-        vm.deleteModel(vm, del, id, () => vm.loadAsyncData({page:vm.pagination.page}));
+    created () {
+      this.loadAsyncData()
     }
-  },
-  created() {
-    this.loadAsyncData();
-  }
   }
 </script>

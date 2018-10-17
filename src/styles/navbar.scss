@@ -1,0 +1,66 @@
+// 除bulma的变量修改外，直接修改顶部导航的样式
+.navbar{
+
+  .logo {
+    background-color: $logo-background-color;
+    min-width: 118px;
+  }
+
+  &-item.brand-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    /*margin-left: 1.75rem;*/
+    margin-right: 5rem;
+  }
+
+  /*&-item{
+    &.is-active{
+      background-color: #262626 !important;
+      color: #ee5824 !important;
+    }
+    &:hover {
+      background-color: #464646 !important;
+      color: findColorInvert(#464646) !important;
+    }
+  }
+
+  .is--brand{
+    &:hover {
+      background-color: #333333 !important;
+    }
+  }
+
+  &-brand-logo{
+    max-height: 3rem !important;
+    background-color: $white;
+    border-radius: .25em;
+    padding: .25em;
+  }
+
+  &-dropdown{
+    .navbar-item{
+      &:hover {
+        background-color: #333333 !important;
+        color: findColorInvert(#333333) !important;
+      }
+    }
+  }
+
+  &-burger{
+    background-color: #262626 !important;
+    border: 0;
+    span{
+      background-color: $white;
+    }
+  }
+*/
+  &-link{
+    font-weight: 700;
+    /*figure{
+      img{
+        border-radius: 50%;
+        max-height: 2em;
+      }
+    }*/
+  }
+}

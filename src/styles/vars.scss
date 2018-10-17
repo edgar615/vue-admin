@@ -4,11 +4,12 @@
 //https://bulma.io/documentation/overview/variables/
 @import "./colors";
 
-$main-color: $blue;
+$main-color: #333333;
 $main-color-dark: $blue-dark;
+$active-color: #ee5824;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
-  "primary":($blue, $blue-invert),
+  "primary":($active-color, findColorInvert($active-color)),
   "bg-navbar" : ($main-color, findColorInvert($main-color)),
 );
 $colors: map-merge($colors,$baseColors);
@@ -17,10 +18,26 @@ $body-background-color: #F8FAFC !default
 $logo-background-color: #ffffff !default;
 $aside-background-color: $main-color !default
 $aside-active-background-color: $blue-dark !default
-$side-menu-hover-background-color: $blue-lighter !default
-$side-menu-active-background-color: $blue-darker !default
+$aside-menu-background-color: #464646 !default
+$aside-menu-active-background-color: $blue-dark !default
+$side-menu-background-color: $aside-background-color !default
+$side-menu-hover-background-color: #262626 !default
+$side-menu-active-background-color: $aside-menu-background-color !default
+$side-menu-active-color: $active-color !default
 ////////////////////////////////////////////////
-////////////////////////////////////////////////
+
+// 导航栏
+$navbar-background-color: $main-color;
+$navbar-item-color: $white;
+$navbar-item-hover-background-color: #464646;
+$navbar-item-hover-color: findColorInvert(#464646);
+$navbar-item-active-background-color: #262626;
+$navbar-item-active-color: $active-color;
+$navbar-dropdown-background-color: $navbar-background-color;
+$navbar-dropdown-item-hover-background-color: $navbar-item-hover-color;
+$navbar-dropdown-item-active-background-color:  $navbar-background-color;
+
+  ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
 @each $name, $pair in $colors {
   //$color: nth($pair, 1)
@@ -49,8 +66,11 @@ $side-menu-active-background-color: $blue-darker !default
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+@import './bulma-badge';
 @import './pageloader';
 @import './bulma-steps';
 @import "./_style";
 @import "./nav";
+@import "./navbar";
+@import "./aside";
 //@import "./skins/dark-blue-extensions";

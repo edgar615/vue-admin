@@ -9,9 +9,9 @@
                       v-validate="'required'" data-vv-as="类型" class="w-15">
               <option
                 v-for="option in dictList(this, 'companyType')"
-                :value="option.value"
-                :key="option.value">
-                {{ option.text }}
+                :value="option.dictValue"
+                :key="option.dictValue">
+                {{ option.dictText }}
               </option>
             </b-select>
           </jcc-field>

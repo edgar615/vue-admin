@@ -5,13 +5,13 @@
         <jcc-field label="类型" horizontal
                    :type="errors.has('type') ? 'is-danger' : ''"
                    :message="errors.first('type')">
-          <b-select name="type"  expanded  v-model="model.type"
+          <b-select name="type" expanded v-model="model.type"
                     v-validate="'required'" data-vv-as="类型" class="w-15">
             <option
               v-for="option in dictList(this, 'metadataType')"
-              :value="option.value"
-              :key="option.value">
-              {{ option.text }}
+              :value="option.dictValue"
+              :key="option.dictValue">
+              {{ option.dictText }}
             </option>
           </b-select>
         </jcc-field>
@@ -19,25 +19,25 @@
                    :type="errors.has('category') ? 'is-danger' : ''"
                    :message="errors.first('category')">
           <b-input name="category" v-model="model.category"
-                   v-validate="'required|max:64'"  data-vv-as="类目" class="w-50"></b-input>
+                   v-validate="'required|max:64'" data-vv-as="类目" class="w-50"></b-input>
         </jcc-field>
         <jcc-field label="亚类" horizontal
                    :type="errors.has('subcategory') ? 'is-danger' : ''"
                    :message="errors.first('subcategory')">
           <b-input name="subcategory" v-model="model.subcategory"
-                   v-validate="'required|max:64'"  data-vv-as="亚类" class="w-50"></b-input>
+                   v-validate="'required|max:64'" data-vv-as="亚类" class="w-50"></b-input>
         </jcc-field>
         <jcc-field label="名称" horizontal
                    :type="errors.has('name') ? 'is-danger' : ''"
                    :message="errors.first('name')">
           <b-input name="name" v-model="model.name"
-                   v-validate="'required|max:64'"  data-vv-as="名称" class="w-50"></b-input>
+                   v-validate="'required|max:64'" data-vv-as="名称" class="w-50"></b-input>
         </jcc-field>
         <jcc-field label="别名" horizontal
                    :type="errors.has('alias') ? 'is-danger' : ''"
                    :message="errors.first('alias')">
           <b-input name="alias" v-model="model.alias"
-                   v-validate="'required|max:128'"  data-vv-as="别名" class="w-50"></b-input>
+                   v-validate="'required|max:128'" data-vv-as="别名" class="w-50"></b-input>
         </jcc-field>
         <jcc-field class="field" horizontal message="必填项">
           <b-switch v-model="model.required"
@@ -69,32 +69,32 @@
           <b-input name="defaultValue" v-model="model.defaultValue"
                    data-vv-as="默认值" class="w-50"></b-input>
         </jcc-field>
-        <jcc-field label="最小值" horizontal  v-show="model.type == 1"
+        <jcc-field label="最小值" horizontal v-show="model.type == 1"
                    :type="errors.has('minValue') ? 'is-danger' : ''"
                    :message="errors.first('minValue')">
           <b-input name="minValue" expanded v-model="model.minValue"
-                   v-validate="'numeric'"  data-vv-as="最小值" class="w-25">
+                   v-validate="'numeric'" data-vv-as="最小值" class="w-25">
           </b-input>
         </jcc-field>
-        <jcc-field label="最大值" horizontal  v-show="model.type == 1"
+        <jcc-field label="最大值" horizontal v-show="model.type == 1"
                    :type="errors.has('maxValue') ? 'is-danger' : ''"
                    :message="errors.first('maxValue')">
           <b-input name="maxValue" expanded v-model="model.maxValue"
-                   v-validate="'numeric'"  data-vv-as="最大值" class="w-25">
+                   v-validate="'numeric'" data-vv-as="最大值" class="w-25">
           </b-input>
         </jcc-field>
         <jcc-field label="最小长度" horizontal v-show="model.type == 2"
                    :type="errors.has('minLength') ? 'is-danger' : ''"
                    :message="errors.first('minLength')">
           <b-input name="minLength" expanded v-model="model.minLength"
-                   v-validate="'numeric'"  data-vv-as="最小长度" class="w-25">
+                   v-validate="'numeric'" data-vv-as="最小长度" class="w-25">
           </b-input>
         </jcc-field>
-        <jcc-field label="最大长度" horizontal  v-show="model.type == 2"
+        <jcc-field label="最大长度" horizontal v-show="model.type == 2"
                    :type="errors.has('maxLength') ? 'is-danger' : ''"
                    :message="errors.first('maxLength')">
           <b-input name="maxLength" expanded v-model="model.maxLength"
-                   v-validate="'numeric'"  data-vv-as="最大长度" class="w-25">
+                   v-validate="'numeric'" data-vv-as="最大长度" class="w-25">
           </b-input>
         </jcc-field>
         <jcc-field label="正则表达式" horizontal
@@ -128,23 +128,24 @@
   </section>
 </template>
 <script>
-  import { get, update } from '@/api/backend/meta';
+  import {get, update} from '@/api/backend/meta'
+
   export default {
-    data() {
+    data () {
       return {
         loading: false,
         saving: false,
-        model: {
-        }
+        model: {}
       }
     },
     methods: {
-      back() {
-        this.$router.back();
+      back () {
+        this.$router.back()
       },
-      save() {
+      save () {
         const vm = this
-        vm.updateModel(vm, update, vm.$route.params.id, () => vm.$router.push({ path: '/backend/meta' }))
+        vm.updateModel(vm, update, vm.$route.params.id,
+          () => vm.$router.push({path: '/backend/meta'}))
       }
     },
     created () {

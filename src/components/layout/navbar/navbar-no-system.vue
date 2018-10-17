@@ -6,7 +6,7 @@
       </router-link>
       <router-link class="navbar-item brand-text" to="/">
         {{$appName}}
-        </router-link>
+      </router-link>
       <div class="navbar-burger burger" data-target="navMenu">
         <span></span>
         <span></span>
@@ -25,10 +25,10 @@
             <span>我的空间</span>
           </a>
           <div class="navbar-dropdown is-boxed">
-            <a class="navbar-item" href="#" >
+            <a class="navbar-item" href="#">
               个人资料
             </a>
-            <router-link class="navbar-item" to="/profile/changepwd" >
+            <router-link class="navbar-item" to="/profile/changepwd">
               修改密码
             </router-link>
           </div>
@@ -42,24 +42,23 @@
 </template>
 <script>
   export default {
-    data() {
-      return {
-      };
+    data () {
+      return {}
     },
     methods: {
-      logout() {
+      logout () {
         this.$store.dispatch('Logout').then(res => {
-          this.$router.push({path: "/login"});
+          this.$router.push({path: '/login'})
         }).catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
       },
     },
     computed: {
-      user() {
+      user () {
         return this.$store.getters.user
       }
     }
-  };
+  }
 </script>
 

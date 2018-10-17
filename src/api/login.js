@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+export function login (username, password) {
   /**
    * axios.post('/user', {
     firstName: 'Fred',
@@ -14,20 +14,20 @@ export function login(username, password) {
   });
    */
   return request.post('/auth/login', {
-    username : username,
+    username: username,
     password: password
-  });
-}
-
-export function getPermission() {
-  return request.get('/auth/systems', {
-    params:{type : 2}
   })
 }
 
-export function getInfo() {
+export function getPermission () {
+  return request.get('/auth/systems', {
+    params: {type: 2}
+  })
+}
+
+export function getInfo () {
   return request.get('/auth/info', {
-    params:{type : 2}
+    params: {type: 2}
   })
 }
 

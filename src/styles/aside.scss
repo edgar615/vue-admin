@@ -1,0 +1,80 @@
+/*侧边栏*/
+.menu-label {
+  font-weight: 700;
+/*font-size: 1.25rem;*/
+}
+.is-sidebar-menu {
+/*padding: 1.5rem;*/
+}
+.menu-list .ul {
+  margin-left: 1rem;
+}
+
+//默认
+.bg-aside {
+  background-color:$aside-background-color;
+  //border-top: 1px solid $border-color;
+  color: findColorInvert($aside-background-color);
+/*font-size: 1.25rem;*/
+  div.active {
+    background-color:$aside-active-background-color;
+    //border-top: 1px solid $border-color;
+    color: findColorInvert($aside-active-background-color);
+  }
+}
+.menu-title {
+  padding: 5px;
+  background-color:  $aside-menu-background-color;
+  color: findColorInvert($aside-menu-background-color);
+  text-decoration: none;
+  display: block;
+/*font-size: 1.2rem;*/
+  &:hover {
+    color: findColorInvert($aside-background-color);
+  }
+  &.active {
+    background-color: $aside-background-color;
+    color: $side-menu-active-color;
+  }
+}
+
+
+.side-menu {
+  background-color: $side-menu-background-color;
+  a {
+    color: findColorInvert($aside-background-color);
+    display: block;
+    padding: 10px 12px 10px 14px;
+    text-decoration: none;
+    &:hover {
+      background-color: $side-menu-hover-background-color;
+      color: findColorInvert($side-menu-hover-background-color);
+    }
+    &.active {
+      color: $side-menu-active-color;
+    }
+  }
+}
+
+
+.bg-subaside {
+  background-color:#DAE1E7;
+  color: findColorInvert(#DAE1E7);
+}
+
+.sub-menu {
+  a {
+    color: $black;
+    display: block;
+    padding: 10px 12px 10px 14px;
+    text-decoration: none;
+    &:hover {
+      background-color: #ccc;
+    }
+    &.active {
+      background-color: #ffffff;
+      color: $black;
+    }
+  }
+}
+/************/

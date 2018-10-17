@@ -1,0 +1,28 @@
+/*vue-tree*/
+.vue-tree{
+  border: 1px solid #193972;
+  background: #081a3a;
+  /*font-size: 1rem;*/
+  color: #fff;
+  height: 650px;
+  padding: 5px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.vue-tree .vue-tree-list{
+  padding-left: 5px;
+}
+
+.vue-tree .item-wrapper {
+  padding: 5px 0;
+}
+
+.vue-tree .vue-tree-item{
+  padding: 0.25rem 0;
+}
+.vue-tree .item-bold{
+  font-weight: normal;
+  /*font-size: 14px !important;*/
+}
+/************/

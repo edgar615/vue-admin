@@ -70,8 +70,14 @@ npm install vue-simple-tree
 ```
 layer提示框插件
 ```
-npm install vue-layer
+npm install vue-layer@0.9.10
 ```
+
+badge
+```
+npm install bulma-badge
+```
+
 ```
  /**
     * 样式命名规范

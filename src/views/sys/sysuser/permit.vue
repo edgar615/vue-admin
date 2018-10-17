@@ -64,7 +64,12 @@
           checkbox: false,
           showEdit: false,
           showDelete: false,
-          showAdd: false
+          showAdd: false,
+          openIcon: 'mdi mdi-chevron-down',
+          closeIcon: 'mdi mdi-chevron-right',
+          checkedIcon: 'mdi mdi-checkbox-marked-outline',
+          uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
+          halfCheckedIcon: 'mdi mdi-checkbox-intermediate'
         }
       };
     },
