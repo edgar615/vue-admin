@@ -42,56 +42,56 @@
       <div class="card-content">
         <div class="field is-grouped">
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/mzdslzsp"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增满数量增商品</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/mzdslfl"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增满数量返利</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/mzdjezsp"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增满金额增商品</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/mzdjefl"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增满金额返利</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/dzbfb"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增百分比折扣</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/dzzdj"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增特价</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/dNjMj"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增第N件M价</span>
             </router-link>
           </div>
           <div class="buttons">
-            <router-link to="/shop/inventory/add"
+            <router-link to="/shop/sales/jNydMj"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增加N元多M件</span>

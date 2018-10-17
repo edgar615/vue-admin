@@ -132,14 +132,14 @@
         <div class="top-portion">
           <div class="Input-box">
             <b class="Input-title first-title">姓名搜索</b>
-            <b-input v-model="name" class="input-custom"></b-input>
+            <b-input class="input-custom"></b-input>
           </div>
 
           <div class="Input-box">
             <!--<b class="Input-title">所属业务组：</b>-->
             <!--<input type="text" class="Input" placeholder="" id="Business" name="Business">-->
             <b class="Input-title">所属业务</b>
-            <b-input v-model="name" class="input-custom"></b-input>
+            <b-input class="input-custom"></b-input>
           </div>
 
           <div class="Input-box">
@@ -212,6 +212,10 @@
               </b-select>
             </div>
           </div>
+
+          <div class="Input-box"></div>
+
+          <div class="Input-box"></div>
 
         </div>
 

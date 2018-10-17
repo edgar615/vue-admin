@@ -1,28 +1,66 @@
-/*vue-tree*/
+/*vue-tree
+https://github.com/jiaxincui/vue-tree
+*/
+.pl-3{
+  margin-left: 0!important;
+}
+.column.ml-2{
+  background: #eeeeee;
+}
+.mt-3 {
+  margin-top: 1.75rem !important;
+}
+.column{
+  padding: 0;
+}
+.menus_box{
+  background: white;
+  margin: 20px;
+  padding: 20px 0;
+}
 .vue-tree{
-  border: 1px solid #193972;
-  background: #081a3a;
+  width: 200px!important;
+  //background: #dddddd;
   /*font-size: 1rem;*/
   color: #fff;
-  height: 650px;
-  padding: 5px;
+  //height: 650px;
+  //padding: 5px;
   box-sizing: border-box;
   overflow-y: auto;
+  .vue-tree-list{
+    list-style-type: none;
+    padding-left: 15px;
+    color: #111111;
+  }
+  .vue-tree-item{
+    padding: 0.25rem 0;
+  }
+
+  .vue-tree .vue-tree-item{
+    background: #ffffff;
+  }
+
+  .item-bold{
+    font-weight: normal;
+    /*font-size: 14px !important;*/
+  }
+  .item-wrapper {
+    padding: 0;
+    height: 25px;
+    line-height: 10px;
+  }
+  .item-wrapper:hover{
+    color: #ff6600;
+    cursor: pointer;
+  }
+  .item-toggle, .item-checkbox, .item-label {
+    cursor: pointer;
+  }
+  .item-toggle {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    overflow: hidden
+  }
 }
 
-.vue-tree .vue-tree-list{
-  padding-left: 5px;
-}
-
-.vue-tree .item-wrapper {
-  padding: 5px 0;
-}
-
-.vue-tree .vue-tree-item{
-  padding: 0.25rem 0;
-}
-.vue-tree .item-bold{
-  font-weight: normal;
-  /*font-size: 14px !important;*/
-}
-/************/

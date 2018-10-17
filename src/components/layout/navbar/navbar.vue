@@ -1,11 +1,8 @@
 <template>
   <nav class="navbar has-shadow">
     <div class="navbar-brand">
-      <router-link class="navbar-item logo" v-show="$showLogo" to="/">
+      <router-link class="navbar-item logo" to="/" style="background: none">
         <img class="m-auto" src="../../../assets/logo.png">
-      </router-link>
-      <router-link class="navbar-item brand-text" to="/">
-        {{$appName}}
       </router-link>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>

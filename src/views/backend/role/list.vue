@@ -1,7 +1,7 @@
 <template>
   <section class="ml-2 mt-3">
     <div class="columns">
-      <div class="column is-one-fifth  is-size-7 border-1 box-shadow">
+      <div class="column is-one-fifth  is-size-7 border-1 box-shadow vue-tree">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                   @handle="itemClick"></vue-tree>
       </div>
@@ -163,8 +163,8 @@
           showEdit: false,
           showDelete: false,
           showAdd: false,
-          openIcon: 'mdi mdi-chevron-down',
-          closeIcon: 'mdi mdi-chevron-right',
+          openIcon: 'mdi mdi-chevron-right',
+          closeIcon: 'mdi mdi-chevron-down',
           checkedIcon: 'mdi mdi-checkbox-marked-outline',
           uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
           halfCheckedIcon: 'mdi mdi-checkbox-intermediate'

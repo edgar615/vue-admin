@@ -173,8 +173,8 @@
           showEdit: false,
           showDelete: false,
           showAdd: false,
-          openIcon: 'mdi mdi-chevron-down',
-          closeIcon: 'mdi mdi-chevron-right',
+          openIcon: 'mdi mdi-chevron-right',
+          closeIcon: 'mdi mdi-chevron-down',
           checkedIcon: 'mdi mdi-checkbox-marked-outline',
           uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
           halfCheckedIcon: 'mdi mdi-checkbox-intermediate'

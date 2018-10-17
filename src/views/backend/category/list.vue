@@ -1,11 +1,11 @@
 <template>
   <section class="ml-2 mt-3">
     <div class="columns">
-      <div class="column is-one-fifth  is-size-7 border-1 box-shadow">
+      <div class="column is-one-fifth  is-size-7 vue-tree">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                   @handle="itemClick"></vue-tree>
       </div>
-      <div class="column border-1  ml-2" v-show="viewCate">
+      <div class="column ml-2" v-show="viewCate">
         <div class="menus_box">
           <b-field label="名称" horizontal class="static-field">
             <p class="control static-field">{{model.name}}</p>
@@ -84,7 +84,7 @@
     enable,
     updateCate
   } from '@/api/commodity/category'
-  import {deleteConfirm, successToast} from '@/utils/dialog'
+  import {successToast} from '@/utils/dialog'
 
   export default {
     components: {
@@ -92,9 +92,6 @@
     },
     data () {
       return {
-//        subsystemId: this.$route.params.id,
-        checkAll: false,
-        allPermssions: [],
         deleting: false,
         model: {},
         saving: false,
@@ -111,8 +108,8 @@
           showEdit: false,
           showDelete: false,
           showAdd: false,
-          openIcon: 'mdi mdi-chevron-down',
-          closeIcon: 'mdi mdi-chevron-right',
+          openIcon: 'mdi mdi-chevron-right',
+          closeIcon: 'mdi mdi-chevron-down',
           checkedIcon: 'mdi mdi-checkbox-marked-outline',
           uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
           halfCheckedIcon: 'mdi mdi-checkbox-intermediate'
@@ -136,12 +133,10 @@
         if (id === -1) {
           this.addCate = true
           this.viewCate = false
-          this.rolePermit = false
           this.model = {parentId: id}
         } else {
           this.viewCate = true
           this.addCate = false
-          this.rolePermit = false
           getCate(id).then(response => {
             this.model = response.data
           })

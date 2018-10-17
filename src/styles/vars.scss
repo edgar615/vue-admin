@@ -5,8 +5,9 @@
 @import "./colors";
 
 $main-color: #333333;
+$top-color: #262626;
 $main-color-dark: $blue-dark;
-$active-color: #ee5824;
+$active-color: #ff6600;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
   "primary":($active-color, findColorInvert($active-color)),
@@ -16,8 +17,9 @@ $colors: map-merge($colors,$baseColors);
 $body-background-color: #F8FAFC !default
 
 $logo-background-color: #ffffff !default;
-$aside-background-color: $main-color !default
-$aside-active-background-color: $blue-dark !default
+$aside-background-color: #333333 !default
+$aside-hover-background-color: #464646;
+$aside-active-background-color: #262626 !default
 $aside-menu-background-color: #464646 !default
 $aside-menu-active-background-color: $blue-dark !default
 $side-menu-background-color: $aside-background-color !default
@@ -32,10 +34,15 @@ $navbar-item-color: $white;
 $navbar-item-hover-background-color: #464646;
 $navbar-item-hover-color: findColorInvert(#464646);
 $navbar-item-active-background-color: #262626;
+$navbar-shadow: none;
+$navbar-fontSize: 14px;
 $navbar-item-active-color: $active-color;
 $navbar-dropdown-background-color: $navbar-background-color;
 $navbar-dropdown-item-hover-background-color: $navbar-item-hover-color;
 $navbar-dropdown-item-active-background-color:  $navbar-background-color;
+
+//左边字体大小
+$side-menu-font-size: 14px;
 
   ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
@@ -73,4 +80,5 @@ $navbar-dropdown-item-active-background-color:  $navbar-background-color;
 @import "./nav";
 @import "./navbar";
 @import "./aside";
+@import "./tree";
 //@import "./skins/dark-blue-extensions";

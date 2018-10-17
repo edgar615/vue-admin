@@ -1,6 +1,7 @@
 <template>
   <section>
 
+
     <div class="card mt-3">
       <div class="card-content">
         <div class="field is-grouped">
@@ -33,7 +34,7 @@
           narrowed
           mobile-cards
 
-          :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
+          :data="dataList"
           :loading="loading"
           paginated
           backend-pagination
@@ -54,33 +55,32 @@
           <template slot-scope="props">
 
             <b-table-column field="sorted" label="序号" numeric sortable centered>
-              {{(pagination.page-1)*pagination.pageSize+props.index}}
+              {{props.index + 1}}
             </b-table-column>
 
             <b-table-column field="companyId" label="品牌" numeric sortable centered>
-              {{ row.companyId }}
+              {{ props.row.companyId }}
             </b-table-column>
 
             <b-table-column field="position" label="品类" centered>
-              {{ row.position }}
+              {{ props.row.position }}
             </b-table-column>
 
-            <b-table-column field="level" label="商品名称" centered>
-              {{ row.level }}
+            <b-table-column field="commodityName" label="商品名称" centered>
+              {{ props.row.commodityName }}
             </b-table-column>
 
             <b-table-column field="recruitmentNum" label="原始库存"  centered >
-              {{ row.recruitmentNum }}
+              {{ props.row.recruitmentNum }}
             </b-table-column>
 
             <b-table-column field="recruitmentNum" label="采购数量"  centered >
-              {{ row.recruitmentNum }}
+              {{ props.row.quantity }}
             </b-table-column>
 
-             <b-table-column field="state" label="入库数量"  centered >
-               <b-input v-model.trim="row.recruitmentNum" ></b-input>
+             <b-table-column field="quantity" label="入库数量"  centered >
+               <b-input v-model.trim="props.row.quantity" ></b-input>
              </b-table-column>
-
 
 
           </template>
@@ -115,6 +115,7 @@
 <script>
   import { recruitmentPage, deleteRecruitment, updateRecruitmentState,publishRecruitmentState} from '@/api/recruitment/recruitment';
   import EmptyTable from '@/components/EmptyTable.vue';
+  import {getApi} from '@/api/franchiser/purchaseorder'
   import request from '@/utils/request'
   import Purchaseorder from './purchaseorder.vue'
   import Goods from './goods.vue'
@@ -122,8 +123,8 @@
   export default {
     data () {
       return {
-        dataList: {
-        },
+        dataList: "",
+        list: "",
         filters: {
           companyId: "",
           position: "",
@@ -190,6 +191,15 @@
           area:['1024px','768px'],
           title:"选择商品",
         });
+
+      //  this.getModel(this, getpurChaseOrder, _this.dataList.id)
+        getApi(_this.dataList.id).then(response => {
+          _this.list = response.data
+          console.log(_this.list);
+        }).catch(err => {
+          vm.loading = false
+        })
+
       },
 
       /*

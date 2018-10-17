@@ -97,10 +97,10 @@
                 {{ props.row.buyerName }}
               </b-table-column>
               <b-table-column field="amount" label="金额"  centered >
-                {{ props.row.amount }}
+                {{ props.row.amount/100 }}
               </b-table-column>
               <b-table-column field="freight" label="运费"  centered >
-                {{ props.row.freight }}
+                {{ props.row.freight/100 }}
               </b-table-column>
               <b-table-column field="type" label="订单状态"  centered >
                 <b-label v-if=" props.row.state==1">等待支付</b-label>
@@ -117,12 +117,12 @@
                 </router-link>
                 <a  v-if="props.row.state==5" style="opacity: 0.3;">订单详情</a>
 
-                <a  v-if="props.row.state==2"  @click="searchLogistics(props.row)">
+                <a   @click="searchLogistics(props.row.purchaseOrderId,props.row.sellerId)">
                   发货
                 </a>
-                <a  v-if="props.row.state!=2"  style="opacity: 0.3;">
+                <!--<a  v-if="props.row.state!=2"  style="opacity: 0.3;">
                   发货
-                </a>
+                </a>-->
               </b-table-column>
             </template>
             <template slot="empty">
@@ -143,8 +143,9 @@
   }
 </style>
 <script>
-  import {purChaseOrderPage} from '@/api/supply/order/purchaseorder/purchaseorder'
+  import {purChaseOrderPage,getShippingMethod} from '@/api/supply/order/purchaseorder/purchaseorder'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import Logistics from './logistics.vue'
   import request from '@/utils/request'
  /* import Logistics from './logistics.vue'*/
 export default {
@@ -193,16 +194,7 @@ export default {
         this.sortOrder = order
         this.loadAsyncData()
       },
-    /*
-     * 批量删除
-     */
-      onDeleteCheckedRows () {
-        const vm = this
-        var checkedIds = vm.checkedRows.map(function (item) {
-          return item.subsystemId
-        })
-        this.batchDeleteModel(vm, batchDeletePurChaseOrder, checkedIds, () => this.loadAsyncData({page: this.pagination.page}))
-  },
+
     /*
      * Type style in relation to the value
      */
@@ -215,31 +207,29 @@ export default {
         }
         return 'is-dark'
   },
-      onDelete (id) {
-        const vm = this
-        this.deleteModel(vm, deletePurChaseOrder, id, () => this.loadAsyncData({page: this.pagination.page}))
-      },
       /**
-       *查询物流
+       *发货
        * **/
-      searchLogistics(row){
+      searchLogistics(id,sellerId){
         let _this=this;
-        let id=_this.$layer.iframe({
+        let index=_this.$layer.iframe({
           content: {
             content: Logistics, //传递的组件对象
             parent: this,//当前的vue对象
             data:{
-              trackingNumber : row.trackingNumber,
+              purchaseOrderId : id,
+              sellerId:sellerId,
               fn:()=>{
-                _this.$layer.close(id);
+                _this.$layer.close(index);
               }
             }
             ,//props
           },
           btn:'确定',
           type: 2,
-          area:['350px','250px'],
-          title:"物流查询",
+          area:['350px','420px'],
+          title:"发货信息",
+          shadeClose: false,
         });
         console.log(_this.trackingNumber)
 

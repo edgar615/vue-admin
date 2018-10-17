@@ -74,10 +74,10 @@
             </b-table-column>
 
             <b-table-column  width="200px" field="price" label="单价"  centered >
-              {{ props.row.price }}
+              {{ props.row.price/100 }}
             </b-table-column>
             <b-table-column width="200px" field="amount" label="总价"  centered >
-              {{ props.row.quantity * props.row.price }}
+              {{ props.row.quantity * props.row.price/100 }}
             </b-table-column>
           </template>
         </b-table>
@@ -93,10 +93,12 @@
           <div class="column"></div>
         </div>
         <div >
-
-          <div class="column is-two-fifths">
+          <div class="column is-two-fifths" v-if=" model.state==2||model.state==1"><!--未支付-->
             <b-label>设置运费:</b-label>
-            <b-input class="input-custom"></b-input>
+            <b-input class="input-custom" v-model="model.freight"></b-input>
+          </div>
+          <div class="column is-two-fifths" v-if=" model.state!=2&&model.state!=1"><!--已支付支付-->
+            <b-label>设置运费:{{model.freight/100}}</b-label>
           </div>
           <div class="column"></div>
         </div>
@@ -105,7 +107,7 @@
         <div>
           <div class="columns">
             <div class="buttons">
-        <span class="button is-danger">
+        <span class="button is-danger" @click="changeFreight">
               <b-icon ></b-icon>
               <span>提交</span>
         </span>
@@ -126,7 +128,7 @@
   </section>
 </template>
 <script>
-  import {getpurChaseOrder} from '@/api/franchiser/purchaseorder'
+  import {getpurChaseOrder,changeFreight} from '@/api/franchiser/purchaseorder'
   import request from '@/utils/request'
   export default {
     data() {
@@ -134,7 +136,7 @@
         loading: false,
         model: {
           orderNo:'',
-
+          freight:''
         },
         loading: false,
         deleting: false,
@@ -153,11 +155,28 @@
      * */
     cancelOrder(){
 
-       }
+       },
+    //设置运费
+    changeFreight(){
+      let vm=this;
+      changeFreight(vm.model.purchaseOrderId,vm.model.freight).then(response => {
+        vm.$router.push({path: '/supply/order/purchaseorder'})
+      }).catch(err => {
+        vm.loading = false
+      })
+      }
     },
   created () {
-    this.getModel(this, getpurChaseOrder, this.$route.params.id)
-    }
+    let vm=this
+    getpurChaseOrder(this.$route.params.id).then(response => {
+      vm.model= response.data
+      vm.model.freight=vm.model.freight/100
+      vm.loading = false
+    }).catch(err => {
+      vm.loading = false
+    })
+    },
+
   }
 </script>
 <style>

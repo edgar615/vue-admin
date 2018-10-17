@@ -12,8 +12,12 @@ export function getpurChaseOrder (id) {
   return request.get('/purchaseOrder/' + id)
 }
 export function cancelOrder (id) {
-  return request.put('/purchaseOrder/' +id+ '/cancle')
+  return request.put('/purchaseOrder/'+ id + '/cancle')
 }
+export function changeFreight (id, freight) {
+  return request.put('/purchaseOrder/changeFreight?id='+ id +'&freight=' + freight)
+}
+
 
 export function deletePurChaseOrder (id) {
   return request.delete('/system/' + id)
