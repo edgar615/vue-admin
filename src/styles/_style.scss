@@ -1,6 +1,22 @@
 /*面包屑*/
-.breadcrumb {
+/*.breadcrumb {
   border-left: 3px solid $main-color !important;
+}
+
+.breadcrumb .icon:first-child {
+  margin-right: 0.3em;
+}*/
+.card-header {
+  border-bottom: 1px solid $active-color;
+  height: 50px;
+}
+
+.breadcrumb {
+  //border-left: 3px solid $main-color !important;
+  height: 42px;
+  line-height: 42px;
+  background: white;
+  margin: 0;
 }
 
 .breadcrumb .icon:first-child {

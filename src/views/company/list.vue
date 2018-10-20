@@ -36,9 +36,10 @@
     </div>
 
     <div class="card mt-3">
-      <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
+      <header class="card-header">
+        <div class="card-header-title">
+          公司列表
+          <div class="ml-3 buttons">
             <router-link to="/company/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
@@ -46,7 +47,9 @@
             </router-link>
           </div>
         </div>
+      </header>
 
+      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -63,6 +66,7 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
+          pagination-size="is-small"
 
           detailed
           detail-key="companyId"

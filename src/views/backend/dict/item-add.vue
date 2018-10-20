@@ -62,7 +62,8 @@
       },
       save () {
         const vm = this
-        this.saveMode(vm, addItem, () => vm.$router.push({path: '/backend/dict/' + this.$route.params.id + '/items'}))
+        this.saveMode(vm, addItem,
+          () => vm.$router.push({path: '/backend/dict/' + this.$route.params.id + '/items'}))
       }
     }
   }

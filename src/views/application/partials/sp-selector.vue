@@ -52,6 +52,7 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
+          pagination-size="is-small"
 
         >
 

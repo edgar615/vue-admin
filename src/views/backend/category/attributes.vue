@@ -56,7 +56,8 @@
                           title="锁定" v-show="props.row.state == 1">
                     <b-icon icon="lock-outline"></b-icon>
                   </button>
-                  <button class="button is-danger is-small" @click="doUnLock(props.row.applicationId)"
+                  <button class="button is-danger is-small"
+                          @click="doUnLock(props.row.applicationId)"
                           title="解锁" v-show="props.row.state == 2">
                     <b-icon icon="lock-open-outline"></b-icon>
                   </button>
@@ -195,7 +196,7 @@
     cateTree
   } from '@/api/commodity/category'
   import {
-    listAttr,addAttr,updateAttr, deleteAttr, getAttr
+    listAttr, addAttr, updateAttr, deleteAttr, getAttr
   } from '@/api/commodity/attribute'
   import {successToast} from '@/utils/dialog'
 

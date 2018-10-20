@@ -26,14 +26,16 @@
     </div>
 
     <div class="card mt-3">
-      <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
-        <span class="button is-danger" @click="onDeleteCheckedRows" :disabled="!checkedRows.length"
-              :class="{'is-loading' : deleting}">
-          <b-icon icon="delete-outline"></b-icon>
-          <span>删除</span>
-        </span>
+      <header class="card-header">
+        <div class="card-header-title">
+          子系统列表
+          <div class="ml-3 buttons">
+            <span class="button is-danger" @click="onDeleteCheckedRows"
+                  :disabled="!checkedRows.length"
+                  :class="{'is-loading' : deleting}">
+              <b-icon icon="delete-outline"></b-icon>
+              <span>删除</span>
+            </span>
             <router-link to="/backend/system/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
@@ -41,7 +43,9 @@
             </router-link>
           </div>
         </div>
+      </header>
 
+      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -58,6 +62,7 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
+          pagination-size="is-small"
 
           backend-sorting
           :default-sort-direction="defaultSortOrder"

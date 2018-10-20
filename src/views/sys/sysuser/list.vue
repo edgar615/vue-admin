@@ -35,9 +35,10 @@
     </div>
 
     <div class="card mt-3">
-      <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
+      <header class="card-header">
+        <div class="card-header-title">
+          用户列表
+          <div class="ml-3 buttons">
             <router-link to="/sys/sysuser/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
@@ -45,7 +46,9 @@
             </router-link>
           </div>
         </div>
+      </header>
 
+      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -62,6 +65,7 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
+          pagination-size="is-small"
 
         >
 
@@ -76,7 +80,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态" centered>
-              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "userState",props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'userState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -106,13 +110,13 @@
 </template>
 
 <script>
-  import {page, lock, unLock} from '@/api/sys/sysuser';
-  import EmptyTable from '@/components/EmptyTable.vue';
+  import {page, lock, unLock} from '@/api/sys/sysuser'
+  import EmptyTable from '@/components/EmptyTable.vue'
+
   export default {
-    data() {
+    data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false
       }
@@ -124,39 +128,39 @@
       /*
        * Load async data
        */
-      loadAsyncData(params) {
+      loadAsyncData (params) {
         this.pageModel(this, page, params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange (page) {
+        if (this.pagination.page !== page) {
+          this.loadAsyncData({page: page})
+        }
+      },
+      stateClass (value) {
+        if (value === undefined) {
+          return 'is-black'
+        }
+        if (value === 1) {
+          return 'is-success'
+        }
+        return 'is-dark'
+      },
+      doLock (id) {
+        lock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
+      },
+      doUnLock (id) {
+        unLock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
       }
     },
-    stateClass(value) {
-      if (value == undefined) {
-        return "is-black";
-      }
-      if (value == 1) {
-        return "is-success";
-      }
-      return "is-dark";
-    },
-    doLock(id) {
-      lock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
-    },
-    doUnLock(id) {
-      unLock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
+    created () {
+      this.loadAsyncData()
     }
-  },
-  created() {
-    this.loadAsyncData();
-  }
   }
 </script>

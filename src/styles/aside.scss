@@ -1,10 +1,10 @@
 /*侧边栏*/
 .menu-label {
   font-weight: 700;
-/*font-size: 1.25rem;*/
+  /*font-size: 1.25rem;*/
 }
 .is-sidebar-menu {
-/*padding: 1.5rem;*/
+  /*padding: 1.5rem;*/
 }
 .menu-list .ul {
   margin-left: 1rem;
@@ -13,37 +13,27 @@
 //默认
 .bg-aside {
   background-color:$aside-background-color;
-  font-size: $side-menu-font-size;
   //border-top: 1px solid $border-color;
   color: findColorInvert($aside-background-color);
-/*font-size: 1.25rem;*/
+  /*font-size: 1.25rem;*/
   div.active {
     background-color:$aside-active-background-color;
     //border-top: 1px solid $border-color;
     color: findColorInvert($aside-active-background-color);
   }
 }
-.navbar{
-  height: 60px;
-  background-color: $top-color;
-  font-size: $navbar-fontSize;
-}
-.navbar.has-shadow{
-  box-shadow: $navbar-shadow;
-}
 .menu-title {
-  padding: 10px 20px;
-  //background-color:  $aside-menu-background-color;
+  padding: 5px;
+  background-color:  $aside-menu-background-color;
   color: findColorInvert($aside-menu-background-color);
   text-decoration: none;
   display: block;
-/*font-size: 1.2rem;*/
+  /*font-size: 1.2rem;*/
   &:hover {
     color: findColorInvert($aside-background-color);
-    background-color: $aside-hover-background-color;
   }
   &.active {
-    background-color: $aside-active-background-color;
+    background-color: $aside-background-color;
     color: $side-menu-active-color;
   }
 }

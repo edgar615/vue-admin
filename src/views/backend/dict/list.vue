@@ -15,9 +15,10 @@
     </div>
 
     <div class="card mt-3">
-      <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
+      <header class="card-header">
+        <div class="card-header-title">
+          字典列表
+          <div class="ml-3 buttons">
             <router-link to="/backend/dict/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
@@ -25,7 +26,9 @@
             </router-link>
           </div>
         </div>
+      </header>
 
+      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -42,6 +45,7 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
+          pagination-size="is-small"
         >
 
           <template slot-scope="props">
@@ -92,8 +96,7 @@
   export default {
     data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false,
         deleting: false

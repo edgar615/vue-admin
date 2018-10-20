@@ -2,7 +2,7 @@
   <nav class="navbar has-shadow">
     <div class="navbar-brand">
       <router-link class="navbar-item logo" to="/" style="background: none">
-        <img class="m-auto" src="../../../assets/logo.png">
+        <!--<img class="m-auto" src="../../../assets/logo.png">-->
       </router-link>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
