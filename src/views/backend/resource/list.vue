@@ -24,6 +24,11 @@
     </div>
 
     <div class="card mt-3">
+      <header class="card-header">
+        <div class="card-header-title">
+          接口列表
+        </div>
+      </header>
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table

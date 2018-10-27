@@ -17,9 +17,10 @@
     </div>
 
     <div class="card mt-3">
-      <div class="card-content">
-        <div class="field is-grouped">
-          <div class="buttons">
+      <header class="card-header">
+        <div class="card-header-title">
+          接口权限
+          <div class="ml-3 buttons">
             <router-link to="/backend/authority/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
@@ -27,7 +28,8 @@
             </router-link>
           </div>
         </div>
-
+      </header>
+      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
