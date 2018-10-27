@@ -4,6 +4,7 @@ import dict from './modules/dict'
 import region from './modules/region'
 import user from './modules/user'
 import permission from './modules/permission'
+import listHistory from './modules/listHistory'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     dict,
     region,
     user,
-    permission
+    permission,
+    listHistory
   },
   getters
 })

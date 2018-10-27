@@ -6,7 +6,7 @@
           <b-input v-model="filters.category" placeholder="类目"></b-input>
           <b-input v-model="filters.subcategory" placeholder="亚类"></b-input>
           <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData">
+            <button class="button is-primary" @click="loadAsyncData({page: 1})">
               <b-icon icon="magnify"></b-icon>
               <span>查询</span>
             </button>
@@ -175,7 +175,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModel(this, page, params)
+        this.pageModelWithHistory(this, page, params)
       },
       /*
        * Handle page-change event
@@ -191,6 +191,7 @@
       }
     },
     created () {
+      this.fillParamFromHistory()
       this.loadAsyncData()
     }
   }

@@ -1,4 +1,5 @@
 const getters = {
+  queryHistory: state => state.listHistory.data,
   region: state => state.region.data,
   token: state => state.user.token,
   user: state => state.permission.user,

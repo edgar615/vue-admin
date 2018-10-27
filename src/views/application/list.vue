@@ -24,7 +24,7 @@
             </b-radio-button>
           </b-field>
           <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData">
+            <button class="button is-primary" @click="loadAsyncData({page: 1})">
               <b-icon icon="magnify"></b-icon>
               <span>查询</span>
             </button>
@@ -75,7 +75,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态" centered>
-              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'companyState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column field="address" label="标识符" centered>
@@ -113,13 +113,13 @@
 </template>
 
 <script>
-  import {page, lock, unLock} from '@/api/application';
-  import EmptyTable from '@/components/EmptyTable.vue';
+  import {page, lock, unLock} from '@/api/application'
+  import EmptyTable from '@/components/EmptyTable.vue'
+
   export default {
-    data() {
+    data () {
       return {
-        filters: {
-        },
+        filters: {},
         pagination: {},
         loading: false
       }
@@ -131,39 +131,40 @@
       /*
        * Load async data
        */
-      loadAsyncData(params) {
-        this.pageModel(this, page, params)
-    },
-    /*
-     * Handle page-change event
-     */
-    onPageChange(page) {
-      if (this.pagination.page != page) {
-        this.loadAsyncData({page:page});
+      loadAsyncData (params) {
+        this.pageModelWithHistory(this, page, params)
+      },
+      /*
+       * Handle page-change event
+       */
+      onPageChange (page) {
+        if (this.pagination.page != page) {
+          this.loadAsyncData({page: page})
+        }
+      },
+      stateClass (value) {
+        if (value == undefined) {
+          return 'is-black'
+        }
+        if (value == 1) {
+          return 'is-success'
+        }
+        return 'is-dark'
+      },
+      doLock (id) {
+        lock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
+      },
+      doUnLock (id) {
+        unLock(id).then(response => {
+          this.loadAsyncData({page: this.pagination.page})
+        })
       }
     },
-    stateClass(value) {
-      if (value == undefined) {
-        return "is-black";
-      }
-      if (value == 1) {
-        return "is-success";
-      }
-      return "is-dark";
-    },
-    doLock(id) {
-      lock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
-    },
-    doUnLock(id) {
-      unLock(id).then(response => {
-        this.loadAsyncData({page:this.pagination.page});
-      })
+    created () {
+      this.fillParamFromHistory()
+      this.loadAsyncData()
     }
-  },
-  created() {
-    this.loadAsyncData();
-  }
   }
 </script>

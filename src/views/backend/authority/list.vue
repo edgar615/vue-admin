@@ -1,9 +1,11 @@
 <template>
   <section>
+    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
+    <!--如果一行放不下，用多个section-->
     <div class="card">
       <div class="card-content">
         <b-field grouped group-multiline>
-          <b-input v-model="filters.code" placeholder="字典编码"></b-input>
+          <b-input v-model="filters.permission" placeholder="权限字符串"></b-input>
           <p class="control ml-1">
             <button class="button is-primary" @click="loadAsyncData({page: 1})">
               <b-icon icon="magnify"></b-icon>
@@ -15,20 +17,17 @@
     </div>
 
     <div class="card mt-3">
-      <header class="card-header">
-        <div class="card-header-title">
-          字典列表
-          <div class="ml-3 buttons">
-            <router-link to="/backend/dict/add"
+      <div class="card-content">
+        <div class="field is-grouped">
+          <div class="buttons">
+            <router-link to="/backend/authority/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
         </div>
-      </header>
 
-      <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -45,7 +44,14 @@
           :per-page="pagination.pageSize"
           :current-page="pagination.page"
           @page-change="onPageChange"
-          pagination-size="is-small"
+
+          backend-sorting
+          :default-sort-direction="defaultSortOrder"
+          :default-sort="[sortField, sortOrder]"
+          @sort="onSort"
+
+          :checked-rows.sync="checkedRows"
+          checkable
         >
 
           <template slot-scope="props">
@@ -54,28 +60,28 @@
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="dictCode" label="字典编码" centered>
-              {{ props.row.dictCode }}
+            <b-table-column field="permission" label="权限值" centered>
+              {{ props.row.permission }}
             </b-table-column>
 
-            <b-table-column field="defaultValue" label="默认值" centered>
-              {{ props.row.defaultValue }}
+            <b-table-column field="type" label="允许匿名" centered>
+              {{ boolText(props.row.allowAnonymous) }}
+            </b-table-column>
+
+
+            <b-table-column field="internal" label="内部访问?" centered>
+              {{ boolText(props.row.internal) }}
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/dict/' +props.row.dictId + '/edit' }"
+              <router-link :to="{path:  '/backend/authority/' +props.row.authorityScopeId + '/edit' }"
                            exact class="button is-small" title="修改">
                 <b-icon icon="circle-edit-outline"></b-icon>
               </router-link>
-              <button class="button is-danger is-small" @click="onDelete(props.row.dictId)"
+              <button class="button is-danger is-small" @click="onDelete(props.row.authorityScopeId)"
                       title="删除" :class="{'is-loading' : deleting}">
                 <b-icon icon="delete-outline"></b-icon>
               </button>
-              <router-link
-                :to="{path:  '/backend/dict/' +props.row.dictId + '/items' }"
-                exact class="button is-info is-small" title="字典管理">
-                <b-icon icon="menu"></b-icon>
-              </router-link>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -90,7 +96,7 @@
 </template>
 
 <script>
-  import {dictPage, deleteDict} from '@/api/backend/dict'
+  import {authorityPage, deleteAuthority} from '@/api/backend/authority'
   import EmptyTable from '@/components/EmptyTable.vue'
 
   export default {
@@ -110,7 +116,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, dictPage, params)
+        this.pageModelWithHistory(this, authorityPage, params)
       },
       /*
        * Handle page-change event
@@ -120,21 +126,24 @@
           this.loadAsyncData({page: page})
         }
       },
-      /*
-       * Handle sort event
-       */
-      onSort (field, order) {
-        this.sortField = field
-        this.sortOrder = order
-        this.loadAsyncData()
-      },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteDict, id,
+        this.deleteModel(vm, deleteAuthority, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
-    filters: {},
+    filters: {
+      /**
+       * Filter to truncate string, accepts a length parameter
+       */
+      /*
+       truncate(value, length) {
+       return value.length > length
+       ? value.substr(0, length) + '...'
+       : value
+       }
+       */
+    },
     created () {
       this.fillParamFromHistory()
       this.loadAsyncData()

@@ -30,6 +30,41 @@ function pageModel (vm, pageApi, params) {
   })
 }
 
+function pageModelWithHistory (vm, pageApi, params) {
+  if (params === undefined) {
+    params = {}
+  }
+  // 如果表格没有排序，不需要这些操作
+  var sort = vm.sortField
+  if (sort) {
+    if (vm.sortOrder === 'desc') {
+      sort = '-' + sort
+    }
+    params.sort = sort
+  }
+  params = Object.assign(vm.filters, params)
+  // 如果查询条件中包含时间查询
+  if (vm.startTime) {
+    params.startTime = parseInt(new Date(vm.startTime).valueOf().toString()) / 1000
+  }
+  if (vm.endTime) {
+    params.endTime = parseInt(new Date(vm.endTime).valueOf().toString()) / 1000
+  }
+  vm.loading = true
+  return pageApi(params).then(response => {
+    vm.$store.dispatch('saveListQueryHistory', {path: vm.$route.path, query: params})
+    vm.pagination = response.data
+    vm.loading = false
+  }).catch(err => {
+    vm.loading = false
+  })
+}
+
+function fillParamFromHistory () {
+  if (this.$store.getters.queryHistory[this.$route.path]) {
+    this.filters = this.$store.getters.queryHistory[this.$route.path]
+  }
+}
 function getModel (vm, getApi, id) {
   vm.loading = true
   getApi(id).then(response => {
@@ -145,6 +180,8 @@ export default {
     Vue.prototype.dictList = dictList
     // 分页
     Vue.prototype.pageModel = pageModel
+    Vue.prototype.pageModelWithHistory = pageModelWithHistory
+    Vue.prototype.fillParamFromHistory = fillParamFromHistory
     // 查看
     Vue.prototype.getModel = getModel
     // 删除
