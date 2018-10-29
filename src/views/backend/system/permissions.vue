@@ -56,7 +56,7 @@
 
       <div class="column bg-main ml-2" v-show="addMenu">
         <div class="menus_box">
-          <jcc-field label="类型" horizontal
+          <jcc-field label="类型" horizontal class="required-field"
                      :type="errors.has('type') ? 'is-danger' : ''"
                      :message="errors.first('type')">
             <b-select name="type" expanded v-model="model.type"
@@ -70,32 +70,37 @@
             </b-select>
           </jcc-field>
 
-          <jcc-field label="名称" horizontal :type="errors.has('name') ? 'is-danger' : ''"
+          <jcc-field label="名称" horizontal class="required-field"
+                     :type="errors.has('name') ? 'is-danger' : ''"
                      :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'" data-vv-as="名称" class="w-25"></b-input>
           </jcc-field>
-          <jcc-field label="权限值" horizontal :type="errors.has('permission') ? 'is-danger' : ''"
+          <jcc-field label="权限值" horizontal
+                     :type="errors.has('permission') ? 'is-danger' : ''"
                      :message="errors.first('permission')"
                      v-show="model.type != 3">
             <b-input name="permission" v-model="model.permission"
                      v-validate="'max:64|alpha_symbol'" data-vv-as="权限值" class="w-25"></b-input>
           </jcc-field>
-          <jcc-field label="菜单路径" horizontal :type="errors.has('path') ? 'is-danger' : ''"
+          <jcc-field label="菜单路径" horizontal class="required-field"
+                     :type="errors.has('path') ? 'is-danger' : ''"
                      :message="errors.first('path')"
                      v-show="model.type == 1">
             <b-input name="path" v-model="model.path"
                      v-validate="model.type == 1 ? 'required|max:64|menu' : '' " data-vv-as="菜单路径"
                      class="w-25"></b-input>
           </jcc-field>
-          <jcc-field label="图标" horizontal :type="errors.has('icon') ? 'is-danger' : ''"
+          <jcc-field label="图标" horizontal class="required-field"
+                     :type="errors.has('icon') ? 'is-danger' : ''"
                      :message="errors.first('icon')"
                      v-show="model.type != 2">
             <b-input name="icon" v-model="model.icon"
                      v-validate="model.type == 1 ? 'required|max:32' : '' " data-vv-as="图标"
                      class="w-25"></b-input>
           </jcc-field>
-          <jcc-field label="排序" horizontal :message="errors.first('sorted')"
+          <jcc-field label="排序" horizontal class="required-field"
+                     :message="errors.first('sorted')"
                      :type="errors.has('sorted') ? 'is-danger' : ''">
             <b-input name="sorted" expanded v-model="model.sorted"
                      v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"

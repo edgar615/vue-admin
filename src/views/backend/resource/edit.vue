@@ -13,7 +13,7 @@
           </p>
         </jcc-field>
 
-        <jcc-field label="权限范围" horizontal
+        <jcc-field label="权限范围" horizontal class="required-field"
                    :type="errors.has('permission') ? 'is-danger' : ''"
                    :message="errors.first('permission')">
           <b-input name="permission" v-model="model.permission"

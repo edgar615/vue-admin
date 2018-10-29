@@ -15,13 +15,13 @@
               </option>
             </b-select>
           </jcc-field>
-          <jcc-field label="名称" horizontal
+          <jcc-field label="名称" horizontal class="required-field"
                      :type="errors.has('name') ? 'is-danger' : ''"
                      :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'"  data-vv-as="名称" class="w-50"></b-input>
           </jcc-field>
-          <jcc-field label="地址" horizontal
+          <jcc-field label="地址" horizontal class="required-field"
                      :type="errors.has('address') ? 'is-danger' : ''"
                      :message="errors.first('address')">
             <b-input name="address" v-model="model.address"
@@ -40,7 +40,7 @@
                      v-validate="'max:1024|url'"  data-vv-as="主页"></b-input>
           </jcc-field>
 
-          <jcc-field label="管理员用户名" horizontal
+          <jcc-field label="管理员用户名" horizontal class="required-field"
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"
@@ -50,7 +50,7 @@
          <!--
          message可以直接使用数组，也可以实现的复杂一些
          :message="['6到20个字符，只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号', errors.first('password')]"-->
-          <jcc-field label="密码" horizontal
+          <jcc-field label="密码" horizontal class="required-field"
                      :type="errors.has('password') ? 'is-danger' : ''"
                      :message="errors.has('password') ? errors.first('password') : '6到20个字符，只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号'"
                      >
@@ -59,7 +59,7 @@
                      type="password" password-reveal>
             </b-input>
           </jcc-field>
-          <jcc-field label="再次输入密码" horizontal
+          <jcc-field label="再次输入密码" horizontal class="required-field"
                      :type="errors.has('confirmedPassword') ? 'is-danger' : ''"
                      :message="errors.first('confirmedPassword')"
           >

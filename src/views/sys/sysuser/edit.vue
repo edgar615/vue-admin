@@ -8,13 +8,13 @@
             </p>
           </jcc-field>
 
-        <jcc-field label="名称" horizontal
+        <jcc-field label="名称" horizontal class="required-field"
                    :type="errors.has('name') ? 'is-danger' : ''"
                    :message="errors.first('name')">
           <b-input name="name" v-model="model.name"
                    v-validate="'required|max:64'"  data-vv-as="名称" class="w-50"></b-input>
         </jcc-field>
-        <jcc-field label="地址" horizontal
+        <jcc-field label="地址" horizontal class="required-field"
                    :type="errors.has('address') ? 'is-danger' : ''"
                    :message="errors.first('address')">
           <b-input name="address" v-model="model.address"

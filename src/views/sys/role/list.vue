@@ -42,17 +42,20 @@
 
       <div class="column border-1  ml-2" v-show="addRole">
         <div class="menus_box">
-          <jcc-field label="名称" horizontal :type="errors.has('name') ? 'is-danger' : ''"
+          <jcc-field label="名称" horizontal class="required-field"
+                     :type="errors.has('name') ? 'is-danger' : ''"
                      :message="errors.first('name')">
             <b-input name="name" v-model="model.name"
                      v-validate="'required|max:64'" data-vv-as="名称"></b-input>
           </jcc-field>
-          <jcc-field label="角色编码" horizontal :type="errors.has('roleCode') ? 'is-danger' : ''"
+          <jcc-field label="角色编码" class="required-field"
+                     horizontal :type="errors.has('roleCode') ? 'is-danger' : ''"
                      :message="errors.first('roleCode')">
             <b-input name="roleCode" v-model="model.roleCode"
                      v-validate="'required|max:64|alpha_underscore'" data-vv-as="角色编码"></b-input>
           </jcc-field>
-          <jcc-field label="排序" horizontal :message="errors.first('sorted')"
+          <jcc-field label="排序" horizontal class="required-field"
+                     :message="errors.first('sorted')"
                      :type="errors.has('sorted') ? 'is-danger' : ''">
             <b-input name="sorted" expanded v-model="model.sorted"
                      v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序" class="w-25">

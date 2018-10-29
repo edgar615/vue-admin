@@ -2,7 +2,7 @@
   <section>
     <div class="card">
       <div class="card-content">
-        <jcc-field label="字典文本" horizontal
+        <jcc-field label="字典文本" horizontal class="required-field"
                    :type="errors.has('dictText') ? 'is-danger' : ''"
                    :message="errors.first('dictText')">
           <b-input name="dictText" v-model="model.dictText"
@@ -10,14 +10,14 @@
                    data-vv-as="字典文本" class="w-25"></b-input>
         </jcc-field>
 
-        <jcc-field label="字典值" horizontal
+        <jcc-field label="字典值" horizontal class="required-field"
                    :type="errors.has('dictValue') ? 'is-danger' : ''"
                    :message="errors.first('dictValue')">
           <b-input name="dictValue" v-model="model.dictValue"
                    v-validate="'required|numeric'" data-vv-as="字典值" class="w-25"></b-input>
         </jcc-field>
 
-        <jcc-field label="排序" horizontal
+        <jcc-field label="排序" horizontal class="required-field"
                    :type="errors.has('sorted') ? 'is-danger' : ''"
                    :message="errors.first('sorted')">
           <b-input name="sorted" expanded v-model="model.sorted"

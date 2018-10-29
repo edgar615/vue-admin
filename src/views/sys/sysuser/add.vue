@@ -3,20 +3,20 @@
       <div class="card">
         <div class="card-content">
 
-          <jcc-field label="用户名" horizontal
+          <jcc-field label="用户名" horizontal class="required-field"
                      :type="errors.has('username') ? 'is-danger' : ''"
                      :message="errors.first('username')">
             <b-input name="username" expanded v-model="model.username"
                      v-validate="'required|max:60|min:3|email|remote:/sysuser/username-vertify'"  data-vv-as="用户名" class="w-25">
             </b-input>
           </jcc-field>
-          <jcc-field label="姓名" horizontal
+          <jcc-field label="姓名" horizontal class="required-field"
                      :type="errors.has('fullname') ? 'is-danger' : ''"
                      :message="errors.first('fullname')">
             <b-input name="fullname" v-model="model.fullname"
                      v-validate="'required|max:32'"  data-vv-as="姓名" class="w-25"></b-input>
           </jcc-field>
-          <jcc-field label="密码" horizontal
+          <jcc-field label="密码" horizontal class="required-field"
                      :type="errors.has('password') ? 'is-danger' : ''"
                      :message="errors.has('password') ? errors.first('password') : '6到20个字符，只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号'"
                      >
@@ -25,7 +25,7 @@
                      type="password" password-reveal>
             </b-input>
           </jcc-field>
-          <jcc-field label="再次输入密码" horizontal
+          <jcc-field label="再次输入密码" horizontal class="required-field"
                      :type="errors.has('confirmedPassword') ? 'is-danger' : ''"
                      :message="errors.first('confirmedPassword')"
           >

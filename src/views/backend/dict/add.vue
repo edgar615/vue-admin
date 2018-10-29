@@ -2,7 +2,7 @@
   <section>
     <div class="card">
       <div class="card-content">
-        <jcc-field label="字典编码" horizontal
+        <jcc-field label="字典编码" horizontal class="required-field"
                    :type="errors.has('dictCode') ? 'is-danger' : ''"
                    :message="errors.first('dictCode')">
           <b-input name="dictCode" v-model="model.dictCode"
@@ -10,14 +10,15 @@
                    data-vv-as="字典编码" class="w-25"></b-input>
         </jcc-field>
 
-        <jcc-field label="名称" horizontal
+        <jcc-field label="名称" horizontal class="required-field"
                    :type="errors.has('name') ? 'is-danger' : ''"
                    :message="errors.first('name')">
           <b-input name="name" v-model="model.name"
                    v-validate="'required|max:64'" data-vv-as="名称" class="w-25"></b-input>
         </jcc-field>
 
-        <jcc-field label="默认值" horizontal :type="errors.has('defaultValue') ? 'is-danger' : ''"
+        <jcc-field label="默认值" horizontal  class="required-field"
+                   :type="errors.has('defaultValue') ? 'is-danger' : ''"
                    :message="errors.first('defaultValue')">
           <b-input name="defaultValue" v-model="model.defaultValue"
                    v-validate="'required|max:32'" data-vv-as="默认值" class="w-25"></b-input>

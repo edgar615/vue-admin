@@ -88,6 +88,10 @@
 }
 /************/
 /*表单长度控制*/
+.field.required-field label:before {
+  content: '* ';
+  color: red;
+}
 .input-ll{
   width: 500px;
 }

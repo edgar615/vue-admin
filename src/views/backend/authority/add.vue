@@ -2,7 +2,7 @@
   <section>
     <div class="card">
       <div class="card-content">
-        <jcc-field label="权限值" horizontal
+        <jcc-field label="权限值" horizontal class="required-field"
                    :type="errors.has('permission') ? 'is-danger' : ''"
                    :message="errors.first('permission')">
           <b-input name="permission" v-model="model.permission"
@@ -10,7 +10,7 @@
                    data-vv-as="权限值" class="w-25"></b-input>
         </jcc-field>
 
-        <jcc-field label="名称" horizontal
+        <jcc-field label="名称" horizontal  class="required-field"
                    :type="errors.has('name') ? 'is-danger' : ''"
                    :message="errors.first('name')">
           <b-input name="name" v-model="model.name"

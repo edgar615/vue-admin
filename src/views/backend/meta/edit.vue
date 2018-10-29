@@ -2,7 +2,7 @@
   <section>
     <div class="card">
       <div class="card-content">
-        <jcc-field label="类型" horizontal
+        <jcc-field label="类型" horizontal class="required-field"
                    :type="errors.has('type') ? 'is-danger' : ''"
                    :message="errors.first('type')">
           <b-select name="type" expanded v-model="model.type"
@@ -15,25 +15,25 @@
             </option>
           </b-select>
         </jcc-field>
-        <jcc-field label="类目" horizontal
+        <jcc-field label="类目" horizontal class="required-field"
                    :type="errors.has('category') ? 'is-danger' : ''"
                    :message="errors.first('category')">
           <b-input name="category" v-model="model.category"
                    v-validate="'required|max:64'" data-vv-as="类目" class="w-50"></b-input>
         </jcc-field>
-        <jcc-field label="亚类" horizontal
+        <jcc-field label="亚类" horizontal class="required-field"
                    :type="errors.has('subcategory') ? 'is-danger' : ''"
                    :message="errors.first('subcategory')">
           <b-input name="subcategory" v-model="model.subcategory"
                    v-validate="'required|max:64'" data-vv-as="亚类" class="w-50"></b-input>
         </jcc-field>
-        <jcc-field label="名称" horizontal
+        <jcc-field label="名称" horizontal class="required-field"
                    :type="errors.has('name') ? 'is-danger' : ''"
                    :message="errors.first('name')">
           <b-input name="name" v-model="model.name"
                    v-validate="'required|max:64'" data-vv-as="名称" class="w-50"></b-input>
         </jcc-field>
-        <jcc-field label="别名" horizontal
+        <jcc-field label="别名" horizontal class="required-field"
                    :type="errors.has('alias') ? 'is-danger' : ''"
                    :message="errors.first('alias')">
           <b-input name="alias" v-model="model.alias"
