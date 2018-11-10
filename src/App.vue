@@ -51,7 +51,7 @@
             hidden: true
           }
         })
-        store.addRoutes(routes) // 动态添加可访问路由表
+        vm.$router.addRoutes(routes)  // 动态添加可访问路由表
       }
     }
   }

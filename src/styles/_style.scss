@@ -87,6 +87,13 @@
   border: 1px solid $grey !important;
 }
 /************/
+
+/*card*/
+.card-header{
+  border-bottom: 1px solid #ff6600;
+}
+/************/
+
 /*表单长度控制*/
 .field.required-field label:before {
   content: '* ';
