@@ -21,7 +21,7 @@
                    :type="errors.has('sorted') ? 'is-danger' : ''"
                    :message="errors.first('sorted')">
           <b-input name="sorted" expanded v-model="model.sorted"
-                   v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"
+                   v-validate="'required|numeric|min_value:0|max_value:99999'" data-vv-as="排序"
                    class="w-25">
           </b-input>
         </jcc-field>

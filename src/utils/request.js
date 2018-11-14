@@ -25,24 +25,27 @@ service.interceptors.response.use(
   response => {
     return response
   }, error => {
-  if (error.config.params && error.config.params.ignoreError === true) {
+    if (error.config.params && error.config.params.ignoreError === true) {
+      return Promise.reject(error)
+    }
+    var msg = '接口调用失败!'
+    if (error.response) {
+      let code = error.response.data.code
+      msg = store.getters.dictText('errorCode', code)
+      if (msg === '') {
+        msg = store.getters.dictText('defaultErrorCode', code)
+      }
+      if (msg === '') {
+        msg = '接口调用失败, code:' + code
+      }
+    }
+    Vue.prototype.$toast.open({
+      duration: 1500,
+      message: msg,
+      type: 'is-danger'
+    })
     return Promise.reject(error)
   }
-  var msg = '接口调用失败!'
-  if (error.response) {
-    var code = error.response.data.code
-    var errorMsg = store.getters.dictText('errorCode', code)
-    if (errorMsg === '') {
-      msg = '接口调用失败'
-    }
-  }
-  Vue.prototype.$toast.open({
-    duration: 1500,
-    message: msg,
-    type: 'is-danger'
-  })
-  return Promise.reject(error)
-}
 )
 
 export default service

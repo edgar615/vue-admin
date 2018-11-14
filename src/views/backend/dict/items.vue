@@ -5,7 +5,7 @@
         <b-field grouped group-multiline>
           <b-input v-model="filters.code" placeholder="字典编码"></b-input>
           <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData">
+            <button class="button is-primary" @click="loadAsyncData({page: 1})">
               <b-icon icon="magnify"></b-icon>
               <span>查询</span>
             </button>
@@ -28,6 +28,7 @@
         </div>
       </header>
       <div class="card-content">
+
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           bordered
@@ -102,7 +103,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModel(this, itemPage, params)
+        this.pageModelWithHistory(this, itemPage, params)
       },
       /*
        * Handle page-change event
@@ -118,8 +119,10 @@
           () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
-    filters: {},
+    filters: {
+    },
     created () {
+      this.fillParamFromHistory()
       this.loadAsyncData()
     }
   }
