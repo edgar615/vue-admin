@@ -32,12 +32,6 @@
         <a class="nav-item"><span class=" button is-success">Uploaded</span></a>
       </div>
     </div>
-    <div>
-      <region-select></region-select>
-    </div>
-    <div>
-      {{regionText(region)}}
-    </div>
   </div>
 </template>
 
