@@ -34,7 +34,7 @@ Vue.component('dynamic-select', dynamicSelect)
 
 Vue.config.productionTip = false
 
-Vue.prototype.$appName = '它宝智能宠物店运营平台'
+Vue.prototype.$appName = 'XXXX运营平台'
 Vue.prototype.$showLogo = false
 Vue.use(VueHtml5Editor, {
   // 配置图片模块

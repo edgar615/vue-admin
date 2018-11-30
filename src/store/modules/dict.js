@@ -11,7 +11,7 @@ const defaultErrorCode = {
     dictText: '未知用户',
     dictValue: 1001
   }, {
-    dictText: '未登陆用户',
+    dictText: '用户名或密码错误',
     dictValue: 1002
   }, {
     dictText: '用户名或密码错误',

@@ -4,14 +4,14 @@
       <router-link class="navbar-item logo" to="/" style="background: none">
         <!--<img class="m-auto" src="../../../assets/logo.png">-->
       </router-link>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="burgerClick()" :class="burgerToggle ? 'is-active' : ''">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="navMenu" class="navbar-menu">
+    <div id="navMenu" class="navbar-menu" :class="menuToggle ? 'is-active' : ''">
       <div class="navbar-start">
         <a v-for="system in systems" class="navbar-item" :class="activeSystem == system.subsystemId ? 'is-active' : '' "
            @click="onClickSystem(system.subsystemId)">
@@ -62,7 +62,10 @@
 <script>
   export default {
     data () {
-      return {}
+      return {
+        burgerToggle: true,
+        menuToggle: true
+      }
     },
     methods: {
       logout () {
@@ -79,16 +82,27 @@
         if (menus.length > 0 && menus[0].path) {
           this.$router.push(menus[0].path)
         }
+      },
+      burgerClick () {
+        this.burgerToggle = !this.burgerToggle
+        this.menuToggle = !this.menuToggle
+        console.log(this.burgerToggle)
+        console.log(this.menuToggle)
       }
     },
     computed: {
+      navbarNum () {
+        // 假设菜单占据3/5
+        return (this.$store.getters.screenWidth * 3 / 5) / 96
+      },
       user () {
         return this.$store.getters.user
       },
       groupSystems () {
         var groupSystem = []
+        const vm = this
         this.$store.getters.systemList().forEach(function (item, index, input) {
-          if (index >= 5) {
+          if (index >= vm.navbarNum) {
             groupSystem.push(item)
           }
         })
@@ -96,8 +110,9 @@
       },
       systems () {
         var systemArray = []
+        const vm = this
         this.$store.getters.systemList().forEach(function (item, index, input) {
-          if (index < 5) {
+          if (index < vm.navbarNum) {
             systemArray.push(item)
           }
         })
