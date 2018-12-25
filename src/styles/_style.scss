@@ -122,6 +122,19 @@
   margin-bottom: 0px;
 }
 
+/*按钮*/
+.table-button{
+  width: 110px;
+  height: 28px;
+  line-height: 28px;
+  background-color: $active-color;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
 
 /* 三角形 */

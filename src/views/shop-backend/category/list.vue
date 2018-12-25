@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="column is-one-fifth  is-size-7 vue-tree">
         <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
-                  @handle="itemClick"></vue-tree>
+                  @handle="itemClick" style="height: 500px;overflow-y: auto"></vue-tree>
       </div>
       <div class="column ml-2" v-show="viewCate">
         <div class="menus_box">

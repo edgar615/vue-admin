@@ -65,6 +65,11 @@ function fillParamFromHistory () {
     this.filters = this.$store.getters.queryHistory[this.$route.path]
   }
 }
+
+function clearListQueryHistory () {
+  this.$store.dispatch('saveListQueryHistory', {path: this.$route.path})
+}
+
 function getModel (vm, getApi, id) {
   vm.loading = true
   getApi(id).then(response => {

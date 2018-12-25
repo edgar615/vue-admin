@@ -39,7 +39,6 @@
           <div class="buttons">
             <router-link to="/application/add"
                          exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
               <span>新增</span>
             </router-link>
           </div>
