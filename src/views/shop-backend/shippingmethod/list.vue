@@ -1,27 +1,18 @@
 <template>
   <section>
-    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
-    <!--如果一行放不下，用多个section-->
-    <div class="wrap-box">
-      <!--头部盒子-->
-      <div class="message-box">
-        <!--上部分盒子-->
-        <div class="top-portion">
-          <div class="Input-box">
-            <b class="Input-title first-title">发货方式名称:</b>
-            <b-input v-model="filters.name" class="input-custom"></b-input>
-
-          </div>
-        </div>
-        <div class="bottom-btn">
-          <button class="search-btn" @click="loadAsyncData({page: 1})">
-            搜索
-          </button>
-          <button class="empty-btn" @click="clearData">
-            清空
-          </button>
-        </div>
+    <div class="card">
+      <div class="card-content">
+        <b-field grouped group-multiline>
+          <b-input v-model="filters.name" placeholder="发货方式"></b-input>
+          <p class="control ml-1">
+            <button class="button is-primary" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </b-field>
       </div>
+    </div>
       <div class="card mt-3 ">
         <header class="card-header">
           <div class="card-header-title">
@@ -89,17 +80,8 @@
           </b-table>
         </div>
       </div>
-
-    </div>
   </section>
 </template>
-<style>
-  .label {
-    height: 2rem;
-    line-height: 2rem;
-    color: #333333;
-  }
-</style>
 <script>
   import {deleteShippingMethod, shippingMethodPage} from '@/api/shop-backend/shippingmethod'
   import EmptyTable from '@/components/EmptyTable.vue'

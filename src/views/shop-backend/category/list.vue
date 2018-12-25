@@ -103,7 +103,7 @@
         options: {
           // Number,初始化时展开层级,根节点为0,默认0
           label: 'name',
-          depthOpen: 6,
+          depthOpen: 3,
           checkbox: false,
           showEdit: false,
           showDelete: false,
