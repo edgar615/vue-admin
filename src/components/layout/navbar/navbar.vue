@@ -63,8 +63,8 @@
   export default {
     data () {
       return {
-        burgerToggle: true,
-        menuToggle: true
+        burgerToggle: false,
+        menuToggle: false
       }
     },
     methods: {
@@ -86,8 +86,6 @@
       burgerClick () {
         this.burgerToggle = !this.burgerToggle
         this.menuToggle = !this.menuToggle
-        console.log(this.burgerToggle)
-        console.log(this.menuToggle)
       }
     },
     computed: {
