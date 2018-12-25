@@ -95,7 +95,7 @@
 /************/
 
 /*表单长度控制*/
-.field.required-field label:before {
+.field.required-field div.field-label label:before {
   content: '* ';
   color: red;
 }
@@ -283,10 +283,10 @@
   content: "";
 }
 
+
 .w-15 {
   width: 15% !important;
 }
-
 
 .w-25 {
   width: 25% !important;

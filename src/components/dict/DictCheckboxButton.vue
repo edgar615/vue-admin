@@ -3,7 +3,6 @@
     <b-checkbox-button v-model="model[paramName]"
                     :native-value="item.dictValue"
                     type="is-success" v-for="item in itemList" :key="item.dictValue">
-      <b-icon icon="lock-open-outline"></b-icon>
       <span>{{item.dictText}}</span>
     </b-checkbox-button>
   </b-field>

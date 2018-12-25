@@ -3,15 +3,13 @@
     <b-radio-button v-model="model[paramName]"
                     :native-value="item.dictValue"
                     type="is-success" v-for="item in itemList" :key="item.dictValue">
-      <b-icon icon="lock-open-outline"></b-icon>
       <span>{{item.dictText}}</span>
     </b-radio-button>
     <b-radio-button v-model="model[paramName]"
-                    native-value="" type="is-success">
+                    native-value="" type="is-success" v-if="showAll">
       全部
     </b-radio-button>
   </b-field>
-
 </template>
 
 <script>
@@ -20,6 +18,10 @@
     components: {
     },
     props: {
+      showAll: {
+        type: Boolean,
+        default: false
+      },
       dictCode: {
         type: String
       },

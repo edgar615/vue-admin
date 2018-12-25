@@ -21,9 +21,11 @@ import '@/utils/validate'
 // Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
 import JccField from '@/components/field'
 import JccMetaInput from '@/components/meta'
+import DictRadioButton from '@/components/dict'
 
 Vue.component('jcc-field', JccField)
 Vue.component('jcc-meta-input', JccMetaInput)
+Vue.component('dict-radio-button', DictRadioButton)
 
 Vue.config.productionTip = false
 
