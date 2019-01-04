@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar has-shadow">
     <div class="navbar-brand">
-      <router-link class="navbar-item logo" to="/" style="background: none">
-        <!--<img class="m-auto" src="../../../assets/logo.png">-->
-      </router-link>
+      <a class="navbar-item is--brand">
+        <img class="navbar-brand-logo" src="https://bulma.io/images/bulma-logo.png">
+      </a>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="burgerClick()" :class="burgerToggle ? 'is-active' : ''">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -35,7 +35,7 @@
           <span>{{user.username}}，您好</span>
         </a>
         <router-link class="navbar-item" to="/">
-          <b-icon icon="bell" data-badge="8" class="badge is-badge-danger"></b-icon>
+          <b-icon icon="bell" size="is-small" data-badge="8" class="badge is-badge-danger"></b-icon>
         </router-link>
         <div class="navbar-item is-hoverable">
           <a class="navbar-link">

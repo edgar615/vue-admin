@@ -1,66 +1,64 @@
-// 除bulma的变量修改外，直接修改顶部导航的样式
 .navbar{
+  background: #2E363F;
 
-  .logo {
-    background-color: $logo-background-color;
-    min-width: 118px;
-  }
-
-  &-item.brand-text {
-    font-weight: 700;
-    font-size: 1.25rem;
-    /*margin-left: 1.75rem;*/
-    margin-right: 5rem;
-  }
-
-  /*&-item{
+  &-item{
+    background-color: #2E363F;
+    color: #afb8c3 !important;
     &.is-active{
-      background-color: #262626 !important;
-      color: #ee5824 !important;
+      background-color: #f5f5f5 !important;
+      color: #363636 !important;
+      border-bottom-color: #00d1b2;
+      border-bottom-style: solid;
+      border-bottom-width: 3px;
+      color: #00d1b2;
+      padding-bottom: calc(.5rem - 3px);
     }
     &:hover {
-      background-color: #464646 !important;
-      color: findColorInvert(#464646) !important;
+      background-color: #f5f5f5 !important;
+      color: #363636 !important;
+      border-bottom-color: #00d1b2;
+      border-bottom-style: solid;
+      border-bottom-width: 0.666667px;
     }
   }
 
   .is--brand{
     &:hover {
-      background-color: #333333 !important;
+      background-color: #2E363F !important;
     }
   }
 
   &-brand-logo{
     max-height: 3rem !important;
-    background-color: $white;
+    background-color: #fff;
     border-radius: .25em;
     padding: .25em;
   }
 
   &-dropdown{
     .navbar-item{
-      &:hover {
-        background-color: #333333 !important;
-        color: findColorInvert(#333333) !important;
-      }
+      background-color: #fff;
     }
   }
 
   &-burger{
-    background-color: #262626 !important;
+    background-color: #2E363F !important;
     border: 0;
     span{
-      background-color: $white;
+      background-color: #00d1b2;
     }
   }
-*/
+
   &-link{
-    font-weight: 700;
-    /*figure{
+    figure{
       img{
         border-radius: 50%;
         max-height: 2em;
       }
-    }*/
+    }
   }
+}
+
+.breadcrumb:not(:last-child){
+  margin-bottom: 0;
 }

@@ -8,7 +8,7 @@ import ErrorPage from '@/components/error/page-500.vue'
 import TokenPage from '@/components/error/page-401.vue'
 import AuthPage from '@/components/error/page-403.vue'
 import Layout from '@/components/layout/Layout.vue'
-import Login from '@/views/login/login2.vue'
+import Login from '@/views/login/login.vue'
 
 // 异步加载的模块
 // var Notfound =  resolve => require(['@/components/notfound/page-404.vue'], resolve);
