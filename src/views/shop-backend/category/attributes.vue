@@ -29,17 +29,17 @@
 
               <template slot-scope="props">
 
-                <b-table-column field="type" label="类型" centered>
+                <b-table-column field="type" label="类型">
                   {{ dictText(this, 'attributeType',props.row.type) }}
                 </b-table-column>
 
-                <b-table-column field="name" label="属性名" centered>
+                <b-table-column field="name" label="属性名">
                   {{ props.row.name }}
                 </b-table-column>
-                <b-table-column field="alias" label="别名" centered>
+                <b-table-column field="alias" label="别名">
                   {{ props.row.alias }}
                 </b-table-column>
-                <b-table-column field="alias" label="规格属性" centered>
+                <b-table-column field="alias" label="规格属性">
                   {{ props.row.specAttr }}
                 </b-table-column>
 

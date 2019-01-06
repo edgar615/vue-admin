@@ -32,7 +32,6 @@
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -50,15 +49,15 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="sorted" label="请求方法" centered>
+            <b-table-column field="sorted" label="请求方法">
               {{ props.row.httpMethod }}
             </b-table-column>
 
-            <b-table-column field="httpUrl" label="接口地址" centered>
+            <b-table-column field="httpUrl" label="接口地址">
               {{ props.row.httpUrl }}
             </b-table-column>
 
-            <b-table-column field="permission" label="权限范围" centered>
+            <b-table-column field="permission" label="权限范围">
               {{ props.row.permission }}
             </b-table-column>
 

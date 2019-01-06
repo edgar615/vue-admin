@@ -40,11 +40,11 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="name" label="名称" centered>
+            <b-table-column field="name" label="名称">
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="sysIdentifier" label="标识符" centered>
+            <b-table-column field="sysIdentifier" label="标识符">
               {{ props.row.sysIdentifier }}
             </b-table-column>
 
@@ -56,7 +56,7 @@
                {{ props.row.icon }}
             </b-table-column>
 
-            <b-table-column field="internal" label="内部?" centered>
+            <b-table-column field="internal" label="内部?">
               <span class="tag" :class="internalClass(props.row.internal)">{{ dictText(this, "internal",props.row.internal) }}</span>
             </b-table-column>
 

@@ -62,15 +62,15 @@
               {{ props.row.companyCode }}
             </b-table-column>
 
-            <b-table-column field="name" label="名称" centered>
+            <b-table-column field="name" label="名称">
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="state" label="状态" centered>
+            <b-table-column field="state" label="状态">
               <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, "companyState",props.row.state) }}</span>
             </b-table-column>
 
-            <b-table-column field="address" label="地址" centered>
+            <b-table-column field="address" label="地址">
               {{ props.row.address }}
             </b-table-column>
 

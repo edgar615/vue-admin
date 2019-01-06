@@ -1,8 +1,7 @@
 <template>
   <div>
-    <!-- 使用路由生成菜单 -->
     <div v-for="level1 in level1List" :key="level1.sysPermissionId">
-      <a class="menu-title" v-show="level1.type == 3" @click="onClickModule(level1.sysPermissionId)">
+      <a class="menu-title" v-if="level1.type == 3" @click="onClickModule(level1.sysPermissionId)">
         <b-icon :icon="level1.icon" size="is-small"></b-icon>
         <span>{{level1.name}}</span>
         <b-icon class="is-pulled-right" size="is-small" icon="chevron-right" v-show="clickedModule != level1.sysPermissionId && activeModule  != level1.sysPermissionId "

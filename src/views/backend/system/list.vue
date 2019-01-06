@@ -29,26 +29,25 @@
       <header class="card-header">
         <div class="card-header-title">
           子系统列表
-          <div class="ml-3 buttons">
-            <span class="button is-danger" @click="onDeleteCheckedRows"
-                  :disabled="!checkedRows.length"
-                  :class="{'is-loading' : deleting}">
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/backend/system/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
+          <button class="button is-danger" @click="onDeleteCheckedRows"
+                :disabled="!checkedRows.length"
+                :class="{'is-loading' : deleting}">
               <b-icon icon="delete-outline"></b-icon>
               <span>删除</span>
-            </span>
-            <router-link to="/backend/system/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+            </button>
         </div>
       </header>
 
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -75,27 +74,27 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="sorted" label="排序" numeric sortable centered>
+            <b-table-column field="sorted" label="排序" numeric sortable width="100">
               {{ props.row.sorted }}
             </b-table-column>
 
-            <b-table-column field="name" label="名称" centered>
+            <b-table-column field="name" label="名称">
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="sysIdentifier" label="标识符" centered>
+            <b-table-column field="sysIdentifier" label="标识符">
               {{ props.row.sysIdentifier }}
             </b-table-column>
 
-            <b-table-column field="type" label="类型" centered>
+            <b-table-column field="type" label="类型">
               {{ dictText(this, 'systemType',props.row.type) }}
             </b-table-column>
 
-            <b-table-column field="type" label="图标" centered>
+            <b-table-column field="type" label="图标">
               {{ props.row.icon }}
             </b-table-column>
 
-            <b-table-column field="internal" label="内部访问?" centered>
+            <b-table-column field="internal" label="内部访问?">
               <span class="tag" :class="internalClass(props.row.internal)">{{ boolText(props.row.internal) }}</span>
             </b-table-column>
 

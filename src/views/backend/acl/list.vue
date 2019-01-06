@@ -27,19 +27,18 @@
       <header class="card-header">
         <div class="card-header-title">
           数据权限
-          <div class="ml-3 buttons">
-            <router-link to="/backend/acl/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/backend/acl/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed

@@ -78,6 +78,14 @@
   padding-left: 0.75rem;
 }*/
 
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 //边框
 .box-shadow {
   box-shadow: 0 2px 3px $grey, 0 0 0 1px $grey;
@@ -91,6 +99,7 @@
 /*card*/
 .card-header{
   border-bottom: 1px solid #ff6600;
+  background: #f1f1f1;
 }
 /************/
 

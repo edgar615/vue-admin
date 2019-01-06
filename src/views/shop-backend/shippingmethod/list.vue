@@ -17,13 +17,13 @@
         <header class="card-header">
           <div class="card-header-title">
             发货方式列表
-            <div class="ml-3 buttons">
-              <router-link to="/shop-backend/shippingmethod/add"
-                           exact class="button is-primary">
-                <b-icon icon="plus-circle-outline"></b-icon>
-                <span>新增</span>
-              </router-link>
-            </div>
+          </div>
+          <div class="mr-3 buttons is-right">
+            <router-link to="/shop-backend/shippingmethod/add"
+                         exact class="button is-primary">
+              <b-icon icon="plus-circle-outline"></b-icon>
+              <span>新增</span>
+            </router-link>
           </div>
         </header>
 
@@ -31,7 +31,6 @@
 
           <!--buefy的表格组件，具体用法查阅文档-->
           <b-table
-            bordered
             striped
             hoverable
             narrowed
@@ -49,22 +48,22 @@
           >
 
             <template slot-scope="props">
-              <b-table-column field="name" label="发货方式" centered>
+              <b-table-column field="name" label="发货方式">
                 {{props.row.name}}
               </b-table-column>
-              <b-table-column field="shippingCompanyName" label="物流公司" centered>
+              <b-table-column field="shippingCompanyName" label="物流公司">
                 {{ props.row.shippingCompanyName }}
               </b-table-column>
-              <b-table-column field="contact" label="联系人" centered>
+              <b-table-column field="contact" label="联系人">
                 {{ props.row.contact }}
               </b-table-column>
-              <b-table-column field="contactNumber" label="联系电话" centered>
+              <b-table-column field="contactNumber" label="联系电话">
                 {{ props.row.contactNumber}}
               </b-table-column>
-              <b-table-column field="freight" label="创建时间" centered>
+              <b-table-column field="freight" label="创建时间">
                 {{ DateUtils.formatToDateTimeHMS(props.row.addOn*1000)}}
               </b-table-column>
-              <b-table-column label="操作" centered>
+              <b-table-column label="操作">
                 <router-link class="table-compile"
                              :to="{path:  '/shop-backend/shippingmethod/' +props.row.shippingMethodId +'/edit'}">
                   编辑

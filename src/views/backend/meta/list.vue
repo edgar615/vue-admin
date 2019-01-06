@@ -19,20 +19,19 @@
       <header class="card-header">
         <div class="card-header-title">
           元数据列表
-          <div class="ml-3 buttons">
-            <router-link to="/backend/meta/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/backend/meta/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
 
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -56,18 +55,18 @@
               {{ props.row.category }}
             </b-table-column>
 
-            <b-table-column field="subcategory" label="亚类" centered>
+            <b-table-column field="subcategory" label="亚类">
               {{ props.row.subcategory }}
             </b-table-column>
 
-            <b-table-column field="type" label="类型" centered>
+            <b-table-column field="type" label="类型">
               {{ dictText(this, 'metadataType',props.row.type) }}
             </b-table-column>
 
-            <b-table-column field="name" label="属性名" centered>
+            <b-table-column field="name" label="属性名">
               {{ props.row.name }}
             </b-table-column>
-            <b-table-column field="alias" label="别名" centered>
+            <b-table-column field="alias" label="别名">
               {{ props.row.alias }}
             </b-table-column>
 

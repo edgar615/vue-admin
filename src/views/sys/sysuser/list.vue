@@ -38,20 +38,19 @@
       <header class="card-header">
         <div class="card-header-title">
           用户列表
-          <div class="ml-3 buttons">
-            <router-link to="/sys/sysuser/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/sys/sysuser/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
 
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -71,15 +70,15 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="username" label="用户名" centered>
+            <b-table-column field="username" label="用户名">
               {{ props.row.username }}
             </b-table-column>
 
-            <b-table-column field="fullname" label="姓名" centered>
+            <b-table-column field="fullname" label="姓名">
               {{ props.row.fullname }}
             </b-table-column>
 
-            <b-table-column field="state" label="状态" centered>
+            <b-table-column field="state" label="状态">
               <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'userState',props.row.state) }}</span>
             </b-table-column>
 

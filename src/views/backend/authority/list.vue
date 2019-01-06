@@ -20,19 +20,18 @@
       <header class="card-header">
         <div class="card-header-title">
           接口权限
-          <div class="ml-3 buttons">
-            <router-link to="/backend/authority/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/backend/authority/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -58,20 +57,20 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="name" label="名称" centered>
+            <b-table-column field="name" label="名称">
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="permission" label="权限值" centered>
+            <b-table-column field="permission" label="权限值">
               {{ props.row.permission }}
             </b-table-column>
 
-            <b-table-column field="type" label="允许匿名" centered>
+            <b-table-column field="type" label="允许匿名">
               {{ boolText(props.row.allowAnonymous) }}
             </b-table-column>
 
 
-            <b-table-column field="internal" label="内部访问?" centered>
+            <b-table-column field="internal" label="内部访问?">
               {{ boolText(props.row.internal) }}
             </b-table-column>
 

@@ -39,20 +39,19 @@
       <header class="card-header">
         <div class="card-header-title">
           公司列表
-          <div class="ml-3 buttons">
-            <router-link to="/company/add"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link to="/company/add"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
 
       <div class="card-content">
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -74,27 +73,27 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="companyCode" label="公司编码" centered>
+            <b-table-column field="companyCode" label="公司编码">
               {{ props.row.companyCode }}
             </b-table-column>
 
-            <b-table-column field="name" label="名称" centered>
+            <b-table-column field="name" label="名称">
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="state" label="状态" centered>
+            <b-table-column field="state" label="状态">
               <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'companyState',props.row.state) }}</span>
             </b-table-column>
 
-            <b-table-column field="state" label="类型" centered>
+            <b-table-column field="state" label="类型">
               {{ dictText(this, 'companyType',props.row.type) }}
             </b-table-column>
 
-            <b-table-column field="name" label="添加时间" centered>
+            <b-table-column field="name" label="添加时间">
               {{ props.row.addOn }}
             </b-table-column>
 
-            <b-table-column field="name" label="管理员" centered>
+            <b-table-column field="name" label="管理员">
               {{ props.row.username }}
             </b-table-column>
 

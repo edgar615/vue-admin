@@ -18,20 +18,19 @@
       <header class="card-header">
         <div class="card-header-title">
           字典子项列表
-          <div class="ml-3 buttons">
-            <router-link :to="{path: '/backend/dict/' + dictId + '/item-add'}"
-                         exact class="button is-primary">
-              <b-icon icon="plus-circle-outline"></b-icon>
-              <span>新增</span>
-            </router-link>
-          </div>
+        </div>
+        <div class="mr-3 buttons is-right">
+          <router-link :to="{path: '/backend/dict/' + dictId + '/item-add'}"
+                       exact class="button is-primary">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </router-link>
         </div>
       </header>
       <div class="card-content">
 
         <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
-          bordered
           striped
           hoverable
           narrowed
@@ -50,14 +49,14 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="dictText" label="文本" centered>
+            <b-table-column field="dictText" label="文本">
               {{ props.row.dictText }}
             </b-table-column>
 
-            <b-table-column field="dictValue" label="值" centered>
+            <b-table-column field="dictValue" label="值">
               {{ props.row.dictValue }}
             </b-table-column>
-            <b-table-column field="sorted" label="排序" centered>
+            <b-table-column field="sorted" label="排序">
               {{ props.row.sorted }}
             </b-table-column>
 

@@ -416,7 +416,7 @@
 <style scoped>
   .directory-wrap.vue-tree{
     background-color: white!important;
-    margin: 0 20px;
+    margin: 0 10px;
   }
 
   .install-wrap{
