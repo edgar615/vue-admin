@@ -1,0 +1,83 @@
+.contact-chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.contact-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  .contact-card-container {
+    padding: 2px 16px;
+  }
+  img {
+    border-radius: 5px 5px 0 0;
+  }
+}
+
+.contact-flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  .contact-flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
+  &:hover {
+    .contact-flip-card-inner {
+      transform: rotateY(180deg);
+    }
+  }
+  .contact-flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: dodgerblue;
+    color: white;
+    transform: rotateY(180deg);
+  }
+  .contact-flip-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #bbb;
+    color: black;
+  }
+}

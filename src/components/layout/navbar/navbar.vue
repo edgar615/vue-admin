@@ -37,7 +37,7 @@
         <router-link class="navbar-item" to="/">
           <b-icon icon="bell" size="is-small" data-badge="8" class="badge is-badge-danger"></b-icon>
         </router-link>
-        <div class="navbar-item is-hoverable">
+        <div class="navbar-item is-hoverable ml-2">
           <a class="navbar-link">
             <span>我的空间</span>
           </a>
