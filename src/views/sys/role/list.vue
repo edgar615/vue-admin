@@ -16,21 +16,21 @@
           <b-field label="排序" horizontal class="static-field">
             <p class="control">{{model.sorted}}</p>
           </b-field>
-          <b-field><!-- Label left empty for spacing -->
+          <b-field v-if="model.sysRoleId"><!-- Label left empty for spacing -->
             <p class="control"
                style="padding-left: 100px; margin-top: 50px;">
-              <button class="button" @click="onAdd(model.sysRoleId)">
+              <button class="role-button" @click="onAdd(model.sysRoleId)">
                 <span>新增角色</span>
               </button>
-              <button class="button" @click="onEdit">
+              <button class="role-button" @click="onEdit">
                 <span>修改角色</span>
               </button>
-              <button class="button is-danger"
+              <button class="role-button" style="background-color: crimson;"
                       @click="onDelete(model.sysRoleId)"
                       :class="{'is-loading' : deleting}">
                 <span>删除</span>
               </button>
-              <button class="button is-primary"
+              <button class="role-button"
                       @click="onPermit(model.sysRoleId)">
                 <span>授权</span>
               </button>
@@ -82,7 +82,7 @@
                   @handle="menuClick" style="height: 500px;overflow-y: auto"></vue-tree>
         <p style="text-align: center;width: 100%;margin-top: 20px;">
           <button class="button is-primary is-small submit" @click="savePermit"
-                  :class="{'is-loading' : saving}">
+                  :class="{'is-loading' : saving}" style="width: 110px;">
             保存授权
           </button>
         </p>
@@ -199,6 +199,7 @@
           this.viewRole = true
           this.addRole = false
           this.rolePermit = false
+          this.model = {}
           getRole(id).then(response => {
             this.model = response.data
           })
@@ -416,7 +417,20 @@
 <style scoped>
   .directory-wrap.vue-tree{
     background-color: white!important;
-    margin: 0 10px;
+    margin: 0 20px;
+  }
+
+  .role-button{
+    width: 110px;
+    height: 28px;
+    line-height: 28px;
+    background-color: #ff6600;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+    cursor: pointer;
   }
 
   .install-wrap{
