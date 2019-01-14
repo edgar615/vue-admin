@@ -30,13 +30,6 @@
             </b-field>
           </div>
         </div>
-        <div class="card-header-right buttons">
-          <router-link to="/sms/tpl/add"
-                       exact class="button is-primary">
-            <b-icon icon="plus-circle-outline"></b-icon>
-            <span>新增</span>
-          </router-link>
-        </div>
       </header>
       <div class="card-content">
 
