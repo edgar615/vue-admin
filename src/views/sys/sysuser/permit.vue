@@ -7,7 +7,6 @@
       <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
         <b-table
           narrowed
-          bordered
           mobile-cards
 
           :loading="loading"

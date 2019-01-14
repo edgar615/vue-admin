@@ -52,7 +52,7 @@ function pageModelWithHistory (vm, pageApi, params) {
   }
   vm.loading = true
   return pageApi(params).then(response => {
-    vm.$store.dispatch('saveListQueryHistory', {path: vm.$route.path, query: params})
+    vm.$store.dispatch('saveListQueryHistory', {path: vm.$route.path, query: JSON.stringify(params)})
     vm.pagination = response.data
     vm.loading = false
   }).catch(err => {
@@ -62,7 +62,7 @@ function pageModelWithHistory (vm, pageApi, params) {
 
 function fillParamFromHistory () {
   if (this.$store.getters.queryHistory[this.$route.path]) {
-    this.filters = this.$store.getters.queryHistory[this.$route.path]
+    this.filters = JSON.parse(this.$store.getters.queryHistory[this.$route.path])
   }
 }
 

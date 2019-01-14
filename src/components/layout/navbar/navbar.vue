@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar has-shadow">
+  <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item is--brand">
         <img class="navbar-brand-logo" src="https://bulma.io/images/bulma-logo.png">
@@ -34,7 +34,7 @@
         <a class="navbar-item">
           <span>{{user.username}}，您好</span>
         </a>
-        <router-link class="navbar-item" to="/">
+        <router-link class="navbar-item nav-tag" to="/">
           <b-icon icon="bell" size="is-small" data-badge="8" class="badge is-badge-danger"></b-icon>
         </router-link>
         <div class="navbar-item is-hoverable ml-2">

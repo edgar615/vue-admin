@@ -1,0 +1,11 @@
+.card-header {
+  border-bottom: 1px solid $active-color;
+  background: #f5f5f5;
+
+  .card-header-left {
+    margin-left: 1rem !important;
+  }
+  .card-header-right {
+    margin-right: 1rem !important;
+  }
+}

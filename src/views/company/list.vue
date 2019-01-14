@@ -40,7 +40,7 @@
         <div class="card-header-title">
           公司列表
         </div>
-        <div class="mr-3 buttons is-right">
+        <div class="card-header-right buttons">
           <router-link to="/company/add"
                        exact class="button is-primary">
             <b-icon icon="plus-circle-outline"></b-icon>

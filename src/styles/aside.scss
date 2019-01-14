@@ -1,13 +1,31 @@
 /*侧边栏*/
+$aside-background-color: #2E363F !default
+$aside-hover-background-color: #ffffff;
+$aside-active-background-color: #2E363F !default
+$aside-menu-background-color: #2E363F !default
+$aside-menu-active-background-color: $blue-dark !default
+$side-menu-background-color: $aside-background-color !default
+$side-menu-hover-background-color: #2E363F !default
+$side-menu-active-background-color: $aside-menu-background-color !default
+$side-menu-active-color: $active-color !default
+
 .menu-label {
   font-weight: 700;
   /*font-size: 1.25rem;*/
 }
+.menu-label{
+  color: #00d1b2;
+  font-weight: 700;
+  margin-left: .5em;
+}
+
 .is-sidebar-menu {
   /*padding: 1.5rem;*/
 }
-.menu-list .ul {
-  margin-left: 1rem;
+.menu-list {
+  li {
+    margin-top: .5em
+  }
 }
 
 //默认
@@ -25,12 +43,13 @@
 .menu-title {
   padding: 5px;
   background-color:  $aside-menu-background-color;
-  color: findColorInvert($aside-menu-background-color);
+  color: #afb8c3;
   text-decoration: none;
   display: block;
   /*font-size: 1.2rem;*/
   &:hover {
-    color: findColorInvert($aside-background-color);
+    color: findColorInvert($aside-hover-background-color);
+    background-color: $aside-hover-background-color;
   }
   &.active {
     background-color: $aside-background-color;

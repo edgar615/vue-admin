@@ -30,7 +30,7 @@
         <div class="card-header-title">
           子系统列表
         </div>
-        <div class="mr-3 buttons is-right">
+        <div class="card-header-right buttons">
           <router-link to="/backend/system/add"
                        exact class="button is-primary">
             <b-icon icon="plus-circle-outline"></b-icon>

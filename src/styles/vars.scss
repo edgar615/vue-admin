@@ -7,25 +7,17 @@
 $main-color: #333333;
 $top-color: #262626;
 $main-color-dark: $blue-dark;
-$active-color: #ff6600;
+$active-color: $primary;
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
-$baseColors: (
+/*$baseColors: (
   "primary":($active-color, findColorInvert($active-color)),
   "bg-navbar" : ($main-color, findColorInvert($main-color)),
 );
-$colors: map-merge($colors,$baseColors);
+$colors: map-merge($colors,$baseColors);*/
 $body-background-color: #F8FAFC !default
 
 $logo-background-color: #ffffff !default;
-$aside-background-color: #333333 !default
-$aside-hover-background-color: #464646;
-$aside-active-background-color: #262626 !default
-$aside-menu-background-color: #464646 !default
-$aside-menu-active-background-color: $blue-dark !default
-$side-menu-background-color: $aside-background-color !default
-$side-menu-hover-background-color: #262626 !default
-$side-menu-active-background-color: $aside-menu-background-color !default
-$side-menu-active-color: $active-color !default
+
 ////////////////////////////////////////////////
 
 // 导航栏
@@ -69,7 +61,6 @@ $side-menu-font-size: 14px;
   }
 }
 
-//@import "./skins/dark-blue";
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
@@ -81,5 +72,4 @@ $side-menu-font-size: 14px;
 @import "./navbar";
 @import "./aside";
 @import "./tree";
-@import "./dot";
-//@import "./skins/dark-blue-extensions";
+@import "./card";

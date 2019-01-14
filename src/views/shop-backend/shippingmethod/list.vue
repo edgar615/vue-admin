@@ -18,7 +18,7 @@
           <div class="card-header-title">
             发货方式列表
           </div>
-          <div class="mr-3 buttons is-right">
+          <div class="card-header-right buttons">
             <router-link to="/shop-backend/shippingmethod/add"
                          exact class="button is-primary">
               <b-icon icon="plus-circle-outline"></b-icon>

@@ -31,7 +31,7 @@
           <b-field label="默认地址?" horizontal class="static-field" v-show="model.type == 1">
             <p class="control">{{model.acquiescent}}</p>
           </b-field>
-          <b-field><!-- Label left empty for spacing -->
+          <b-field v-if="model.sysPermissionId">
             <p class="control"
                style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
               <button class="button is-primary" @click="onAdd(model.sysPermissionId)"
@@ -194,7 +194,8 @@
       },
       itemClick (item) {
         const id = item.id
-        if (id == -1 || id == undefined) {
+        this.model = {}
+        if (id === -1 || id === undefined) {
           this.addMenu = true
           this.viewMenu = false
           this.model = {parentId: id, subsystemId: this.subsystemId}

@@ -21,7 +21,7 @@
         <div class="card-header-title">
           接口权限
         </div>
-        <div class="mr-3 buttons is-right">
+        <div class="card-header-right buttons">
           <router-link to="/backend/authority/add"
                        exact class="button is-primary">
             <b-icon icon="plus-circle-outline"></b-icon>
