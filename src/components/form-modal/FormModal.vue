@@ -2,12 +2,12 @@
   <transition :name="animation">
     <div class="form-modal">
       <div class="form-modal-background"></div>
-      <div id="form-modal" class="form-modal-card" :style="{ maxWidth: newWidth, top: newTop}">
+      <div class="form-modal-card" :style="{ maxWidth: newWidth}">
         <header class="form-modal-card-header">
           <div class="form-modal-card-title">
             {{name}}
           </div>
-          <a class="is-pulled-right" aria-hidden="true" @click="cancel()">
+          <a class="form-modal-close" aria-hidden="true" @click="cancel()">
             <b-icon icon="close" size="is-small"></b-icon>
           </a>
         </header>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import {removeElement, getViewPort, getDocumentPort} from '../../utils/helpers'
+  import {removeElement} from '../../utils/helpers'
 
   export default {
     name: 'FormModal',
@@ -75,31 +75,12 @@
     },
     methods: {
       handleScroll () {
-        if (typeof window === 'undefined') {
-          return
-        }
-        this.savedScrollTop = !this.savedScrollTop
-          ? document.documentElement.scrollTop
-          : this.savedScrollTop
-        console.log(this.savedScrollTop)
-        // console.log(getDocumentPort().height)
-        // console.log(getViewPort().height)
-        // console.log(document.documentElement.scrollTop)
-        // console.log(this.isActive)
-        // console.log(this.$el)
+        if (typeof window === 'undefined') return
         if (this.isActive) {
-          document.body.classList.add('is-noscroll')
-          // document.getElementsByClassName('form-modal-card')[0].style.top = !this.savedScrollTop ? 0 : `${this.savedScrollTop}px`
+          document.documentElement.classList.add('is-clipped')
         } else {
-          document.body.classList.remove('is-noscroll')
+          document.documentElement.classList.remove('is-clipped')
         }
-        // if (this.isActive) {
-        //   document.body.style.top = `-${this.savedScrollTop}px`
-        //   return
-        // }
-        // document.documentElement.scrollTop = this.savedScrollTop
-        // document.body.style.top = null
-        // this.savedScrollTop = null
       },
       cancel (method) {
         this.close()

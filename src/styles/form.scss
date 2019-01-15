@@ -71,11 +71,11 @@ $form-modal-card-head-background-color: #f5f5f5 !default.field.required-field di
   }
   &-card {
     overflow: auto;
-    margin-top: 62px;
+    //margin-top: 62px;
     width: 50%;
-    top: 0;
+    bottom: 0;
     right: 0;
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     height: calc(100vh - 65px);
     background-color: #ffffff;
@@ -83,6 +83,7 @@ $form-modal-card-head-background-color: #f5f5f5 !default.field.required-field di
     &-body {
       padding: 20px;
       margin-bottom: 56px;
+      bottom: 56px;
     }
 
     &-header, &-footer {
