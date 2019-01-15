@@ -31,6 +31,14 @@
         this.$router.push(nextPath)
       }
     },
+    mounted () {
+      const vm = this
+      window.onresize = () => {
+        return (() => {
+          vm.$store.dispatch('windowResize', {width: document.body.clientWidth})
+        })()
+      }
+    },
     created () {
       const vm = this
       const store = vm.$store

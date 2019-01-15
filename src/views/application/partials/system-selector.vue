@@ -47,11 +47,11 @@
               {{ props.row.sysIdentifier }}
             </b-table-column>
 
-            <b-table-column field="type" label="类型"  centered >
+            <b-table-column field="type" label="类型"  >
               {{ dictText(this, "systemType",props.row.type) }}
             </b-table-column>
 
-            <b-table-column field="type" label="图标"  centered >
+            <b-table-column field="type" label="图标"  >
                {{ props.row.icon }}
             </b-table-column>
 

@@ -77,7 +77,7 @@
             <b-table-column label="操作">
               <router-link :to="{path:  '/backend/authority/' +props.row.authorityScopeId + '/edit' }"
                            exact class="button is-small" title="修改">
-                <b-icon icon="circle-edit-outline"></b-icon>
+                修改
               </router-link>
               <button class="button is-danger is-small" @click="onDelete(props.row.authorityScopeId)"
                       title="删除" :class="{'is-loading' : deleting}">

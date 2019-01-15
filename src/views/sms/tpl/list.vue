@@ -13,16 +13,15 @@
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          <router-link to="/sms/tpl/add"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
           <div class="card-header-left">
             <b-field grouped group-multiline>
               <b-input v-model="filters.identifier" placeholder="标识符"></b-input>
               <p class="control ml-1">
-                <button class="button is-primary" @click="loadAsyncData({page: 1})">
+                <button class="button" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
                   <span>查询</span>
                 </button>
@@ -53,19 +52,19 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="smsTplIdentifier" label="标识符" centered>
+            <b-table-column field="smsTplIdentifier" label="标识符">
               {{ props.row.smsTplIdentifier }}
             </b-table-column>
 
-            <b-table-column field="signName" label="短信签名" centered>
+            <b-table-column field="signName" label="短信签名">
               {{ props.row.signName }}
             </b-table-column>
 
-            <b-table-column field="smsTpl" label="短信模板" centered>
+            <b-table-column field="smsTpl" label="短信模板">
               {{ props.row.smsTpl }}
             </b-table-column>
 
-            <b-table-column field="expireSecond" label="过期时间" centered>
+            <b-table-column field="expireSecond" label="过期时间">
               {{ props.row.expireSecond }}
             </b-table-column>
 
@@ -81,25 +80,25 @@
         </b-table>
       </div>
     </div>
-
-
   </section>
 </template>
 
 <script>
   import {page, del} from '@/api/sms/tpl'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/sms/tpl/add.vue'
 
   export default {
     data () {
       return {
+        isAddModalActive: false,
         filters: {},
         pagination: {},
         loading: false
       }
     },
     components: {
-      EmptyTable
+      EmptyTable,AddForm
     },
     methods: {
       /*
@@ -112,13 +111,21 @@
        * Handle page-change event
        */
       onPageChange (page) {
-        if (this.pagination.page != page) {
+        if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
       },
       onDelete (id) {
         del(id).then(response => {
           this.loadAsyncData({page: this.pagination.page})
+        })
+      },
+      addModal () {
+        this.$formModal.open({
+          parent: this,
+          name: '新增模板',
+          width: '20%',
+          component: AddForm
         })
       }
     },

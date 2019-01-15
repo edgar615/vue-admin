@@ -1,0 +1,28 @@
+a {
+  color: #00d1b2;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.is-noscroll {
+  //position:fixed;
+  overflow:hidden;
+  width:100%;
+  //top:0
+}
+
+
+//边框
+.box-shadow {
+  box-shadow: 0 2px 3px $grey, 0 0 0 1px $grey;
+  box-size: border-box;
+}
+.border-1 {
+  border: 1px solid $grey !important;
+}

@@ -4,37 +4,15 @@
 //https://bulma.io/documentation/overview/variables/
 @import "./colors";
 
-$main-color: #333333;
-$top-color: #262626;
-$main-color-dark: $blue-dark;
-$active-color: $primary;
+$pagination-current-background-color: $primary;
+$pagination-current-border-color: $primary;
+
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 /*$baseColors: (
   "primary":($active-color, findColorInvert($active-color)),
   "bg-navbar" : ($main-color, findColorInvert($main-color)),
 );
 $colors: map-merge($colors,$baseColors);*/
-$body-background-color: #F8FAFC !default
-
-$logo-background-color: #ffffff !default;
-
-////////////////////////////////////////////////
-
-// 导航栏
-//$navbar-background-color: $main-color;
-//$navbar-item-color: $white;
-//$navbar-item-hover-background-color: #464646;
-//$navbar-item-hover-color: findColorInvert(#464646);
-//$navbar-item-active-background-color: #262626;
-//$navbar-shadow: none;
-//$navbar-fontSize: 14px;
-//$navbar-item-active-color: $active-color;
-//$navbar-dropdown-background-color: $navbar-background-color;
-//$navbar-dropdown-item-hover-background-color: $navbar-item-hover-color;
-//$navbar-dropdown-item-active-background-color:  $navbar-background-color;
-
-//左边字体大小
-$side-menu-font-size: 14px;
 
   ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色
@@ -63,13 +41,18 @@ $side-menu-font-size: 14px;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
-@import "~buefy/src/scss/buefy";
+//@import "~buefy/src/scss/buefy";
 @import './bulma-badge';
 @import './pageloader';
 @import './bulma-steps';
-@import "./_style";
-@import "./nav";
+@import "./basic";
+@import "./layout";
+@import "./breadcrumb";
+@import "./form";
+@import "./helper";
 @import "./navbar";
 @import "./aside";
 @import "./tree";
 @import "./card";
+@import "./layer";
+@import "./transition";

@@ -22,6 +22,7 @@ import '@/utils/validate'
 import JccField from '@/components/field'
 import JccMetaInput from '@/components/meta'
 import DictRadioButton from '@/components/dict'
+import FormModal from '@/components/form-modal'
 
 Vue.component('jcc-field', JccField)
 Vue.component('jcc-meta-input', JccMetaInput)

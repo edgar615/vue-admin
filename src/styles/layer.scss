@@ -1,24 +1,24 @@
 //vue-layer
-.btn-primary{
-  background: $main-color !important;
-  border: 1px solid $main-color !important;
+$layer-btn-background-color: #00d1b2;
+$layer-btn-hover-background-color: darken($layer-btn-background-color, 2.5%);
+
+.notify-btn-primary{
+  background: $layer-btn-background-color !important;
+  border: 1px solid $layer-btn-background-color !important;
 }
 
-.btn-primary:hover{
-  background: $main-color-dark !important;
-  border: 1px solid $main-color-dark !important;
+.notify-btn-primary:hover{
+  background: $layer-btn-hover-background-color !important;
+  border: 1px solid $layer-btn-hover-background-color !important;
 }
 
-//.btn-default{
-//  background: $grey !important;
-//  border: 1px solid $grey !important;
-//  color: $grey-invert !important;
-//  border-radius: 3px !important;
-//}
-//
-//.btn-default:hover{
-//  background: $grey-dark !important;
-//  border: 1px solid $grey-dark !important;
-//  color: $grey-dark-invert !important;
-//}
+/*.notify-btn-default {
+  background: $grey !important;
+  border: 1px solid $grey !important;
+}
+
+.notify-btn-default:hover {
+  background: $grey-dark !important;
+  border: 1px solid $grey-dark !important;
+}*/
 /************/

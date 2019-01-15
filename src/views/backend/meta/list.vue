@@ -51,7 +51,7 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="category" label="类目" numeric centered>
+            <b-table-column field="category" label="类目" numeric>
               {{ props.row.category }}
             </b-table-column>
 

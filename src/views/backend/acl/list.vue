@@ -87,10 +87,9 @@
 
 
             <b-table-column label="操作">
-              <button class="button is-danger is-small" @click="onDelete(props.row.aclConfigId)"
-                      title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="delete-outline"></b-icon>
-              </button>
+              <a @click="onDelete(props.row.aclConfigId)" :class="{'is-loading' : deleting}">
+                删除
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">

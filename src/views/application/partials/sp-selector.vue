@@ -57,7 +57,7 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="sorted" label="编码" numeric centered>
+            <b-table-column field="sorted" label="编码" numeric>
               {{ props.row.companyCode }}
             </b-table-column>
 
