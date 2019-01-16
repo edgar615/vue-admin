@@ -1,19 +1,8 @@
 import request from '@/utils/request'
+import requestNoMessage from '@/utils/requestNoMessage'
 
 export function login (username, password) {
-  /**
-   * axios.post('/user', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  })
-   .then(function (response) {
-    console.log(response);
-  })
-   .catch(function (error) {
-    console.log(error);
-  });
-   */
-  return request.post('/auth/login', {
+  return requestNoMessage.post('/auth/login', {
     username: username,
     password: password
   })
@@ -29,6 +18,10 @@ export function getInfo () {
   return request.get('/auth/info', {
     params: {type: 2}
   })
+}
+
+export function check () {
+  return requestNoMessage.get('/auth/check')
 }
 
 //export function logout() {

@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import requestNoMessage from '@/utils/requestNoMessage'
 
 const base = '/sms/tpl'
 
@@ -14,5 +15,5 @@ export function del (id) {
 }
 
 export function save (model) {
-  return request.post(base, model)
+  return requestNoMessage.post(base, model)
 }

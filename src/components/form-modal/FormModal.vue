@@ -49,7 +49,7 @@
         type: String,
         default: 'zoom-out'
       },
-      onCancel: {
+      onClose: {
         type: Function,
         default: () => {}
       }
@@ -82,14 +82,7 @@
           document.documentElement.classList.remove('is-clipped')
         }
       },
-      cancel (method) {
-        this.close()
-      },
-      /**
-       * Call the onCancel prop (function).
-       * Emit events, and destroy modal if it's programmatic.
-       */
-      close () {
+      cancel () {
         this.$emit('close')
         this.$emit('update:active', false)
         // Timeout for the animation complete before destroying
@@ -98,6 +91,14 @@
           this.$destroy()
           removeElement(this.$el)
         }, 150)
+      },
+      /**
+       * Call the onCancel prop (function).
+       * Emit events, and destroy modal if it's programmatic.
+       */
+      close () {
+        this.onClose.apply(null, arguments)
+        this.cancel()
       }
     },
     beforeMount () {

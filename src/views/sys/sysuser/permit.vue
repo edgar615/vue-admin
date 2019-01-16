@@ -2,7 +2,8 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
-        <vue-tree :tree-data="permitTreeData" :options="permitOptions" @handle="savePermit"></vue-tree>
+        <vue-tree :tree-data="permitTreeData" :options="permitOptions"
+                  @handle="savePermit"></vue-tree>
       </div>
       <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
         <b-table
@@ -27,7 +28,8 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)" title="删除">
+              <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)"
+                      title="删除">
                 <b-icon icon="delete-outline"></b-icon>
               </button>
             </b-table-column>
@@ -39,15 +41,16 @@
 </template>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import { getAvailableRole, getPermitted, addRole, deleteRole } from '@/api/sys/sysuser';
-  import { deleteConfirm, successToast } from '@/utils/dialog';
+  import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/sys/sysuser';
+  import {deleteConfirm, successToast} from '@/utils/dialog';
+
   export default {
     components: {
       VueTree
     },
     data() {
       return {
-        model : {},
+        model: {},
         roles: [],
         loading: true,
         // tree数据
@@ -57,7 +60,7 @@
         // 设置项
         permitOptions: {
           // Number,初始化时展开层级,根节点为0,默认0
-          label: "name",
+          label: 'name',
           depthOpen: 10,
 //          idsWithParent: false,
           checkbox: false,
@@ -73,48 +76,51 @@
       };
     },
     methods: {
-      savePermit(item) {
-        const  vm = this;
-        const roleId = item.id;
-        const id =  vm.$layer.confirm("确定要授予这个角色吗?", {
-          title: '注意'
-        }, ()  => {
-          vm.$layer.close(id);
-          addRole(vm.$route.params.id, roleId).then(response => {
-            vm.loadPermitted();
-          })
-        });
+      savePermit (item) {
+        const vm = this
+        const roleId = item.id
+        vm.$dialog.confirm({
+          title: '注意',
+          message: '确定要授予这个角色吗?',
+          cancelText: '取消',
+          confirmText: '确定',
+          onConfirm: () => {
+            addRole(vm.$route.params.id, roleId).then(response => {
+              vm.loadPermitted()
+            })
+          }
+        })
       },
-      deletePermit(roleId) {
-        const  vm = this;
+      deletePermit (roleId) {
+        const vm = this
         deleteConfirm(vm, () => {
           deleteRole(vm.$route.params.id, roleId).then(response => {
             vm.loadPermitted();
           })
         })
       },
-      loadPermitted() {
-        const  vm = this;
-        vm.loading = true;
+      loadPermitted () {
+        const vm = this
+        vm.loading = true
         getPermitted(this.$route.params.id).then(response => {
-          vm.loading = false;
-          vm.roles = response.data;
-        }).catch(err =>{
-          vm.loading = false;
+          vm.loading = false
+          vm.roles = response.data
+        }).catch(err => {
+          vm.loading = false
         })
       },
       loadAsyncData() {
-        const  vm = this;
+        const vm = this
         getAvailableRole().then(response => {
-          const vm = this;
-          vm.permitTreeData = response.data;
+          const vm = this
+          vm.permitTreeData = response.data
         })
-        this.loadPermitted();
+        this.loadPermitted()
       }
     },
     created() {
-      this.loadAsyncData();
+      this.loadAsyncData()
     }
-  };
+  }
 </script>
 

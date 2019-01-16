@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a class="navbar-item is--brand">
         <img class="navbar-brand-logo" src="https://bulma.io/images/bulma-logo.png">

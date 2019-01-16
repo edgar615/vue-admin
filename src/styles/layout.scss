@@ -1,10 +1,9 @@
 .columns.is-fullheight {
-  min-height: calc(100vh - 3.25rem );
+  min-height: calc(100vh - 3.25rem - .75rem );
   /*max-height: calc(100vh - ( 3.25rem - .75rem ) );*/
   display: flex;
   flex-direction: row;
   justify-content: stretch;
-  padding-top: 0.75rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
@@ -41,3 +40,8 @@
 /*.is-main-content {
   padding-left: 0.75rem;
 }*/
+
+.main-container{
+  /*padding-top: 0.75rem;*/
+  margin-top: 62px;
+}

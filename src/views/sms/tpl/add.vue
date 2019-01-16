@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="form-modal-card-body">
+    <div class="form-modal-card-body" v-if="saveResult === 0">
       <b-field label="模板标识符" class="required-field"
                  :type="errors.has('smsTplIdentifier') ? 'is-danger' : ''"
                  :message="errors.first('smsTplIdentifier')">
@@ -23,38 +23,46 @@
                  :type="errors.has('expireSecond') ? 'is-danger' : ''"
                  :message="errors.first('expireSecond')">
         <b-input name="expireSecond" v-model="model.expireSecond"
-                 v-validate="'required|number'" data-vv-as="过期时间"></b-input>
+                 v-validate="'required|numeric|min_value:1'" data-vv-as="过期时间"></b-input>
       </b-field>
+    </div>
+    <div class="form-modal-card-body" v-if="saveResult === 1">
+      模板保存成功
+    </div>
+    <div class="form-modal-card-body" v-if="saveResult === 2">
+      模板保存失败
     </div>
     <div class="form-modal-card-footer">
       <button class="button is-primary" @click="save" :disabled='errors.any()'
               :class="{'is-loading' : saving}">
         <span>保存</span>
       </button>
-      <button class="button" @click="$parent.close()">
+      <button class="button" @click="$parent.cancel()">
         <span>关闭</span>
       </button>
     </div>
   </section>
 </template>
 <script>
-  import {save} from '@/api/company'
+  import {save} from '@/api/sms/tpl'
 
   export default {
     data () {
       return {
         loading: false,
         saving: false,
+        saveResult: 0,
         model: {}
       }
     },
     methods: {
-      back () {
-        this.$router.back()
-      },
       save () {
         const vm = this
-        vm.saveMode(vm, save, () => vm.$router.push({path: '/company'}))
+        vm.saveMode(vm, save, () => {
+          console.log('保存成功')
+          vm.saveResult = 1
+          // vm.$parent.close()
+        })
       }
     },
     created () {

@@ -69,7 +69,7 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <a @click="onDelete(props.row.companyId)">
+              <a @click="onDelete(props.row.smsTplId)">
                 删除
               </a>
             </b-table-column>
@@ -98,7 +98,7 @@
       }
     },
     components: {
-      EmptyTable,AddForm
+      EmptyTable, AddForm
     },
     methods: {
       /*
@@ -116,16 +116,18 @@
         }
       },
       onDelete (id) {
-        del(id).then(response => {
-          this.loadAsyncData({page: this.pagination.page})
-        })
+        const vm = this
+        this.deleteModel(vm, del, id,
+          () => this.loadAsyncData())
       },
       addModal () {
+        const vm = this
         this.$formModal.open({
           parent: this,
           name: '新增模板',
           width: '20%',
-          component: AddForm
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
         })
       }
     },

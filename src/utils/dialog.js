@@ -1,18 +1,13 @@
 export function deleteConfirm (vm, onConfirm) {
-  // vm.$dialog.confirm({
-  //   title : '注意',
-  //   message: '确定要删除吗',
-  //   cancelText: "否",
-  //   confirmText: '是',
-  //   type: 'is-danger',
-  //   hasIcon: true,
-  //   onConfirm: onConfirm
-  // });
-  const id = vm.$layer.confirm('确定要删除吗?', {
-    title: '警告'
-  }, () => {
-    vm.$layer.close(id)
-    onConfirm()
+  vm.$dialog.confirm({
+    title: '警告',
+    message: '确定要删除吗？',
+    type: 'is-warning',
+    // hasIcon: true,
+    icon: 'alert-circle-outline',
+    cancelText: '取消',
+    confirmText: '删除',
+    onConfirm: onConfirm
   })
 }
 

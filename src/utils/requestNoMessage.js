@@ -24,9 +24,6 @@ service.interceptors.response.use(
   response => {
     return response
   }, error => {
-    if (error.config.params && error.config.params.ignoreError === true) {
-      return Promise.reject(error)
-    }
     let apiErr = {
       msg: '接口调用失败!',
       code: 998,
@@ -61,11 +58,6 @@ service.interceptors.response.use(
       apiErr.code = -1
       apiErr.msg = '服务器开小差了!'
     }
-    Vue.prototype.$toast.open({
-      duration: 1500,
-      message: apiErr.msg,
-      type: 'is-danger'
-    })
     return Promise.reject(apiErr)
   }
 )

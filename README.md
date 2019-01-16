@@ -68,7 +68,7 @@ npm install bulma-divider 具体的扩展
 ```
 npm install vue-simple-tree
 ```
-layer提示框插件
+layer提示框插件(不在使用)
 ```
 npm install vue-layer@0.9.10
 ```

@@ -1,11 +1,16 @@
+$breadcrumb-item-color: #00d1b2;
+
 .breadcrumb {
   //border-left: 3px solid $main-color !important;
   height: 42px;
   line-height: 42px;
   background: white;
   margin: 0;
+  a {
+    color: $breadcrumb-item-color
+  }
+  .icon:first-child {
+    margin-right: 0.3em;
+  }
 }
 
-.breadcrumb .icon:first-child {
-  margin-right: 0.3em;
-}

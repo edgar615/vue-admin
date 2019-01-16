@@ -9,12 +9,14 @@
   import dynamicRouter from '@/router/dynamicRouter'
   import loadDict from '@/utils/dict-util'
   import NotFound from '@/components/error/page-404.vue'
+  import {check} from '@/api/login'
 
   export default {
     name: 'app',
     data () {
       return {
-        loading: false
+        loading: false,
+        checkIntervalId: undefined
       }
     },
     methods: {
@@ -22,13 +24,31 @@
         console.log(err)
         this.loading = false
         var nextPath = '/500'
-        if (err.response) {
-          var code = err.response.data.code
-          if (code === '1005' || code === '1021') {
+        if (err.statusCode) {
+          var status = err.statusCode
+          if (status === 400) {
+            nextPath = '/400'
+          }
+          if (status === 401) {
             nextPath = '/401'
           }
         }
         this.$router.push(nextPath)
+      },
+      checkToken () {
+        const vm = this
+        check().then(response => {
+        }).catch(error => {
+          if (error.code === 1005) {
+            vm.$dialog.alert({
+              title: '错误信息',
+              message: '您当前的会话已过期，请重新登录！',
+              confirmText: '去登录',
+              onConfirm: () => vm.$router.push('/login')
+            })
+            clearInterval(vm.checkIntervalId)
+          }
+        })
       }
     },
     mounted () {
@@ -50,6 +70,9 @@
             vm.loading = false
           }).catch(err => vm.errorHandler(err))
         }).catch(err => vm.errorHandler(err))
+        // 定时任务检查token
+        // 十秒
+        vm.checkIntervalId = setInterval(vm.checkToken, 10000)
       } else {
         var routes = []
         routes.push({
@@ -60,6 +83,12 @@
           }
         })
         vm.$router.addRoutes(routes)  // 动态添加可访问路由表
+      }
+    },
+    beforeDestory () {
+      // 清理定时任务
+      if (this.checkIntervalId) {
+        clearInterval(this.checkIntervalId)
       }
     }
   }
