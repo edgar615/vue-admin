@@ -12,15 +12,34 @@
           </a>
         </header>
         <component
-          v-if="component"
+          v-if="component && result === 0"
           v-bind="props"
           v-on="events"
           :is="component"
           @close="close"/>
         <div
-          v-else-if="content"
+          v-else-if="content && result === 0"
           v-html="content"/>
         <slot v-else/>
+        <div class="form-modal-card-body" v-if="result === 1">
+          <b-icon icon="checkbox-marked-circle"></b-icon>
+          <span>{{response.message}}</span>
+          <p v-if="response.moreErrorMessage">{{response.moreErrorMessage}}</p>
+        </div>
+        <div class="form-modal-card-body" v-if="result === 2">
+          <b-icon icon="alert-circle-outline"></b-icon>
+          <span>{{response.message}}</span>
+        </div>
+        <div class="form-modal-card-footer" v-if="result === 1">
+          <button class="button" @click="close()">
+            <span>关闭</span>
+          </button>
+        </div>
+        <div class="form-modal-card-footer" v-if="result === 2">
+          <button class="button" @click="cancel()">
+            <span>关闭</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -52,10 +71,12 @@
       onClose: {
         type: Function,
         default: () => {}
-      }
+      },
+      response: Object
     },
     data () {
       return {
+        result: 0,
         isActive: this.active || false,
         savedScrollTop: null,
         newWidth: typeof this.width === 'number'
@@ -74,6 +95,14 @@
       }
     },
     methods: {
+      succeed (response) {
+        this.result = 1
+        this.response = response
+      },
+      failed (response) {
+        this.result = 2
+        this.response = response
+      },
       handleScroll () {
         if (typeof window === 'undefined') return
         if (this.isActive) {

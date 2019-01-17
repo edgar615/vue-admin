@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="form-modal-card-body" v-if="saveResult === 0">
+    <div class="form-modal-card-body">
       <b-field label="模板标识符" class="required-field"
                  :type="errors.has('smsTplIdentifier') ? 'is-danger' : ''"
                  :message="errors.first('smsTplIdentifier')">
@@ -25,12 +25,6 @@
         <b-input name="expireSecond" v-model="model.expireSecond"
                  v-validate="'required|numeric|min_value:1'" data-vv-as="过期时间"></b-input>
       </b-field>
-    </div>
-    <div class="form-modal-card-body" v-if="saveResult === 1">
-      模板保存成功
-    </div>
-    <div class="form-modal-card-body" v-if="saveResult === 2">
-      模板保存失败
     </div>
     <div class="form-modal-card-footer">
       <button class="button is-primary" @click="save" :disabled='errors.any()'
@@ -59,8 +53,7 @@
       save () {
         const vm = this
         vm.saveMode(vm, save, () => {
-          console.log('保存成功')
-          vm.saveResult = 1
+          vm.$parent.succeed({message: '模板保存成功'})
           // vm.$parent.close()
         })
       }
