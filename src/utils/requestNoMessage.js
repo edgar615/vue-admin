@@ -26,10 +26,10 @@ service.interceptors.response.use(
   }, error => {
     let apiErr = {
       msg: '接口调用失败!',
-      code: 998,
-      statusCode: error.response.status
+      code: 998
     }
     if (error.response) {
+      apiErr.statusCode = error.response.status
       if (error.response.data) {
         apiErr.code = error.response.data.code
         // 存储业务相关数据

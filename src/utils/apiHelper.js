@@ -1,7 +1,7 @@
 import {deleteConfirm} from '@/utils/dialog'
 import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
-function pageModel (vm, pageApi, params) {
+function pageModel(vm, pageApi, params) {
   if (params === undefined) {
     params = {}
   }
@@ -16,7 +16,8 @@ function pageModel (vm, pageApi, params) {
   params = Object.assign(vm.filters, params)
   // 如果查询条件中包含时间查询
   if (vm.startTime) {
-    params.startTime = parseInt(new Date(vm.startTime).valueOf().toString()) / 1000
+    params.startTime = parseInt(new Date(vm.startTime).valueOf().toString())
+      / 1000
   }
   if (vm.endTime) {
     params.endTime = parseInt(new Date(vm.endTime).valueOf().toString()) / 1000
@@ -25,13 +26,14 @@ function pageModel (vm, pageApi, params) {
   return pageApi(params).then(response => {
     vm.pagination = response.data
     vm.loading = false
+    return response.data
   }).catch(err => {
     vm.loading = false
     return Promise.reject(err)
   })
 }
 
-function pageModelWithHistory (vm, pageApi, params) {
+function pageModelWithHistory(vm, pageApi, params) {
   if (params === undefined) {
     params = {}
   }
@@ -46,72 +48,82 @@ function pageModelWithHistory (vm, pageApi, params) {
   params = Object.assign(vm.filters, params)
   // 如果查询条件中包含时间查询
   if (vm.startTime) {
-    params.startTime = parseInt(new Date(vm.startTime).valueOf().toString()) / 1000
+    params.startTime = parseInt(new Date(vm.startTime).valueOf().toString())
+      / 1000
   }
   if (vm.endTime) {
     params.endTime = parseInt(new Date(vm.endTime).valueOf().toString()) / 1000
   }
   vm.loading = true
   return pageApi(params).then(response => {
-    vm.$store.dispatch('saveListQueryHistory', {path: vm.$route.path, query: JSON.stringify(params)})
+    vm.$store.dispatch('saveListQueryHistory',
+      {path: vm.$route.path, query: JSON.stringify(params)})
     vm.pagination = response.data
     vm.loading = false
+    return response.data
   }).catch(err => {
     vm.loading = false
     return Promise.reject(err)
   })
 }
 
-function fillParamFromHistory () {
+function fillParamFromHistory() {
   if (this.$store.getters.queryHistory[this.$route.path]) {
-    this.filters = JSON.parse(this.$store.getters.queryHistory[this.$route.path])
+    this.filters = JSON.parse(
+      this.$store.getters.queryHistory[this.$route.path])
   }
 }
 
-function clearListQueryHistory () {
+function clearListQueryHistory() {
   this.$store.dispatch('saveListQueryHistory', {path: this.$route.path})
 }
 
 function getModel (vm, getApi, id) {
   vm.loading = true
-  getApi(id).then(response => {
+  return getApi(id).then(response => {
     vm.model = response.data
     vm.loading = false
+    return response.data
   }).catch(err => {
     vm.loading = false
     return Promise.reject(err)
   })
 }
 
-function updateModel (vm, updateApi, id, callback) {
+// 因为save和update要校验，用promise有点麻烦
+function updateModel (vm, updateApi, id, callback, errHandler) {
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
       updateApi(id, vm.model).then(response => {
         vm.saving = false
         if (callback) {
-          callback()
+          callback(response)
         }
       }).catch(err => {
         vm.saving = false
-        return Promise.reject(err)
+        if (errHandler) {
+          errHandler(err)
+        }
       })
     }
   })
 }
 
-function saveModel (vm, saveApi, callback) {
+function saveModel (vm, saveApi, callback, errHandler) {
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
       saveApi(vm.model).then(response => {
         vm.saving = false
         if (callback) {
-          callback()
+          callback(response)
         }
       }).catch(err => {
         vm.saving = false
-        return Promise.reject(err)
+        if (errHandler) {
+          errHandler(err)
+        }
       })
     }
   })
@@ -122,44 +134,40 @@ function deleteModel (vm, delApi, id, callback) {
     vm.deleting = true
     delApi(id).then(response => {
       vm.deleting = false
-      if (callback) {
-        callback()
-      }
-    }).catch(err => {
+      return response.data
+    }).then(callback).catch(err => {
       vm.deleting = false
       return Promise.reject(err)
     })
   })
 }
 
-function batchDeleteModel (vm, delApi, ids, callback) {
+function batchDeleteModel(vm, delApi, ids, callback) {
   deleteConfirm(vm, () => {
     vm.deleting = true
     delApi({data: {ids: ids}}).then(response => {
       vm.deleting = false
-      if (callback) {
-        callback()
-      }
-    }).catch(err => {
+      return response.data
+    }).then(callback).catch(err => {
       vm.deleting = false
       return Promise.reject(err)
     })
   })
 }
 
-function dictText (vm, name, value) {
+function dictText(vm, name, value) {
   return this.$store.getters.dictText(name, value)
 }
 
-function dictList (vm, name) {
+function dictList(vm, name) {
   return this.$store.getters.dictList(name)
 }
 
-function boolText (boolValue) {
+function boolText(boolValue) {
   return customBoolText(boolValue, '是', '否')
 }
 
-function customBoolText (boolValue, trueText, falseText) {
+function customBoolText(boolValue, trueText, falseText) {
   if (boolValue) {
     return trueText
   }
@@ -167,7 +175,7 @@ function customBoolText (boolValue, trueText, falseText) {
 }
 
 const Plugin = {
-  install (Vue) {
+  install(Vue) {
     // bool的显示
     registerComponentProgrammatic(Vue, '$boolText', boolText)
     registerComponentProgrammatic(Vue, '$customBoolText', customBoolText)
@@ -178,9 +186,12 @@ const Plugin = {
 
     // api
     registerComponentProgrammatic(Vue, '$pageModel', pageModel)
-    registerComponentProgrammatic(Vue, '$pageModelWithHistory', pageModelWithHistory)
-    registerComponentProgrammatic(Vue, '$fillParamFromHistory', fillParamFromHistory)
-    registerComponentProgrammatic(Vue, '$clearListQueryHistory', clearListQueryHistory)
+    registerComponentProgrammatic(Vue, '$pageModelWithHistory',
+      pageModelWithHistory)
+    registerComponentProgrammatic(Vue, '$fillParamFromHistory',
+      fillParamFromHistory)
+    registerComponentProgrammatic(Vue, '$clearListQueryHistory',
+      clearListQueryHistory)
     registerComponentProgrammatic(Vue, '$getModel', getModel)
     registerComponentProgrammatic(Vue, '$deleteModel', deleteModel)
     registerComponentProgrammatic(Vue, '$batchDeleteModel', batchDeleteModel)

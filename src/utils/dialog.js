@@ -2,7 +2,7 @@ export function deleteConfirm (vm, onConfirm) {
   vm.$dialog.confirm({
     title: '警告',
     message: '确定要删除吗？',
-    type: 'is-warning',
+    type: 'is-primary',
     // hasIcon: true,
     icon: 'alert-circle-outline',
     cancelText: '取消',

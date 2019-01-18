@@ -51,10 +51,10 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, save, () => {
-          vm.$parent.succeed({message: '模板保存成功'})
-        }).catch(err => {
-          vm.$parent.failed({message: '模板保存失败'})
+        vm.$saveModel(vm, save, resp => {
+          vm.$parent.succeed('模板保存成功', resp)
+        }, err => {
+          vm.$parent.fail('模板保存失败', err)
         })
       }
     },

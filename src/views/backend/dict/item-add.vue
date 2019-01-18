@@ -52,10 +52,10 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, addItem, () => {
-          vm.$parent.succeed({message: '字典子项保存成功'})
-        }).catch(err => {
-          vm.$parent.failed({message: '字典子项保存失败'})
+        vm.$saveModel(vm, addItem, resp => {
+          vm.$parent.succeed('字典子项保存成功', resp)
+        }, err => {
+          vm.$parent.fail('字典子项保存失败', err)
         })
       }
     },

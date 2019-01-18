@@ -99,6 +99,9 @@ $form-modal-card-head-background-color: #f5f5f5 !default.field.required-field di
       padding: 10px;
       border-bottom: 1px solid #00d1b2;
     }
+    &-notification {
+      margin-top: 3px;
+    }
     &-title {
       color: $text-strong;
       flex-grow: 1;

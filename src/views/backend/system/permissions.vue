@@ -31,6 +31,12 @@
           <b-field label="默认地址?" horizontal class="static-field" v-show="model.type == 1">
             <p class="control">{{model.acquiescent}}</p>
           </b-field>
+          <b-field label="标题" horizontal class="static-field" v-show="model.type == 1">
+            <p class="control">{{model.title}}</p>
+          </b-field>
+          <b-field label="描述" horizontal class="static-field" v-show="model.type == 1">
+            <p class="control">{{model.description}}</p>
+          </b-field>
           <b-field v-if="model.sysPermissionId">
             <p class="control"
                style="padding-left: 100px; box-sizing: border-box; margin-top: 50px;">
@@ -106,6 +112,20 @@
                      v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"
                      class="w-25">
             </b-input>
+          </jcc-field>
+          <jcc-field label="标题" horizontal
+                     :type="errors.has('title') ? 'is-danger' : ''"
+                     :message="errors.first('title')"
+                     v-show="model.type == 1">
+            <b-input name="title" v-model="model.title" data-vv-as="标题"
+                     class="w-25"></b-input>
+          </jcc-field>
+          <jcc-field label="描述" horizontal
+                     :type="errors.has('description') ? 'is-danger' : ''"
+                     :message="errors.first('description')"
+                     v-show="model.type == 1">
+            <textarea name="description" v-model="model.description" data-vv-as="描述"
+                     class="w-25"></textarea>
           </jcc-field>
           <jcc-field class="field" horizontal message="不显示在菜单上"
                      v-show="model.type == 1">

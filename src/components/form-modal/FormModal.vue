@@ -3,6 +3,7 @@
     <div class="form-modal">
       <div class="form-modal-background"></div>
       <div class="form-modal-card" :style="{ maxWidth: newWidth}">
+        <b-loading :is-full-page="isFullPage" :active.sync="isLoading"></b-loading>
         <header class="form-modal-card-header">
           <div class="form-modal-card-title">
             {{name}}
@@ -11,8 +12,15 @@
             <b-icon icon="close" size="is-small"></b-icon>
           </a>
         </header>
+        <div class="notification form-modal-card-notification is-success" v-if="result === 1">
+          <p>{{response.message}}</p>
+        </div>
+        <div class="notification form-modal-card-notification is-danger" v-if="result === 2">
+          <p>{{response.message}}</p>
+          <p v-if="response.err && response.err.msg">{{response.err.msg}}</p>
+        </div>
         <component
-          v-if="component && result === 0"
+          v-if="component && result != 1"
           v-bind="props"
           v-on="events"
           :is="component"
@@ -21,22 +29,8 @@
           v-else-if="content && result === 0"
           v-html="content"/>
         <slot v-else/>
-        <div class="form-modal-card-body" v-if="result === 1">
-          <b-icon icon="checkbox-marked-circle"></b-icon>
-          <span>{{response.message}}</span>
-          <p v-if="response.moreErrorMessage">{{response.moreErrorMessage}}</p>
-        </div>
-        <div class="form-modal-card-body" v-if="result === 2">
-          <b-icon icon="alert-circle-outline"></b-icon>
-          <span>{{response.message}}</span>
-        </div>
         <div class="form-modal-card-footer" v-if="result === 1">
           <button class="button" @click="close()">
-            <span>关闭</span>
-          </button>
-        </div>
-        <div class="form-modal-card-footer" v-if="result === 2">
-          <button class="button" @click="cancel()">
             <span>关闭</span>
           </button>
         </div>
@@ -76,6 +70,8 @@
     },
     data () {
       return {
+        isLoading: false,
+        isFullPage: false,
         result: 0,
         isActive: this.active || false,
         savedScrollTop: null,
@@ -95,13 +91,27 @@
       }
     },
     methods: {
-      succeed (response) {
-        this.result = 1
-        this.response = response
+      startLoading () {
+        this.isLoading = true
       },
-      failed (response) {
+      closeLoading () {
+        this.isLoading = false
+      },
+      succeed (message, data) {
+        this.result = 1
+        this.response = {
+          message: message,
+          data: data
+        }
+        this.closeLoading()
+      },
+      fail (message, err) {
         this.result = 2
-        this.response = response
+        this.response = {
+          message: message,
+          err: err
+        }
+        this.closeLoading()
       },
       handleScroll () {
         if (typeof window === 'undefined') return

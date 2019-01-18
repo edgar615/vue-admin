@@ -3,16 +3,23 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-          <div class="title has-text-primary">发送记录</div>
+          <div class="title has-text-primary">号码白名单</div>
         </div>
       </div>
     </div>
-    <div class="card mt-3">
+    <div class="notification">
+      白名单中的号码会忽略黑名单、限流等限制条件
+    </div>
+    <div class="card">
       <header class="card-header">
         <div class="card-header-title">
+          <button class="button is-primary" @click="addModal()">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </button>
           <div class="card-header-left">
             <b-field grouped group-multiline>
-              <b-input v-model="filters.identifier" placeholder="标识符"></b-input>
+              <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
               <p class="control ml-1">
                 <button class="button" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
@@ -45,36 +52,14 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="smsSingleRecordId" label="发送序列">
-              {{ props.row.smsSingleRecordId }}
-            </b-table-column>
-
             <b-table-column field="phoneNumber" label="手机号码">
               {{ props.row.phoneNumber }}
             </b-table-column>
 
-            <b-table-column field="smsContent" label="发送内容">
-              {{ props.row.smsContent }}
-            </b-table-column>
-
-            <b-table-column field="state" label="发送状态">
-              {{ $dictText(this, 'smsState',props.row.state) }}
-            </b-table-column>
-
-            <b-table-column field="createTime" label="记录时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.createTime)}}
-            </b-table-column>
-
-            <b-table-column field="sendTime" label="发送时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.sendTime)}}
-            </b-table-column>
-
-            <b-table-column field="reportTime" label="报告时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.reportTime)}}
-            </b-table-column>
-
-            <b-table-column field="errCode" label="错误码">
-              {{ props.row.errCode }}
+            <b-table-column label="操作">
+              <a @click="onDelete(props.row.smsNumberBlacklistId)">
+                删除
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -87,8 +72,9 @@
 </template>
 
 <script>
-  import {page} from '@/api/sms/history'
+  import {page, del} from '@/api/sms/numberBlacklist'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/sms/number-blacklist/add.vue'
 
   export default {
     data () {
@@ -99,7 +85,7 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm
     },
     methods: {
       /*
@@ -115,6 +101,21 @@
         if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
+      },
+      onDelete (id) {
+        const vm = this
+        this.$deleteModel(vm, del, id,
+          () => this.loadAsyncData())
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增号码黑名单',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
     created () {
