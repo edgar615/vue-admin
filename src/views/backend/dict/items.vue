@@ -1,30 +1,12 @@
 <template>
   <section>
     <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-input v-model="filters.code" placeholder="字典编码"></b-input>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
-    <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          字典子项列表
-        </div>
-        <div class="card-header-right buttons">
-          <router-link :to="{path: '/backend/dict/' + dictId + '/item-add'}"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
         </div>
       </header>
       <div class="card-content">
@@ -61,10 +43,9 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <button class="button is-danger is-small" @click="onDelete(props.row.dictItemId)"
-                      title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="delete-outline"></b-icon>
-              </button>
+              <a @click="onDelete(props.row.dictItemId)">
+                删除
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -81,6 +62,7 @@
 <script>
   import {itemPage, deleteItem} from '@/api/backend/dict'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/backend/dict/item-add.vue'
 
   export default {
     data () {
@@ -95,14 +77,14 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm
     },
     methods: {
       /*
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, itemPage, params)
+        this.$pageModelWithHistory(this, itemPage, params)
       },
       /*
        * Handle page-change event
@@ -114,14 +96,24 @@
       },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteItem, id,
+        this.$deleteModel(vm, deleteItem, id,
           () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增子项',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
     filters: {
     },
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

@@ -9,7 +9,7 @@
           <b-select placeholder="类型" v-model="filters.type">
             <option value="">请选择</option>
             <option
-              v-for="option in dictList(this, 'systemType')"
+              v-for="option in $dictList(this, 'systemType')"
               :value="option.dictValue"
               :key="option.dictValue">
               {{ option.dictText }}
@@ -87,7 +87,7 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型">
-              {{ dictText(this, 'systemType',props.row.type) }}
+              {{ $dictText(this, 'systemType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="type" label="图标">
@@ -95,7 +95,7 @@
             </b-table-column>
 
             <b-table-column field="internal" label="内部访问?">
-              <span class="tag" :class="internalClass(props.row.internal)">{{ boolText(props.row.internal) }}</span>
+              <span class="tag" :class="internalClass(props.row.internal)">{{ $boolText(props.row.internal) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -154,7 +154,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, systemPage, params)
+        this.$pageModelWithHistory(this, systemPage, params)
       },
       /*
        * Handle page-change event
@@ -180,7 +180,7 @@
         var checkedIds = vm.checkedRows.map(function (item) {
           return item.subsystemId
         })
-        this.batchDeleteModel(vm, batchDeleteSystem, checkedIds,
+        this.batch$deleteModel(vm, batchDeleteSystem, checkedIds,
           () => this.loadAsyncData({page: this.pagination.page}))
       },
       /*
@@ -197,7 +197,7 @@
       },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteSystem, id,
+        this.$deleteModel(vm, deleteSystem, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
@@ -214,7 +214,7 @@
        */
     },
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

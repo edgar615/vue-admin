@@ -29,7 +29,7 @@
               <template slot-scope="props">
 
                 <b-table-column field="type" label="类型">
-                  {{ dictText(this, 'attributeType',props.row.type) }}
+                  {{ $dictText(this, 'attributeType',props.row.type) }}
                 </b-table-column>
 
                 <b-table-column field="name" label="属性名">
@@ -78,7 +78,7 @@
             <b-select name="type" expanded v-model="model.type"
                       v-validate="'required'" data-vv-as="类型" class="w-15">
               <option
-                v-for="option in dictList(this, 'metadataType')"
+                v-for="option in $dictList(this, 'metadataType')"
                 :value="option.dictValue"
                 :key="option.dictValue">d
                 {{ option.dictText }}

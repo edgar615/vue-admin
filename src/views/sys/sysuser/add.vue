@@ -69,7 +69,7 @@
       },
       save() {
           const vm = this
-        vm.saveMode(vm, save,() => vm.$router.push({ path: '/sys/sysuser' }));
+        vm.$saveModel(vm, save,() => vm.$router.push({ path: '/sys/sysuser' }));
       }
     }
   }

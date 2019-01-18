@@ -22,7 +22,7 @@
 
         <b-field label="状态" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, "companyState",model.state) }}
+            {{ $dictText(this, "companyState",model.state) }}
           </p>
         </b-field>
 
@@ -65,7 +65,7 @@
       }
     },
   created () {
-      this.getModel(this, get, this.$route.params.id)
+      this.$getModel(this, get, this.$route.params.id)
     }
   }
 </script>

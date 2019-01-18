@@ -66,7 +66,7 @@
       },
       save () {
         const vm = this
-        this.saveMode(vm, addAuthority, () => vm.$router.push({path: '/backend/authority'}))
+        this.$saveModel(vm, addAuthority, () => vm.$router.push({path: '/backend/authority'}))
       }
     }
   }

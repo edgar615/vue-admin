@@ -45,16 +45,16 @@
       return {
         loading: false,
         saving: false,
-        saveResult: 0,
         model: {}
       }
     },
     methods: {
       save () {
         const vm = this
-        vm.saveMode(vm, save, () => {
+        vm.$saveModel(vm, save, () => {
           vm.$parent.succeed({message: '模板保存成功'})
-          // vm.$parent.close()
+        }).catch(err => {
+          vm.$parent.failed({message: '模板保存失败'})
         })
       }
     },

@@ -55,12 +55,12 @@
       },
       save () {
         const vm = this
-        vm.updateModel(vm, updateResource, vm.$route.params.id,
+        vm.$updateModel(vm, updateResource, vm.$route.params.id,
           () => vm.$router.push({path: '/backend/resource'}))
       }
     },
     created () {
-      this.getModel(this, getResource, this.$route.params.id)
+      this.$getModel(this, getResource, this.$route.params.id)
     }
   }
 </script>

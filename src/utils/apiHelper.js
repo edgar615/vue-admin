@@ -1,5 +1,5 @@
 import {deleteConfirm} from '@/utils/dialog'
-import {DateUtils} from '@/utils/DateFormat'
+import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
 function pageModel (vm, pageApi, params) {
   if (params === undefined) {
@@ -27,6 +27,7 @@ function pageModel (vm, pageApi, params) {
     vm.loading = false
   }).catch(err => {
     vm.loading = false
+    return Promise.reject(err)
   })
 }
 
@@ -57,6 +58,7 @@ function pageModelWithHistory (vm, pageApi, params) {
     vm.loading = false
   }).catch(err => {
     vm.loading = false
+    return Promise.reject(err)
   })
 }
 
@@ -77,8 +79,8 @@ function getModel (vm, getApi, id) {
     vm.loading = false
   }).catch(err => {
     vm.loading = false
+    return Promise.reject(err)
   })
-
 }
 
 function updateModel (vm, updateApi, id, callback) {
@@ -92,10 +94,10 @@ function updateModel (vm, updateApi, id, callback) {
         }
       }).catch(err => {
         vm.saving = false
+        return Promise.reject(err)
       })
     }
   })
-
 }
 
 function saveModel (vm, saveApi, callback) {
@@ -109,10 +111,10 @@ function saveModel (vm, saveApi, callback) {
         }
       }).catch(err => {
         vm.saving = false
+        return Promise.reject(err)
       })
     }
   })
-
 }
 
 function deleteModel (vm, delApi, id, callback) {
@@ -125,6 +127,7 @@ function deleteModel (vm, delApi, id, callback) {
       }
     }).catch(err => {
       vm.deleting = false
+      return Promise.reject(err)
     })
   })
 }
@@ -139,19 +142,9 @@ function batchDeleteModel (vm, delApi, ids, callback) {
       }
     }).catch(err => {
       vm.deleting = false
+      return Promise.reject(err)
     })
   })
-
-}
-
-function regionText (regionCode) {
-  const regionArray = this.$store.getters.region.filter(function (item) {
-    return item.regionCode === regionCode
-  })
-  if (regionArray && regionArray.length > 0) {
-    return regionArray[0].mergerName
-  }
-  return ''
 }
 
 function dictText (vm, name, value) {
@@ -173,30 +166,29 @@ function customBoolText (boolValue, trueText, falseText) {
   return falseText
 }
 
-export default {
-  install (Vue, options) {
-    //区域
-    Vue.prototype.regionText = regionText
+const Plugin = {
+  install (Vue) {
     // bool的显示
-    Vue.prototype.boolText = boolText
-    Vue.prototype.customBoolText = customBoolText
+    registerComponentProgrammatic(Vue, '$boolText', boolText)
+    registerComponentProgrammatic(Vue, '$customBoolText', customBoolText)
+
     // 字典
-    Vue.prototype.dictText = dictText
-    Vue.prototype.dictList = dictList
-    // 分页
-    Vue.prototype.pageModel = pageModel
-    Vue.prototype.pageModelWithHistory = pageModelWithHistory
-    Vue.prototype.fillParamFromHistory = fillParamFromHistory
-    // 查看
-    Vue.prototype.getModel = getModel
-    // 删除
-    Vue.prototype.deleteModel = deleteModel
-    //批量删除
-    Vue.prototype.batchDeleteModel = batchDeleteModel
-    // 新增
-    Vue.prototype.saveMode = saveModel
-    // 修改
-    Vue.prototype.updateModel = updateModel
-    Vue.prototype.DateUtils = DateUtils
+    registerComponentProgrammatic(Vue, '$dictText', dictText)
+    registerComponentProgrammatic(Vue, '$dictList', dictList)
+
+    // api
+    registerComponentProgrammatic(Vue, '$pageModel', pageModel)
+    registerComponentProgrammatic(Vue, '$pageModelWithHistory', pageModelWithHistory)
+    registerComponentProgrammatic(Vue, '$fillParamFromHistory', fillParamFromHistory)
+    registerComponentProgrammatic(Vue, '$clearListQueryHistory', clearListQueryHistory)
+    registerComponentProgrammatic(Vue, '$getModel', getModel)
+    registerComponentProgrammatic(Vue, '$deleteModel', deleteModel)
+    registerComponentProgrammatic(Vue, '$batchDeleteModel', batchDeleteModel)
+    registerComponentProgrammatic(Vue, '$saveModel', saveModel)
+    registerComponentProgrammatic(Vue, '$updateModel', updateModel)
   }
 }
+
+use(Plugin)
+
+export default Plugin

@@ -76,7 +76,7 @@
         this.$router.back()
       },
       save () {
-        this.saveMode(this, addShippingMethod, () => this.$router.push({path: '/shop-backend/shippingmethod'}))
+        this.$saveModel(this, addShippingMethod, () => this.$router.push({path: '/shop-backend/shippingmethod'}))
       }
     }
   }

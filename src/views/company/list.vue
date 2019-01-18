@@ -82,11 +82,11 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              <span class="tag" :class="stateClass(props.row.state)">{{ dictText(this, 'companyState',props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText(this, 'companyState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column field="state" label="类型">
-              {{ dictText(this, 'companyType',props.row.type) }}
+              {{ $dictText(this, 'companyType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="name" label="添加时间">
@@ -164,7 +164,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(this, page, params)
       },
       /*
        * Handle page-change event
@@ -195,7 +195,7 @@
       }
     },
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

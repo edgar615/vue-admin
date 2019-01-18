@@ -40,7 +40,7 @@
           <b-select name="type" expanded v-model="model.type"
                     v-validate="'required'" data-vv-as="类型" class="w-15">
             <option
-              v-for="option in dictList(this, 'systemType')"
+              v-for="option in $dictList(this, 'systemType')"
               :value="option.dictValue"
               :key="option.dictValue">
               {{ option.dictText }}
@@ -89,7 +89,7 @@
       },
       save () {
         const vm = this
-        this.saveMode(vm, addSystem, () => vm.$router.push({path: '/backend/system'}))
+        this.$saveModel(vm, addSystem, () => vm.$router.push({path: '/backend/system'}))
       }
     }
   }

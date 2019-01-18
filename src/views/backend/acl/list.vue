@@ -6,7 +6,7 @@
           <b-select placeholder="公司类型" v-model="filters.companyType">
             <option value="">请选择</option>
             <option
-              v-for="option in dictList(this, 'companyType')"
+              v-for="option in $dictList(this, 'companyType')"
               :value="option.dictValue"
               :key="option.dictValue">
               {{ option.dictText }}
@@ -58,7 +58,7 @@
           <template slot-scope="props">
 
             <b-table-column field="companyType" label="公司类型">
-              {{ dictText(this, 'companyType',props.row.companyType) }}
+              {{ $dictText(this, 'companyType',props.row.companyType) }}
             </b-table-column>
 
             <b-table-column field="resourceName" label="资源">
@@ -70,7 +70,7 @@
             </b-table-column>
 
             <b-table-column field="prohibited" label="禁止">
-              {{ boolText(props.row.prohibited) }}
+              {{ $boolText(props.row.prohibited) }}
             </b-table-column>
 
             <b-table-column field="leftExpr" label="比较字段">
@@ -78,7 +78,7 @@
             </b-table-column>
 
             <b-table-column field="exprType" label="比较操作符">
-              {{ dictText(this, 'exprType',props.row.exprType) }}
+              {{ $dictText(this, 'exprType',props.row.exprType) }}
             </b-table-column>
 
             <b-table-column field="rightExpr" label="比较值">
@@ -140,7 +140,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, aclPage, params)
+        this.$pageModelWithHistory(this, aclPage, params)
       },
       /*
        * Handle page-change event
@@ -152,14 +152,14 @@
       },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteAcl, id,
+        this.$deleteModel(vm, deleteAcl, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
     filters: {
     },
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

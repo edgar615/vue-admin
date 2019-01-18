@@ -22,14 +22,14 @@
 
         <b-field label="类型" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, 'systemType',model.type) }}
+            {{ $dictText(this, 'systemType',model.type) }}
           </p>
         </b-field>
 
         <b-field label="内部访问" horizontal class="static-field">
           <p class="control">
         <span class="tag is-info">
-          {{ dictText(this, 'internal',model.internal) }}
+          {{ $dictText(this, 'internal',model.internal) }}
           </span>
           </p>
         </b-field>
@@ -62,7 +62,7 @@
       }
     },
     created () {
-      this.getModel(this, getSystem, this.$route.params.id)
+      this.$getModel(this, getSystem, this.$route.params.id)
     }
   }
 </script>

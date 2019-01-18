@@ -8,7 +8,7 @@
           <b-select name="type" expanded v-model="model.type"
                     v-validate="'required'" data-vv-as="类型" class="w-15">
             <option
-              v-for="option in dictList(this, 'metadataType')"
+              v-for="option in $dictList(this, 'metadataType')"
               :value="option.dictValue"
               :key="option.dictValue">d
               {{ option.dictText }}
@@ -144,7 +144,7 @@
       },
       save () {
         const vm = this
-        vm.saveMode(vm, save, () => vm.$router.push({path: '/backend/meta'}))
+        vm.$saveModel(vm, save, () => vm.$router.push({path: '/backend/meta'}))
       }
     }
   }

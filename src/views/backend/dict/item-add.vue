@@ -1,45 +1,38 @@
 <template>
   <section>
-    <div class="card">
-      <div class="card-content">
-        <jcc-field label="字典文本" horizontal class="required-field"
-                   :type="errors.has('dictText') ? 'is-danger' : ''"
-                   :message="errors.first('dictText')">
-          <b-input name="dictText" v-model="model.dictText"
-                   v-validate="'required|max:64'"
-                   data-vv-as="字典文本" class="w-25"></b-input>
-        </jcc-field>
+    <div class="form-modal-card-body">
+      <b-field label="字典文本" class="required-field"
+                 :type="errors.has('dictText') ? 'is-danger' : ''"
+                 :message="errors.first('dictText')">
+        <b-input name="dictText" v-model="model.dictText"
+                 v-validate="'required|max:64'"
+                 data-vv-as="字典文本"></b-input>
+      </b-field>
 
-        <jcc-field label="字典值" horizontal class="required-field"
-                   :type="errors.has('dictValue') ? 'is-danger' : ''"
-                   :message="errors.first('dictValue')">
-          <b-input name="dictValue" v-model="model.dictValue"
-                   v-validate="'required|numeric'" data-vv-as="字典值" class="w-25"></b-input>
-        </jcc-field>
+      <b-field label="字典值" class="required-field"
+                 :type="errors.has('dictValue') ? 'is-danger' : ''"
+                 :message="errors.first('dictValue')">
+        <b-input name="dictValue" v-model="model.dictValue"
+                 v-validate="'required|numeric'" data-vv-as="字典值"></b-input>
+      </b-field>
 
-        <jcc-field label="排序" horizontal class="required-field"
-                   :type="errors.has('sorted') ? 'is-danger' : ''"
-                   :message="errors.first('sorted')">
-          <b-input name="sorted" expanded v-model="model.sorted"
-                   v-validate="'required|numeric|min_value:0|max_value:99999'" data-vv-as="排序"
-                   class="w-25">
-          </b-input>
-        </jcc-field>
-
-        <b-field horizontal><!-- Label left empty for spacing -->
-          <p class="control btn_margin">
-            <button class="button is-primary" @click="save" :disabled='errors.any()'
-                    :class="{'is-loading' : saving}">
-              <b-icon icon="check-circle"></b-icon>
-              <span>保存</span>
-            </button>
-            <button class="button" @click="back">
-              <b-icon icon="undo"></b-icon>
-              <span>返回</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
+      <b-field label="排序" class="required-field"
+                 :type="errors.has('sorted') ? 'is-danger' : ''"
+                 :message="errors.first('sorted')">
+        <b-input name="sorted" expanded v-model="model.sorted"
+                 v-validate="'required|numeric|min_value:0|max_value:99999'" data-vv-as="排序"
+                >
+        </b-input>
+      </b-field>
+    </div>
+    <div class="form-modal-card-footer">
+      <button class="button is-primary" @click="save" :disabled='errors.any()'
+              :class="{'is-loading' : saving}">
+        <span>保存</span>
+      </button>
+      <button class="button" @click="$parent.cancel()">
+        <span>关闭</span>
+      </button>
     </div>
   </section>
 </template>
@@ -57,14 +50,16 @@
       }
     },
     methods: {
-      back () {
-        this.$router.back()
-      },
       save () {
         const vm = this
-        this.saveMode(vm, addItem,
-          () => vm.$router.push({path: '/backend/dict/' + this.$route.params.id + '/items'}))
+        vm.$saveModel(vm, addItem, () => {
+          vm.$parent.succeed({message: '字典子项保存成功'})
+        }).catch(err => {
+          vm.$parent.failed({message: '字典子项保存失败'})
+        })
       }
+    },
+    created () {
     }
   }
 </script>

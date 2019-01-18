@@ -5,7 +5,7 @@ export let DateUtils = {
    * @returns {*}  2018-10-13
    */
   formatToDate: function (timeStamp) {
-    if (timeStamp == '' || timeStamp == undefined || timeStamp == null) {
+    if (timeStamp === '' || timeStamp === undefined || timeStamp == null) {
       return ''
     } else {
       var date = new Date(timeStamp)
@@ -23,8 +23,35 @@ export let DateUtils = {
    * @param timeStamp 1539412493814
    * @returns {*} 2018-10-13 14:34:53
    */
+  unixTimestampToDateTimeHMS: function (timeStamp) {
+    if (timeStamp === '' || timeStamp === undefined || timeStamp == null) {
+      return ''
+    } else {
+      var date = new Date(timeStamp * 1000)
+      var y = date.getFullYear()
+      var m = date.getMonth() + 1
+      m = m < 10 ? '0' + m : m
+      var d = date.getDate()
+      d = d < 10 ? ('0' + d) : d
+      var h = date.getHours()
+      h = h < 10 ? ('0' + h) : h
+      var f = date.getMinutes()
+      f = f < 10 ? ('0' + f) : f
+      var s = date.getSeconds()
+      s = s < 10 ? ('0' + s) : s
+
+      var str = y + '-' + m + '-' + d + ' ' + h + ':' + f + ':' + s
+      return str
+    }
+  },
+
+  /**
+   * 时间戳转换为DateTime格式
+   * @param timeStamp 1539412493814
+   * @returns {*} 2018-10-13 14:34:53
+   */
   formatToDateTimeHMS: function (timeStamp) {
-    if (timeStamp == '' || timeStamp == undefined || timeStamp == null) {
+    if (timeStamp === '' || timeStamp === undefined || timeStamp === null) {
       return ''
     } else {
       var date = new Date(timeStamp)
@@ -67,8 +94,7 @@ export let DateUtils = {
     return currentdate
   },
 
-  getTimestamp: function () {			// 获取时间戳
-                                   // 获取校准后的时间戳
+  getTimestamp: function () {
     var diffTime = window.sessionStorage.getItem('diffTime')
     var clientTime = new Date().getTime()
     var adjustTime = clientTime + parseInt(diffTime)

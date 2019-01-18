@@ -22,7 +22,7 @@
 
         <b-field label="类型" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, "systemType",model.type) }}
+            {{ $dictText(this, "systemType",model.type) }}
           </p>
         </b-field>
 

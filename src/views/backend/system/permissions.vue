@@ -8,7 +8,7 @@
       <div class="column bg-main ml-2" v-show="viewMenu">
         <div class="menus_box">
           <b-field label="类型" horizontal class="static-field">
-            <p class="control static-field">{{dictText(this, 'permissionType', model.type)}}</p>
+            <p class="control static-field">{{$dictText(this, 'permissionType', model.type)}}</p>
           </b-field>
           <b-field label="名称" horizontal class="static-field">
             <p class="control static-field">{{model.name}}</p>
@@ -62,7 +62,7 @@
             <b-select name="type" expanded v-model="model.type"
                       v-validate="'required'" data-vv-as="类型" class="w-15">
               <option
-                v-for="option in dictList(this, 'permissionType')"
+                v-for="option in $dictList(this, 'permissionType')"
                 :value="option.dictValue"
                 :key="option.dictValue">
                 {{ option.dictText }}

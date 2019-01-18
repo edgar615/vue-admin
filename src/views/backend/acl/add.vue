@@ -8,7 +8,7 @@
           <b-select name="companyType" expanded v-model="model.companyType"
                     v-validate="'required'" data-vv-as="公司类型" class="w-15">
             <option
-              v-for="option in dictList(this, 'companyType')"
+              v-for="option in $dictList(this, 'companyType')"
               :value="option.dictValue"
               :key="option.dictValue">
               {{ option.dictText }}
@@ -70,7 +70,7 @@
           <b-select name="exprType" expanded v-model="model.exprType"
                     v-validate="'required'" data-vv-as="比较运算符" class="w-15">
             <option
-              v-for="option in dictList(this, 'exprType')"
+              v-for="option in $dictList(this, 'exprType')"
               :value="option.dictValue"
               :key="option.dictValue">
               {{ option.dictText }}
@@ -153,7 +153,7 @@
         if (this.model.rightExprOption !== '-1') {
           this.model.rightExpr = this.model.rightExprOption
         }
-        this.saveMode(vm, addAcl, () => vm.$router.push({path: '/backend/acl'}))
+        this.$saveModel(vm, addAcl, () => vm.$router.push({path: '/backend/acl'}))
       }
     }
   }

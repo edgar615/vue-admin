@@ -57,12 +57,12 @@
       },
       save () {
         const vm = this
-        vm.updateModel(vm, updateDict, vm.$route.params.id,
+        vm.$updateModel(vm, updateDict, vm.$route.params.id,
           () => vm.$router.push({path: '/backend/dict'}))
       }
     },
     created () {
-      this.getModel(this, getDict, this.$route.params.id)
+      this.$getModel(this, getDict, this.$route.params.id)
     }
   }
 </script>

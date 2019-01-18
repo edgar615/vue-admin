@@ -11,8 +11,6 @@ import zh_CN from '@/utils/zh-CN'
 import '@/styles/vars.scss'
 
 import '@/utils/date'
-// CRUD基本方法，减少页面开发量
-import ApiUtil from '@/utils/util'
 // 校验
 import '@/utils/validate'
 // Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
@@ -20,14 +18,9 @@ import JccField from '@/components/field'
 import JccMetaInput from '@/components/meta'
 import DictRadioButton from '@/components/dict'
 import FormModal from '@/components/form-modal'
+import ApiHelper from '@/utils/apiHelper'
 
-Vue.component('jcc-field', JccField)
 Vue.component('jcc-meta-input', JccMetaInput)
-Vue.component('dict-radio-button', DictRadioButton)
-
-Vue.config.productionTip = false
-
-Vue.use(ApiUtil)
 
 Vue.use(VeeValidate, {
   locale: 'zh_CN',

@@ -1,30 +1,23 @@
 <template>
   <section>
     <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-input v-model="filters.code" placeholder="字典编码"></b-input>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
-    <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          字典列表
-        </div>
-        <div class="card-header-right buttons">
-          <router-link to="/backend/dict/add"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
+          <div class="card-header-left">
+            <b-field grouped group-multiline>
+              <b-input v-model="filters.code" placeholder="字典编码"></b-input>
+              <p class="control ml-1">
+                <button class="button" @click="loadAsyncData({page: 1})">
+                  <b-icon icon="magnify"></b-icon>
+                  <span>查询</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </header>
 
@@ -91,6 +84,7 @@
 <script>
   import {dictPage, deleteDict} from '@/api/backend/dict'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/backend/dict/add.vue'
 
   export default {
     data () {
@@ -102,14 +96,14 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm
     },
     methods: {
       /*
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, dictPage, params)
+        this.$pageModelWithHistory(this, dictPage, params)
       },
       /*
        * Handle page-change event
@@ -129,13 +123,23 @@
       },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteDict, id,
+        this.$deleteModel(vm, deleteDict, id,
           () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增字典',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
     filters: {},
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

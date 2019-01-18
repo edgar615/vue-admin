@@ -66,12 +66,12 @@
             </b-table-column>
 
             <b-table-column field="type" label="允许匿名">
-              {{ boolText(props.row.allowAnonymous) }}
+              {{ $boolText(props.row.allowAnonymous) }}
             </b-table-column>
 
 
             <b-table-column field="internal" label="内部访问?">
-              {{ boolText(props.row.internal) }}
+              {{ $boolText(props.row.internal) }}
             </b-table-column>
 
             <b-table-column label="操作">
@@ -117,7 +117,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.pageModelWithHistory(this, authorityPage, params)
+        this.$pageModelWithHistory(this, authorityPage, params)
       },
       /*
        * Handle page-change event
@@ -129,7 +129,7 @@
       },
       onDelete (id) {
         const vm = this
-        this.deleteModel(vm, deleteAuthority, id,
+        this.$deleteModel(vm, deleteAuthority, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       }
     },
@@ -146,7 +146,7 @@
        */
     },
     created () {
-      this.fillParamFromHistory()
+      this.$fillParamFromHistory()
       this.loadAsyncData()
     }
   }

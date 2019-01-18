@@ -34,14 +34,14 @@
 
         <jcc-field label="类型" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, 'systemType',model.type) }}
+            {{ $dictText(this, 'systemType',model.type) }}
           </p>
         </jcc-field>
 
         <jcc-field label="内部访问" horizontal class="static-field">
           <p class="control">
             <span class="tag is-info">
-              {{ dictText(this, 'internal',model.internal) }}
+              {{ $dictText(this, 'internal',model.internal) }}
               </span>
           </p>
         </jcc-field>
@@ -80,12 +80,12 @@
       },
       save () {
         const vm = this
-        vm.updateModel(vm, updateSystem, vm.$route.params.id,
+        vm.$updateModel(vm, updateSystem, vm.$route.params.id,
           () => vm.$router.push({path: '/backend/system'}))
       }
     },
     created () {
-      this.getModel(this, getSystem, this.$route.params.id)
+      this.$getModel(this, getSystem, this.$route.params.id)
     }
   }
 </script>
