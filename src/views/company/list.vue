@@ -1,51 +1,42 @@
 <template>
   <section>
-    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
-    <!--如果一行放不下，用多个section-->
-    <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-input v-model="filters.companyCode" placeholder="编码"></b-input>
-          <b-input v-model="filters.name" placeholder="名称"></b-input>
-          <b-field>
-            <b-radio-button v-model="filters.state"
-                            native-value="1"
-                            type="is-success">
-              <b-icon icon="lock-open-outline"></b-icon>
-              <span>活动</span>
-            </b-radio-button>
-            <b-radio-button v-model="filters.state"
-                            native-value="2"
-                            type="is-dark" class="is-dark-blue-lighter">
-              <b-icon icon="lock-outline"></b-icon>
-              <span>锁定</span>
-            </b-radio-button>
-            <b-radio-button v-model="filters.state"
-                            native-value="">
-              全部
-            </b-radio-button>
-          </b-field>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          公司列表
-        </div>
-        <div class="card-header-right buttons">
-          <router-link to="/company/add"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
+          <div class="card-header-left">
+            <b-field grouped group-multiline>
+              <b-input v-model="filters.companyCode" placeholder="编码"></b-input>
+              <b-input v-model="filters.name" placeholder="名称"></b-input>
+              <b-field>
+                <b-radio-button v-model="filters.state"
+                                native-value="1"
+                                type="is-success">
+                  <b-icon icon="lock-open-outline"></b-icon>
+                  <span>活动</span>
+                </b-radio-button>
+                <b-radio-button v-model="filters.state"
+                                native-value="2"
+                                type="is-dark" class="is-dark-blue-lighter">
+                  <b-icon icon="lock-outline"></b-icon>
+                  <span>锁定</span>
+                </b-radio-button>
+                <b-radio-button v-model="filters.state"
+                                native-value="">
+                  全部
+                </b-radio-button>
+              </b-field>
+              <p class="control ml-1">
+                <button class="button" @click="loadAsyncData({page: 1})">
+                  <b-icon icon="magnify"></b-icon>
+                  <span>查询</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </header>
 
@@ -90,7 +81,7 @@
             </b-table-column>
 
             <b-table-column field="name" label="添加时间">
-              {{ props.row.addOn }}
+              {{ $unixTimestampToDateTimeHMS(props.row.addOn) }}
             </b-table-column>
 
             <b-table-column field="name" label="管理员">
@@ -98,18 +89,15 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/company/' +props.row.companyId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="circle-edit-outline"></b-icon>
-              </router-link>
-              <button class="button is-danger is-small" @click="doLock(props.row.companyId)"
-                      title="锁定" v-show="props.row.state == 1">
-                <b-icon icon="lock-outline"></b-icon>
-              </button>
-              <button class="button is-danger is-small" @click="doUnLock(props.row.companyId)"
-                      title="解锁" v-show="props.row.state == 2">
-                <b-icon icon="lock-open-outline"></b-icon>
-              </button>
+              <a @click="editModal(props.row.companyId)">
+                修改
+              </a>
+              <a @click="doLock(props.row.companyId)" v-show="props.row.state == 1">
+                锁定
+              </a>
+              <a @click="doUnLock(props.row.companyId)" v-show="props.row.state == 2">
+                解锁
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -147,6 +135,8 @@
 <script>
   import {page, lock, unLock} from '@/api/company'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/company/add.vue'
+  import EditForm from '@/views/company/edit.vue'
 
   export default {
     data () {
@@ -157,7 +147,7 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm, EditForm,
     },
     methods: {
       /*
@@ -191,6 +181,29 @@
       doUnLock (id) {
         unLock(id).then(response => {
           this.loadAsyncData({page: this.pagination.page})
+        })
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增公司',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
+      },
+      editModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改公司',
+          width: '20%',
+          component: EditForm,
+          props: {
+            companyId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
         })
       }
     },
