@@ -1,9 +1,9 @@
 <template>
     <section class="mb-3">
-        <div class="level is-size-6" v-if="title && title != ''">
+        <div class="level" v-if="title && title != ''">
             <div class="level-left">
                 <div class="level-item">
-                    <div class="title has-text-primary">{{title}}</div>
+                    <div class="title is-size-4 has-text-primary">{{title}}</div>
                 </div>
             </div>
         </div>

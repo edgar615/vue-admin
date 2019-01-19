@@ -57,8 +57,6 @@
           vm.$parent.fail('模板保存失败', err)
         })
       }
-    },
-    created () {
     }
   }
 </script>

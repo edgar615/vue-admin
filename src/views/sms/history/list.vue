@@ -1,24 +1,42 @@
 <template>
   <section>
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="title has-text-primary">发送记录</div>
-        </div>
-      </div>
-    </div>
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
           <div class="card-header-left">
             <b-field grouped group-multiline>
-              <b-input v-model="filters.identifier" placeholder="标识符"></b-input>
+              <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
+              <b-select placeholder="发送状态" v-model="filters.state">
+                <option value="">请选择</option>
+                <option
+                        v-for="option in $dictList(this, 'smsState')"
+                        :value="option.dictValue"
+                        :key="option.dictValue">
+                  {{ option.dictText }}
+                </option>
+              </b-select>
+              <date-picker
+                      v-model="value2"
+                      range
+                      type="datetime"
+                      lang="zh"
+                      format="YYYY-MM-DD HH:mm:ss"
+                      value-type="timestamp"
+                      clearable
+                      confirm
+                      placeholder="发送时间"
+                      confirm-text="确认"
+                      @change="clear"
+                      icon="calendar-today right-icon"
+              >
+              </date-picker>
               <p class="control ml-1">
                 <button class="button" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
                   <span>查询</span>
                 </button>
               </p>
+              {{value2}}
             </b-field>
           </div>
         </div>
@@ -93,6 +111,7 @@
   export default {
     data () {
       return {
+          value2: '',
         filters: {},
         pagination: {},
         loading: false
@@ -106,6 +125,10 @@
        * Load async data
        */
       loadAsyncData (params) {
+        if (this.value2) {
+            this.filters.startTime = this.value2[0] / 1000
+            this.filters.endTime = this.value2[1] / 1000
+        }
         this.$pageModelWithHistory(this, page, params)
       },
       /*

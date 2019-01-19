@@ -34,6 +34,11 @@
             <span>关闭</span>
           </button>
         </div>
+        <div class="form-modal-card-footer" v-if="showClose">
+          <button class="button" @click="cancel()">
+            <span>关闭</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -61,6 +66,10 @@
       animation: {
         type: String,
         default: 'zoom-out'
+      },
+      showClose: {
+        type: Boolean,
+        default: false
       },
       onClose: {
         type: Function,
