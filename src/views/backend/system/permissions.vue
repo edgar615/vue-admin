@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth is-size-7">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content">
           <div class="card-content">
             <vue-tree :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="column ml-2" v-show="viewMenu">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content">
           <div class="card-content">
             <b-field label="类型" horizontal class="static-field">
               <p class="control static-field">{{$dictText(this, 'permissionType', model.type)}}</p>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="column ml-2" v-show="addMenu">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content">
           <div class="card-content">
             <jcc-field label="类型" horizontal class="required-field"
                        :type="errors.has('type') ? 'is-danger' : ''"
@@ -125,7 +125,7 @@
                        :type="errors.has('description') ? 'is-danger' : ''"
                        :message="errors.first('description')"
                        v-show="model.type == 1">
-            <textarea name="description" v-model="model.description" data-vv-as="描述" cols="100"></textarea>
+              <textarea name="description" v-model="model.description" data-vv-as="描述" cols="100"></textarea>
             </jcc-field>
             <jcc-field class="field" horizontal message="不显示在菜单上"
                        v-show="model.type == 1">
@@ -169,6 +169,12 @@
     </div>
   </section>
 </template>
+<style scoped>
+  .box-content {
+    height: 600px;
+    overflow: auto;
+  }
+</style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import {menuList, getMenu, addMenu, deleteMenu, updateMenu} from '@/api/backend/system'
@@ -296,4 +302,3 @@
     }
   }
 </script>
-

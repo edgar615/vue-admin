@@ -1,6 +1,8 @@
 /*表单长度控制*/
 
-$form-modal-card-head-background-color: #f5f5f5 !default.field.required-field div.field-label label:before {
+$form-modal-card-head-background-color: #f5f5f5 !default
+
+.field.required-field div.field-label label:before {
   content: '* ';
   color: red;
 }

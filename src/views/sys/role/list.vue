@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth is-size-7">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content1">
           <div class="card-content">
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>
@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="column ml-2" v-show="viewRole">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content1">
           <div class="card-content">
             <b-field label="名称" horizontal class="static-field">
               <p class="control static-field">{{model.name}}</p>
@@ -45,7 +45,7 @@
       </div>
 
       <div class="column ml-2" v-show="addRole">
-        <div class="card" style="height: 500px; overflow-y: auto">
+        <div class="card box-content1">
           <div class="card-content">
             <jcc-field label="名称" horizontal class="required-field"
                        :type="errors.has('name') ? 'is-danger' : ''"
@@ -78,45 +78,70 @@
           </div>
         </div>
       </div>
-
       <div class="column  ml-2" v-show="rolePermit">
-        <div class="card" style="height: 500px; overflow-y: auto">
-          <div class="card-content">
-            <span class="is-size-6" style="font-weight: 600;font-size: 14px!important;">设置角色对应的功能权限</span>
-            <span class="ml-5">
-
-        </span>
-
-            <vue-tree v-model="permitTreeOptions.checkedIds" :tree-data="permitTreeData" :options="permitTreeOptions"
-                      @handle="menuClick" style="height: 500px;overflow-y: auto"></vue-tree>
-            <p style="text-align: center;width: 100%;margin-top: 20px;">
-              <button class="button is-primary is-small submit" @click="savePermit"
-                      :class="{'is-loading' : saving}" style="width: 110px;">
+        <div class="card">
+          <header class="card-header">
+            <div class="card-header-right buttons">
+              <button class="button is-primary" @click="savePermit"
+                      :class="{'is-loading' : saving}">
                 保存授权
               </button>
-            </p>
+            </div>
+          </header>
+        </div>
+        <div class="columns mt-2">
+          <div class="column">
+            <div class="card box-content2">
+              <header class="card-header">
+                <div class="card-header-title">
+                  设置角色对应的菜单权限
+                </div>
+              </header>
+              <div class="card-content">
+                <vue-tree v-model="permitTreeOptions.checkedIds" :tree-data="permitTreeData" :options="permitTreeOptions"
+                          @handle="menuClick"></vue-tree>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="card box-content2" v-show="curPermissions && curPermissions.length > 0">
+              <header class="card-header">
+                <div class="card-header-title">
+                  设置角色对应的功能权限
+                </div>
+              </header>
+              <div class="card-content">
+                <b-table
+                    :data="curPermissions"
+                    :checked-rows.sync="checkedPermissions"
+                    checkable>
+                  <template slot-scope="props">
+                    <b-table-column field="name" label="权限" width="400">
+                      {{ props.row.name }}
+                    </b-table-column>
+                  </template>
+                </b-table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="column ml-2" v-show="rolePermit">
-        <div class="card" style="height: 500px; overflow-y: auto" v-show="curPermissions && curPermissions.length > 0">
-          <div class="card-content">
-            <b-table
-                :data="curPermissions"
-                :checked-rows.sync="checkedPermissions"
-                checkable>
-              <template slot-scope="props">
-                <b-table-column field="name" label="权限" width="400">
-                  {{ props.row.name }}
-                </b-table-column>
-              </template>
-            </b-table>
-          </div>
-        </div>
-      </div>
+
     </div>
   </section>
 </template>
+<style scoped>
+  .box-content1 {
+    height: 600px;
+    overflow: auto;
+  }
+
+  .box-content2 {
+    height: 540px;
+    overflow: auto;
+  }
+</style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import {
@@ -427,39 +452,3 @@
     }
   }
 </script>
-<style scoped>
-  .directory-wrap.vue-tree{
-    background-color: white!important;
-    margin: 0 20px;
-  }
-
-  .role-button{
-    width: 110px;
-    height: 28px;
-    line-height: 28px;
-    background-color: #ff6600;
-    color: white;
-    text-align: center;
-    border: none;
-    border-radius: 3px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-
-  .install-wrap{
-    background-color: white;
-    padding: 20px;
-    padding-top: 5px;
-  }
-  .menus_box.viewrole-wrap{
-    margin: 0;
-    padding: 20px;
-  }
-  .menus_box.viewrole-wrap .control{
-    max-width: 600px!important;
-  }
-  /*第三层权限管理*/
-  .column.three-wrap{
-    margin: 0 20px;
-  }
-</style>
