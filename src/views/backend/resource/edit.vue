@@ -1,41 +1,33 @@
 <template>
   <section>
-    <div class="card">
-      <div class="card-content">
-        <jcc-field label="请求方法" horizontal class="static-field">
-          <p class="control">
-            {{model.httpMethod}}
-          </p>
-        </jcc-field>
-        <jcc-field label="请求地址" horizontal class="static-field">
-          <p class="control">
-            {{model.httpUrl}}
-          </p>
-        </jcc-field>
+    <div class="form-modal-card-body">
+      <b-field label="请求方法" class="static-field">
+        <p class="control">
+          {{model.httpMethod}}
+        </p>
+      </b-field>
+      <b-field label="请求地址" class="static-field">
+        <p class="control">
+          {{model.httpUrl}}
+        </p>
+      </b-field>
 
-        <jcc-field label="权限范围" horizontal class="required-field"
-                   :type="errors.has('permission') ? 'is-danger' : ''"
-                   :message="errors.first('permission')">
-          <b-input name="permission" v-model="model.permission"
-                   v-validate="'required|max:64'" data-vv-as="权限范围" class="w-50"></b-input>
-        </jcc-field>
-
-        <b-field horizontal><!-- Label left empty for spacing -->
-          <p class="control btn_margin">
-            <button class="button is-primary" @click="save" :disabled='errors.any()'
-                    :class="{'is-loading' : saving}">
-              <b-icon icon="check-circle"></b-icon>
-              <span>保存</span>
-            </button>
-            <button class="button" @click="back">
-              <b-icon icon="undo"></b-icon>
-              <span>返回</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
+      <b-field label="权限范围" class="required-field"
+               :type="errors.has('permission') ? 'is-danger' : ''"
+               :message="errors.first('permission')">
+        <b-input name="permission" v-model="model.permission"
+                 v-validate="'required|max:64'" data-vv-as="权限范围"></b-input>
+      </b-field>
     </div>
-    <b-loading :active.sync="loading"></b-loading>
+    <div class="form-modal-card-footer">
+      <button class="button is-primary" @click="save" :disabled='errors.any()'
+              :class="{'is-loading' : saving}">
+        <span>保存</span>
+      </button>
+      <button class="button" @click="$parent.cancel()">
+        <span>关闭</span>
+      </button>
+    </div>
   </section>
 </template>
 <script>
@@ -50,17 +42,24 @@
       }
     },
     methods: {
-      back () {
-        this.$router.back()
-      },
       save () {
         const vm = this
-        vm.$updateModel(vm, updateResource, vm.$route.params.id,
-          () => vm.$router.push({path: '/backend/resource'}))
+        vm.$updateModel(vm, updateResource, this.$parent.$props.props.sysResourceId, resp => {
+          vm.$parent.succeed('接口权限保存成功', resp)
+        }, err => {
+          vm.$parent.fail('接口权限保存失败', err)
+        })
       }
     },
     created () {
-      this.$getModel(this, getResource, this.$route.params.id)
+      this.$parent.startLoading()
+      this.$getModel(this, getResource, this.$parent.$props.props.sysResourceId)
+      .then(respone => {
+        this.$parent.closeLoading()
+      }).catch(err => {
+        this.$parent.closeLoading()
+        this.$parent.fail('接口权限查询失败', err)
+      })
     }
   }
 </script>

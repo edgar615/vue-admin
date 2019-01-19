@@ -1,36 +1,30 @@
 <template>
   <section>
-    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
-    <!--如果一行放不下，用多个section-->
-    <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-select name="method" v-model="filters.method" data-vv-as="请求方法">
-            <option value="GET">GET</option>
-            <option value="POST">POST</option>
-            <option value="PUT">PUT</option>
-            <option value="DELETE">DELETE</option>
-            <option value="ALL">ALL</option>
-          </b-select>
-          <b-input v-model="filters.url" placeholder="接口地址"></b-input>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          接口列表
+          <div class="card-header-left">
+            <b-field grouped group-multiline>
+              <b-select name="method" v-model="filters.method" placeholder="请求方法">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+                <option value="ALL">ALL</option>
+              </b-select>
+              <b-input v-model="filters.url" placeholder="接口地址"></b-input>
+              <p class="control ml-1">
+                <button class="button is-primary" @click="loadAsyncData({page: 1})">
+                  <b-icon icon="magnify"></b-icon>
+                  <span>查询</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
+
       </header>
       <div class="card-content">
-        <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           striped
           hoverable
@@ -63,10 +57,9 @@
 
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/resource/' +props.row.sysResourceId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="circle-edit-outline"></b-icon>
-              </router-link>
+              <a @click="editModal(props.row.sysResourceId)">
+                修改
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -83,6 +76,7 @@
 <script>
   import {resourcePage} from '@/api/backend/sysresource'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import EditForm from '@/views/backend/resource/edit.vue'
 
   export default {
     data () {
@@ -93,7 +87,7 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, EditForm
     },
     methods: {
       /*
@@ -109,6 +103,19 @@
         if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
+      },
+      editModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改接口权限',
+          width: '20%',
+          component: EditForm,
+          props: {
+            sysResourceId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
     created () {
