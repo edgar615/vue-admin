@@ -1,6 +1,6 @@
 <template>
-    <section>
-        <div class="level" v-if="title && title != ''">
+    <section class="mb-3">
+        <div class="level is-size-6" v-if="title && title != ''">
             <div class="level-left">
                 <div class="level-item">
                     <div class="title has-text-primary">{{title}}</div>
@@ -10,7 +10,6 @@
         <div class="notification" v-if="description && description != ''">
             {{description}}
         </div>
-        {{description}}
     </section>
 </template>
 

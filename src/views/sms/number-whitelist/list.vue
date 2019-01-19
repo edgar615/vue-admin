@@ -1,15 +1,5 @@
 <template>
   <section>
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="title has-text-primary">号码白名单</div>
-        </div>
-      </div>
-    </div>
-    <div class="notification">
-      白名单中的号码会忽略黑名单、限流等限制条件
-    </div>
     <div class="card">
       <header class="card-header">
         <div class="card-header-title">

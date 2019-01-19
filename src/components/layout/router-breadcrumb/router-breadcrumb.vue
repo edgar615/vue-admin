@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb pl-3 ml-3 mt-1 mb-2 has-succeeds-separator" aria-label="breadcrumbs"
+  <nav class="breadcrumb ml-3 mt-1 mb-2 has-succeeds-separator" aria-label="breadcrumbs"
        v-show="showBreadcrumb != false">
     <ul>
       <li :class="index == breadcrumbMenu.length -1 ? 'is-active' : '' " v-for="(route, index) in breadcrumbMenu"
