@@ -3,9 +3,9 @@ import store from '@/store'
 
 // 拦截器弹出错误提示
 const service = axios.create({
-  baseURL: process.env.BASE_API,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 30000,
-  headers: {'X-Client-Name': process.env.CLIENT_NAME}
+  headers: {'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
 })
 
 // request拦截器

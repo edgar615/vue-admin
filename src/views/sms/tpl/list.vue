@@ -1,15 +1,5 @@
 <template>
   <section>
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="title has-text-primary">短信模板</div>
-        </div>
-      </div>
-    </div>
-    <div class="notification">
-      这里放每个页面的说明文字
-    </div>
     <div class="card">
       <header class="card-header">
         <div class="card-header-title">

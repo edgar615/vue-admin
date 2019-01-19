@@ -29,7 +29,9 @@ function rFormat (menu, parent) {
       menuId: menu.sysPermissionId,
       parentId: menu.parentId,
       level: menu.level,
-      moduleId: moduleId
+      moduleId: moduleId,
+      title: menu.title,
+      description: menu.description
     }
   }
 
