@@ -1,104 +1,117 @@
 <template>
-  <section class="ml-2 mt-3">
-    <div class="columns">
-      <div class="column is-one-fifth  is-size-7 vue-tree directory-wrap">
-        <vue-tree :tree-data="treeData" :options="options"
-                  @handle="itemClick" style="height: 500px;overflow-y: auto"></vue-tree>
+  <section>
+    <div class="columns is-full-content">
+      <div class="column is-one-fifth is-size-7">
+        <div class="card" style="height: 500px; overflow-y: auto">
+          <div class="card-content">
+            <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
+                      @handle="itemClick"></vue-tree>
+          </div>
+        </div>
       </div>
       <div class="column ml-2" v-show="viewRole">
-        <div class="menus_box viewrole-wrap">
-          <b-field label="名称" horizontal class="static-field">
-            <p class="control static-field">{{model.name}}</p>
-          </b-field>
-          <b-field label="角色编码" horizontal class="static-field">
-            <p class="control static-field">{{model.roleCode}}</p>
-          </b-field>
-          <b-field label="排序" horizontal class="static-field">
-            <p class="control">{{model.sorted}}</p>
-          </b-field>
-          <b-field v-if="model.sysRoleId"><!-- Label left empty for spacing -->
-            <p class="control"
-               style="padding-left: 100px; margin-top: 50px;">
-              <button class="role-button" @click="onAdd(model.sysRoleId)">
-                <span>新增角色</span>
-              </button>
-              <button class="role-button" @click="onEdit">
-                <span>修改角色</span>
-              </button>
-              <button class="role-button" style="background-color: crimson;"
-                      @click="onDelete(model.sysRoleId)"
-                      :class="{'is-loading' : deleting}">
-                <span>删除</span>
-              </button>
-              <button class="role-button"
-                      @click="onPermit(model.sysRoleId)">
-                <span>授权</span>
-              </button>
-            </p>
-          </b-field>
+        <div class="card" style="height: 500px; overflow-y: auto">
+          <div class="card-content">
+            <b-field label="名称" horizontal class="static-field">
+              <p class="control static-field">{{model.name}}</p>
+            </b-field>
+            <b-field label="角色编码" horizontal class="static-field">
+              <p class="control static-field">{{model.roleCode}}</p>
+            </b-field>
+            <b-field label="排序" horizontal class="static-field">
+              <p class="control">{{model.sorted}}</p>
+            </b-field>
+            <b-field v-if="model.sysRoleId" horizontal>
+              <p class="control">
+                <button class="button m-1" @click="onAdd(model.sysRoleId)">
+                  <span>新增角色</span>
+                </button>
+                <button class="button m-1" @click="onEdit">
+                  <span>修改角色</span>
+                </button>
+                <button class="button m-1" style="background-color: crimson;"
+                        @click="onDelete(model.sysRoleId)"
+                        :class="{'is-loading' : deleting}">
+                  <span>删除</span>
+                </button>
+                <button class="button m-1"
+                        @click="onPermit(model.sysRoleId)">
+                  <span>授权</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </div>
 
       <div class="column ml-2" v-show="addRole">
-        <div class="menus_box viewrole-wrap">
-          <jcc-field label="名称" horizontal class="required-field"
-                     :type="errors.has('name') ? 'is-danger' : ''"
-                     :message="errors.first('name')">
-            <b-input name="name" v-model="model.name"
-                     v-validate="'required|max:64'" data-vv-as="名称"></b-input>
-          </jcc-field>
-          <jcc-field label="角色编码" horizontal class="required-field"
-                     :type="errors.has('roleCode') ? 'is-danger' : ''"
-                     :message="errors.first('roleCode')">
-            <b-input name="roleCode" v-model="model.roleCode"
-                     v-validate="'required|max:64|alpha_underscore'" data-vv-as="角色编码"></b-input>
-          </jcc-field>
-          <jcc-field label="排序" horizontal class="required-field"
-                     :message="errors.first('sorted')"
-                     :type="errors.has('sorted') ? 'is-danger' : ''">
-            <b-input name="sorted" expanded v-model="model.sorted"
-                     v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"
-                     class="w-25">
-            </b-input>
-          </jcc-field>
-          <b-field horizontal><!-- Label left empty for spacing -->
-            <p class="control">
-              <button class="button is-primary submit" @click="save"
-                      :class="{'is-loading' : saving}" style="width: 110px;font-size: 14px;height: 28px;margin: 20px 0;line-height: 18px;">
-                <span>保存</span>
-              </button>
-            </p>
-          </b-field>
+        <div class="card" style="height: 500px; overflow-y: auto">
+          <div class="card-content">
+            <jcc-field label="名称" horizontal class="required-field"
+                       :type="errors.has('name') ? 'is-danger' : ''"
+                       :message="errors.first('name')">
+              <b-input name="name" v-model="model.name"
+                       v-validate="'required|max:64'" data-vv-as="名称"></b-input>
+            </jcc-field>
+            <jcc-field label="角色编码" horizontal class="required-field"
+                       :type="errors.has('roleCode') ? 'is-danger' : ''"
+                       :message="errors.first('roleCode')">
+              <b-input name="roleCode" v-model="model.roleCode"
+                       v-validate="'required|max:64|alpha_underscore'" data-vv-as="角色编码"></b-input>
+            </jcc-field>
+            <jcc-field label="排序" horizontal class="required-field"
+                       :message="errors.first('sorted')"
+                       :type="errors.has('sorted') ? 'is-danger' : ''">
+              <b-input name="sorted" expanded v-model="model.sorted"
+                       v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"
+                       class="w-25">
+              </b-input>
+            </jcc-field>
+            <b-field horizontal>
+              <p class="control">
+                <button class="button is-primary m-1" @click="save"
+                        :class="{'is-loading' : saving}" style="width: 110px;font-size: 14px;height: 28px;margin: 20px 0;line-height: 18px;">
+                  <span>保存</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </div>
 
-      <div class="column  ml-2 is-size-7 install-wrap" v-show="rolePermit">
-        <span class="is-size-6" style="font-weight: 600;font-size: 14px!important;">设置角色对应的功能权限</span>
-        <span class="ml-5">
+      <div class="column  ml-2" v-show="rolePermit">
+        <div class="card" style="height: 500px; overflow-y: auto">
+          <div class="card-content">
+            <span class="is-size-6" style="font-weight: 600;font-size: 14px!important;">设置角色对应的功能权限</span>
+            <span class="ml-5">
 
         </span>
 
-        <vue-tree v-model="permitTreeOptions.checkedIds" :tree-data="permitTreeData" :options="permitTreeOptions"
-                  @handle="menuClick" style="height: 500px;overflow-y: auto"></vue-tree>
-        <p style="text-align: center;width: 100%;margin-top: 20px;">
-          <button class="button is-primary is-small submit" @click="savePermit"
-                  :class="{'is-loading' : saving}" style="width: 110px;">
-            保存授权
-          </button>
-        </p>
+            <vue-tree v-model="permitTreeOptions.checkedIds" :tree-data="permitTreeData" :options="permitTreeOptions"
+                      @handle="menuClick" style="height: 500px;overflow-y: auto"></vue-tree>
+            <p style="text-align: center;width: 100%;margin-top: 20px;">
+              <button class="button is-primary is-small submit" @click="savePermit"
+                      :class="{'is-loading' : saving}" style="width: 110px;">
+                保存授权
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="column three-wrap" v-show="rolePermit">
-        <div v-show="curPermissions && curPermissions.length > 0">
-          <b-table
-            :data="curPermissions"
-            :checked-rows.sync="checkedPermissions"
-            checkable>
-            <template slot-scope="props">
-              <b-table-column field="name" label="权限" width="400">
-                {{ props.row.name }}
-              </b-table-column>
-            </template>
-          </b-table>
+      <div class="column ml-2" v-show="rolePermit">
+        <div class="card" style="height: 500px; overflow-y: auto" v-show="curPermissions && curPermissions.length > 0">
+          <div class="card-content">
+            <b-table
+                :data="curPermissions"
+                :checked-rows.sync="checkedPermissions"
+                checkable>
+              <template slot-scope="props">
+                <b-table-column field="name" label="权限" width="400">
+                  {{ props.row.name }}
+                </b-table-column>
+              </template>
+            </b-table>
+          </div>
         </div>
       </div>
     </div>
