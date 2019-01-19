@@ -55,18 +55,14 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <router-link :to="{path:  '/backend/dict/' +props.row.dictId + '/edit' }"
-                           exact class="button is-small" title="修改">
-                <b-icon icon="circle-edit-outline"></b-icon>
-              </router-link>
-              <button class="button is-danger is-small" @click="onDelete(props.row.dictId)"
-                      title="删除" :class="{'is-loading' : deleting}">
-                <b-icon icon="delete-outline"></b-icon>
-              </button>
-              <router-link
-                :to="{path:  '/backend/dict/' +props.row.dictId + '/items' }"
-                exact class="button is-info is-small" title="字典管理">
-                <b-icon icon="menu"></b-icon>
+              <a @click="editModal(props.row.dictId)">
+                修改
+              </a>
+              <a @click="onDelete(props.row.dictId)">
+                删除
+              </a>
+              <router-link :to="{path:  '/backend/dict/' +props.row.dictId + '/items' }"  exact>
+                字典子项
               </router-link>
             </b-table-column>
           </template>
@@ -85,6 +81,7 @@
   import {dictPage, deleteDict} from '@/api/backend/dict'
   import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/backend/dict/add.vue'
+  import EditForm from '@/views/backend/dict/edit.vue'
 
   export default {
     data () {
@@ -96,7 +93,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm
+      EmptyTable, AddForm, EditForm
     },
     methods: {
       /*
@@ -135,9 +132,21 @@
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })
+      },
+      editModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改字典',
+          width: '20%',
+          component: EditForm,
+          props: {
+            dictId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
-    filters: {},
     created () {
       this.$fillParamFromHistory()
       this.loadAsyncData()

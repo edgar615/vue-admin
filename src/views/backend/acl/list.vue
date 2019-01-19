@@ -1,43 +1,35 @@
 <template>
   <section>
-    <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-select placeholder="公司类型" v-model="filters.companyType">
-            <option value="">请选择</option>
-            <option
-              v-for="option in $dictList(this, 'companyType')"
-              :value="option.dictValue"
-              :key="option.dictValue">
-              {{ option.dictText }}
-            </option>
-          </b-select>
-          <b-input v-model="filters.resourceName" placeholder="资源名称"></b-input>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          数据权限
-        </div>
-        <div class="card-header-right buttons">
-          <router-link to="/backend/acl/add"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
+          <div class="card-header-left">
+            <b-field grouped group-multiline>
+              <b-select placeholder="公司类型" v-model="filters.companyType">
+                <option value="">请选择</option>
+                <option
+                    v-for="option in $dictList(this, 'companyType')"
+                    :value="option.dictValue"
+                    :key="option.dictValue">
+                  {{ option.dictText }}
+                </option>
+              </b-select>
+              <b-input v-model="filters.resourceName" placeholder="资源名称"></b-input>
+              <p class="control ml-1">
+                <button class="button" @click="loadAsyncData({page: 1})">
+                  <b-icon icon="magnify"></b-icon>
+                  <span>查询</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </header>
       <div class="card-content">
-        <!--buefy的表格组件，具体用法查阅文档-->
         <b-table
           striped
           hoverable
@@ -106,6 +98,7 @@
 <script>
   import {aclPage, deleteAcl} from '@/api/backend/acl'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/backend/acl/add.vue'
 
   export default {
     data () {
@@ -117,7 +110,7 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm
     },
     methods: {
       operateTypeName (operateType) {
@@ -154,9 +147,17 @@
         const vm = this
         this.$deleteModel(vm, deleteAcl, id,
           () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增ACL',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
-    },
-    filters: {
     },
     created () {
       this.$fillParamFromHistory()
