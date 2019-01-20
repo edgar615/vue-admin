@@ -42,28 +42,24 @@
               {{ props.row.phoneNumber }}
             </b-table-column>
 
-            <b-table-column field="sendTime" label="发送时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.sendTime)}}
+            <b-table-column field="smsContent" label="短信内容">
+              {{ props.row.smsContent }}
             </b-table-column>
 
             <b-table-column field="reportTime" label="报告时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.reportTime)}}
+              {{ $unixTimestampToDateTimeHMS(props.row.sendTime)}}
             </b-table-column>
 
-            <b-table-column field="receiveSuccess" label="接收状态">
-              {{ $customBoolText(props.row.receiveSuccess, '已收到', '未收到') }}
+            <b-table-column field="signName" label="短信前面">
+              {{ props.row.signName }}
             </b-table-column>
 
-            <b-table-column field="errCode" label="错误码">
-              {{ props.row.errCode }}
+            <b-table-column field="destCode" label="扩展号码">
+              {{ props.row.destCode }}
             </b-table-column>
 
             <b-table-column field="bizId" label="发送序列号">
               {{ props.row.bizId }}
-            </b-table-column>
-
-            <b-table-column field="outSmsId" label="业务序列号">
-              {{ props.row.outSmsId }}
             </b-table-column>
 
           </template>
@@ -77,7 +73,7 @@
 </template>
 
 <script>
-  import {downPage} from '@/api/sms/notify'
+  import {upPage} from '@/api/sms/notify'
   import EmptyTable from '@/components/EmptyTable.vue'
 
   export default {
@@ -96,7 +92,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, downPage, params)
+        this.$pageModelWithHistory(this, upPage, params)
       },
       /*
        * Handle page-change event

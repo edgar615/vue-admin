@@ -3,9 +3,13 @@
     <div class="card">
       <header class="card-header">
         <div class="card-header-title">
+          <button class="button is-primary" @click="addModal()">
+            <b-icon icon="plus-circle-outline"></b-icon>
+            <span>新增</span>
+          </button>
           <div class="card-header-left">
             <b-field grouped group-multiline>
-              <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
+              <b-input v-model="filters.ipAddress" placeholder="ip地址"></b-input>
               <p class="control ml-1">
                 <button class="button" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
@@ -38,34 +42,15 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="phoneNumber" label="手机号码">
-              {{ props.row.phoneNumber }}
+            <b-table-column field="ipAddress" label="ip地址">
+              {{ props.row.ipAddress }}
             </b-table-column>
 
-            <b-table-column field="sendTime" label="发送时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.sendTime)}}
+            <b-table-column label="操作">
+              <a @click="onDelete(props.row.smsIpBlacklistId)">
+                删除
+              </a>
             </b-table-column>
-
-            <b-table-column field="reportTime" label="报告时间">
-              {{ $unixTimestampToDateTimeHMS(props.row.reportTime)}}
-            </b-table-column>
-
-            <b-table-column field="receiveSuccess" label="接收状态">
-              {{ $customBoolText(props.row.receiveSuccess, '已收到', '未收到') }}
-            </b-table-column>
-
-            <b-table-column field="errCode" label="错误码">
-              {{ props.row.errCode }}
-            </b-table-column>
-
-            <b-table-column field="bizId" label="发送序列号">
-              {{ props.row.bizId }}
-            </b-table-column>
-
-            <b-table-column field="outSmsId" label="业务序列号">
-              {{ props.row.outSmsId }}
-            </b-table-column>
-
           </template>
           <template slot="empty">
             <EmptyTable></EmptyTable>
@@ -77,8 +62,9 @@
 </template>
 
 <script>
-  import {downPage} from '@/api/sms/notify'
+  import {page, del} from '@/api/sms/ipBlacklist'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/sms/ip-blacklist/add.vue'
 
   export default {
     data () {
@@ -89,14 +75,14 @@
       }
     },
     components: {
-      EmptyTable
+      EmptyTable, AddForm
     },
     methods: {
       /*
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, downPage, params)
+        this.$pageModelWithHistory(this, page, params)
       },
       /*
        * Handle page-change event
@@ -105,6 +91,21 @@
         if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
+      },
+      onDelete (id) {
+        const vm = this
+        this.$deleteModel(vm, del, id,
+          () => this.loadAsyncData())
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增IP黑名单',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
       }
     },
     created () {
