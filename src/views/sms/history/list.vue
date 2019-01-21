@@ -16,7 +16,7 @@
                 </option>
               </b-select>
               <date-picker
-                      v-model="value2"
+                      v-model="sendTimeRange"
                       range
                       type="datetime"
                       lang="zh"
@@ -36,7 +36,6 @@
                   <span>查询</span>
                 </button>
               </p>
-              {{value2}}
             </b-field>
           </div>
         </div>
@@ -69,6 +68,10 @@
 
             <b-table-column field="phoneNumber" label="手机号码">
               {{ props.row.phoneNumber }}
+            </b-table-column>
+
+            <b-table-column field="ipAddress" label="调用IP">
+              {{ props.row.ipAddress }}
             </b-table-column>
 
             <b-table-column field="smsContent" label="发送内容">
@@ -111,7 +114,7 @@
   export default {
     data () {
       return {
-          value2: '',
+        sendTimeRange: '',
         filters: {},
         pagination: {},
         loading: false
@@ -125,9 +128,12 @@
        * Load async data
        */
       loadAsyncData (params) {
-        if (this.value2) {
-            this.filters.startTime = this.value2[0] / 1000
-            this.filters.endTime = this.value2[1] / 1000
+        if (this.sendTimeRange && this.sendTimeRange[0]) {
+            this.filters.startTime = this.sendTimeRange[0] / 1000
+            this.filters.endTime = this.sendTimeRange[1] / 1000
+        } else {
+          delete  this.filters.startTime
+          delete  this.filters.endTime
         }
         this.$pageModelWithHistory(this, page, params)
       },
@@ -142,6 +148,9 @@
     },
     created () {
       this.$fillParamFromHistory()
+      if (this.filters.startTime && this.filters.endTime) {
+        this.sendTimeRange = [this.filters.startTime * 1000, this.filters.endTime * 1000]
+      }
       this.loadAsyncData()
     }
   }

@@ -1,6 +1,19 @@
 <template>
   <section>
     <div class="form-modal-card-body">
+      <b-field label="类型" class="required-field"
+               :type="errors.has('type') ? 'is-danger' : ''"
+               :message="errors.first('type')">
+        <b-select name="type" expanded v-model="model.type"
+                  v-validate="'required'" data-vv-as="类型">
+          <option
+              v-for="option in $dictList(this, 'smsTplType')"
+              :value="option.dictValue"
+              :key="option.dictValue">
+            {{ option.dictText }}
+          </option>
+        </b-select>
+      </b-field>
       <b-field label="模板标识符" class="required-field"
                  :type="errors.has('smsTplIdentifier') ? 'is-danger' : ''"
                  :message="errors.first('smsTplIdentifier')">

@@ -9,6 +9,15 @@
           </button>
           <div class="card-header-left">
             <b-field grouped group-multiline>
+              <b-select placeholder="类型" v-model="filters.type">
+                <option value="">请选择</option>
+                <option
+                    v-for="option in $dictList(this, 'smsTplType')"
+                    :value="option.dictValue"
+                    :key="option.dictValue">
+                  {{ option.dictText }}
+                </option>
+              </b-select>
               <b-input v-model="filters.identifier" placeholder="标识符"></b-input>
               <p class="control ml-1">
                 <button class="button" @click="loadAsyncData({page: 1})">
@@ -41,6 +50,10 @@
         >
 
           <template slot-scope="props">
+
+            <b-table-column field="type" label="类型">
+              {{ $dictText(this, 'smsTplType',props.row.type) }}
+            </b-table-column>
 
             <b-table-column field="smsTplIdentifier" label="标识符">
               {{ props.row.smsTplIdentifier }}

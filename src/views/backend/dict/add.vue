@@ -48,10 +48,10 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, addDict, () => {
-          vm.$parent.succeed({message: '字典保存成功'})
-        }).catch(err => {
-          vm.$parent.failed({message: '字典保存失败'})
+        vm.$saveModel(vm, addDict, resp => {
+          vm.$parent.succeed('字典保存成功', resp)
+        }, err => {
+          vm.$parent.fail('字典保存失败', err)
         })
       }
     }

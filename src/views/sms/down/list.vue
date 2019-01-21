@@ -6,6 +6,21 @@
           <div class="card-header-left">
             <b-field grouped group-multiline>
               <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
+              <date-picker
+                  v-model="sendTimeRange"
+                  range
+                  type="datetime"
+                  lang="zh"
+                  format="YYYY-MM-DD HH:mm:ss"
+                  value-type="timestamp"
+                  clearable
+                  confirm
+                  placeholder="发送时间"
+                  confirm-text="确认"
+                  @change="clear"
+                  icon="calendar-today right-icon"
+              >
+              </date-picker>
               <p class="control ml-1">
                 <button class="button" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
@@ -83,6 +98,7 @@
   export default {
     data () {
       return {
+        sendTimeRange: '',
         filters: {},
         pagination: {},
         loading: false
@@ -96,6 +112,13 @@
        * Load async data
        */
       loadAsyncData (params) {
+        if (this.sendTimeRange && this.sendTimeRange[0]) {
+          this.filters.startTime = this.sendTimeRange[0] / 1000
+          this.filters.endTime = this.sendTimeRange[1] / 1000
+        } else {
+          delete  this.filters.startTime
+          delete  this.filters.endTime
+        }
         this.$pageModelWithHistory(this, downPage, params)
       },
       /*
@@ -109,6 +132,9 @@
     },
     created () {
       this.$fillParamFromHistory()
+      if (this.filters.startTime && this.filters.endTime) {
+        this.sendTimeRange = [this.filters.startTime * 1000, this.filters.endTime * 1000]
+      }
       this.loadAsyncData()
     }
   }

@@ -5,7 +5,7 @@
                  :type="errors.has('ipAddress') ? 'is-danger' : ''"
                  :message="errors.first('ipAddress')">
         <b-input name="ipAddress" v-model="model.ipAddress"
-                 v-validate="'required|max:64'" data-vv-as="IP地址"></b-input>
+                 v-validate="'required|ip'" data-vv-as="IP地址"></b-input>
       </b-field>
     </div>
     <div class="form-modal-card-footer">
