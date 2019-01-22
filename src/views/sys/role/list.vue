@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="columns is-full-content">
-      <div class="column is-one-fifth is-size-7">
+      <div class="column is-one-fifth">
         <div class="card box-content1">
           <div class="card-content">
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
@@ -305,7 +305,7 @@
             })
             vm.permitTreeData = [ {
               id: -1,
-              name: '根目录',
+              name: '角色列表',
               children: treeData
             }]
             // 删除是右侧权限的ID

@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="columns is-full-content">
-      <div class="column is-one-fifth is-size-7">
+      <div class="column is-one-fifth">
         <div class="card box-content">
           <div class="card-content">
             <vue-tree :tree-data="treeData" :options="options"

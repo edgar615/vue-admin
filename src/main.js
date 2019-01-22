@@ -1,4 +1,3 @@
-Vue.config.devtools = true;
 import App from './App'
 import router from './router'
 import store from './store'
@@ -13,10 +12,10 @@ import '@/utils/apiHelper'
 // 校验
 import '@/utils/validate'
 // Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
-import JccField from '@/components/field'
-import JccMetaInput from '@/components/meta'
-import DictRadioButton from '@/components/dict'
-import FormModal from '@/components/form-modal'
+import '@/components/field'
+import '@/components/meta'
+import '@/components/dict'
+import '@/components/form-modal'
 
 Vue.use(VeeValidate, {
   locale: 'zh_CN',
