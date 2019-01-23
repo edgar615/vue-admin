@@ -1,4 +1,4 @@
-import {deleteConfirm} from '@/utils/dialog'
+import {opConfirm} from '@/utils/dialog'
 import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
 function pageModel(vm, pageApi, params) {
@@ -130,7 +130,20 @@ function saveModel (vm, saveApi, callback, errHandler) {
 }
 
 function deleteModel (vm, delApi, id, callback) {
-  deleteConfirm(vm, () => {
+  opConfirm(vm, '确定要删除吗？', () => {
+    vm.deleting = true
+    delApi(id).then(response => {
+      vm.deleting = false
+      return response.data
+    }).then(callback).catch(err => {
+      vm.deleting = false
+      return Promise.reject(err)
+    })
+  })
+}
+
+function confirmModel (vm, delApi, id, msg, callback) {
+  opConfirm(vm, msg, () => {
     vm.deleting = true
     delApi(id).then(response => {
       vm.deleting = false
@@ -143,7 +156,7 @@ function deleteModel (vm, delApi, id, callback) {
 }
 
 function batchDeleteModel(vm, delApi, ids, callback) {
-  deleteConfirm(vm, () => {
+  opConfirm(vm, '确定要删除吗？', () => {
     vm.deleting = true
     delApi({data: {ids: ids}}).then(response => {
       vm.deleting = false
@@ -197,6 +210,7 @@ const Plugin = {
     registerComponentProgrammatic(Vue, '$batchDeleteModel', batchDeleteModel)
     registerComponentProgrammatic(Vue, '$saveModel', saveModel)
     registerComponentProgrammatic(Vue, '$updateModel', updateModel)
+    registerComponentProgrammatic(Vue, '$confirmModel', confirmModel)
   }
 }
 

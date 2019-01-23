@@ -48,6 +48,11 @@
               {{ $unixTimestampToDateTimeHMS(model.ackTime)}}
             </p>
           </b-field>
+          <b-field label="错误描述" horizontal class="static-field">
+            <p class="control">
+              {{ model.ackResult }}
+            </p>
+          </b-field>
           <b-field label="通知时间" horizontal class="static-field">
             <p class="control">
               {{ $unixTimestampToDateTimeHMS(model.responseTime)}}
@@ -100,6 +105,160 @@
           </div>
         </div>
       </div>
+
+      <div class="card" v-if="model.type == 1">
+        <header class="card-header">
+          <div class="card-header-title">
+            支付宝响应
+          </div>
+        </header>
+        <div class="card-content">
+          <b-field label="开发者app_id" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.appId }}
+            </p>
+          </b-field>
+          <b-field label="交易流水" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.tradeNo }}
+            </p>
+          </b-field>
+          <b-field label="订单号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.outTradeNo }}
+            </p>
+          </b-field>
+          <b-field label="商户业务号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.outBizNo }}
+            </p>
+          </b-field>
+          <b-field label="买家支付宝用户号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.buyerId }}
+            </p>
+          </b-field>
+          <b-field label="买家支付宝账号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.buyerLogonId }}
+            </p>
+          </b-field>
+          <b-field label="卖家支付宝用户号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.sellerId }}
+            </p>
+          </b-field>
+          <b-field label="卖家支付宝账号" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.sellerEmail }}
+            </p>
+          </b-field>
+          <b-field label="交易状态" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.tradeStatus }}
+            </p>
+          </b-field>
+          <b-field label="订单金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.totalAmount }}
+            </p>
+          </b-field>
+          <b-field label="实收金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.receiptAmount }}
+            </p>
+          </b-field>
+          <b-field label="开票金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.invoiceAmount }}
+            </p>
+          </b-field>
+          <b-field label="付款金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.buyerPayAmount }}
+            </p>
+          </b-field>
+          <b-field label="集分宝金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.pointAmount }}
+            </p>
+          </b-field>
+          <b-field label="总退款金额" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.refundFee }}
+            </p>
+          </b-field>
+          <b-field label="订单标题" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.subject }}
+            </p>
+          </b-field>
+          <b-field label="商品描述" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.body }}
+            </p>
+          </b-field>
+          <b-field label="交易创建时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.responseModel.gmtCreate)}}
+            </p>
+          </b-field>
+          <b-field label="交易付款时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.responseModel.gmtPayment)}}
+            </p>
+          </b-field>
+          <b-field label="交易退款时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.responseModel.gmtRefund)}}
+            </p>
+          </b-field>
+          <b-field label="交易结束时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.responseModel.gmtClose)}}
+            </p>
+          </b-field>
+          <b-field label="回传参数" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.passbackParams }}
+            </p>
+          </b-field>
+
+          <b-table
+              :data="model.responseModel.fundList">
+            <template slot-scope="props">
+              <b-table-column field="fundChannel" label="支付渠道">
+                {{ props.row.fundChannel }}
+              </b-table-column>
+              <b-table-column field="couponFee" label="金额">
+                {{ props.row.amount }}
+              </b-table-column>
+            </template>
+          </b-table>
+
+          <b-table
+              :data="model.responseModel.couponList">
+            <template slot-scope="props">
+              <b-table-column field="name" label="优惠券名称">
+                {{ props.row.name }}
+              </b-table-column>
+              <b-table-column field="type" label="类型">
+                {{ props.row.type }}
+              </b-table-column>
+              <b-table-column field="merchantContribute" label="商家出资">
+                {{ props.row.merchantContribute }}
+              </b-table-column>
+              <b-table-column field="otherContribute" label="其他出资方出资">
+                {{ props.row.otherContribute }}
+              </b-table-column>
+              <b-table-column field="memo" label="备注">
+                {{ props.row.memo }}
+              </b-table-column>
+            </template>
+          </b-table>
+        </div>
+      </div>
+
       <div class="card" v-if="model.type == 2">
         <header class="card-header">
           <div class="card-header-title">

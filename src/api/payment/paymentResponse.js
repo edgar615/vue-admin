@@ -12,3 +12,7 @@ export function paymentPage (params) {
 export function getPayment (id) {
   return request.get(base + '/' + id)
 }
+
+export function confirmPayment (id) {
+  return request.post(base + '/' + id + '/confirm', {})
+}

@@ -5,11 +5,11 @@
         <div class="card-header-title">
           <div class="card-header-left">
             <b-field grouped group-multiline>
-              <b-input v-model="filters.orderNo" placeholder="订单号"></b-input>
+              <b-input v-model="filters.outTradeNo" placeholder="订单号"></b-input>
               <b-select placeholder="支付方式" v-model="filters.type">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'type')"
+                    v-for="option in $dictList(this, 'payType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -33,6 +33,21 @@
                   {{ option.dictText }}
                 </option>
               </b-select>
+              <date-picker
+                  v-model="transactionTimeRange"
+                  range
+                  type="datetime"
+                  lang="zh"
+                  format="YYYY-MM-DD HH:mm:ss"
+                  value-type="timestamp"
+                  clearable
+                  confirm
+                  placeholder="交易时间"
+                  confirm-text="确认"
+                  @change="clear"
+                  icon="calendar-today right-icon"
+              >
+              </date-picker>
               <p class="control ml-1">
                 <button class="button is-primary" @click="loadAsyncData({page: 1})">
                   <b-icon icon="magnify"></b-icon>
@@ -79,10 +94,6 @@
               {{ props.row.amount }}
             </b-table-column>
 
-            <b-table-column field="fundChannel" label="资金渠道">
-              {{ props.row.fundChannel }}
-            </b-table-column>
-
             <b-table-column field="paymentState" label="支付结果">
               {{ $dictText(this, 'paymentResponseResult',props.row.paymentState) }}
             </b-table-column>
@@ -107,6 +118,9 @@
               <a @click="viewModal(props.row.paymentResponseId)">
                 查看
               </a>
+              <a @click="onNotify(props.row.paymentResponseId)" v-if="props.row.ackState != 2">
+                手动确认
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -121,13 +135,14 @@
 </template>
 
 <script>
-  import {paymentPage} from '@/api/payment/paymentResponse'
+  import {paymentPage, confirmPayment} from '@/api/payment/paymentResponse'
   import EmptyTable from '@/components/EmptyTable.vue'
   import ViewForm from '@/views/pay-backend/payment-notify/view.vue'
 
   export default {
     data () {
       return {
+        transactionTimeRange: '',
         filters: {},
         pagination: {},
         loading: false,
@@ -135,13 +150,20 @@
       }
     },
     components: {
-      EmptyTable, ViewForm
+      EmptyTable
     },
     methods: {
       /*
        * Load async data
        */
       loadAsyncData (params) {
+        if (this.transactionTimeRange && this.transactionTimeRange[0]) {
+          this.filters.startTime = this.transactionTimeRange[0] / 1000
+          this.filters.endTime = this.transactionTimeRange[1] / 1000
+        } else {
+          delete  this.filters.startTime
+          delete  this.filters.endTime
+        }
         this.$pageModelWithHistory(this, paymentPage, params)
       },
       /*
@@ -151,6 +173,11 @@
         if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
+      },
+      onNotify (id) {
+        const vm = this
+        this.$confirmModel(vm, confirmPayment, id, '确定要手动确认？',
+            () => this.loadAsyncData({page: this.pagination.page}))
       },
       viewModal (id) {
         const vm = this
@@ -167,10 +194,11 @@
         })
       }
     },
-    filters: {
-    },
     created () {
       this.$fillParamFromHistory()
+      if (this.filters.startTime && this.filters.endTime) {
+        this.transactionTimeRange = [this.filters.startTime * 1000, this.filters.endTime * 1000]
+      }
       this.loadAsyncData()
     }
   }
