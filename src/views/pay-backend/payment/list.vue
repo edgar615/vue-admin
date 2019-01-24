@@ -75,11 +75,11 @@
             </b-table-column>
 
             <b-table-column field="payTime" label="付款时间">
-              {{ props.row.payTime }}
+              {{ $unixTimestampToDateTimeHMS(props.row.payTime)}}
             </b-table-column>
 
-            <b-table-column field="refundCount" label="退款次数">
-              {{ props.row.refundCount }}
+            <b-table-column field="refundCount" label="冻结金额">
+              {{ props.row.freezingAmount }}
             </b-table-column>
 
             <b-table-column field="refundAmount" label="退款金额">

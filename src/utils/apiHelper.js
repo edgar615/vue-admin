@@ -1,4 +1,4 @@
-import {opConfirm} from '@/utils/dialog'
+import {opConfirm, deleteConfirm} from '@/utils/dialog'
 import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
 function pageModel(vm, pageApi, params) {
@@ -130,7 +130,7 @@ function saveModel (vm, saveApi, callback, errHandler) {
 }
 
 function deleteModel (vm, delApi, id, callback) {
-  opConfirm(vm, '确定要删除吗？', () => {
+  deleteConfirm(vm, () => {
     vm.deleting = true
     delApi(id).then(response => {
       vm.deleting = false
@@ -156,7 +156,7 @@ function confirmModel (vm, delApi, id, msg, callback) {
 }
 
 function batchDeleteModel(vm, delApi, ids, callback) {
-  opConfirm(vm, '确定要删除吗？', () => {
+  deleteConfirm(vm, () => {
     vm.deleting = true
     delApi({data: {ids: ids}}).then(response => {
       vm.deleting = false

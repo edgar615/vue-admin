@@ -53,7 +53,7 @@ $side-menu-active-color: #00d1b2 !default
     border-right: 0.666667px solid #00d1b2;
   }
   &.active {
-    background-color: $aside-hover-background-color;
+    //background-color: $aside-hover-background-color;
     border-right: 3px solid #00d1b2;
     color: $side-menu-active-color;
   }

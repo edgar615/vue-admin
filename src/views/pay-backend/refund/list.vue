@@ -50,7 +50,10 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="payType" label="支付类型">
+            <b-table-column field="refundMethod" label="退款方式">
+              {{ $dictText(this, 'refundMethod',props.row.refundMethod) }}
+            </b-table-column>
+            <b-table-column field="payType" label="支付方式">
               {{ $dictText(this, 'payType',props.row.payType) }}
             </b-table-column>
 
@@ -67,7 +70,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              {{ $dictText(this, 'paymentState',props.row.state) }}
+              {{ $dictText(this, 'refundState',props.row.state) }}
             </b-table-column>
 
             <b-table-column field="payTime" label="申请时间">
@@ -75,7 +78,7 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <a :to="{path:  '/pay-backend/payment/' +props.row.paymentId + '/view' }" exact>
+              <a @click="viewModal(props.row.refundId)">
                 查看
               </a>
             </b-table-column>
@@ -95,6 +98,7 @@
   import {refundPage} from '@/api/payment/refund'
   import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/pay-backend/refund/add.vue'
+  import ViewForm from '@/views/pay-backend/refund/view.vue'
 
   export default {
     data () {
@@ -106,7 +110,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm
+      EmptyTable
     },
     methods: {
       /*
@@ -130,6 +134,20 @@
           name: '申请退款',
           width: '20%',
           component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
+      },
+      viewModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '查看退款结果',
+          width: '30%',
+          component: ViewForm,
+          props: {
+            refundId: id
+          },
+          showClose: true,
           onClose: () => { vm.loadAsyncData() }
         })
       }

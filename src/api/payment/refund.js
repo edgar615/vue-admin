@@ -12,3 +12,7 @@ export function refundPage (params) {
 export function addRefund (model) {
   return request.post('/refund', model)
 }
+
+export function getRefund (id) {
+  return request.get('/online-refund/' + id)
+}

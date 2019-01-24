@@ -17,15 +17,15 @@
       </b-field>
 
       <b-field label="退款方式" class="required-field"
-                 :type="errors.has('refundType') ? 'is-danger' : ''"
-                 :message="errors.first('refundType')">
+                 :type="errors.has('refundMethod') ? 'is-danger' : ''"
+                 :message="errors.first('refundMethod')">
         <b-field>
-          <b-radio-button v-model="model.refundType"
+          <b-radio-button v-model="model.refundMethod"
                           native-value="1">
             <span>原路退回</span>
           </b-radio-button>
 
-          <b-radio-button v-model="model.refundType"
+          <b-radio-button v-model="model.refundMethod"
                           native-value="2">
             <span>退到余额</span>
           </b-radio-button>
@@ -60,8 +60,9 @@
   export default {
     data () {
       return {
+        saving: false,
         model: {
-          refundType: '1'
+          refundMethod: '1'
         }
       }
     },
@@ -69,8 +70,9 @@
       save () {
         const vm = this
         vm.$saveModel(vm, addRefund, resp => {
-          vm.$parent.succeed('退款申请成功', resp)
+          vm.$parent.succeed('退款申请成功，请稍后查看退款结果', resp)
         }, err => {
+          console.log(err)
           vm.$parent.fail('退款申请失败', err)
         })
       }

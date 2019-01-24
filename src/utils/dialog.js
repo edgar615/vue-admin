@@ -11,6 +11,19 @@ export function opConfirm (vm, msg, onConfirm) {
   })
 }
 
+export function deleteConfirm (vm, onConfirm) {
+  vm.$dialog.confirm({
+    title: '警告',
+    message: '确定要删除吗？',
+    type: 'is-primary',
+    // hasIcon: true,
+    icon: 'alert-circle-outline',
+    cancelText: '取消',
+    confirmText: '删除',
+    onConfirm: onConfirm
+  })
+}
+
 export function successToast (vm, msg) {
   if (msg === undefined) {
     msg = '操作成功'
