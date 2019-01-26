@@ -74,7 +74,7 @@
             </b-table-column>
 
             <b-table-column field="payTime" label="申请时间">
-              {{ props.row.refundTime }}
+              {{ $unixTimestampToDateTimeHMS(props.row.refundTime) }}
             </b-table-column>
 
             <b-table-column label="操作">
