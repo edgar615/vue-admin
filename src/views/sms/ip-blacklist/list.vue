@@ -21,8 +21,6 @@
         </div>
       </header>
       <div class="card-content">
-
-
         <b-table
           striped
           hoverable
@@ -75,7 +73,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm
+      EmptyTable
     },
     methods: {
       /*

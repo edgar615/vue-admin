@@ -122,7 +122,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm, EditForm, ViewForm
+      EmptyTable
     },
     methods: {
       /*

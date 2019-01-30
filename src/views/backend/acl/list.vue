@@ -110,7 +110,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm
+      EmptyTable
     },
     methods: {
       operateTypeName (operateType) {

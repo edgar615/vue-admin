@@ -56,7 +56,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseAckState',model.ackState) }}
+              {{ $dictText(this, 'refundResponseAckState',model.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">

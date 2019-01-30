@@ -83,10 +83,6 @@
               {{ props.row.amount }}
             </b-table-column>
 
-            <b-table-column field="fundChannel" label="资金渠道">
-              {{ props.row.fundChannel }}
-            </b-table-column>
-
             <b-table-column field="refundState" label="退款结果">
               {{ $dictText(this, 'refundResponseResult',props.row.refundState) }}
             </b-table-column>
@@ -111,6 +107,9 @@
               <a @click="viewModal(props.row.refundResponseId)">
                 查看
               </a>
+              <a @click="onNotify(props.row.refundResponseId)" v-if="props.row.ackState != 2">
+                手动确认
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -125,7 +124,7 @@
 </template>
 
 <script>
-  import {refundPage} from '@/api/payment/refundResponse'
+  import {refundPage, confirmRefund} from '@/api/payment/refundResponse'
   import EmptyTable from '@/components/EmptyTable.vue'
   import ViewForm from '@/views/pay-backend/refund-notify/view.vue'
 
@@ -139,7 +138,7 @@
       }
     },
     components: {
-      EmptyTable, ViewForm
+      EmptyTable
     },
     methods: {
       /*
@@ -156,6 +155,11 @@
           this.loadAsyncData({page: page})
         }
       },
+      onNotify (id) {
+        const vm = this
+        this.$confirmModel(vm, confirmRefund, id, '确定要手动确认？',
+            () => this.loadAsyncData({page: this.pagination.page}))
+      },
       viewModal (id) {
         const vm = this
         this.$formModal.open({
@@ -170,8 +174,6 @@
           onClose: () => { vm.loadAsyncData() }
         })
       }
-    },
-    filters: {
     },
     created () {
       this.$fillParamFromHistory()

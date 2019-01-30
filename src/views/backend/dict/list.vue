@@ -93,7 +93,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm, EditForm
+      EmptyTable
     },
     methods: {
       /*

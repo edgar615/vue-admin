@@ -75,7 +75,7 @@
       }
     },
     components: {
-      EmptyTable, AddForm
+      EmptyTable
     },
     methods: {
       /*

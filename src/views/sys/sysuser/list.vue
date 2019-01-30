@@ -1,50 +1,41 @@
 <template>
   <section>
-    <!--buefy的form元素，也可以用原生的bulma实现,group-multiline会自动换行，position用于指定位置-->
-    <!--如果一行放不下，用多个section-->
-    <div class="card">
-      <div class="card-content">
-        <b-field grouped group-multiline>
-          <b-input v-model="filters.username" placeholder="用户名"></b-input>
-          <b-field>
-            <b-radio-button v-model="filters.state"
-                            native-value="1"
-                            type="is-success">
-              <b-icon icon="lock-open-outline"></b-icon>
-              <span>活动</span>
-            </b-radio-button>
-            <b-radio-button v-model="filters.state"
-                            native-value="2"
-                            type="is-dark" class="is-dark-blue-lighter">
-              <b-icon icon="lock-outline"></b-icon>
-              <span>锁定</span>
-            </b-radio-button>
-            <b-radio-button v-model="filters.state"
-                            native-value="">
-              全部
-            </b-radio-button>
-          </b-field>
-          <p class="control ml-1">
-            <button class="button is-primary" @click="loadAsyncData({page: 1})">
-              <b-icon icon="magnify"></b-icon>
-              <span>查询</span>
-            </button>
-          </p>
-        </b-field>
-      </div>
-    </div>
-
     <div class="card mt-3">
       <header class="card-header">
         <div class="card-header-title">
-          用户列表
-        </div>
-        <div class="card-header-right buttons">
-          <router-link to="/sys/sysuser/add"
-                       exact class="button is-primary">
+          <button class="button is-primary" @click="addModal()">
             <b-icon icon="plus-circle-outline"></b-icon>
             <span>新增</span>
-          </router-link>
+          </button>
+          <div class="card-header-left">
+            <b-field grouped group-multiline>
+              <b-input v-model="filters.username" placeholder="用户名"></b-input>
+              <b-field>
+                <b-radio-button v-model="filters.state"
+                                native-value="1"
+                                type="is-success">
+                  <b-icon icon="lock-open-outline"></b-icon>
+                  <span>活动</span>
+                </b-radio-button>
+                <b-radio-button v-model="filters.state"
+                                native-value="2"
+                                type="is-dark" class="is-dark-blue-lighter">
+                  <b-icon icon="lock-outline"></b-icon>
+                  <span>锁定</span>
+                </b-radio-button>
+                <b-radio-button v-model="filters.state"
+                                native-value="">
+                  全部
+                </b-radio-button>
+              </b-field>
+              <p class="control ml-1">
+                <button class="button is-primary" @click="loadAsyncData({page: 1})">
+                  <b-icon icon="magnify"></b-icon>
+                  <span>查询</span>
+                </button>
+              </p>
+            </b-field>
+          </div>
         </div>
       </header>
 
@@ -83,18 +74,15 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <button class="button is-danger is-small" @click="doLock(props.row.sysUserId)"
-                      title="锁定" v-show="props.row.state == 1">
-                <b-icon icon="lock-outline"></b-icon>
-              </button>
-              <button class="button is-danger is-small" @click="doUnLock(props.row.sysUserId)"
-                      title="解锁" v-show="props.row.state == 2">
-                <b-icon icon="lock-open-outline"></b-icon>
-              </button>
-              <router-link :to="{path:  '/sys/sysuser/' +props.row.sysUserId + '/permit' }"
-                           exact class="button is-info is-small" title="授权">
-                <b-icon icon="account-key"></b-icon>
-              </router-link>
+              <a @click="doLock(props.row.sysUserId)" v-show="props.row.state == 1">
+                锁定
+              </a>
+              <a @click="doUnLock(props.row.sysUserId)" v-show="props.row.state == 2">
+                解锁
+              </a>
+              <a @click="permitModal(props.row.sysUserId)">
+                授权
+              </a>
             </b-table-column>
           </template>
           <template slot="empty">
@@ -111,6 +99,8 @@
 <script>
   import {page, lock, unLock} from '@/api/sys/sysuser'
   import EmptyTable from '@/components/EmptyTable.vue'
+  import AddForm from '@/views/sys/sysuser/add.vue'
+  import PermitForm from '@/views/sys/sysuser/permit.vue'
 
   export default {
     data () {
@@ -148,13 +138,36 @@
         return 'is-dark'
       },
       doLock (id) {
-        lock(id).then(response => {
-          this.loadAsyncData({page: this.pagination.page})
-        })
+        const vm = this
+        this.$confirmModel(vm, lock, id, '确定要锁定该用户？',
+            () => this.loadAsyncData({page: this.pagination.page}))
       },
       doUnLock (id) {
-        unLock(id).then(response => {
-          this.loadAsyncData({page: this.pagination.page})
+        const vm = this
+        this.$confirmModel(vm, unLock, id, '确定要解锁该用户？',
+            () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      addModal () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增用户',
+          width: '20%',
+          component: AddForm,
+          onClose: () => { vm.loadAsyncData() }
+        })
+      },
+      permitModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '用户授权',
+          width: '50%',
+          component: PermitForm,
+          props: {
+            sysUserId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
         })
       }
     },

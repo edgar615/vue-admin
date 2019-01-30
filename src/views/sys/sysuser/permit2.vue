@@ -1,47 +1,40 @@
 <template>
   <section>
-    <div class="form-modal-card-body">
-      <div class="columns is-full-content">
-        <div class="column is-one-fifth">
-          <div class="card box-content1">
-            <div class="card-content">
-              <vue-tree :tree-data="permitTreeData" :options="permitOptions"
-                        @handle="savePermit"></vue-tree>
-            </div>
-          </div>
-        </div>
+    <div class="columns is-full-content">
+      <div class="column is-one-fifth bg-main is-size-7 border-1" style="height: 500px;">
+        <vue-tree :tree-data="permitTreeData" :options="permitOptions"
+                  @handle="savePermit"></vue-tree>
+      </div>
+      <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
+        <b-table
+          narrowed
+          mobile-cards
 
-        <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
-          <b-table
-              narrowed
-              mobile-cards
+          :loading="loading"
+          :data="roles.length == 0 ? [] : roles"
+        >
+          <template slot-scope="props" slot="header">
+            <b-tooltip :active="!!props.column.meta" :label="props.column.meta" dashed>
+              {{ props.column.label }}
+            </b-tooltip>
+          </template>
+          <template slot="empty">
+            <EmptyTable></EmptyTable>
+          </template>
+          <template slot-scope="props">
 
-              :loading="loading"
-              :data="roles.length == 0 ? [] : roles"
-          >
-            <template slot-scope="props" slot="header">
-              <b-tooltip :active="!!props.column.meta" :label="props.column.meta" dashed>
-                {{ props.column.label }}
-              </b-tooltip>
-            </template>
-            <template slot="empty">
-              <EmptyTable></EmptyTable>
-            </template>
-            <template slot-scope="props">
+            <b-table-column label="角色">
+              {{ props.row.name }}
+            </b-table-column>
 
-              <b-table-column label="角色">
-                {{ props.row.name }}
-              </b-table-column>
-
-              <b-table-column label="操作">
-                <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)"
-                        title="删除">
-                  <b-icon icon="delete-outline"></b-icon>
-                </button>
-              </b-table-column>
-            </template>
-          </b-table>
-        </div>
+            <b-table-column label="操作">
+              <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)"
+                      title="删除">
+                <b-icon icon="delete-outline"></b-icon>
+              </button>
+            </b-table-column>
+          </template>
+        </b-table>
       </div>
     </div>
   </section>
@@ -52,9 +45,11 @@
   import {deleteConfirm, successToast} from '@/utils/dialog';
 
   export default {
+    components: {
+      VueTree
+    },
     data() {
       return {
-        sysUserId: undefined,
         model: {},
         roles: [],
         loading: true,
@@ -78,7 +73,7 @@
           uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
           halfCheckedIcon: 'mdi mdi-checkbox-intermediate'
         }
-      }
+      };
     },
     methods: {
       savePermit (item) {
@@ -90,7 +85,7 @@
           cancelText: '取消',
           confirmText: '确定',
           onConfirm: () => {
-            addRole(this.sysUserId, roleId).then(response => {
+            addRole(vm.$route.params.id, roleId).then(response => {
               vm.loadPermitted()
             })
           }
@@ -99,7 +94,7 @@
       deletePermit (roleId) {
         const vm = this
         deleteConfirm(vm, () => {
-          deleteRole(this.sysUserId, roleId).then(response => {
+          deleteRole(vm.$route.params.id, roleId).then(response => {
             vm.loadPermitted();
           })
         })
@@ -107,7 +102,7 @@
       loadPermitted () {
         const vm = this
         vm.loading = true
-        getPermitted(this.sysUserId).then(response => {
+        getPermitted(this.$route.params.id).then(response => {
           vm.loading = false
           vm.roles = response.data
         }).catch(err => {
@@ -124,8 +119,8 @@
       }
     },
     created() {
-      this.sysUserId = this.$parent.$props.props.sysUserId
       this.loadAsyncData()
     }
   }
 </script>
+

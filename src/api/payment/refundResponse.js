@@ -12,3 +12,7 @@ export function refundPage (params) {
 export function getRefund (id) {
   return request.get(base + '/' + id)
 }
+
+export function confirmRefund (id) {
+  return request.post(base + '/' + id + '/confirm', {})
+}

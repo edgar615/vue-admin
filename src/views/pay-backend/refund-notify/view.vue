@@ -4,16 +4,26 @@
       <div class="card">
         <header class="card-header">
           <div class="card-header-title">
-            支付通知
+            退款通知
           </div>
         </header>
         <div class="card-content">
+          <b-field label="退款单号" horizontal class="static-field">
+            <p class="control">
+              {{ model.outRefundNo }}
+            </p>
+          </b-field>
           <b-field label="业务订单号" horizontal class="static-field">
             <p class="control">
               {{ model.outTradeNo }}
             </p>
           </b-field>
-          <b-field label="金额（分）" horizontal class="static-field">
+          <b-field label="申请金额（分）" horizontal class="static-field">
+            <p class="control">
+              {{ model.applyAmount }}
+            </p>
+          </b-field>
+          <b-field label="退款金额（分）" horizontal class="static-field">
             <p class="control">
               {{ model.amount }}
             </p>
@@ -23,14 +33,19 @@
               {{ $dictText(this, 'payType', model.type) }}
             </p>
           </b-field>
-          <b-field label="支付流水" horizontal class="static-field">
+          <b-field label="通知时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.responseTime)}}
+            </p>
+          </b-field>
+          <b-field label="响应流水" horizontal class="static-field">
             <p class="control">
               {{ model.responseTransactionId }}
             </p>
           </b-field>
-          <b-field label="支付结果" horizontal class="static-field">
+          <b-field label="响应结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseResult',model.paymentState) }}
+              {{ $dictText(this, 'refundResponseResult',model.refundState) }}
             </p>
           </b-field>
           <b-field label="交易时间" horizontal class="static-field">
@@ -40,7 +55,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseAckState',model.ackState) }}
+              {{ $dictText(this, 'refundResponseAckState',model.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">
@@ -48,11 +63,87 @@
               {{ $unixTimestampToDateTimeHMS(model.ackTime)}}
             </p>
           </b-field>
-          <b-field label="通知时间" horizontal class="static-field">
+        </div>
+      </div>
+
+      <div class="card">
+        <header class="card-header">
+          <div class="card-header-title">
+            退款记录
+          </div>
+        </header>
+        <div class="card-content" v-if="model.refund">
+          <b-field label="业务订单号" horizontal class="static-field">
             <p class="control">
-              {{ $unixTimestampToDateTimeHMS(model.responseTime)}}
+              {{ model.refund.outTradeNo }}
             </p>
           </b-field>
+          <b-field label="退款订单号" horizontal class="static-field">
+            <p class="control">
+              {{ model.refund.outRefundNo }}
+            </p>
+          </b-field>
+          <b-field label="退款金额（分）" horizontal class="static-field">
+            <p class="control">
+              {{ model.refund.refundAmount }}
+            </p>
+          </b-field>
+          <b-field label="退款方式" horizontal class="static-field">
+            <p class="control">
+              {{ $dictText(this, 'refundMethod', model.refund.refundMethod) }}
+            </p>
+          </b-field>
+          <b-field label="付款方式" horizontal class="static-field">
+            <p class="control">
+              {{ $dictText(this, 'payType', model.refund.payType) }}
+            </p>
+          </b-field>
+          <b-field label="退款原因" horizontal class="static-field">
+            <p class="control">
+              {{ model.refundReason }}
+            </p>
+          </b-field>
+          <b-field label="退款状态" horizontal class="static-field">
+            <p class="control">
+              {{ $dictText(this, 'refundState',model.refund.state) }}
+            </p>
+          </b-field>
+          <b-field label="退款结果" horizontal class="static-field">
+            <p class="control">
+              {{ model.refund.refundResult }}
+            </p>
+          </b-field>
+
+          <b-field label="退款时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.refund.refundTime)}}
+            </p>
+          </b-field>
+          <b-field label="确认结果" horizontal class="static-field">
+            <p class="control">
+              {{ $dictText(this, 'paymentResponseAckState',model.refund.ackState) }}
+            </p>
+          </b-field>
+          <b-field label="确认时间" horizontal class="static-field">
+            <p class="control">
+              {{ $unixTimestampToDateTimeHMS(model.refund.ackTime)}}
+            </p>
+          </b-field>
+          <b-field label="支付流水" horizontal class="static-field">
+            <p class="control">
+              {{ model.refund.paymentTransactionId }}
+            </p>
+          </b-field>
+          <b-field label="退款流水" horizontal class="static-field">
+            <p class="control">
+              {{ model.refund.refundTransactionId }}
+            </p>
+          </b-field>
+        </div>
+        <div class="card-content" v-else>
+          <div class="notification form-modal-card-notification">
+            <p>未找到对应的退款记录</p>
+          </div>
         </div>
       </div>
 
@@ -127,16 +218,6 @@
               {{ model.responseModel.mchId }}
             </p>
           </b-field>
-          <b-field label="设备号" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.deviceInfo }}
-            </p>
-          </b-field>
-          <b-field label="业务结果" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.resultCode }}
-            </p>
-          </b-field>
           <b-field label="错误代码" horizontal class="static-field">
             <p class="control">
               {{ model.responseModel.errCode }}
@@ -147,24 +228,25 @@
               {{ model.responseModel.errCodeDes }}
             </p>
           </b-field>
-          <b-field label="用户标识" horizontal class="static-field">
+          <b-field label="商户订单号" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.openid }}
+              {{ model.responseModel.outTradeNo }}
             </p>
           </b-field>
-          <b-field label="关注公众号?" horizontal class="static-field">
+          <b-field label="退款单号" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.isSubscribe }}
+              {{ model.responseModel.outRefundNo }}
             </p>
           </b-field>
-          <b-field label="交易类型" horizontal class="static-field">
+
+          <b-field label="微信退款流水" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.tradeType }}
+              {{ model.responseModel.refundId }}
             </p>
           </b-field>
-          <b-field label="付款银行" horizontal class="static-field">
+          <b-field label="退款状态" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.bankType }}
+              {{ model.responseModel.refundStatus }}
             </p>
           </b-field>
           <b-field label="订单金额" horizontal class="static-field">
@@ -177,63 +259,43 @@
               {{ model.responseModel.settlementTotalFee }}
             </p>
           </b-field>
-          <b-field label="货币种类" horizontal class="static-field">
+          <b-field label="申请退款金额" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.feeType }}
+              {{ model.responseModel.refundFee }}
             </p>
           </b-field>
-          <b-field label="现金支付金额" horizontal class="static-field">
+          <b-field label="退款金额" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.cashFee }}
+              {{ model.responseModel.settlementRefundFee }}
             </p>
           </b-field>
-          <b-field label="现金支付货币类型" horizontal class="static-field">
+          <b-field label="应结退款金额" horizontal class="static-field">
             <p class="control">
-              {{ model.responseModel.cashFeeType }}
-            </p>
-          </b-field>
-          <b-field label="总代金券金额" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.couponFee }}
-            </p>
-          </b-field>
-          <b-field label="代金券使用数量" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.couponCount }}
-            </p>
-          </b-field>
-          <b-field label="微信支付订单号" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.transactionId }}
-            </p>
-          </b-field>
-          <b-field label="商户订单号" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.outTradeNo }}
-            </p>
-          </b-field>
-          <b-field label="商家数据包" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.attach }}
-            </p>
-          </b-field>
-          <b-field label="支付完成时间" horizontal class="static-field">
-            <p class="control">
-              {{ model.responseModel.timeEnd }}
+              {{ model.responseModel.settlementTotalFee }}
             </p>
           </b-field>
 
-          <b-table
-              :data="model.responseModel.coupons">
-            <template slot-scope="props">
-              <b-table-column field="couponId" label="代金券ID">
-                {{ props.row.couponId }}
-              </b-table-column>
-              <b-table-column field="couponFee" label="代金券金额">
-                {{ props.row.couponFee }}
-              </b-table-column>
-            </template>
-          </b-table>
+          <b-field label="退款成功时间" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.successTime }}
+            </p>
+          </b-field>
+          <b-field label="退款入账账户" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.refundRecvAccout }}
+            </p>
+          </b-field>
+          <b-field label="退款资金来源" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.refundAccount }}
+            </p>
+          </b-field>
+
+          <b-field label="退款发起来源" horizontal class="static-field">
+            <p class="control">
+              {{ model.responseModel.refundRequestSource }}
+            </p>
+          </b-field>
         </div>
         <div class="card-content" v-else>
           <b-field label="返回状态码" horizontal class="static-field">
@@ -252,7 +314,7 @@
   </section>
 </template>
 <script>
-  import {getPayment} from '@/api/payment/paymentResponse'
+  import {getRefund} from '@/api/payment/refundResponse'
 
   export default {
     data () {
@@ -264,12 +326,12 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getPayment, this.$parent.$props.props.paymentResponseId)
+      this.$getModel(this, getRefund, this.$parent.$props.props.refundResponseId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {
         this.$parent.closeLoading()
-        this.$parent.fail('支付记录查询失败', err)
+        this.$parent.fail('退款记录查询失败', err)
       })
     }
   }
