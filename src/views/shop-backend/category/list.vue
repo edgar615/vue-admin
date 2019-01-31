@@ -89,7 +89,6 @@
     enable,
     updateCate
   } from '@/api/commodity/category'
-  import {successToast} from '@/utils/dialog'
 
   export default {
     components: {
@@ -160,7 +159,7 @@
         vm.deleting = true
         disable(id).then(response => {
           vm.deleting = false
-          successToast(vm)
+          vm.$successToast()
           vm.loadAsyncData()
         }).catch(err => {
           vm.deleting = false
@@ -171,7 +170,7 @@
         vm.deleting = true
         enable(id).then(response => {
           vm.deleting = false
-          successToast(vm)
+          vm.$successToast()
           vm.loadAsyncData()
         }).catch(err => {
           vm.deleting = false
@@ -185,7 +184,7 @@
             if (vm.model.commodityCategoryId) {
               updateCate(vm.model.commodityCategoryId, vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false
@@ -193,7 +192,7 @@
             } else {
               addCate(vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false

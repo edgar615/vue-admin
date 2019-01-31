@@ -1,4 +1,3 @@
-import {opConfirm, deleteConfirm} from '@/utils/dialog'
 import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
 function pageModel(vm, pageApi, params) {
@@ -130,7 +129,7 @@ function saveModel (vm, saveApi, callback, errHandler) {
 }
 
 function deleteModel (vm, delApi, id, callback) {
-  deleteConfirm(vm, () => {
+  deleteConfirm(() => {
     vm.deleting = true
     delApi(id).then(response => {
       vm.deleting = false
@@ -143,7 +142,7 @@ function deleteModel (vm, delApi, id, callback) {
 }
 
 function confirmModel (vm, delApi, id, msg, callback) {
-  opConfirm(vm, msg, () => {
+  opConfirm(msg, () => {
     vm.deleting = true
     delApi(id).then(response => {
       vm.deleting = false
@@ -156,7 +155,7 @@ function confirmModel (vm, delApi, id, msg, callback) {
 }
 
 function batchDeleteModel(vm, delApi, ids, callback) {
-  deleteConfirm(vm, () => {
+  deleteConfirm(() => {
     vm.deleting = true
     delApi({data: {ids: ids}}).then(response => {
       vm.deleting = false
@@ -187,6 +186,54 @@ function customBoolText(boolValue, trueText, falseText) {
   return falseText
 }
 
+
+function opConfirm (msg, onConfirm) {
+  this.$swal.fire({
+    title: msg,
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#00d1b2',
+    reverseButtons: true,
+    cancelButtonText: '取消',
+    confirmButtonText: '确定'
+  }).then((result) => {
+    if (result.value) {
+      onConfirm()
+    }
+  })
+}
+
+function deleteConfirm (onConfirm) {
+  this.$swal.fire({
+    title: '确定要删除吗？',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#00d1b2',
+    reverseButtons: true,
+    cancelButtonText: '取消',
+    confirmButtonText: '删除'
+  }).then((result) => {
+    if (result.value) {
+      onConfirm()
+    }
+  })
+}
+
+function successToast (msg) {
+  if (msg === undefined) {
+    msg = '操作成功'
+  }
+  this.$swal({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    width: 300,
+    type: 'success',
+    title: '操作成功'
+  });
+}
+
 const Plugin = {
   install(Vue) {
     // bool的显示
@@ -196,6 +243,11 @@ const Plugin = {
     // 字典
     registerComponentProgrammatic(Vue, '$dictText', dictText)
     registerComponentProgrammatic(Vue, '$dictList', dictList)
+
+    // dialog
+    registerComponentProgrammatic(Vue, '$opConfirm', opConfirm)
+    registerComponentProgrammatic(Vue, '$deleteConfirm', deleteConfirm)
+    registerComponentProgrammatic(Vue, '$successToast', successToast)
 
     // api
     registerComponentProgrammatic(Vue, '$pageModel', pageModel)

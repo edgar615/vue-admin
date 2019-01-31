@@ -7,7 +7,7 @@
         </h1>
         <h1 class="title">
           <span class="icon">
-            <i class="fa fa-frown-o"></i>
+            <i class="mdi mdi-emoticon-sad"></i>
           </span>
           真不巧，您要访问的页面弄丢了
         </h1>

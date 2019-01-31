@@ -2,8 +2,13 @@
   <section>
     <div class="form-modal-card-body">
       <div class="columns is-full-content">
-        <div class="column is-one-fifth">
+        <div class="column">
           <div class="card box-content1">
+            <header class="card-header">
+              <div class="card-header-title">
+                用户可以设置的角色
+              </div>
+            </header>
             <div class="card-content">
               <vue-tree :tree-data="permitTreeData" :options="permitOptions"
                         @handle="savePermit"></vue-tree>
@@ -11,50 +16,66 @@
           </div>
         </div>
 
-        <div class="column is-one-fifth bg-main is-size-7 border-1 ml-2" style="height: 500px;">
-          <b-table
-              narrowed
-              mobile-cards
+        <div class="column ml-2">
+          <div class="card box-content1">
+            <header class="card-header">
+              <div class="card-header-title">
+                用户拥有的角色
+              </div>
+            </header>
+            <div class="card-content">
+              <b-table
+                  narrowed
+                  mobile-cards
+                  :loading="loading"
+                  :data="roles.length == 0 ? [] : roles"
+              >
+                <template slot-scope="props" slot="header">
+                  <b-tooltip :active="!!props.column.meta" :label="props.column.meta" dashed>
+                    {{ props.column.label }}
+                  </b-tooltip>
+                </template>
+                <template slot="empty">
+                  <EmptyTable></EmptyTable>
+                </template>
+                <template slot-scope="props">
 
-              :loading="loading"
-              :data="roles.length == 0 ? [] : roles"
-          >
-            <template slot-scope="props" slot="header">
-              <b-tooltip :active="!!props.column.meta" :label="props.column.meta" dashed>
-                {{ props.column.label }}
-              </b-tooltip>
-            </template>
-            <template slot="empty">
-              <EmptyTable></EmptyTable>
-            </template>
-            <template slot-scope="props">
+                  <b-table-column label="角色">
+                    {{ props.row.name }}
+                  </b-table-column>
 
-              <b-table-column label="角色">
-                {{ props.row.name }}
-              </b-table-column>
-
-              <b-table-column label="操作">
-                <button class="button is-danger is-small" @click="deletePermit(props.row.sysRoleId)"
-                        title="删除">
-                  <b-icon icon="delete-outline"></b-icon>
-                </button>
-              </b-table-column>
-            </template>
-          </b-table>
+                  <b-table-column label="删除">
+                    <a @click="deletePermit(props.row.sysRoleId)">
+                      删除
+                    </a>
+                  </b-table-column>
+                </template>
+              </b-table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+  .box-content1 {
+    height: 600px;
+    overflow: auto;
+  }
+</style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
+  import EmptyTable from '@/components/EmptyTable.vue'
   import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/sys/sysuser';
-  import {deleteConfirm, successToast} from '@/utils/dialog';
 
   export default {
+    components: {
+      VueTree, EmptyTable
+    },
     data() {
       return {
-        sysUserId: undefined,
         model: {},
         roles: [],
         loading: true,
@@ -77,28 +98,35 @@
           checkedIcon: 'mdi mdi-checkbox-marked-outline',
           uncheckedIcon: 'mdi mdi-checkbox-blank-outline',
           halfCheckedIcon: 'mdi mdi-checkbox-intermediate'
-        }
-      }
+        },
+        columns: [
+          {
+            field: 'name',
+            label: '角色名称'
+          },
+          {
+            field: 'op',
+            label: '操作',
+            meta: ''
+          }
+        ]
+      };
     },
     methods: {
       savePermit (item) {
         const vm = this
         const roleId = item.id
-        vm.$dialog.confirm({
-          title: '注意',
-          message: '确定要授予这个角色吗?',
-          cancelText: '取消',
-          confirmText: '确定',
-          onConfirm: () => {
-            addRole(this.sysUserId, roleId).then(response => {
-              vm.loadPermitted()
-            })
-          }
+        vm.$opConfirm('确定要授予这个角色吗?', () => {
+          vm.deleting = true
+          addRole(this.sysUserId, roleId).then(response => {
+            vm.loadPermitted()
+          })
         })
       },
       deletePermit (roleId) {
         const vm = this
-        deleteConfirm(vm, () => {
+        vm.$opConfirm('确定要取消这个角色吗?', () => {
+          vm.deleting = true
           deleteRole(this.sysUserId, roleId).then(response => {
             vm.loadPermitted();
           })

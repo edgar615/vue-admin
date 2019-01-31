@@ -178,7 +178,6 @@
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import {menuList, getMenu, addMenu, deleteMenu, updateMenu} from '@/api/backend/system'
-  import {deleteConfirm, successToast} from '@/utils/dialog'
 
   export default {
     components: {
@@ -240,12 +239,12 @@
       },
       onDelete (id) {
         const vm = this
-        deleteConfirm(vm, () => {
+        vm.$deleteConfirm(() => {
           vm.deleting = true
           deleteMenu(id).then(response => {
             vm.deleting = false
             vm.model = {subsystemId: vm.subsystemId}
-            successToast(vm)
+            vm.$successToast()
             vm.loadAsyncData()
           }).catch(err => {
             vm.deleting = false
@@ -260,7 +259,7 @@
             if (vm.model.sysPermissionId) {
               updateMenu(vm.model.sysPermissionId, vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false
@@ -268,7 +267,7 @@
             } else {
               addMenu(vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false

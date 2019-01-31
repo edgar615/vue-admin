@@ -61,11 +61,15 @@ service.interceptors.response.use(
       apiErr.code = -1
       apiErr.msg = '服务器开小差了!'
     }
-    Vue.prototype.$toast.open({
-      duration: 1500,
-      message: apiErr.msg,
-      type: 'is-danger'
-    })
+    Vue.prototype.$swal({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      width: 300,
+      type: 'error',
+      title: apiErr.msg
+    });
     return Promise.reject(apiErr)
   }
 )

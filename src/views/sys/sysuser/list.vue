@@ -164,6 +164,7 @@
           name: '用户授权',
           width: '50%',
           component: PermitForm,
+          showClose: true,
           props: {
             sysUserId: id
           },

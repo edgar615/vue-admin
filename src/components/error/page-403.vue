@@ -7,7 +7,7 @@
         </h1>
         <h1 class="title">
           <span class="icon">
-            <i class="fa fa-frown-o"></i>
+            <i class="mdi mdi-emoticon-sad"></i>
           </span>
           很抱歉，您没有权限访问这个页面
         </h1>

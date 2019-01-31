@@ -7,7 +7,7 @@
         </h1>
         <h1 class="title">
           <span class="icon">
-            <i class="fa fa-smile-o"></i>
+            <i class="mdi mdi-emoticon-sad"></i>
           </span>
           运气不错哟，您一不小心找到了未知领域
         </h1>

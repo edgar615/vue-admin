@@ -2,12 +2,11 @@
   <section class="section">
     <div class="content has-text-grey has-text-centered">
       <p>
-        <b-icon pack="fa"
-                icon="frown-o"
-                size="is-large">
-        </b-icon>
+        <span class="icon">
+            <i class="mdi mdi-emoticon-sad is-large"></i>
+          </span>
+        无数据
       </p>
-      <p>无数据</p>
     </div>
   </section>
 </template>

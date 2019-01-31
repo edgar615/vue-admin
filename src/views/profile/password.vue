@@ -45,7 +45,6 @@
 </template>
 <script>
   import {changePwd} from '@/api/profile'
-  import {successToast} from '@/utils/dialog';
   export default {
     data() {
       return {
@@ -59,7 +58,7 @@
       save() {
         const vm = this
         changePwd(vm.model).then(() => {
-          successToast(vm, "密码修改成功");
+          vm.$successToast("密码修改成功");
           vm.model = {}
         })
       }

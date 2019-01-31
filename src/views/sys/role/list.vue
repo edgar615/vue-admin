@@ -154,7 +154,6 @@
     getPermitted,
     permit
   } from '@/api/sys/role'
-  import {deleteConfirm, successToast} from '@/utils/dialog'
 
   export default {
     components: {
@@ -274,7 +273,7 @@
         }
         permit(permitModel).then(response => {
           vm.saving = false
-          successToast(vm)
+          vm.$successToast()
 //          vm.loadAsyncData()
         }).catch(err => {
           vm.saving = false
@@ -322,11 +321,11 @@
       },
       onDelete (id) {
         const vm = this
-        deleteConfirm(vm, () => {
+        vm.$deleteConfirm(() => {
           vm.deleting = true
           deleteRole(id).then(response => {
             vm.deleting = false
-            successToast(vm)
+            vm.$successToast()
             vm.loadAsyncData()
           }).catch(err => {
             vm.deleting = false
@@ -350,7 +349,7 @@
             if (vm.model.sysRoleId) {
               updateRole(vm.model.sysRoleId, vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false
@@ -358,7 +357,7 @@
             } else {
               addRole(vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false

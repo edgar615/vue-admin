@@ -197,7 +197,6 @@
   import {
     listAttr, addAttr, updateAttr, deleteAttr, getAttr
   } from '@/api/commodity/attribute'
-  import {successToast} from '@/utils/dialog'
 
   export default {
     components: {
@@ -269,7 +268,7 @@
             if (vm.model.commodityCategoryId) {
               updateCate(vm.model.commodityCategoryId, vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false
@@ -277,7 +276,7 @@
             } else {
               addAttribute(vm.model).then(response => {
                 vm.saving = false
-                successToast(vm)
+                vm.$successToast()
                 vm.loadAsyncData()
               }).catch(err => {
                 vm.saving = false

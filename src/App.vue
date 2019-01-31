@@ -2,6 +2,7 @@
   <div id="app" class="app-content">
     <router-view></router-view>
     <div class="pageloader is-info" :class="{'is-active' : loading}"></div>
+    <simplert></simplert>
   </div>
 </template>
 
@@ -40,11 +41,17 @@
         check().then(response => {
         }).catch(error => {
           if (error.code === 1005) {
-            vm.$dialog.alert({
-              title: '错误信息',
-              message: '您当前的会话已过期，请重新登录！',
-              confirmText: '去登录',
-              onConfirm: () => vm.$router.push('/login')
+            vm.$swal.fire({
+              type: 'error',
+              title: '您当前的会话已过期，请重新登录！',
+              confirmButtonText: '去登录',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              allowEnterKey: false
+            }).then((result) => {
+              if (result.value) {
+                vm.$router.push('/login')
+              }
             })
             clearInterval(vm.checkIntervalId)
           }

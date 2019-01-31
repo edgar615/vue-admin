@@ -174,14 +174,14 @@
         return 'is-dark'
       },
       doLock (id) {
-        lock(id).then(response => {
-          this.loadAsyncData({page: this.pagination.page})
-        })
+        const vm = this
+        this.$confirmModel(vm, lock, id, '确定要锁定该公司？',
+            () => this.loadAsyncData({page: this.pagination.page}))
       },
       doUnLock (id) {
-        unLock(id).then(response => {
-          this.loadAsyncData({page: this.pagination.page})
-        })
+        const vm = this
+        this.$confirmModel(vm, unLock, id, '确定要解锁该公司？',
+            () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {
         const vm = this

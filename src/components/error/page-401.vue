@@ -7,7 +7,7 @@
         </h1>
         <h1 class="title">
           <span class="icon">
-            <i class="fa fa-frown-o"></i>
+            <i class="mdi mdi-emoticon-sad"></i>
           </span>
           很抱歉，您的登录信息已经失效
         </h1>
