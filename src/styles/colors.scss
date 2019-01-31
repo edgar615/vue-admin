@@ -1,16 +1,3 @@
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-// color http://flatuicolors.com/
-$dark-blue: #071e3d;
-$dark-blue-invert: findColorInvert($dark-blue);
-$dark-blue-lighter: #173256;
-$dark-blue-lighter-invert: findColorInvert($dark-blue);
-$dark-blue-light: #0d2950;
-$dark-blue-light-invert: findColorInvert($dark-blue);
-$dark-blue-dark: #021126;
-$dark-blue-dark-invert: findColorInvert($dark-blue);
-$dark-blue-darker: #010812;
-$dark-blue-darker-invert: findColorInvert($dark-blue);
 //Grey
 //$grey: #B8C2CC;
 //$grey-invert: findColorInvert($grey);
@@ -260,12 +247,4 @@ $pinkColors: (
   "pink-dark":($pink-dark, $pink-dark-invert),
   "pink-darker":($pink-darker, $pink-darker-invert),
   "pink-darkest":($pink-darkest, $pink-darkest-invert)
-);
-
-$darkBlueColors: (
-  "dark-blue":($dark-blue, $dark-blue-invert),
-  "dark-blue-lighter":($dark-blue-lighter, $dark-blue-lighter-invert),
-  "dark-blue-light":($dark-blue-light, $dark-blue-light-invert),
-  "dark-blue-dark":($dark-blue-dark, $dark-blue-dark-invert),
-  "dark-blue-darker":($dark-blue-darker, $dark-blue-darker-invert)
 );

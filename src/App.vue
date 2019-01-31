@@ -2,7 +2,6 @@
   <div id="app" class="app-content">
     <router-view></router-view>
     <div class="pageloader is-info" :class="{'is-active' : loading}"></div>
-    <simplert></simplert>
   </div>
 </template>
 
