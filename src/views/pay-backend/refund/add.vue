@@ -72,7 +72,6 @@
         vm.$saveModel(vm, addRefund, resp => {
           vm.$parent.succeed('退款申请成功，请稍后查看退款结果', resp)
         }, err => {
-          console.log(err)
           vm.$parent.fail('退款申请失败', err)
         })
       }

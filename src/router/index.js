@@ -2,7 +2,7 @@
 // import Router from 'vue-router'
 
 // 初始化加载的模块
-import Home from '@/views/home/home3.vue'
+import Home from '@/views/home/home.vue'
 // import Notfound from '@/components/error/page-404.vue'
 import ErrorPage from '@/components/error/page-500.vue'
 import TokenPage from '@/components/error/page-401.vue'

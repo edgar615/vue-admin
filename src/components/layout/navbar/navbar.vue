@@ -72,7 +72,6 @@
         this.$store.dispatch('Logout').then(res => {
           this.$router.push({path: '/login'})
         }).catch(err => {
-          console.log(err)
         })
       },
       onClickSystem (subsystemId) {
