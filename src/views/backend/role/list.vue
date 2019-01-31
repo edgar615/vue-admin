@@ -110,10 +110,10 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
+  import AddForm from '@/views/backend/role/add.vue'
   import {
     roleTree,
     getRole,
-    addRole,
     deleteRole,
     updateRole,
     getSystem,
@@ -187,9 +187,17 @@
         }
       },
       onAdd (id) {
-        this.addRole = true
-        this.viewRole = false
-        this.model = {parentId: id}
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增角色',
+          width: '20%',
+          component: AddForm,
+          props: {
+            parentId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
       },
       itemClick (item) {
         const id = item.id

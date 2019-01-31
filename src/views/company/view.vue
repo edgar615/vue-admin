@@ -26,12 +26,12 @@
           </p>
         </b-field>
 
-        <b-field label="联系电话" horizontal  class="static-field">
+        <b-field label="联系电话" horizontal class="static-field">
           <p class="control">
             {{model.hotline}}
           </p>
         </b-field>
-        <b-field label="主页" horizontal  class="static-field">
+        <b-field label="主页" horizontal class="static-field">
           <p class="control">
             {{model.homepage}}
           </p>
@@ -50,21 +50,21 @@
   </section>
 </template>
 <script>
-  import {  get } from '@/api/company';
+  import {get} from '@/api/company';
+
   export default {
     data() {
-    return {
-      loading: false,
-      model: {
+      return {
+        loading: false,
+        model: {}
       }
-    }
-  },
-  methods: {
+    },
+    methods: {
       back() {
         this.$router.back();
       }
     },
-  created () {
+    created() {
       this.$getModel(get, this.$route.params.id)
     }
   }
