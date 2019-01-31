@@ -20,7 +20,7 @@
           </b-field>
           <b-field label="支付方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'payType', model.type) }}
+              {{ $dictText('payType', model.type) }}
             </p>
           </b-field>
           <b-field label="支付流水" horizontal class="static-field">
@@ -30,7 +30,7 @@
           </b-field>
           <b-field label="支付结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseResult',model.paymentState) }}
+              {{ $dictText('paymentResponseResult',model.paymentState) }}
             </p>
           </b-field>
           <b-field label="交易时间" horizontal class="static-field">
@@ -40,7 +40,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseAckState',model.ackState) }}
+              {{ $dictText('paymentResponseAckState',model.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">
@@ -70,7 +70,7 @@
         <div class="card-content" v-if="model.payment">
           <b-field label="状态" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentState',model.state) }}
+              {{ $dictText('paymentState',model.state) }}
             </p>
           </b-field>
           <b-field label="买家名称" horizontal class="static-field">
@@ -423,7 +423,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getPayment, this.$parent.$props.props.paymentResponseId)
+      this.$getModel(getPayment, this.$parent.$props.props.paymentResponseId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

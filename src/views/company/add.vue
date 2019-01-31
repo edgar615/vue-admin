@@ -7,7 +7,7 @@
           <b-select name="type"  expanded  v-model="model.type"
                     v-validate="'required'" data-vv-as="类型">
             <option
-                v-for="option in $dictList(this, 'companyType')"
+                v-for="option in $dictList('companyType')"
                 :value="option.dictValue"
                 :key="option.dictValue">
               {{ option.dictText }}
@@ -90,7 +90,7 @@
   methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, save, resp => {
+        vm.$saveModel(save, resp => {
           vm.$parent.succeed('子系统保存成功', resp)
         }, err => {
           vm.$parent.fail('子系统保存失败', err)

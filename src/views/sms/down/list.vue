@@ -119,7 +119,7 @@
           delete  this.filters.startTime
           delete  this.filters.endTime
         }
-        this.$pageModelWithHistory(this, downPage, params)
+        this.$pageModelWithHistory(downPage, params)
       },
       /*
        * Handle page-change event

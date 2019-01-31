@@ -30,7 +30,7 @@
           </b-field>
           <b-field label="支付方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'payType', model.type) }}
+              {{ $dictText('payType', model.type) }}
             </p>
           </b-field>
           <b-field label="通知时间" horizontal class="static-field">
@@ -45,7 +45,7 @@
           </b-field>
           <b-field label="响应结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundResponseResult',model.refundState) }}
+              {{ $dictText('refundResponseResult',model.refundState) }}
             </p>
           </b-field>
           <b-field label="交易时间" horizontal class="static-field">
@@ -55,7 +55,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundResponseAckState',model.ackState) }}
+              {{ $dictText('refundResponseAckState',model.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">
@@ -90,12 +90,12 @@
           </b-field>
           <b-field label="退款方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundMethod', model.refund.refundMethod) }}
+              {{ $dictText('refundMethod', model.refund.refundMethod) }}
             </p>
           </b-field>
           <b-field label="付款方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'payType', model.refund.payType) }}
+              {{ $dictText('payType', model.refund.payType) }}
             </p>
           </b-field>
           <b-field label="退款原因" horizontal class="static-field">
@@ -105,7 +105,7 @@
           </b-field>
           <b-field label="退款状态" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundState',model.refund.state) }}
+              {{ $dictText('refundState',model.refund.state) }}
             </p>
           </b-field>
           <b-field label="退款结果" horizontal class="static-field">
@@ -121,7 +121,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentResponseAckState',model.refund.ackState) }}
+              {{ $dictText('paymentResponseAckState',model.refund.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">
@@ -156,7 +156,7 @@
         <div class="card-content" v-if="model.payment">
           <b-field label="状态" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'paymentState',model.state) }}
+              {{ $dictText('paymentState',model.state) }}
             </p>
           </b-field>
           <b-field label="买家名称" horizontal class="static-field">
@@ -326,7 +326,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getRefund, this.$parent.$props.props.refundResponseId)
+      this.$getModel(getRefund, this.$parent.$props.props.refundResponseId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

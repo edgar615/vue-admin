@@ -33,7 +33,7 @@
     },
     computed: {
       itemList () {
-        return this.$dictList(this, this.dictCode)
+        return this.$dictList(this.dictCode)
       }
     }
   }

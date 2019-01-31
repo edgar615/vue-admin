@@ -41,7 +41,7 @@
               <p class="control">{{model.sorted}}</p>
             </b-field>
             <b-field label="状态" horizontal class="static-field">
-              <p class="control">{{ $dictText(this, 'commodityCategoryState',model.state) }}</p>
+              <p class="control">{{ $dictText('commodityCategoryState',model.state) }}</p>
             </b-field>
           </div>
 

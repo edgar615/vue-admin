@@ -48,7 +48,7 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型"  >
-              {{ $dictText(this, "systemType",props.row.type) }}
+              {{ $dictText("systemType",props.row.type) }}
             </b-table-column>
 
             <b-table-column field="type" label="图标"  >
@@ -56,7 +56,7 @@
             </b-table-column>
 
             <b-table-column field="internal" label="内部?">
-              <span class="tag" :class="internalClass(props.row.internal)">{{ $dictText(this, "internal",props.row.internal) }}</span>
+              <span class="tag" :class="internalClass(props.row.internal)">{{ $dictText("internal",props.row.internal) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -110,7 +110,7 @@
         return exists;
       },
       loadAsyncData(params) {
-        this.$pageModel(this, systemPage, params)
+        this.$pageModel(systemPage, params)
     },
     /*
      * Handle page-change event

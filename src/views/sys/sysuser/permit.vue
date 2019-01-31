@@ -145,7 +145,6 @@
       loadAsyncData() {
         const vm = this
         getAvailableRole().then(response => {
-          const vm = this
           vm.permitTreeData = response.data
         })
         this.loadPermitted()

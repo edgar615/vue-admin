@@ -57,7 +57,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModel(vm, updateAuthority, this.$parent.$props.props.authorityScopeId, resp => {
+        vm.$updateModel(updateAuthority, this.$parent.$props.props.authorityScopeId, resp => {
           vm.$parent.succeed('权限保存成功', resp)
         }, err => {
           vm.$parent.fail('权限保存失败', err)
@@ -66,7 +66,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getAuthority, this.$parent.$props.props.authorityScopeId)
+      this.$getModel(getAuthority, this.$parent.$props.props.authorityScopeId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

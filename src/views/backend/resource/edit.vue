@@ -44,7 +44,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModel(vm, updateResource, this.$parent.$props.props.sysResourceId, resp => {
+        vm.$updateModel(updateResource, this.$parent.$props.props.sysResourceId, resp => {
           vm.$parent.succeed('接口权限保存成功', resp)
         }, err => {
           vm.$parent.fail('接口权限保存失败', err)
@@ -53,7 +53,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getResource, this.$parent.$props.props.sysResourceId)
+      this.$getModel(getResource, this.$parent.$props.props.sysResourceId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

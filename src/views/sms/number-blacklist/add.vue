@@ -33,7 +33,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, save, resp => {
+        vm.$saveModel(save, resp => {
           vm.$parent.succeed('号码黑名单保存成功', resp)
         }, err => {
           vm.$parent.fail('号码黑名单保存失败', err)

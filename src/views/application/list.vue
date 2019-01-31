@@ -73,7 +73,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText(this, 'companyState',props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText('companyState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column field="address" label="标识符">
@@ -130,7 +130,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event

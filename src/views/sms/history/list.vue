@@ -9,7 +9,7 @@
               <b-select placeholder="发送状态" v-model="filters.state">
                 <option value="">请选择</option>
                 <option
-                        v-for="option in $dictList(this, 'smsState')"
+                        v-for="option in $dictList('smsState')"
                         :value="option.dictValue"
                         :key="option.dictValue">
                   {{ option.dictText }}
@@ -79,7 +79,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="发送状态">
-              {{ $dictText(this, 'smsState',props.row.state) }}
+              {{ $dictText('smsState',props.row.state) }}
             </b-table-column>
 
             <b-table-column field="createTime" label="记录时间">
@@ -135,7 +135,7 @@
           delete  this.filters.startTime
           delete  this.filters.endTime
         }
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event

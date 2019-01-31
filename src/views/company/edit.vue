@@ -57,7 +57,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModel(vm, update, this.$parent.$props.props.companyId, resp => {
+        vm.$updateModel(update, this.$parent.$props.props.companyId, resp => {
           vm.$parent.succeed('公司保存成功', resp)
         }, err => {
           vm.$parent.fail('公司保存失败', err)
@@ -66,7 +66,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, get, this.$parent.$props.props.companyId)
+      this.$getModel(get, this.$parent.$props.props.companyId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

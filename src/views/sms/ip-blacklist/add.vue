@@ -33,7 +33,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, save, resp => {
+        vm.$saveModel(save, resp => {
           vm.$parent.succeed('IP黑名单保存成功', resp)
         }, err => {
           vm.$parent.fail('IP黑名单保存失败', err)

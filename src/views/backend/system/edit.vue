@@ -30,7 +30,7 @@
 
       <b-field label="类型" class="static-field">
         <p class="control">
-          {{ $dictText(this, 'systemType',model.type) }}
+          {{ $dictText('systemType',model.type) }}
         </p>
       </b-field>
 
@@ -67,7 +67,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModel(vm, updateSystem, this.$parent.$props.props.systemId, resp => {
+        vm.$updateModel(updateSystem, this.$parent.$props.props.systemId, resp => {
           vm.$parent.succeed('子系统保存成功', resp)
         }, err => {
           vm.$parent.fail('子系统保存失败', err)
@@ -76,7 +76,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getSystem, this.$parent.$props.props.systemId)
+      this.$getModel(getSystem, this.$parent.$props.props.systemId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

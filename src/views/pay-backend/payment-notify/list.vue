@@ -9,7 +9,7 @@
               <b-select placeholder="支付方式" v-model="filters.type">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'payType')"
+                    v-for="option in $dictList('payType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -18,7 +18,7 @@
               <b-select placeholder="支付状态" v-model="filters.paymentState">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'paymentResponseResult')"
+                    v-for="option in $dictList('paymentResponseResult')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -27,7 +27,7 @@
               <b-select placeholder="确认状态" v-model="filters.ackState">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'paymentResponseAckState')"
+                    v-for="option in $dictList('paymentResponseAckState')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -79,7 +79,7 @@
           <template slot-scope="props">
 
             <b-table-column field="type" label="支付方式">
-              {{ $dictText(this, 'payType',props.row.type) }}
+              {{ $dictText('payType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="businessNo" label="业务订单号">
@@ -95,7 +95,7 @@
             </b-table-column>
 
             <b-table-column field="paymentState" label="支付结果">
-              {{ $dictText(this, 'paymentResponseResult',props.row.paymentState) }}
+              {{ $dictText('paymentResponseResult',props.row.paymentState) }}
             </b-table-column>
 
             <b-table-column field="payTime" label="交易时间">
@@ -103,7 +103,7 @@
             </b-table-column>
 
             <b-table-column field="ackState" label="确认状态">
-              {{ $dictText(this, 'paymentResponseAckState',props.row.ackState) }}
+              {{ $dictText('paymentResponseAckState',props.row.ackState) }}
             </b-table-column>
 
             <b-table-column field="ackTime" label="确认时间">
@@ -164,7 +164,7 @@
           delete  this.filters.startTime
           delete  this.filters.endTime
         }
-        this.$pageModelWithHistory(this, paymentPage, params)
+        this.$pageModelWithHistory(paymentPage, params)
       },
       /*
        * Handle page-change event
@@ -175,8 +175,7 @@
         }
       },
       onNotify (id) {
-        const vm = this
-        this.$confirmModel(vm, confirmPayment, id, '确定要手动确认？',
+        this.$confirmModel(confirmPayment, id, '确定要手动确认？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       viewModal (id) {

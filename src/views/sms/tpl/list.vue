@@ -12,7 +12,7 @@
               <b-select placeholder="类型" v-model="filters.type">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'smsTplType')"
+                    v-for="option in $dictList('smsTplType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -52,7 +52,7 @@
           <template slot-scope="props">
 
             <b-table-column field="type" label="类型">
-              {{ $dictText(this, 'smsTplType',props.row.type) }}
+              {{ $dictText('smsTplType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="smsTplIdentifier" label="标识符">
@@ -107,7 +107,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
@@ -118,8 +118,7 @@
         }
       },
       onDelete (id) {
-        const vm = this
-        this.$deleteModel(vm, del, id,
+        this.$deleteModel(del, id,
           () => this.loadAsyncData())
       },
       addModal () {

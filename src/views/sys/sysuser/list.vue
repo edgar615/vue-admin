@@ -70,7 +70,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText(this, 'userState',props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText('userState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column label="操作">
@@ -118,7 +118,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
@@ -138,13 +138,11 @@
         return 'is-dark'
       },
       doLock (id) {
-        const vm = this
-        this.$confirmModel(vm, lock, id, '确定要锁定该用户？',
+        this.$confirmModel(lock, id, '确定要锁定该用户？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       doUnLock (id) {
-        const vm = this
-        this.$confirmModel(vm, unLock, id, '确定要解锁该用户？',
+        this.$confirmModel(unLock, id, '确定要解锁该用户？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

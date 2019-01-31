@@ -25,12 +25,12 @@
           </b-field>
           <b-field label="退款方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundMethod', model.refundMethod) }}
+              {{ $dictText('refundMethod', model.refundMethod) }}
             </p>
           </b-field>
           <b-field label="付款方式" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'payType', model.payType) }}
+              {{ $dictText('payType', model.payType) }}
             </p>
           </b-field>
           <b-field label="退款原因" horizontal class="static-field">
@@ -40,7 +40,7 @@
           </b-field>
           <b-field label="退款状态" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundState',model.state) }}
+              {{ $dictText('refundState',model.state) }}
             </p>
           </b-field>
           <b-field label="退款结果" horizontal class="static-field">
@@ -56,7 +56,7 @@
           </b-field>
           <b-field label="确认结果" horizontal class="static-field">
             <p class="control">
-              {{ $dictText(this, 'refundResponseAckState',model.ackState) }}
+              {{ $dictText('refundResponseAckState',model.ackState) }}
             </p>
           </b-field>
           <b-field label="确认时间" horizontal class="static-field">
@@ -92,7 +92,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getRefund, this.$parent.$props.props.refundId)
+      this.$getModel(getRefund, this.$parent.$props.props.refundId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

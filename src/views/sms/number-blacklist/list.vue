@@ -82,7 +82,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
@@ -93,8 +93,7 @@
         }
       },
       onDelete (id) {
-        const vm = this
-        this.$deleteModel(vm, del, id,
+        this.$deleteModel(del, id,
           () => this.loadAsyncData())
       },
       addModal () {

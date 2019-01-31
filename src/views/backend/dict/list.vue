@@ -100,7 +100,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, dictPage, params)
+        this.$pageModelWithHistory(dictPage, params)
       },
       /*
        * Handle page-change event
@@ -120,7 +120,7 @@
       },
       onDelete (id) {
         const vm = this
-        this.$deleteModel(vm, deleteDict, id,
+        this.$deleteModel(deleteDict, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

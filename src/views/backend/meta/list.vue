@@ -60,7 +60,7 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型">
-              {{ $dictText(this, 'metadataType',props.row.type) }}
+              {{ $dictText('metadataType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="name" label="属性名">
@@ -174,7 +174,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
@@ -186,7 +186,7 @@
       },
       doDelete (id) {
         const vm = this
-        vm.$deleteModel(vm, del, id, () => vm.loadAsyncData({page: vm.pagination.page}))
+        vm.$deleteModel(del, id, () => vm.loadAsyncData({page: vm.pagination.page}))
       }
     },
     created () {

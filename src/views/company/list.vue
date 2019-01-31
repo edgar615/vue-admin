@@ -73,11 +73,11 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText(this, 'companyState',props.row.state) }}</span>
+              <span class="tag" :class="stateClass(props.row.state)">{{ $dictText('companyState',props.row.state) }}</span>
             </b-table-column>
 
             <b-table-column field="state" label="类型">
-              {{ $dictText(this, 'companyType',props.row.type) }}
+              {{ $dictText('companyType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="name" label="添加时间">
@@ -154,7 +154,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, page, params)
+        this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
@@ -174,13 +174,11 @@
         return 'is-dark'
       },
       doLock (id) {
-        const vm = this
-        this.$confirmModel(vm, lock, id, '确定要锁定该公司？',
+        this.$confirmModel(lock, id, '确定要锁定该公司？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       doUnLock (id) {
-        const vm = this
-        this.$confirmModel(vm, unLock, id, '确定要解锁该公司？',
+        this.$confirmModel(unLock, id, '确定要解锁该公司？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

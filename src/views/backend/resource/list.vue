@@ -94,7 +94,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, resourcePage, params)
+        this.$pageModelWithHistory(resourcePage, params)
       },
       /*
        * Handle page-change event

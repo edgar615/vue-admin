@@ -13,7 +13,7 @@
         <div class="card box-content">
           <div class="card-content">
             <b-field label="类型" horizontal class="static-field">
-              <p class="control static-field">{{$dictText(this, 'permissionType', model.type)}}</p>
+              <p class="control static-field">{{$dictText('permissionType', model.type)}}</p>
             </b-field>
             <b-field label="名称" horizontal class="static-field">
               <p class="control static-field">{{model.name}}</p>
@@ -73,7 +73,7 @@
               <b-select name="type" expanded v-model="model.type"
                         v-validate="'required'" data-vv-as="类型" class="w-25">
                 <option
-                    v-for="option in $dictList(this, 'permissionType')"
+                    v-for="option in $dictList('permissionType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}

@@ -46,7 +46,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModel(vm, updateDict, this.$parent.$props.props.dictId, resp => {
+        vm.$updateModel(updateDict, this.$parent.$props.props.dictId, resp => {
           vm.$parent.succeed('字典保存成功', resp)
         }, err => {
           vm.$parent.fail('字典保存失败', err)
@@ -55,7 +55,7 @@
     },
     created () {
       this.$parent.startLoading()
-      this.$getModel(this, getDict, this.$parent.$props.props.dictId)
+      this.$getModel(getDict, this.$parent.$props.props.dictId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

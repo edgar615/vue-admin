@@ -9,7 +9,7 @@
               <b-select placeholder="支付方式" v-model="filters.payType">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'payType')"
+                    v-for="option in $dictList('payType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -18,7 +18,7 @@
               <b-select placeholder="支付状态" v-model="filters.state">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'paymentState')"
+                    v-for="option in $dictList('paymentState')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -55,11 +55,11 @@
           <template slot-scope="props">
 
             <b-table-column field="payType" label="支付类型">
-              {{ $dictText(this, 'payType',props.row.payType) }}
+              {{ $dictText('payType',props.row.payType) }}
             </b-table-column>
 
             <b-table-column field="businessType" label="业务类型">
-              {{ $dictText(this, 'orderType',props.row.businessType) }}
+              {{ $dictText('orderType',props.row.businessType) }}
             </b-table-column>
 
             <b-table-column field="businessNo" label="订单号">
@@ -71,7 +71,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              {{ $dictText(this, 'paymentState',props.row.state) }}
+              {{ $dictText('paymentState',props.row.state) }}
             </b-table-column>
 
             <b-table-column field="payTime" label="付款时间">
@@ -124,7 +124,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, paymentPage, params)
+        this.$pageModelWithHistory(paymentPage, params)
       },
       /*
        * Handle page-change event

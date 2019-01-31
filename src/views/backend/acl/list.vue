@@ -12,7 +12,7 @@
               <b-select placeholder="公司类型" v-model="filters.companyType">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'companyType')"
+                    v-for="option in $dictList('companyType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -50,7 +50,7 @@
           <template slot-scope="props">
 
             <b-table-column field="companyType" label="公司类型">
-              {{ $dictText(this, 'companyType',props.row.companyType) }}
+              {{ $dictText('companyType',props.row.companyType) }}
             </b-table-column>
 
             <b-table-column field="resourceName" label="资源">
@@ -70,7 +70,7 @@
             </b-table-column>
 
             <b-table-column field="exprType" label="比较操作符">
-              {{ $dictText(this, 'exprType',props.row.exprType) }}
+              {{ $dictText('exprType',props.row.exprType) }}
             </b-table-column>
 
             <b-table-column field="rightExpr" label="比较值">
@@ -133,7 +133,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, aclPage, params)
+        this.$pageModelWithHistory(aclPage, params)
       },
       /*
        * Handle page-change event
@@ -144,8 +144,7 @@
         }
       },
       onDelete (id) {
-        const vm = this
-        this.$deleteModel(vm, deleteAcl, id,
+        this.$deleteModel(deleteAcl, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

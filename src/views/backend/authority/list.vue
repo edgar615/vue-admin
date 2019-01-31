@@ -99,7 +99,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, authorityPage, params)
+        this.$pageModelWithHistory(authorityPage, params)
       },
       /*
        * Handle page-change event
@@ -110,8 +110,7 @@
         }
       },
       onDelete (id) {
-        const vm = this
-        this.$deleteModel(vm, deleteAuthority, id,
+        this.$deleteModel(deleteAuthority, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

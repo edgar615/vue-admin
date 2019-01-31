@@ -14,7 +14,7 @@
               <b-select placeholder="支付方式" v-model="filters.payType">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'payType')"
+                    v-for="option in $dictList('payType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -51,10 +51,10 @@
           <template slot-scope="props">
 
             <b-table-column field="refundMethod" label="退款方式">
-              {{ $dictText(this, 'refundMethod',props.row.refundMethod) }}
+              {{ $dictText('refundMethod',props.row.refundMethod) }}
             </b-table-column>
             <b-table-column field="payType" label="支付方式">
-              {{ $dictText(this, 'payType',props.row.payType) }}
+              {{ $dictText('payType',props.row.payType) }}
             </b-table-column>
 
             <b-table-column field="outTradeNo" label="订单号">
@@ -70,7 +70,7 @@
             </b-table-column>
 
             <b-table-column field="state" label="状态">
-              {{ $dictText(this, 'refundState',props.row.state) }}
+              {{ $dictText('refundState',props.row.state) }}
             </b-table-column>
 
             <b-table-column field="payTime" label="申请时间">
@@ -117,7 +117,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, refundPage, params)
+        this.$pageModelWithHistory(refundPage, params)
       },
       /*
        * Handle page-change event

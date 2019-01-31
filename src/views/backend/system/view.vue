@@ -21,7 +21,7 @@
 
       <b-field label="类型" class="static-field">
         <p class="control">
-          {{ $dictText(this, 'systemType',model.type) }}
+          {{ $dictText('systemType',model.type) }}
         </p>
       </b-field>
 
@@ -50,7 +50,7 @@
     },
     created() {
       this.$parent.startLoading()
-      this.$getModel(this, getSystem, this.$parent.$props.props.systemId)
+      this.$getModel(getSystem, this.$parent.$props.props.systemId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

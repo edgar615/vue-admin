@@ -1,6 +1,7 @@
 import {registerComponentProgrammatic, use} from '@/utils/helpers'
 
-function pageModel(vm, pageApi, params) {
+function pageModel(pageApi, params) {
+  const vm = this;
   if (params === undefined) {
     params = {}
   }
@@ -32,7 +33,8 @@ function pageModel(vm, pageApi, params) {
   })
 }
 
-function pageModelWithHistory(vm, pageApi, params) {
+function pageModelWithHistory(pageApi, params) {
+  const vm = this;
   if (params === undefined) {
     params = {}
   }
@@ -77,7 +79,8 @@ function clearListQueryHistory() {
   this.$store.dispatch('saveListQueryHistory', {path: this.$route.path})
 }
 
-function getModel (vm, getApi, id) {
+function getModel (getApi, id) {
+  const vm = this;
   vm.loading = true
   return getApi(id).then(response => {
     vm.model = response.data
@@ -90,7 +93,8 @@ function getModel (vm, getApi, id) {
 }
 
 // 因为save和update要校验，用promise有点麻烦
-function updateModel (vm, updateApi, id, callback, errHandler) {
+function updateModel (updateApi, id, callback, errHandler) {
+  const vm = this;
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
@@ -109,7 +113,8 @@ function updateModel (vm, updateApi, id, callback, errHandler) {
   })
 }
 
-function saveModel (vm, saveApi, callback, errHandler) {
+function saveModel ( saveApi, callback, errHandler) {
+  const vm = this;
   vm.$validator.validateAll().then((result) => {
     if (result) {
       vm.saving = true
@@ -128,7 +133,8 @@ function saveModel (vm, saveApi, callback, errHandler) {
   })
 }
 
-function deleteModel (vm, delApi, id, callback) {
+function deleteModel (delApi, id, callback) {
+  const vm = this;
   deleteConfirm(() => {
     vm.deleting = true
     delApi(id).then(response => {
@@ -141,7 +147,8 @@ function deleteModel (vm, delApi, id, callback) {
   })
 }
 
-function confirmModel (vm, delApi, id, msg, callback) {
+function confirmModel (delApi, id, msg, callback) {
+  const vm = this;
   opConfirm(msg, () => {
     vm.deleting = true
     delApi(id).then(response => {
@@ -154,7 +161,8 @@ function confirmModel (vm, delApi, id, msg, callback) {
   })
 }
 
-function batchDeleteModel(vm, delApi, ids, callback) {
+function batchDeleteModel(delApi, ids, callback) {
+  const vm = this;
   deleteConfirm(() => {
     vm.deleting = true
     delApi({data: {ids: ids}}).then(response => {
@@ -167,11 +175,11 @@ function batchDeleteModel(vm, delApi, ids, callback) {
   })
 }
 
-function dictText(vm, name, value) {
+function dictText(name, value) {
   return this.$store.getters.dictText(name, value)
 }
 
-function dictList(vm, name) {
+function dictList(name) {
   return this.$store.getters.dictList(name)
 }
 
@@ -187,8 +195,8 @@ function customBoolText(boolValue, trueText, falseText) {
 }
 
 
-function opConfirm (msg, onConfirm) {
-  this.$swal.fire({
+function opConfirm ( msg, callback) {
+  Vue.prototype.$swal.fire({
     title: msg,
     type: 'warning',
     showCancelButton: true,
@@ -198,13 +206,13 @@ function opConfirm (msg, onConfirm) {
     confirmButtonText: '确定'
   }).then((result) => {
     if (result.value) {
-      onConfirm()
+      callback()
     }
   })
 }
 
-function deleteConfirm (onConfirm) {
-  this.$swal.fire({
+function deleteConfirm (vm, callback) {
+  Vue.prototype.$swal.fire({
     title: '确定要删除吗？',
     type: 'warning',
     showCancelButton: true,
@@ -214,7 +222,7 @@ function deleteConfirm (onConfirm) {
     confirmButtonText: '删除'
   }).then((result) => {
     if (result.value) {
-      onConfirm()
+      callback()
     }
   })
 }
@@ -223,7 +231,7 @@ function successToast (msg) {
   if (msg === undefined) {
     msg = '操作成功'
   }
-  this.$swal({
+  Vue.prototype.$swal({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,

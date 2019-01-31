@@ -4,13 +4,13 @@
       <div class="card-content">
         <b-field label="支付类型" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, 'payType',model.payType) }}
+            {{ $dictText('payType',model.payType) }}
           </p>
         </b-field>
 
         <b-field label="业务类型" horizontal class="static-field">
           <p class="control">
-            {{ dictText(this, 'orderType',model.businessType) }}
+            {{ $dictText('orderType',model.businessType) }}
           </p>
         </b-field>
 
@@ -28,7 +28,7 @@
 
         <b-field label="状态" horizontal class="static-field">
           <p class="control">
-          {{ dictText(this, 'paymentState',model.state) }}
+          {{ $dictText('paymentState',model.state) }}
           </p>
         </b-field>
         <b-field label="买家" horizontal class="static-field">
@@ -75,7 +75,7 @@
       }
     },
     created () {
-      this.getModel(this, getPayment, this.$route.params.id)
+      this.getModel(getPayment, this.$route.params.id)
     }
   }
 </script>

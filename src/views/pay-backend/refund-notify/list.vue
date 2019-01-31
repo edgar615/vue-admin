@@ -9,7 +9,7 @@
               <b-select placeholder="支付方式" v-model="filters.type">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'type')"
+                    v-for="option in $dictList('type')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -18,7 +18,7 @@
               <b-select placeholder="退款结果" v-model="filters.refundState">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'refundResponseResult')"
+                    v-for="option in $dictList('refundResponseResult')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -27,7 +27,7 @@
               <b-select placeholder="确认状态" v-model="filters.ackState">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'refundResponseAckState')"
+                    v-for="option in $dictList('refundResponseAckState')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -64,7 +64,7 @@
           <template slot-scope="props">
 
             <b-table-column field="type" label="支付方式">
-              {{ $dictText(this, 'payType',props.row.type) }}
+              {{ $dictText('payType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="businessNo" label="退款单号">
@@ -84,7 +84,7 @@
             </b-table-column>
 
             <b-table-column field="refundState" label="退款结果">
-              {{ $dictText(this, 'refundResponseResult',props.row.refundState) }}
+              {{ $dictText('refundResponseResult',props.row.refundState) }}
             </b-table-column>
 
             <b-table-column field="payTime" label="交易时间">
@@ -92,7 +92,7 @@
             </b-table-column>
 
             <b-table-column field="ackState" label="确认状态">
-              {{ $dictText(this, 'refundResponseAckState',props.row.ackState) }}
+              {{ $dictText('refundResponseAckState',props.row.ackState) }}
             </b-table-column>
 
             <b-table-column field="ackTime" label="确认时间">
@@ -145,7 +145,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, refundPage, params)
+        this.$pageModelWithHistory(refundPage, params)
       },
       /*
        * Handle page-change event
@@ -156,8 +156,7 @@
         }
       },
       onNotify (id) {
-        const vm = this
-        this.$confirmModel(vm, confirmRefund, id, '确定要手动确认？',
+        this.$confirmModel(confirmRefund, id, '确定要手动确认？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
       viewModal (id) {

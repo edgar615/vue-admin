@@ -374,7 +374,7 @@
         roleTree().then(response => {
           const data = {
             id: -1,
-            name: '根目录',
+            name: '角色列表',
             children: []
           }
           if (response.data && response.data.length > 0) {

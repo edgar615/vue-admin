@@ -104,7 +104,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, shippingMethodPage, params)
+        this.$pageModelWithHistory(shippingMethodPage, params)
       },
       /*
        * Handle page-change event
@@ -126,7 +126,7 @@
        *删除
        * **/
       deleteData (id) {
-        this.$deleteModel(this, deleteShippingMethod, id, () => {
+        this.$deleteModel(deleteShippingMethod, id, () => {
           this.loadAsyncData()
         })
       }

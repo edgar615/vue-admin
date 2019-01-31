@@ -57,7 +57,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, addAuthority, resp => {
+        vm.$saveModel(addAuthority, resp => {
           vm.$parent.succeed('权限保存成功', resp)
         }, err => {
           vm.$parent.fail('权限保存失败', err)

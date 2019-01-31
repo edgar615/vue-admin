@@ -13,7 +13,7 @@
               <b-select placeholder="类型" v-model="filters.type">
                 <option value="">请选择</option>
                 <option
-                    v-for="option in $dictList(this, 'systemType')"
+                    v-for="option in $dictList('systemType')"
                     :value="option.dictValue"
                     :key="option.dictValue">
                   {{ option.dictText }}
@@ -63,7 +63,7 @@
             </b-table-column>
 
             <b-table-column field="type" label="类型">
-              {{ $dictText(this, 'systemType',props.row.type) }}
+              {{ $dictText('systemType',props.row.type) }}
             </b-table-column>
 
             <b-table-column field="type" label="图标">
@@ -129,7 +129,7 @@
        * Load async data
        */
       loadAsyncData (params) {
-        this.$pageModelWithHistory(this, systemPage, params)
+        this.$pageModelWithHistory(systemPage, params)
       },
       /*
        * Handle page-change event
@@ -152,8 +152,7 @@
         return 'is-dark'
       },
       onDelete (id) {
-        const vm = this
-        this.$deleteModel(vm, deleteSystem, id,
+        this.$deleteModel(deleteSystem, id,
           () => this.loadAsyncData({page: this.pagination.page}))
       },
       addModal () {

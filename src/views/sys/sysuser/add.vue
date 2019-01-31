@@ -58,7 +58,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$saveModel(vm, save, resp => {
+        vm.$saveModel(save, resp => {
           vm.$parent.succeed('用户保存成功', resp)
         }, err => {
           vm.$parent.fail('用户保存失败', err)
