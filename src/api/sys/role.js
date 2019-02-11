@@ -2,8 +2,12 @@ import request from '@/utils/request'
 
 const base = '/role'
 
-export function roleTree (id) {
+export function roleTree () {
   return request.get(base + '/tree')
+}
+
+export function page () {
+  return request.get(base + '/page')
 }
 
 export function getRole (id) {

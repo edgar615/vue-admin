@@ -43,57 +43,6 @@
           </div>
         </div>
       </div>
-
-      <div class="column  ml-2" v-show="rolePermit">
-        <div class="card">
-          <header class="card-header">
-            <div class="card-header-right buttons">
-              <button class="button is-primary" @click="savePermit"
-                      :class="{'is-loading' : saving}">
-                保存授权
-              </button>
-            </div>
-          </header>
-        </div>
-        <div class="columns mt-2">
-          <div class="column">
-            <div class="card box-content2">
-              <header class="card-header">
-                <div class="card-header-title">
-                  设置角色对应的菜单权限
-                </div>
-              </header>
-              <div class="card-content">
-                <vue-tree v-model="permitTreeOptions.checkedIds" :tree-data="permitTreeData" :options="permitTreeOptions"
-                          @handle="menuClick"></vue-tree>
-              </div>
-            </div>
-          </div>
-
-          <div class="column">
-            <div class="card box-content2" v-show="curPermissions && curPermissions.length > 0">
-              <header class="card-header">
-                <div class="card-header-title">
-                  设置角色对应的功能权限
-                </div>
-              </header>
-              <div class="card-content">
-                <b-table
-                    :data="curPermissions"
-                    :checked-rows.sync="checkedPermissions"
-                    checkable>
-                  <template slot-scope="props">
-                    <b-table-column field="name" label="权限" width="400">
-                      {{ props.row.name }}
-                    </b-table-column>
-                  </template>
-                </b-table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 </template>
@@ -102,15 +51,11 @@
     height: 600px;
     overflow: auto;
   }
-
-  .box-content2 {
-    height: 540px;
-    overflow: auto;
-  }
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import AddForm from '@/views/backend/role/add.vue'
+  import PermitForm from '@/views/sys/role/permit.vue'
   import {
     roleTree,
     getRole,
@@ -224,73 +169,16 @@
         this.viewRole = false
         this.rolePermit = false
       },
-      savePermit (id) {
-        const vm = this
-        vm.saving = true
-        // 删除掉子系统、根目录
-        // 现在下面这行已经没用了，因为服务端按string传递LONG，之后，永远都是string
-        let savedPermissions = this.permitTreeOptions.checkedIds.filter(function (item) {
-          if (typeof item === 'string') {
-            return false
-          }
-          if (item === -1) {
-            return false
-          }
-          return true
-        })
-        this.checkedPermissions.forEach(function (item) {
-          savedPermissions.push(item.sysPermissionId)
-        })
-        const permitModel = {
-          roleId: this.model.sysRoleId,
-          permissions: savedPermissions
-        }
-        permit(permitModel).then(response => {
-          vm.saving = false
-          vm.$successToast()
-//          vm.loadAsyncData()
-        }).catch(err => {
-          vm.saving = false
-        })
-      },
       onPermit (id) {
-        this.addRole = false
-        this.viewRole = false
-        this.rolePermit = true
-        const vm = this
-        vm.permitTreeOptions.checkedIds = []
-        vm.permitTreeData = []
-        vm.allPermissions = []
-        vm.firstCreated = 0
-        // 因为要获取checkedPermissions，应该在两个请求都完成后计算，没有使用axios.all
-        getPermitted(id).then(response2 => {
-          const checkedIds = response2.data.permissions
-          getSystem(id).then(response => {
-            const treeData = response.data
-            // 重新修改树节点，将最后的子菜单放在右边
-            treeData.forEach(function (item) {
-              item.id = 's-' + item.id
-              if (item.permissions) {
-                item.permissions.forEach(function (perm) {
-                  vm.allPermissions.push(perm)
-                })
-              }
-            })
-            vm.permitTreeData = [ {
-              id: -1,
-              name: '角色列表',
-              children: treeData
-            }]
-            // 删除是右侧权限的ID
-            vm.permitTreeOptions.checkedIds = checkedIds.filter(function (item) {
-              return vm.allPermissions.filter(function (perm) {
-                return perm.sysPermissionId === item
-              }).length === 0
-            })
-            vm.checkedPermissions = vm.allPermissions.filter(function (item) {
-              return vm.contains(checkedIds, item.sysPermissionId)
-            })
-          })
+        this.$formModal.open({
+          parent: this,
+          name: '角色授权',
+          width: '50%',
+          component: PermitForm,
+          props: {
+            "sysRoleId": id
+          },
+          onClose: () => { }
         })
       },
       onDelete (id) {
@@ -375,23 +263,6 @@
       checkedPermitTree () {
         let temp = [...this.permitTreeOptions.checkedIds]
         return temp
-      },
-      removeArray (arr, obj) {
-        let length = arr.length
-        for (let i = 0; i < length; i++) {
-          if (arr[i] === obj) {
-            if (i === 0) {
-              arr.shift()
-              return arr
-            } else if (i === length - 1) {
-              arr.pop()
-              return arr
-            } else {
-              arr.splice(i, 1)
-              return arr
-            }
-          }
-        }
       }
     },
     watch: {

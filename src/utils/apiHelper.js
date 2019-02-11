@@ -211,7 +211,7 @@ function opConfirm ( msg, callback) {
   })
 }
 
-function deleteConfirm (vm, callback) {
+function deleteConfirm (callback) {
   Vue.prototype.$swal.fire({
     title: '确定要删除吗？',
     type: 'warning',
