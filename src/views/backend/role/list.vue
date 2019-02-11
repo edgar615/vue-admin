@@ -60,10 +60,7 @@
     roleTree,
     getRole,
     deleteRole,
-    updateRole,
-    getSystem,
-    getPermitted,
-    permit
+    updateRole
   } from '@/api/sys/role'
 
   export default {
