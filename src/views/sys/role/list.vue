@@ -33,15 +33,14 @@
               {{ props.row.name }}
             </b-table-column>
 
-            <b-table-column field="roleCode" label="角色编码">
-              {{ props.row.roleCode }}
-            </b-table-column>
-
             <b-table-column field="sorted" label="排序">
               {{ props.row.sorted }}
             </b-table-column>
 
             <b-table-column label="操作">
+              <a @click="editModal(props.row.sysRoleId)">
+                修改
+              </a>
               <a @click="onDelete(props.row.sysRoleId)">
                 删除
               </a>
@@ -63,7 +62,8 @@
   import {page, deleteRole} from '@/api/sys/role'
   import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/sys/role/add.vue'
-  import PermitForm from '@/views/sys/role/permit.vue'
+  import EditForm from '@/views/sys/role/edit.vue'
+  import PermitForm from '@/views/backend/role/permit.vue'
 
   export default {
     data () {
@@ -94,6 +94,19 @@
       onDelete (id) {
         this.$deleteModel(deleteRole, id,
             () => this.loadAsyncData())
+      },
+      editModal (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改角色',
+          width: '20%',
+          component: EditForm,
+          props: {
+            "sysRoleId": id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
       },
       addModal () {
         const vm = this

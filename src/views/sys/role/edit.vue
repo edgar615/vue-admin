@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-  import {addRole} from '@/api/sys/role'
+  import {updateRole, getRole} from '@/api/sys/role'
 
   export default {
     data() {
@@ -40,7 +40,7 @@
     methods: {
       save() {
         const vm = this
-        vm.$saveModel(addRole, resp => {
+        vm.$updateModel(updateRole,this.$parent.$props.props.sysRoleId, resp => {
           vm.$parent.succeed('角色保存成功', resp)
         }, err => {
           vm.$parent.fail('角色保存失败', err)
@@ -48,7 +48,14 @@
       }
     },
     created() {
-      this.model.parentId = this.$parent.$props.props.parentId
+      this.$parent.startLoading()
+      this.$getModel(getRole, this.$parent.$props.props.sysRoleId)
+      .then(respone => {
+        this.$parent.closeLoading()
+      }).catch(err => {
+        this.$parent.closeLoading()
+        this.$parent.fail('角色查询失败', err)
+      })
     }
   }
 </script>

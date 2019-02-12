@@ -34,7 +34,7 @@ export function unLock (id) {
 }
 
 export function getAvailableRole () {
-  return request.get('/role/tree')
+  return request.get('/role')
 }
 
 export function getPermitted (id) {

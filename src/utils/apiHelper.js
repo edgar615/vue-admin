@@ -242,6 +242,22 @@ function successToast (msg) {
   });
 }
 
+function contains (array, obj) {
+  let i = array.length
+  while (i--) {
+    if (array[i] === obj) {
+      return true
+    }
+  }
+  return false
+}
+function removeArray (array, element) {
+  const index = array.indexOf(element)
+  if (index !== -1) {
+    array.splice(index, 1)
+  }
+}
+
 const Plugin = {
   install(Vue) {
     // bool的显示
@@ -271,6 +287,9 @@ const Plugin = {
     registerComponentProgrammatic(Vue, '$saveModel', saveModel)
     registerComponentProgrammatic(Vue, '$updateModel', updateModel)
     registerComponentProgrammatic(Vue, '$confirmModel', confirmModel)
+
+    registerComponentProgrammatic(Vue, '$arrayContains', contains)
+    registerComponentProgrammatic(Vue, '$removeArray', removeArray)
   }
 }
 
