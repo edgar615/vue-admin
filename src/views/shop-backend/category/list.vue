@@ -1,29 +1,48 @@
 <template>
-  <section class="ml-2 mt-3">
-    <div class="columns">
-      <div class="column is-one-fifth  is-size-7 vue-tree">
-        <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
-                  @handle="itemClick" style="height: 500px;overflow-y: auto"></vue-tree>
+  <section>
+    <div class="columns is-full-content">
+      <div class="column is-one-fifth">
+        <div class="card box-content1">
+          <div class="card-content">
+            <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
+            <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
+                      @handle="itemClick"></vue-tree>
+          </div>
+        </div>
       </div>
-      <div class="column ml-2">
-        <div class="card">
+      <div class="column ml-2" v-show="addCate">
+        <div class="card box-content1">
           <header class="card-header">
             <div class="card-header-title">
               <div class="ml-3 buttons">
-                <button class="button" @click="onEdit" v-show="clickedModel.commodityCategoryId">
-                  <span>类目详情</span>
+                <button class="button m-1" @click="onAdd(-1)">
+                  <span>新增类目</span>
                 </button>
-                <button class="button" @click="onAdd(model.commodityCategoryId)">
+              </div>
+            </div>
+          </header>
+        </div>
+      </div>
+      <div class="column ml-2" v-show="viewCate">
+        <div class="card box-content1">
+          <b-loading :is-full-page="isFullPage" :active.sync="ifViewLoading"></b-loading>
+          <header class="card-header">
+            <div class="card-header-title">
+              <div class="ml-3 buttons">
+                <button class="button m-1" @click="onAdd(model.commodityCategoryId)" :disabled="!model.commodityCategoryId || deleting">
                   <span>新增子类目</span>
                 </button>
-                <button class="button" style="height: 2.4em;"
+                <button class="button m-1" @click="onEdit(model.commodityCategoryId)" :disabled="!model.commodityCategoryId || deleting">
+                  <span>修改类目</span>
+                </button>
+                <button class="button m-1"
                         @click="onDisable(model.commodityCategoryId)"
                         :class="{'is-loading' : deleting}"
                         v-show="model.state == 5">
                   <b-icon icon="lock"></b-icon>
                   <span>停用</span>
                 </button>
-                <button class="button" style="height: 2.4em;"
+                <button class="button m-1"
                         @click="onEnable(model.commodityCategoryId)"
                         :class="{'is-loading' : deleting}"
                         v-show="model.state == 6">
@@ -33,7 +52,7 @@
               </div>
             </div>
           </header>
-          <div class="card-content" v-show="viewCate">
+          <div class="card-content">
             <b-field label="名称" horizontal class="static-field">
               <p class="control static-field">{{model.name}}</p>
             </b-field>
@@ -44,50 +63,26 @@
               <p class="control">{{ $dictText('commodityCategoryState',model.state) }}</p>
             </b-field>
           </div>
-
-          <div class="card-content" v-show="addCate">
-            <jcc-field label="名称" horizontal class="required-field" :type="errors.has('name') ? 'is-danger' : ''"
-                       :message="errors.first('name')">
-              <b-input name="name" v-model="model.name"
-                       v-validate="'required|max:64'" data-vv-as="名称" class="w-25"></b-input>
-            </jcc-field>
-            <jcc-field label="排序" horizontal class="required-field" :message="errors.first('sorted')"
-                       :type="errors.has('sorted') ? 'is-danger' : ''">
-              <b-input name="sorted" expanded v-model="model.sorted"
-                       v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序"
-                       class="w-15">
-              </b-input>
-            </jcc-field>
-            <jcc-field label="状态" horizontal class="required-field" :message="errors.first('state')"
-                       :type="errors.has('state') ? 'is-danger' : ''">
-              <dict-radio-button :model="model" param-name="state" dict-code="commodityCategoryState"></dict-radio-button>
-            </jcc-field>
-            <b-field horizontal><!-- Label left empty for spacing -->
-              <p class="control">
-                <button class="button is-primary" @click="save"
-                        :class="{'is-loading' : saving}">
-                  <b-icon icon="check-circle"></b-icon>
-                  <span>保存</span>
-                </button>
-              </p>
-            </b-field>
-          </div>
         </div>
-
       </div>
-
     </div>
   </section>
 </template>
+<style scoped>
+  .box-content1 {
+    height: 600px;
+    overflow: auto;
+  }
+</style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
+  import AddForm from '@/views/shop-backend/category/add.vue'
+  import EditForm from '@/views/shop-backend/category/edit.vue'
   import {
     cateTree,
     getCate,
-    addCate,
     disable,
-    enable,
-    updateCate
+    enable
   } from '@/api/commodity/category'
 
   export default {
@@ -96,10 +91,11 @@
     },
     data () {
       return {
+        isFullPage: false,
+        isCateLoading: true,
+        ifViewLoading: false,
         deleting: false,
-        clickedModel: {},
         model: {},
-        saving: false,
         addCate: false,
         viewCate: false,
         // tree数据
@@ -122,37 +118,50 @@
       }
     },
     methods: {
-      removeArray (array, element) {
-        const index = array.indexOf(element)
-        if (index !== -1) {
-          array.splice(index, 1)
-        }
-      },
       onAdd (id) {
-        this.addCate = true
-        this.viewCate = false
-        this.model = {parentId: id}
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增类目',
+          width: '20%',
+          component: AddForm,
+          props: {
+            parentId: id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
+      },
+      onEdit (id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改类目',
+          width: '20%',
+          component: EditForm,
+          props: {
+            "commodityCategoryId": id
+          },
+          onClose: () => { vm.loadAsyncData() }
+        })
       },
       itemClick (item) {
         const id = item.id
+        this.onView(id)
+      },
+      onView (id) {
         if (id === -1) {
           this.addCate = true
           this.viewCate = false
           this.model = {parentId: id}
-          this.clickedModel = this.model
         } else {
           this.viewCate = true
           this.addCate = false
+          this.ifViewLoading = true
           getCate(id).then(response => {
             this.model = response.data
-            this.clickedModel = this.model
+            this.ifViewLoading = false
           })
         }
-      },
-      onEdit (id) {
-        this.addCate = true
-        this.viewCate = false
-        this.model = this.clickedModel
       },
       onDisable (id) {
         const vm = this
@@ -160,7 +169,7 @@
         disable(id).then(response => {
           vm.deleting = false
           vm.$successToast()
-          vm.loadAsyncData()
+          vm.onView(id)
         }).catch(err => {
           vm.deleting = false
         })
@@ -171,52 +180,27 @@
         enable(id).then(response => {
           vm.deleting = false
           vm.$successToast()
-          vm.loadAsyncData()
+          vm.onView(id)
         }).catch(err => {
           vm.deleting = false
         })
       },
-      save () {
-        const vm = this
-        vm.$validator.validateAll().then((result) => {
-          if (result) {
-            vm.saving = true
-            if (vm.model.commodityCategoryId) {
-              updateCate(vm.model.commodityCategoryId, vm.model).then(response => {
-                vm.saving = false
-                vm.$successToast()
-                vm.loadAsyncData()
-              }).catch(err => {
-                vm.saving = false
-              })
-            } else {
-              addCate(vm.model).then(response => {
-                vm.saving = false
-                vm.$successToast()
-                vm.loadAsyncData()
-              }).catch(err => {
-                vm.saving = false
-              })
-            }
-          }
-        })
-      },
       loadAsyncData () {
         const vm = this
-        vm.loading = true
+        vm.isCateLoading = true
         this.addCate = false
         this.viewCate = false
         cateTree().then(response => {
           const data = {
             id: -1,
-            name: '根目录',
+            name: '类目列表',
             children: []
           }
           if (response.data && response.data.length > 0) {
             data.children = response.data
           }
           vm.treeData = [data]
-          vm.loading = false
+          vm.isCateLoading = false
         })
       }
     },

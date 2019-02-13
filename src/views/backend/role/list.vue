@@ -12,19 +12,41 @@
       </div>
       <div class="column ml-2" v-show="addRole">
         <div class="card box-content1">
-          <div class="card-content">
-            <b-field horizontal>
-              <p class="control">
+          <header class="card-header">
+            <div class="card-header-title">
+              <div class="ml-3 buttons">
                 <button class="button m-1" @click="onAdd(-1)">
                   <span>新增角色</span>
                 </button>
-              </p>
-            </b-field>
-          </div>
+              </div>
+            </div>
+          </header>
         </div>
       </div>
       <div class="column ml-2" v-show="viewRole">
         <div class="card box-content1">
+          <b-loading :is-full-page="isFullPage" :active.sync="ifViewLoading"></b-loading>
+          <header class="card-header">
+            <div class="card-header-title">
+              <div class="ml-3 buttons">
+                <button class="button m-1" @click="onAdd(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                  <span>新增子角色</span>
+                </button>
+                <button class="button m-1" @click="onEdit(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                  <span>修改角色</span>
+                </button>
+                <button class="button m-1 is-danger"
+                        @click="onDelete(model.sysRoleId)"
+                        :class="{'is-loading' : deleting}" :disabled="!model.sysRoleId">
+                  <span>删除</span>
+                </button>
+                <button class="button m-1"
+                        @click="onPermit(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                  <span>授权</span>
+                </button>
+              </div>
+            </div>
+          </header>
           <div class="card-content">
             <b-field label="名称" horizontal class="static-field">
               <p class="control static-field">{{model.name}}</p>
@@ -34,25 +56,6 @@
             </b-field>
             <b-field label="排序" horizontal class="static-field">
               <p class="control">{{model.sorted}}</p>
-            </b-field>
-            <b-field v-if="model.sysRoleId" horizontal>
-              <p class="control">
-                <button class="button m-1" @click="onAdd(model.sysRoleId)" :disabled="deleting">
-                  <span>新增角色</span>
-                </button>
-                <button class="button m-1" @click="onEdit(model.sysRoleId)" :disabled="deleting">
-                  <span>修改角色</span>
-                </button>
-                <button class="button m-1" style="background-color: crimson;"
-                        @click="onDelete(model.sysRoleId)"
-                        :class="{'is-loading' : deleting}">
-                  <span>删除</span>
-                </button>
-                <button class="button m-1"
-                        @click="onPermit(model.sysRoleId)" :disabled="deleting">
-                  <span>授权</span>
-                </button>
-              </p>
             </b-field>
           </div>
         </div>
@@ -86,12 +89,12 @@
 //        subsystemId: this.$route.params.id,
         isFullPage: false,
         isRoleLoading: true,
+        ifViewLoading: false,
         deleting: false,
         permitModel: {
           permissions: []
         },
         model: {},
-        saving: false,
         addRole: false,
         viewRole: false,
         // tree数据
@@ -114,12 +117,6 @@
       }
     },
     methods: {
-      removeArray (array, element) {
-        const index = array.indexOf(element)
-        if (index !== -1) {
-          array.splice(index, 1)
-        }
-      },
       onAdd (id) {
         const vm = this
         this.$formModal.open({
@@ -143,8 +140,10 @@
           this.viewRole = true
           this.addRole = false
           this.model = {}
+          this.ifViewLoading = true
           getRole(id).then(response => {
             this.model = response.data
+            this.ifViewLoading = false
           })
         }
       },
@@ -185,15 +184,6 @@
             vm.deleting = false
           })
         })
-      },
-      contains (array, obj) {
-        let i = array.length
-        while (i--) {
-          if (array[i] === obj) {
-            return true
-          }
-        }
-        return false
       },
       loadAsyncData () {
         const vm = this

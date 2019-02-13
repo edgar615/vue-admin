@@ -10,7 +10,7 @@
                    :class="{'has-icons-right': errors.has('username') }">
                 <input name="username" v-validate="'required'" class="is-medium input"
                        :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
-                       data-vv-as="用户名" v-model="username">
+                       data-vv-as="用户名" v-model="username" @keydown.enter="login">
                 <span class="icon is-small is-left">
                     <i class="mdi mdi-account"></i>
                   </span>
@@ -29,7 +29,7 @@
                 <input name="password" v-validate="'required|max:16'" class="is-medium input"
                        :class="{'is-danger': errors.has('password') }" type="password"
                        placeholder="密码"
-                       data-vv-as="密码" v-model="password">
+                       data-vv-as="密码" v-model="password" @keydown.enter="login">
                 <span class="icon is-small is-left">
                     <i class="mdi mdi-lock"></i>
                   </span>
