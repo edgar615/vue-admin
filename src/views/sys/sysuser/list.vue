@@ -160,9 +160,8 @@
         this.$formModal.open({
           parent: this,
           name: '用户授权',
-          width: '50%',
+          width: '20%',
           component: PermitForm,
-          showClose: true,
           props: {
             sysUserId: id
           },

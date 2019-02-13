@@ -1,7 +1,6 @@
 <template>
   <section>
     <div class="form-modal-card-body">
-      {{checkedRoles}}
       <b-table
           narrowed
           mobile-cards
@@ -22,39 +21,45 @@
         </template>
       </b-table>
     </div>
+    <div class="form-modal-card-footer">
+      <button class="button is-primary" @click="save"
+              :class="{'is-loading' : saving}">
+        <span>保存</span>
+      </button>
+      <button class="button" @click="$parent.cancel()">
+        <span>关闭</span>
+      </button>
+    </div>
   </section>
 </template>
 
-<style scoped>
-  .box-content1 {
-    height: 600px;
-    overflow: auto;
-  }
-</style>
 <script>
   import EmptyTable from '@/components/EmptyTable.vue'
-  import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/sys/sysuser';
-
+  import {getAvailableRole, getPermitted, savePermit} from '@/api/sys/sysuser';
   export default {
     components: {
       EmptyTable
     },
     data() {
       return {
-        model: {},
         checkedRoles: [],
+        model: {},
         availableRoles: [],
-        loading: true
+        loading: true,
+        saving: false
       };
     },
     methods: {
-      savePermit (roleId) {
+      save() {
         const vm = this
-        vm.$opConfirm('确定要授予这个角色吗?', () => {
-          vm.deleting = true
-          addRole(this.sysUserId, roleId).then(response => {
-            vm.loadPermitted()
-          })
+        vm.saving = true
+        vm.model.roles = vm.checkedRoles.map(function (item) {
+          return item.sysRoleId
+        })
+        vm.$saveModel(savePermit, resp => {
+          vm.$parent.succeed('用户授权成功', resp)
+        }, err => {
+          vm.$parent.fail('用户授权失败', err)
         })
       },
       loadAsyncData() {
@@ -62,25 +67,22 @@
         vm.loading = true
         getAvailableRole().then(response => {
           vm.availableRoles = response.data
-          getPermitted(this.sysUserId).then(response2 => {
+          getPermitted(vm.model.sysUserId).then(response2 => {
             vm.loading = false
             let roleIdList = response2.data.map(function (item) {
               return item.sysRoleId
             })
-            console.log(roleIdList)
             vm.checkedRoles = vm.availableRoles.filter(function (item) {
               return vm.$arrayContains(roleIdList, item.sysRoleId)
             })
           }).catch(err => {
             vm.loading = false
           })
-        }).catch(err => {
-          vm.loading = false
         })
       }
     },
     created() {
-      this.sysUserId = this.$parent.$props.props.sysUserId
+      this.model.sysUserId = this.$parent.$props.props.sysUserId
       this.loadAsyncData()
     }
   }

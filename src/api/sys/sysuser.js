@@ -41,6 +41,10 @@ export function getPermitted (id) {
   return request.get(base + '/' + id + '/roles')
 }
 
+export function savePermit (model) {
+  return request.post(base + '/permit', model)
+}
+
 export function addRole (userId, roleId) {
   return request.post(base + '/' + userId + '/add-role', {roleId: roleId})
 }
