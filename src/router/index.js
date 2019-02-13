@@ -3,12 +3,13 @@
 
 // 初始化加载的模块
 import Home from '@/views/home/home.vue'
-// import Notfound from '@/components/error/page-404.vue'
-import ErrorPage from '@/components/error/page-500.vue'
-import TokenPage from '@/components/error/page-401.vue'
-import AuthPage from '@/components/error/page-403.vue'
+// import Notfound from '@/views/page/page-404.vue'
+import ErrorPage from '@/views/page/page-500.vue'
+import TokenPage from '@/views/page/page-401.vue'
+import AuthPage from '@/views/page/page-403.vue'
 import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
+import Landing from '@/views/page/landing.vue'
 import store from "../store";
 
 // 异步加载的模块
@@ -41,6 +42,13 @@ var routes = [{
   component: Login,
   meta: {
     name: '登录'
+  }
+}, {
+  path: '/landing',
+  component: Landing,
+  meta: {
+    name: 'landing',
+    hidden: true
   }
 }, {
   path: '/500',
@@ -92,27 +100,6 @@ router.beforeEach((to, from, next) => {
     }
   }
 })
-
-// router.beforeEach((to, from, next) => {
-//   //在不刷新页面的情况下，不同权限的用户重复登录会导致有些用户可以访问他没有权限的页面，这里根据meta再次判断一下路由权限，没有权限的直接跳转到403
-//   if (to.path == "/login") {
-//     next()
-//   } else {
-//     if (store.getters.token) {
-//       //登录之后使用reload方法将整个页面刷新，避免下列问题：不同的两个菜单ID，对应的同一个地址切换用户之后会出现403
-//       const menuIds = store.getters.menuIds;
-//       if (menuIds.length > 0 && to.meta && to.meta.menuId) {
-//         if (menuIds.indexOf(to.meta.menuId) == -1) {
-//           next("/403")
-//           return;
-//         }
-//       }
-//       next()
-//     } else {
-//       next("/login")
-//     }
-//   }
-// })
 
 router.afterEach((to, from) => {
   if (!to.meta) {

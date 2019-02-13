@@ -8,7 +8,7 @@
 <script>
   import dynamicRouter from '@/router/dynamicRouter'
   import loadDict from '@/utils/dict-util'
-  import NotFound from '@/components/error/page-404.vue'
+  import NotFound from '@/views/page/page-404.vue'
   import {check} from '@/api/login'
 
   export default {

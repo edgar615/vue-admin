@@ -1,5 +1,6 @@
-import NotFound from '@/components/error/page-404.vue'
+import NotFound from '@/views/page/page-404.vue'
 import ChangePwd from '@/views/profile/password.vue'
+import Profile from '@/views/profile/index.vue'
 import lazyLoading from '@/router/lazyLoading'
 import Layout from '@/components/layout/Layout.vue'
 
@@ -93,6 +94,13 @@ var dynamicRouter = function (token, router, store) {
           hidden: true
         },
         children: [{
+          path: '',
+          component: Profile,
+          meta: {
+            hidden: true,
+            icon: 'home'
+          }
+        }, {
           path: 'changepwd',
           component: ChangePwd,
           meta: {
