@@ -13,6 +13,13 @@ VeeValidate.Validator.extend('alpha_symbol', {
     value)
 })
 
+VeeValidate.Validator.extend('china_mobile', {
+  getMessage: field => 'The ' + field +
+      ' field incorrect ',
+  validate: value => /^(0|86|17951)?(13[0-9]|15[012356789]|17[2678]|18[0-9]|14[57])[0-9]{8}$/ .test(
+      value)
+})
+
 VeeValidate.Validator.extend('menu', {
   getMessage: field => 'The ' + field +
     ' field may contain alpha-numeric characters as well as : /',

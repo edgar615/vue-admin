@@ -31,6 +31,7 @@ const messages = {
   // 自定义
   alpha_underscore: (field) => ` ${field}只能包含字母、数字和下划线`,
   alpha_symbol: (field) => ` ${field}只能包含字母、数字和 \` \' ~ ! @ # $ % ^ & * ( ) - = _ + ; : , . / < > ?中的特殊符号`,
+  china_mobile: (field) => ` 请输入正确的${field}`,
   menu: (field) => ` ${field}只能包含字母、数字和 / : 中的特殊符号`,
   remote: (field) => ` ${field}已存在`
 }
