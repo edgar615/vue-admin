@@ -125,7 +125,7 @@
 
         <template slot-scope="props">
 
-          <b-table-column field="type" label="选项值">
+          <b-table-column field="value" label="选项值">
             <b-field class="required-field"
                      :type="errors.has('option_value' + props.index) ? 'is-danger' : ''"
                      :message="errors.first('option_value' + props.index)">
@@ -133,7 +133,7 @@
                        :name="'option_value' + props.index" v-validate="'required'" data-vv-as="选项值"></b-input>
             </b-field>
           </b-table-column>
-          <b-table-column field="type" label="选项文本">
+          <b-table-column field="text" label="选项文本">
             <b-field class="required-field"
                        :type="errors.has('option_text' + props.index) ? 'is-danger' : ''"
                        :message="errors.first('option_text' + props.index)">
