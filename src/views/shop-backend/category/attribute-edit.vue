@@ -175,11 +175,7 @@
     },
     methods: {
       addOption() {
-        if (this.model.options) {
-          this.model.options.push({})
-        } else {
-          this.model.options = [{}]
-        }
+        this.model.options.push({})
       },
       deleteOptions(index) {
         if (this.model.options) {
@@ -199,6 +195,9 @@
       this.$parent.startLoading()
       this.$getModel(getAttr, this.$parent.$props.props.commodityAttributeId)
       .then(respone => {
+        if (!this.model.options) {
+          this.model.options = []
+        }
         this.$parent.closeLoading()
       }).catch(err => {
         this.$parent.closeLoading()

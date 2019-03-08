@@ -170,16 +170,13 @@
         loading: false,
         saving: false,
         model: {
+          options: []
         }
       }
     },
     methods: {
       addOption() {
-        if (this.model.options) {
-          this.model.options.push({})
-        } else {
-          this.model.options = [{}]
-        }
+        this.model.options.push({})
       },
       deleteOptions(index) {
         if (this.model.options) {

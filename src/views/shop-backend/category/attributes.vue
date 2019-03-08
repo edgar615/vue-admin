@@ -14,6 +14,7 @@
         <div class="card">
           <header class="card-header">
             <div class="card-header-title">
+              <span class="mr-2">{{cateModel.name}}</span>
               <button class="button is-primary" @click="onAdd()" :disabled="!viewCate">
                 <b-icon icon="plus-circle-outline"></b-icon>
                 <span>新增属性</span>
