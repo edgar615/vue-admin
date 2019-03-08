@@ -162,7 +162,7 @@
   </section>
 </template>
 <script>
-  import { addAttr } from '@/api/commodity/attribute'
+  import { getAttr, updateAttr } from '@/api/commodity/attribute'
 
   export default {
     data() {
@@ -188,7 +188,7 @@
       },
       save() {
         const vm = this
-        vm.$saveModel(addAttr, resp => {
+        vm.$updateModel(updateAttr,this.$parent.$props.props.commodityAttributeId, resp => {
           vm.$parent.succeed('属性保存成功', resp)
         }, err => {
           vm.$parent.fail('属性保存失败', err)
@@ -196,7 +196,14 @@
       }
     },
     created() {
-      this.model.commodityCategoryKey = this.$parent.$props.props.commodityCategoryKey
+      this.$parent.startLoading()
+      this.$getModel(getAttr, this.$parent.$props.props.commodityAttributeId)
+      .then(respone => {
+        this.$parent.closeLoading()
+      }).catch(err => {
+        this.$parent.closeLoading()
+        this.$parent.fail('属性查询失败', err)
+      })
     }
   }
 </script>

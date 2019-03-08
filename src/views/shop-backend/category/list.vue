@@ -29,7 +29,7 @@
           <header class="card-header">
             <div class="card-header-title">
               <div class="ml-3 buttons">
-                <button class="button m-1" @click="onAdd(model.commodityCategoryId)" :disabled="!model.commodityCategoryId || deleting">
+                <button class="button m-1" @click="onAdd(model.commodityCategoryId)" :disabled="!model.commodityCategoryId || deleting || model.level == 4">
                   <span>新增子类目</span>
                 </button>
                 <button class="button m-1" @click="onEdit(model.commodityCategoryId)" :disabled="!model.commodityCategoryId || deleting">

@@ -47,12 +47,12 @@
                 </b-table-column>
 
                 <b-table-column label="操作">
-                  <a @click="editModal(props.row.commodityAttributeId)">
+                  <a @click="onEdit(props.row.commodityAttributeId)">
                     修改
                   </a>
-                  <!--<a @click="onDelete(props.row.commodityAttributeId)">
+                  <a @click="onDelete(props.row.commodityAttributeId)">
                     删除
-                  </a>-->
+                  </a>
                 </b-table-column>
               </template>
               <template slot="empty">
@@ -74,7 +74,7 @@
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import AddForm from '@/views/shop-backend/category/attribute-add.vue'
-  import EditForm from '@/views/shop-backend/category/edit.vue'
+  import EditForm from '@/views/shop-backend/category/attribute-edit.vue'
   import {
     cateTree
   } from '@/api/commodity/category'
@@ -120,12 +120,12 @@
         this.$formModal.open({
           parent: this,
           name: '新增属性',
-          width: '20%',
+          width: '30%',
           component: AddForm,
           props: {
             commodityCategoryKey: this.cateModel.commodityCategoryKey
           },
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => { vm.loadAttr() }
         })
       },
       onEdit (id) {
@@ -133,12 +133,12 @@
         this.$formModal.open({
           parent: this,
           name: '修改属性',
-          width: '20%',
+          width: '30%',
           component: EditForm,
           props: {
             "commodityAttributeId": id
           },
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => { vm.loadAttr() }
         })
       },
       itemClick (item) {
@@ -146,12 +146,21 @@
         this.cateModel = item
         if (id !== -1) {
           this.viewCate = true
-          this.ifViewLoading = true
-          listAttr({category: item.commodityCategoryKey}).then(response => {
-            this.attributes = response.data
-            this.ifViewLoading = false
-          })
+          this.loadAttr()
         }
+      },
+      loadAttr() {
+        this.ifViewLoading = true
+        listAttr({category: this.cateModel.commodityCategoryKey}).then(response => {
+          this.attributes = response.data
+          this.ifViewLoading = false
+        })
+      },
+      onDelete(commodityAttributeId) {
+        const vm = this
+        vm.ifViewLoading = true
+        vm.$deleteModel(deleteAttr, commodityAttributeId,
+            () => vm.loadAttr())
       },
       loadAsyncData () {
         const vm = this
