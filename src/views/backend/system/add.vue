@@ -44,7 +44,7 @@
           </option>
         </b-select>
       </b-field>
-      <b-field class="field" b-fieldmessage="内部访问的系统不对外公开，SP、SO均无法访问">
+      <b-field class="field" message="内部访问的系统不对外公开，SP、SO均无法访问">
         <b-switch v-model="model.internal"
                   true-value="true"
                   false-value="false"
