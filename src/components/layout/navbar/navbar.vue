@@ -2,7 +2,7 @@
   <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a class="navbar-item is--brand">
-        <img class="navbar-brand-logo" src="https://bulma.io/images/bulma-logo.png">
+        <img class="navbar-brand-logo" src="../../../assets/logo.png">
       </a>
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="burgerClick()" :class="burgerToggle ? 'is-active' : ''">
         <span aria-hidden="true"></span>
