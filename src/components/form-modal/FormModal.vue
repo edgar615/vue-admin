@@ -113,6 +113,8 @@
           data: data
         }
         this.closeLoading()
+        //主动刷新父窗口
+        this.onClose.apply(null, arguments)
       },
       fail (message, err) {
         this.result = 2

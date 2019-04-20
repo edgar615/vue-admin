@@ -5,21 +5,21 @@ import lazyLoading from '@/router/lazyLoading'
 import Layout from '@/components/layout/Layout.vue'
 
 function rFormat (menu, parent) {
-  var comp = createComp(menu)
+  let comp = createComp(menu)
   if (parent) {
     comp = createComp(parent) + '/' + comp
   }
-  var index = false
+  let index = false
   if (menu.children && menu.children.length > 0) {
     index = true
   }
-  var moduleId
+  let moduleId
   if (menu.level === 3 && parent.moduleId) {
     moduleId = parent.moduleId
   } else {
     moduleId = menu.moduleId
   }
-  var router = {
+  let router = {
     path: menu.path,
     component: lazyLoading(comp, index),
     meta: {
@@ -37,18 +37,23 @@ function rFormat (menu, parent) {
   }
 
   if (menu.children) {
-    var children = []
+    let children = []
     menu.children.forEach(function (item, index, input) {
       children.push(rFormat(item, menu))
-      if (item.acquiescent) {
-        children.push({
-          path: '',
-          redirect: item.path,
-          meta: {
-            hidden: true,
-            moduleId: moduleId
-          }
-        })
+    })
+    // 找到默认地址，如果没有，取第一个
+    let acquiescentChild = menu.children.filter(function (item) {
+      return item.acquiescent
+    })
+    if (acquiescentChild.length === 0) {
+      acquiescentChild = [menu.children[0]]
+    }
+    children.push({
+      path: '',
+      redirect: acquiescentChild[0].path,
+      meta: {
+        hidden: true,
+        moduleId: moduleId
       }
     })
     router.children = children
@@ -57,17 +62,17 @@ function rFormat (menu, parent) {
 }
 
 function createComp (menu) {
-  var comp = menu.component
+  let comp = menu.component
   if (comp.substring(0, 1) === '/') {
     comp = comp.substring(1)
   }
   return comp
 }
 
-var dynamicRouter = function (token, router, store) {
+let dynamicRouter = function (token, router, store) {
   return new Promise((resolve, reject) => {
     store.dispatch('GetPermission').then(res => {
-      var routes = []
+      let routes = []
       res.data.forEach(function (item, index, input) {
         // 从system中提取menu
         if (item.permissions) {
