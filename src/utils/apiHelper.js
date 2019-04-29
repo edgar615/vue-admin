@@ -244,15 +244,6 @@ function successToast (msg) {
     type: 'success',
     text: msg
   })
-  // Vue.prototype.$swal({
-  //   toast: true,
-  //   position: 'top-end',
-  //   showConfirmButton: false,
-  //   timer: 3000,
-  //   width: 300,
-  //   type: 'success',
-  //   title: '操作成功'
-  // });
 }
 
 function contains (array, obj) {

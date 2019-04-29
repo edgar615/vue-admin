@@ -83,17 +83,18 @@
         check().then(response => {
         }).catch(error => {
           if (error.code === 1005) {
-            vm.$swal.fire({
-              type: 'error',
-              title: '您当前的会话已过期，请重新登录！',
-              confirmButtonText: '去登录',
-              allowOutsideClick: false,
-              allowEscapeKey: false,
-              allowEnterKey: false
-            }).then((result) => {
-              if (result.value) {
-                vm.$router.push('/login')
-              }
+            Vue.prototype.$modal.show('dialog', {
+              text: '您当前的会话已过期，请重新登录！',
+              buttons: [
+                {
+                  title: '去登录',
+                  efault: true,
+                  handler: () => {
+                    vm.$router.push('/login')
+                    Vue.prototype.$modal.hide('dialog');
+                  }
+                }
+              ]
             })
             clearInterval(vm.checkIntervalId)
           }
