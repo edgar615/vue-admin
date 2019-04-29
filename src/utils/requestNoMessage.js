@@ -4,7 +4,9 @@ import store from '@/store'
 const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API,
     timeout: 30000,
-    headers: {'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
+  headers: {
+    'X-Client-AppKey': 'f11a41dbfd05455cb1dd0e498de8d128',
+    'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
 })
 
 // request拦截器

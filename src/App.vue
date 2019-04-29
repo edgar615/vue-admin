@@ -1,6 +1,49 @@
 <template>
   <div id="app" class="app-content">
     <router-view></router-view>
+    <v-dialog/>
+    <notifications group="notification" position="bottom center">
+      <template slot="body" slot-scope="props">
+        <div class="notification-custom-template">
+          <div class="notification-custom-template-icon">
+            <b-icon icon="checkbox-marked-circle-outline"></b-icon>
+          </div>
+          <div class="notification-custom-template-content">
+            <div class="notification-custom-template-title">
+              {{props.item.title}}
+            </div>
+            <div class="notification-custom-template-text"
+                 v-html="props.item.text"></div>
+          </div>
+          <div class="notification-custom-template-close"
+               @click="props.close">
+            <b-icon icon="close"></b-icon>
+          </div>
+        </div>
+      </template>
+    </notifications>
+
+    <notifications group="error-notification" position="bottom center">
+      <template slot="body" slot-scope="props">
+        <div class="notification-custom-template is-error">
+          <div class="notification-custom-template-icon">
+            <b-icon icon="alert-circle-outline"></b-icon>
+          </div>
+          <div class="notification-custom-template-content">
+            <div class="notification-custom-template-title">
+              {{props.item.title}}
+            </div>
+            <div class="notification-custom-template-text"
+                 v-html="props.item.text"></div>
+          </div>
+          <div class="notification-custom-template-close"
+               @click="props.close">
+            <b-icon icon="close"></b-icon>
+          </div>
+        </div>
+      </template>
+    </notifications>
+
     <div class="pageloader is-info" :class="{'is-active' : loading}"></div>
   </div>
 </template>

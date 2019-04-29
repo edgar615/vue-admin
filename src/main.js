@@ -17,13 +17,11 @@ import '@/components/meta'
 import '@/components/dict'
 import '@/components/form-modal'
 
-import VueSweetalert2 from 'vue-sweetalert2';
-const options = {
-  confirmButtonColor: '#00d1b2',
-  cancelButtonText: '取消'
-}
+import Notifications from 'vue-notification'
+import VModal from 'vue-js-modal'
+Vue.use(Notifications)
+Vue.use(VModal, { dialog: true })
 
-Vue.use(VueSweetalert2, options)
 Vue.use(VeeValidate, {
   locale: 'zh_CN',
   delay: 500,

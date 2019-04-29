@@ -5,7 +5,9 @@ import store from '@/store'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 30000,
-  headers: {'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
+  headers: {
+    'X-Client-AppKey': 'f11a41dbfd05455cb1dd0e498de8d128',
+    'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
 })
 
 // request拦截器
@@ -61,15 +63,12 @@ service.interceptors.response.use(
       apiErr.code = -1
       apiErr.msg = '服务器开小差了!'
     }
-    Vue.prototype.$swal({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      width: 300,
+    Vue.notify({
+      group: 'error-notification',
       type: 'error',
-      title: apiErr.msg
-    });
+      position: 'bottom right',
+      text: apiErr.msg
+    })
     return Promise.reject(apiErr)
   }
 )

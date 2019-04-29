@@ -196,34 +196,42 @@ function customBoolText(boolValue, trueText, falseText) {
 
 
 function opConfirm ( msg, callback) {
-  Vue.prototype.$swal.fire({
-    title: msg,
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#00d1b2',
-    reverseButtons: true,
-    cancelButtonText: '取消',
-    confirmButtonText: '确定'
-  }).then((result) => {
-    if (result.value) {
-      callback()
-    }
+  Vue.prototype.$modal.show('dialog', {
+    // title: 'Alert!',
+    text: msg,
+    buttons: [
+      {
+        title: '确定',
+        handler: () => {
+          callback()
+          Vue.prototype.$modal.hide('dialog');
+        }
+      },
+      {
+        title: '取消',
+        default: true //回车激活
+      }
+    ]
   })
 }
 
 function deleteConfirm (callback) {
-  Vue.prototype.$swal.fire({
-    title: '确定要删除吗？',
-    type: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#00d1b2',
-    reverseButtons: true,
-    cancelButtonText: '取消',
-    confirmButtonText: '删除'
-  }).then((result) => {
-    if (result.value) {
-      callback()
-    }
+  Vue.prototype.$modal.show('dialog', {
+    // title: 'Alert!',
+    text: '确定要删除吗？',
+    buttons: [
+      {
+        title: '删除',
+        handler: () => {
+          callback()
+          Vue.prototype.$modal.hide('dialog');
+        }
+      },
+      {
+        title: '取消',
+        default: true //回车激活
+      }
+    ]
   })
 }
 
@@ -231,15 +239,20 @@ function successToast (msg) {
   if (msg === undefined) {
     msg = '操作成功'
   }
-  Vue.prototype.$swal({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    width: 300,
+  Vue.notify({
+    group: 'notification',
     type: 'success',
-    title: '操作成功'
-  });
+    text: msg
+  })
+  // Vue.prototype.$swal({
+  //   toast: true,
+  //   position: 'top-end',
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   width: 300,
+  //   type: 'success',
+  //   title: '操作成功'
+  // });
 }
 
 function contains (array, obj) {
