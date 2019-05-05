@@ -1,31 +1,76 @@
 <template>
-  <div>
-    <div v-for="level1 in level1List" :key="level1.sysPermissionId">
-      <a class="menu-title" v-if="level1.type == 3" @click="onClickModule(level1.sysPermissionId)">
-        <b-icon :icon="level1.icon" size="is-small"></b-icon>
-        <span>{{level1.name}}</span>
-        <b-icon class="is-pulled-right" size="is-small" icon="chevron-right" v-show="clickedModule != level1.sysPermissionId && activeModule  != level1.sysPermissionId "
-                v-if="level1.nonHiddenChild"></b-icon>
-        <b-icon class="is-pulled-right" size="is-small" icon="chevron-down" v-show="clickedModule == level1.sysPermissionId || activeModule  == level1.sysPermissionId "
-                v-if="level1.nonHiddenChild"></b-icon>
-      </a>
-      <router-link class="menu-title"
-                   :class="activeLevel1 == level1.sysPermissionId || activeModule  == level1.sysPermissionId ? 'active' : '' "
-                   :to="{path: level1.path}" v-show="level1.type == 1">
-        <b-icon :icon="level1.icon" size="is-small"></b-icon>
-        <span>{{level1.name}}</span>
-      </router-link>
-      <div class="side-menu" v-if="level1.type == 3">
-        <router-link v-for="level2 in level1.children" v-if="!level2.hidden"
-                     v-show="clickedModule == level1.sysPermissionId || activeModule  == level1.sysPermissionId "
-                     :to="{path: level2.path}"
-                     :class="activeLevel1 == level2.sysPermissionId ? 'active' : '' " exact
-                     :key="level2.sysPermissionId">
-          <b-icon :icon="level2.icon" size="is-small"></b-icon>
-          <span>{{ level2.name }}</span>
-        </router-link>
-      </div>
-    </div>
+  <div class="aside-menu">
+    <ul>
+      <li>
+
+        <a href="http://startific.com">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">系统设置</span>
+
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+
+          <span class="menu-text">
+                            服务商
+                        </span>
+
+        </a>
+
+      </li>
+
+      <li>
+        <a href="#">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">
+                            短信
+                        </span>
+        </a>
+
+      </li>
+
+      <li>
+        <a href="#">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">
+                            支付
+                        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">
+                            商城设置
+                        </span>
+        </a>
+
+      </li>
+
+      <li>
+        <a href="#">
+          <b-icon icon="star" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">
+                            大屏设置
+                        </span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="menu-bottom">
+      <li>
+        <a href="#">
+          <b-icon icon="logout" size="is-small" class="menu-icon"></b-icon>
+          <span class="menu-text">
+                            退出登录
+                        </span>
+
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
