@@ -39,27 +39,28 @@
           </div>
         </div>
       </header>
+    </div>
 
+    <div class="card mt-3">
       <div class="card-content">
-
         <b-table
-          striped
-          hoverable
-          narrowed
-          mobile-cards
+            striped
+            hoverable
+            narrowed
+            mobile-cards
 
-          :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
-          :loading="loading"
-          paginated
-          backend-pagination
-          :total="pagination.totalRecords"
-          :per-page="pagination.pageSize"
-          :current-page="pagination.page"
-          @page-change="onPageChange"
-          pagination-size="is-small"
+            :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
+            :loading="loading"
+            paginated
+            backend-pagination
+            :total="pagination.totalRecords"
+            :per-page="pagination.pageSize"
+            :current-page="pagination.page"
+            @page-change="onPageChange"
+            pagination-size="is-small"
 
-          detailed
-          detail-key="companyId"
+            detailed
+            detail-key="companyId"
         >
 
           <template slot-scope="props">
@@ -127,19 +128,17 @@
         </b-table>
       </div>
     </div>
-
-
   </section>
 </template>
 
 <script>
-  import {page, lock, unLock} from '@/api/company'
+  import {lock, page, unLock} from '@/api/company'
   import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/company/add.vue'
   import EditForm from '@/views/company/edit.vue'
 
   export default {
-    data () {
+    data() {
       return {
         filters: {},
         pagination: {},
@@ -153,18 +152,18 @@
       /*
        * Load async data
        */
-      loadAsyncData (params) {
+      loadAsyncData(params) {
         this.$pageModelWithHistory(page, params)
       },
       /*
        * Handle page-change event
        */
-      onPageChange (page) {
+      onPageChange(page) {
         if (this.pagination.page != page) {
           this.loadAsyncData({page: page})
         }
       },
-      stateClass (value) {
+      stateClass(value) {
         if (value == undefined) {
           return 'is-black'
         }
@@ -173,25 +172,27 @@
         }
         return 'is-dark'
       },
-      doLock (id) {
+      doLock(id) {
         this.$confirmModel(lock, id, '确定要锁定该公司？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
-      doUnLock (id) {
+      doUnLock(id) {
         this.$confirmModel(unLock, id, '确定要解锁该公司？',
             () => this.loadAsyncData({page: this.pagination.page}))
       },
-      addModal () {
+      addModal() {
         const vm = this
         this.$formModal.open({
           parent: this,
           name: '新增公司',
           width: '20%',
           component: AddForm,
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => {
+            vm.loadAsyncData()
+          }
         })
       },
-      editModal (id) {
+      editModal(id) {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -201,11 +202,13 @@
           props: {
             companyId: id
           },
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => {
+            vm.loadAsyncData()
+          }
         })
       }
     },
-    created () {
+    created() {
       this.$fillParamFromHistory()
       this.loadAsyncData()
     }

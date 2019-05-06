@@ -25,14 +25,15 @@
     },
     computed: {
       showLevel1Menu () {
-        let showLevel1 = false
         const menus = this.$store.getters.menuList()
+        let showLevelNum = 0
         menus.forEach(function (item) {
           if (!item.hidden) {
-            showLevel1 = true
+            showLevelNum = showLevelNum + 1
           }
         })
-        return showLevel1
+
+        return showLevelNum > 1
       }
     },
     components: {
