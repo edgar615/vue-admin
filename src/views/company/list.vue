@@ -39,9 +39,6 @@
           </div>
         </div>
       </header>
-    </div>
-
-    <div class="card mt-3">
       <div class="card-content">
         <b-table
             striped
