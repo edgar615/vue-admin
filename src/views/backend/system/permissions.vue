@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="card box-content">
+        <div class="card box-content notification is-primary" data-simplebar>
           <div class="card-content">
             <vue-tree :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>

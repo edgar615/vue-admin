@@ -3,7 +3,7 @@
     <div class="form-modal-card-body">
       <div class="columns is-full-content">
         <div class="column">
-          <div class="card box-content1">
+          <div class="card box-content1" data-simplebar>
             <header class="card-header">
               <div class="card-header-title">
                 菜单权限
@@ -17,7 +17,7 @@
         </div>
 
         <div class="column ml-2">
-          <div class="card box-content1">
+          <div class="card box-content1" data-simplebar>
             <header class="card-header">
               <div class="card-header-title">
                 功能权限
