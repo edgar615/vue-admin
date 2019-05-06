@@ -53,30 +53,11 @@
         var active = this.$store.getters.activeSystem
         return active
       },
-      curSystemName () {
-        const curSystem = this.$store.getters.currentSystem()
-        if (curSystem) {
-          return curSystem.name
-        }
-        return ''
-      },
       level1List () {
         const menus = this.$store.getters.menuList()
         return menus.filter(function (item, index, array) {
           return item.level === 1
         })
-      },
-      activeLevel1 () {
-        return this.$store.getters.activeLevel1
-      },
-      activeModule () {
-        return this.$store.getters.activeModule
-      },
-      activeLevel2 () {
-        return this.$store.getters.activeLevel2
-      },
-      systemList () {
-        return this.$store.getters.systemList()
       }
     }
   }

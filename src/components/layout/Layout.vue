@@ -2,12 +2,12 @@
   <div>
     <Navbar></Navbar>
     <!-- Main container -->
-    <div class="columns is-fullheight main-container">
-      <div class="column is-1 is-sidebar-menu is-hidden-mobile bg-aside is-paddingless">
+    <div class="is-fullheight main-container">
+      <div class="is-sidebar-menu bg-aside is-paddingless">
         <Aside></Aside>
-        <SubAside class="side-menu"></SubAside>
+        <SubAside class="side-menu" v-if="showLevel1Menu"></SubAside>
       </div>
-      <div class="column is-main-content is-paddingless">
+      <div class="is-main-content is-paddingless" :class="showLevel1Menu ? '' : 'is-main-content-no-submenu'">
         <MainContent></MainContent>
       </div>
     </div>
@@ -24,28 +24,19 @@
       return {}
     },
     computed: {
-      showLevel2Menu () {
-        var showLevel2 = false
-        const menu = this.$store.getters.currentLevel1Menu()
-        if (menu && menu.children) {
-          menu.children.forEach(function (item) {
-            if (!item.hidden) {
-              showLevel2 = true
-            }
-          })
-        }
-        return showLevel2
+      showLevel1Menu () {
+        let showLevel1 = false
+        const menus = this.$store.getters.menuList()
+        menus.forEach(function (item) {
+          if (!item.hidden) {
+            showLevel1 = true
+          }
+        })
+        return showLevel1
       }
     },
     components: {
       Navbar, Aside, MainContent, SubAside
-    },
-    mounted () {
-      // 计算匹配的菜单，改用router.afterEach实现
-//        if (this.$route.matched) {
-//            const last = this.$route.matched[this.$route.matched.length -1];
-//          this.$store.commit('ACTIVE_LEVEL2_MENU', [last.meta.subsystemId, last.meta.parentId, last.meta.menuId])
-//        }
     }
   }
 </script>

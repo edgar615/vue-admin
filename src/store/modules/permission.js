@@ -4,8 +4,6 @@ const permission = {
   state: {
     activeSystem: '',
     activeLevel1Menu: '',
-    activeLevel2Menu: '',
-    activeModule: '',
     systems: [],
     user: {}
   },
@@ -23,11 +21,6 @@ const permission = {
     ACTIVE_LEVEL1_MENU: (state, [subsystemId, menuId]) => {
       state.activeSystem = subsystemId
       state.activeLevel1Menu = menuId
-    },
-    ACTIVE_LEVEL2_MENU: (state, [subsystemId, level1Id, level2Id]) => {
-      state.activeSystem = subsystemId
-      state.activeLevel1Menu = level1Id
-      state.activeLevel2Menu = level2Id
     },
     SET_USER: (state, user) => {
       state.user = user

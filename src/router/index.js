@@ -2,7 +2,6 @@
 // import Router from 'vue-router'
 
 // 初始化加载的模块
-import Home from '@/views/home/home.vue'
 // import Notfound from '@/views/page/page-404.vue'
 import ErrorPage from '@/views/page/page-500.vue'
 import TokenPage from '@/views/page/page-401.vue'
@@ -83,36 +82,17 @@ router.afterEach((to, from) => {
   if (!to.meta) {
     return
   }
-  if (to.meta.moduleId) {
-    store.commit('ACTIVE_MODULE', [to.meta.subsystemId, to.meta.moduleId])
-  } else if (to.meta) {
-    store.commit('ACTIVE_MODULE', [to.meta.subsystemId, ''])
-  } else {
-    store.commit('ACTIVE_MODULE', ['', ''])
-  }
   if (!to.meta.menuId) {
     store.commit('ACTIVE_LEVEL1_MENU', ['', ''])
-    store.commit('ACTIVE_LEVEL2_MENU', ['', '', ''])
     return
   }
   if (to.meta.level === 1) {
     store.commit('ACTIVE_LEVEL1_MENU', [to.meta.subsystemId, to.meta.menuId])
-    store.commit('ACTIVE_LEVEL2_MENU',
-      [to.meta.subsystemId, to.meta.menuId, ''])
-  } else if (to.meta.level === 2 && to.meta.moduleId) {
-    // 应该是一级菜单
-    store.commit('ACTIVE_LEVEL1_MENU', [to.meta.subsystemId, to.meta.menuId])
-    store.commit('ACTIVE_LEVEL2_MENU',
-      [to.meta.subsystemId, to.meta.menuId, ''])
-  } else if (to.meta.level === 2) {
+  }
+  if (to.meta.level === 2) {
     if (!to.meta.hidden || store.getters.activeLevel1 !== to.meta.parentId) {
-      store.commit('ACTIVE_LEVEL2_MENU',
-        [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
-    }
-  } else if (to.meta.level === 3) {
-    if (!to.meta.hidden || store.getters.activeLevel1 !== to.meta.parentId) {
-      store.commit('ACTIVE_LEVEL2_MENU',
-        [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
+      store.commit('ACTIVE_LEVEL1_MENU',
+        [to.meta.subsystemId, to.meta.parentId])
     }
   }
 })

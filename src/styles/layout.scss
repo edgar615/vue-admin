@@ -1,4 +1,4 @@
-.columns.is-fullheight {
+.is-fullheight {
   min-height: calc(100vh - 3.25rem - .75rem );
   /*max-height: calc(100vh - ( 3.25rem - .75rem ) );*/
   display: flex;
@@ -7,12 +7,12 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-.columns.is-fullheight .is-main-content {
+.is-fullheight .is-main-content {
   /*overflow-y: auto;
   overflow-x: auto;*/
 }
 
-.columns.is-halfheight {
+.is-halfheight {
   min-height: calc(50vh - 1.5rem );
   max-height: calc(50vh - 1.5rem );
   display: flex;
@@ -22,18 +22,18 @@
   padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-.columns.is-halfheight .column {
+.is-halfheight .column {
   overflow-y: auto;
 }
 
-.columns.is-full-content {
+.is-full-content {
   min-height: calc(100vh - 6rem);
   display: flex;
   flex-direction: row;
   justify-content: stretch;
   margin-top: 0.5rem;
 }
-.columns.is-full-content .column {
+.is-full-content .column {
   overflow-y: auto;
 }
 
@@ -44,4 +44,13 @@
 .main-container{
   /*padding-top: 0.75rem;*/
   margin-top: 62px;
+}
+
+.is-main-content{
+  /*padding-top: 0.75rem;*/
+  width: 100%;
+}
+
+.is-main-content-no-submenu{
+  margin-left: 33px;
 }

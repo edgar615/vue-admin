@@ -4,7 +4,7 @@
     <router-link class="menu-title"
                  v-for="level1 in level1List" :key="level1.sysPermissionId"
                  :class="activeLevel1 == level1.sysPermissionId || activeModule  == level1.sysPermissionId ? 'active' : '' "
-                 :to="{path: level1.path}" v-show="level1.type == 1">
+                 :to="{path: level1.path}" v-show="level1.type == 1 && !level1.hidden">
       <b-icon :icon="level1.icon" size="is-small"></b-icon>
       <span>{{level1.name}}</span>
     </router-link>
