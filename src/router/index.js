@@ -7,7 +7,6 @@ import Home from '@/views/home/home.vue'
 import ErrorPage from '@/views/page/page-500.vue'
 import TokenPage from '@/views/page/page-401.vue'
 import AuthPage from '@/views/page/page-403.vue'
-import Layout from '@/components/layout/Layout.vue'
 import Login from '@/views/login/login.vue'
 import Landing from '@/views/page/landing.vue'
 import store from "../store";
@@ -17,27 +16,6 @@ import store from "../store";
 
 Vue.use(VueRouter)
 var routes = [{
-  path: '/',
-  component: Layout,
-  meta: {
-    // 直接使用 name 作为菜单的名字, 如果有默认路由的时候会有警告
-    // Named Route '首页' has a default child route.
-    // When navigating to this named route (:to="{name: '首页'"),
-    // the default child route will not be rendered.
-    // Remove the name from this route and use the name of the default child route for named links instead.
-    name: '首页',
-    icon: 'home'
-  },
-  children: [{
-    path: '', // 默认路由
-    component: Home,
-    meta: {
-      hidden: true,
-      icon: 'home',
-      showBreadcrumb: false
-    }
-  }]
-}, {
   path: '/login',
   component: Login,
   meta: {

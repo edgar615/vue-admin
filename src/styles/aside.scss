@@ -1,3 +1,13 @@
+$aside-background-color: #2E363F !default
+$aside-hover-background-color: #ffffff;
+$aside-active-background-color: #2E363F !default
+$aside-menu-background-color: #2E363F !default
+$aside-menu-active-background-color: $blue-dark !default
+$side-menu-background-color: $aside-background-color !default
+$side-menu-hover-background-color: #2E363F !default
+$side-menu-active-background-color: $aside-menu-background-color !default
+$side-menu-active-color: #00d1b2 !default
+
 .aside-menu {
   background: #F7F7F7;
   border-right: 1px solid #e5e5e5;
@@ -82,3 +92,22 @@
   }
 }
 
+.sub-menu {
+  background-color:#DAE1E7;
+  color: findColorInvert(#DAE1E7);
+  height: 100%;
+  margin-left: 45px;
+  a {
+    color: $black;
+    display: block;
+    padding: 10px 12px 10px 14px;
+    text-decoration: none;
+    &:hover {
+      background-color: #ccc;
+    }
+    &.active {
+      background-color: #ffffff;
+      color: $black;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import NotFound from '@/views/page/page-404.vue'
 import ChangePwd from '@/views/profile/password.vue'
-import Profile from '@/views/profile/index.vue'
 import lazyLoading from '@/router/lazyLoading'
 import Layout from '@/components/layout/Layout.vue'
 
@@ -30,9 +29,7 @@ function rFormat (menu, parent) {
       menuId: menu.sysPermissionId,
       parentId: menu.parentId,
       level: menu.level,
-      moduleId: moduleId,
-      title: menu.title,
-      description: menu.description
+      moduleId: moduleId
     }
   }
 
@@ -81,11 +78,15 @@ let dynamicRouter = function (token, router, store) {
               if (menu.children) {
                 menu.children.forEach(function (child, childIndex, childArray) {
                   child.moduleId = menu.id
-                  routes.push(rFormat(child))
+                  if (child.path) {
+                    routes.push(rFormat(child))
+                  }
                 })
               }
             } else {
-              routes.push(rFormat(menu))
+              if (menu.path) {
+                routes.push(rFormat(menu))
+              }
             }
           })
         }
@@ -99,13 +100,6 @@ let dynamicRouter = function (token, router, store) {
           hidden: true
         },
         children: [{
-          path: '',
-          component: Profile,
-          meta: {
-            hidden: true,
-            icon: 'home'
-          }
-        }, {
           path: 'changepwd',
           component: ChangePwd,
           meta: {
@@ -122,6 +116,17 @@ let dynamicRouter = function (token, router, store) {
           hidden: true
         }
       })
+      // 取出第一个，封装为/
+      let firstRoute = routes[0]
+      // 没有用clone，而是手动赋值
+      let homeRoute = {}
+      homeRoute.path = '/'
+      homeRoute.component = firstRoute.component
+      homeRoute.meta = firstRoute.meta
+      if (firstRoute.children) {
+        homeRoute.children = firstRoute.children
+      }
+      routes.push(homeRoute)
       router.addRoutes(routes) // 动态添加可访问路由表
       return resolve(routes)
       // next(to.path) // hack方法 确保addRoutes已完成
