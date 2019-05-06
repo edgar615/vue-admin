@@ -1,16 +1,6 @@
-$aside-background-color: #2E363F !default
-$aside-hover-background-color: #ffffff;
-$aside-active-background-color: #2E363F !default
-$aside-menu-background-color: #2E363F !default
-$aside-menu-active-background-color: $blue-dark !default
-$side-menu-background-color: $aside-background-color !default
-$side-menu-hover-background-color: #2E363F !default
-$side-menu-active-background-color: $aside-menu-background-color !default
-$side-menu-active-color: #00d1b2 !default
-
 .aside-menu {
-  background: #F7F7F7;
-  border-right: 1px solid #e5e5e5;
+  background: #252f41;
+  border-right: 1px solid #2E363F;
   position: absolute;
   top: 4rem;
   bottom: 0;
@@ -20,7 +10,6 @@ $side-menu-active-color: #00d1b2 !default
   -webkit-transition: width .2s linear;
   transition: width .2s linear;
   -webkit-transform: translateZ(0) scale(1, 1);
-  box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07);
   opacity: 1;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -56,16 +45,14 @@ $side-menu-active-color: #00d1b2 !default
       display: table;
       border-collapse: collapse;
       border-spacing: 0;
-      color: #959595;
+      color: #76839b;
       font-size: 14px;
       text-decoration: none;
       -webkit-transform: translateZ(0) scale(1, 1);
       -webkit-transition: all .14s linear;
       transition: all .14s linear;
       font-family: 'Strait', sans-serif;
-      border-top: 1px solid #F0F0F0;
-      box-shadow: inset 0 1px 1px #FAFAFA;
-      text-shadow: 1px 1px 1px #fff;
+      border-top: 1px solid #2E363F;
     }
     &:hover, &.active {
       a {
