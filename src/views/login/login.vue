@@ -1,20 +1,30 @@
 <template>
   <section class="hero is-fullheight">
     <div class="hero-body">
-      <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4">
+      <div class="container">
+        <div class="column is-6 is-offset-3">
+          <div class="widthcol">
+            <div class="level">
+              <figure class="avatar">
+                <img src="../../assets/lock.png" alt="">
+              </figure>
+              <div class="logtitle">
+                <h3 class="title has-text-orange">用户登录</h3>
+                <p class="subtitle has-text-grey">Please enter your credentials to login.</p>
+              </div>
+            </div>
+          </div>
           <div class="box">
-            <p class="subtitle is-4 has-text-grey">密码登录</p><br>
             <div class="field">
               <div class="control has-icons-left has-icons-right"
                    :class="{'has-icons-right': errors.has('username') }">
-                <input name="username" v-validate="'required'" class="is-medium input"
+                <input name="username" v-validate="'required'" class="is-large input"
                        :class="{'is-danger': errors.has('username') }" type="text" placeholder="用户名"
                        data-vv-as="用户名" v-model="username" @keydown.enter="login">
-                <span class="icon is-small is-left">
+                <span class="icon is-left is-large">
                     <i class="mdi mdi-account"></i>
                   </span>
-                <span class="icon is-small is-right has-text-danger"
+                <span class="icon is-right is-large has-text-danger"
                       v-show="errors.has('username')">
                       <i class="mdi mdi-alert-circle-outline"></i>
                     </span>
@@ -26,14 +36,14 @@
             <div class="field">
               <div class="control has-icons-left has-icons-right"
                    :class="{'has-icons-right': errors.has('password') }">
-                <input name="password" v-validate="'required|max:16'" class="is-medium input"
+                <input name="password" v-validate="'required|max:16'" class="is-large input"
                        :class="{'is-danger': errors.has('password') }" type="password"
                        placeholder="密码"
                        data-vv-as="密码" v-model="password" @keydown.enter="login">
-                <span class="icon is-small is-left">
+                <span class="icon is-left is-large">
                     <i class="mdi mdi-lock"></i>
                   </span>
-                <span class="icon is-small is-right has-text-danger"
+                <span class="icon is-right is-large has-text-danger"
                       v-show="errors.has('password')">
                       <i class="mdi mdi-alert-circle-outline"></i>
                     </span>
@@ -47,27 +57,34 @@
                 记住我
               </label>
             </div>
-            <button class="button is-block is-info is-large is-fullwidth"
+            <button class="button is-block is-orange is-large is-fullwidth"
                     @click="login" :disabled='errors.any()'
                     :class="{'is-loading' : loading}">
-                <span class="icon">
+                <span class="icon is-large">
                       <i class="mdi mdi-login"></i>
                  </span>
               登录
             </button>
-            <p class="has-text-danger is-pulled-left is-size-6" v-if="errorMsg">登录失败，请确认是否输入正确的用户名和密码</p>
+            <p class="has-text-danger is-pulled-left is-size-6" v-if="errorMsg">
+              登录失败，请确认是否输入正确的用户名和密码
+            </p>
             <br>
-            <p class="subtitle is-5">使用以下账号直接登录</p>
-            <button class="facebook-button button is-medium"><i class="fab fa-facebook-f"></i>
+            <p class="subtitle is-size-6">使用以下账号直接登录</p>
+            <button class="button is-medium">
+              <span class="icon is-large">
+                      <i class="mdi mdi-facebook"></i>
+              </span>
             </button>
-            <button class="twitter-button button is-medium"><i class="fab fa-twitter"></i></button>
-            <button class="google-button button is-medium"><i class="fab fa-google-plus-g"></i>
+            <button class="button is-medium">
+              <span class="icon is-large">
+                      <i class="mdi mdi-twitter"></i>
+              </span>
             </button>
+            <p class="mt-3">
+              <a href="../" class="has-text-orange">注册</a> &nbsp;·&nbsp;
+              <a href="../" class="has-text-orange">忘记密码</a> &nbsp;·&nbsp;
+            </p>
           </div>
-          <p class="has-text-grey">
-            <a href="../">注册</a> &nbsp;·&nbsp;
-            <a href="../">忘记密码</a> &nbsp;·&nbsp;
-          </p>
         </div>
       </div>
     </div>
@@ -78,14 +95,14 @@
   import {login} from '@/api/login'
 
   export default {
-    data () {
+    data() {
       return {
         loading: false,
         errorMsg: undefined
       }
     },
     methods: {
-      login () {
+      login() {
         const vm = this
         this.$validator.validateAll().then((result) => {
           vm.errorMsg = undefined
@@ -111,7 +128,7 @@
     font-size: 14px;
     font-weight: 300;
     overflow-y: hidden !important;
-    background-image: url("../../assets/login_background.jpg") !important;
+    /*background-image: url("../../assets/login_background.jpg") !important;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -120,67 +137,28 @@
     background-repeat: no-repeat;
   }
 
-  .hero.is-success {
-    background: #F2F6FA;
-  }
-
-  .hero .nav, .hero.is-success .nav {
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  .widthcol {
+    max-width: 515px;
+    margin-bottom: 40px;
   }
 
   .box {
-    margin-top: 5rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0px;
+    box-shadow: 0px 0px 30px 0px rgba(218, 218, 218, 0.6);
+    padding: 65px 50px 90px;
   }
 
-  input {
-    font-weight: 300;
+  .box .field {
+    text-align: left;
   }
 
-  p {
-    font-weight: 700;
+  .box .control {
+    padding-bottom: 6px;
   }
 
-  p.subtitle {
-    padding-top: 1rem;
+  a.has-text-orange{
+    color:#ff8019;
   }
 
-  .facebook-button {
-    color: #fff;
-    background-color: #3a589a;
-    width: 50px;
-  }
-
-  .facebook-button:hover {
-    border-color: #bdbdbd;
-    color: #ffffff;
-  }
-
-  .twitter-button {
-    color: #fff;
-    background-color: #4099ff;
-    width: 50px;
-  }
-
-  .twitter-button:hover {
-    border-color: #bdbdbd;
-    color: #ffffff;
-  }
-
-  .google-button {
-    color: #fff;
-    background-color: #e9544f;
-    width: 50px;
-  }
-
-  .google-button:hover {
-    border-color: #bdbdbd;
-    color: #ffffff;
-  }
-
-  a {
-    color: #fff;
-  }
 
 </style>

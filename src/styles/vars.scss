@@ -8,11 +8,11 @@ $pagination-current-background-color: $primary;
 $pagination-current-border-color: $primary;
 
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
-/*$baseColors: (
-  "primary":($active-color, findColorInvert($active-color)),
-  "bg-navbar" : ($main-color, findColorInvert($main-color)),
+$baseColors: (
+  //"primary":($active-color, findColorInvert($active-color)),
+  "orange" : ($orange, $orange-invert),
 );
-$colors: map-merge($colors,$baseColors);*/
+$colors: map-merge($colors,$baseColors);
 
   ////////////////////////////////////////////////
 // 根据颜色自动生成bg-$color的背景色

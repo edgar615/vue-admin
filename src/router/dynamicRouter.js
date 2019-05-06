@@ -12,12 +12,6 @@ function rFormat (menu, parent) {
   if (menu.children && menu.children.length > 0) {
     index = true
   }
-  let moduleId
-  if (menu.level === 3 && parent.moduleId) {
-    moduleId = parent.moduleId
-  } else {
-    moduleId = menu.moduleId
-  }
   let router = {
     path: menu.path,
     component: lazyLoading(comp, index),
@@ -29,7 +23,8 @@ function rFormat (menu, parent) {
       menuId: menu.sysPermissionId,
       parentId: menu.parentId,
       level: menu.level,
-      moduleId: moduleId
+      title: menu.title,
+      description: menu.description
     }
   }
 
@@ -49,8 +44,7 @@ function rFormat (menu, parent) {
       path: '',
       redirect: acquiescentChild[0].path,
       meta: {
-        hidden: true,
-        moduleId: moduleId
+        hidden: true
       }
     })
     router.children = children
