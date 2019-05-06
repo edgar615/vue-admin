@@ -183,7 +183,7 @@
         this.$formModal.open({
           parent: this,
           name: '查看支付结果',
-          width: '30%',
+          width: '40rem',
           component: ViewForm,
           props: {
             paymentResponseId: id

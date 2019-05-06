@@ -103,7 +103,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增子项',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })

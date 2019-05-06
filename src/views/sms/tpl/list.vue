@@ -126,7 +126,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增模板',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })

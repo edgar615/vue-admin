@@ -100,7 +100,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改角色',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             "sysRoleId": id
@@ -113,7 +113,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增角色',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           props: {
             "parentId": -1
@@ -125,7 +125,7 @@
         this.$formModal.open({
           parent: this,
           name: '角色授权',
-          width: '50%',
+          width: '60rem',
           component: PermitForm,
           props: {
             "sysRoleId": id

@@ -150,7 +150,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增用户',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })
@@ -160,7 +160,7 @@
         this.$formModal.open({
           parent: this,
           name: '用户授权',
-          width: '20%',
+          width: '30rem',
           component: PermitForm,
           props: {
             sysUserId: id

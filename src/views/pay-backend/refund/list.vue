@@ -132,7 +132,7 @@
         this.$formModal.open({
           parent: this,
           name: '申请退款',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })
@@ -142,7 +142,7 @@
         this.$formModal.open({
           parent: this,
           name: '查看退款结果',
-          width: '30%',
+          width: '40rem',
           component: ViewForm,
           props: {
             refundId: id

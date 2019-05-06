@@ -128,7 +128,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增字典',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })
@@ -138,7 +138,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改字典',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             dictId: id

@@ -213,7 +213,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增属性',
-          width: '30%',
+          width: '40rem',
           component: AddForm,
           props: {
             commodityCategoryKey: this.cateModel.commodityCategoryKey
@@ -226,7 +226,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改属性',
-          width: '30%',
+          width: '40rem',
           component: EditForm,
           props: {
             "commodityAttributeId": id

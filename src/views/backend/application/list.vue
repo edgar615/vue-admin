@@ -155,7 +155,7 @@
           this.$formModal.open({
               parent: this,
               name: '新增应用',
-              width: '20%',
+              width: '30rem',
               component: AddForm,
               onClose: () => { vm.loadAsyncData() }
           })
@@ -165,7 +165,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改应用',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             applicationId: id
@@ -178,7 +178,7 @@
         this.$formModal.open({
           parent: this,
           name: '设置角色白名单',
-          width: '30%',
+          width: '40rem',
           component: WhitelistForm,
           props: {
             applicationId: id

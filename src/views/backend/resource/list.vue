@@ -109,7 +109,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改接口权限',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             sysResourceId: id

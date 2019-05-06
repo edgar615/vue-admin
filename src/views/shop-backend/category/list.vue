@@ -123,7 +123,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增类目',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           props: {
             parentId: id
@@ -136,7 +136,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改类目',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             "commodityCategoryId": id

@@ -185,7 +185,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增公司',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => {
             vm.loadAsyncData()
@@ -197,7 +197,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改公司',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             companyId: id

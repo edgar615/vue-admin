@@ -101,7 +101,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增号码白名单',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })

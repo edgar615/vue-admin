@@ -160,7 +160,7 @@
           this.$formModal.open({
               parent: this,
               name: '新增子系统',
-              width: '20%',
+              width: '30rem',
               component: AddForm,
               onClose: () => { vm.loadAsyncData() }
           })
@@ -170,7 +170,7 @@
         this.$formModal.open({
           parent: this,
           name: '查看子系统',
-          width: '20%',
+          width: '30rem',
           component: ViewForm,
           props: {
             systemId: id
@@ -184,7 +184,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改子系统',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             systemId: id

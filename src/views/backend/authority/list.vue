@@ -118,7 +118,7 @@
         this.$formModal.open({
           parent: this,
           name: '新增权限',
-          width: '20%',
+          width: '30rem',
           component: AddForm,
           onClose: () => { vm.loadAsyncData() }
         })
@@ -128,7 +128,7 @@
         this.$formModal.open({
           parent: this,
           name: '修改子权限',
-          width: '20%',
+          width: '30rem',
           component: EditForm,
           props: {
             authorityScopeId: id
