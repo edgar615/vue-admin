@@ -1,10 +1,11 @@
 <template>
   <section class="hero is-info is-fullheight">
     <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title">
+      <div class="container">
+        <h1 class="title error-title">
           ERROR  404
         </h1>
+        <div class="split error-split"></div>
         <h1 class="title">
           <span class="icon">
             <i class="mdi mdi-emoticon-sad"></i>
@@ -20,5 +21,15 @@
 </template>
 <script>
 </script>
-<style>
+<style scoped>
+  .error-title {
+    font-size: 80px;
+  }
+  .error-split {
+    background-color: #a779e9;
+    width: 4rem;
+    height: .25rem;
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+  }
 </style>
