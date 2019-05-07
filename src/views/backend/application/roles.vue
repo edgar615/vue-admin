@@ -23,6 +23,16 @@
             </b-switch>
           </b-table-column>
 
+          <b-table-column field="name" label="注册时授权?">
+            <b-switch v-if="forceRefresh && props.row.whitelist" v-model="props.row.grantOnRegister"
+                      @click.native="toggleRegister(props.row)">
+              {{ props.row.grantOnRegister ? "允许" : "禁止" }}
+            </b-switch>
+            <b-switch disabled v-else>
+              禁止
+            </b-switch>
+          </b-table-column>
+
         </template>
       </b-table>
     </div>
@@ -30,7 +40,7 @@
 </template>
 <script>
   import axios from 'axios'
-  import {getAvailableRole, getWhitlist, addRole, deleteRole} from '@/api/backend/application'
+  import {getAvailableRole, getWhitlist, addRole, deleteRole, addRegister, deleteRegister} from '@/api/backend/application'
 
   export default {
     data () {
@@ -55,6 +65,19 @@
         }
 
       },
+      toggleRegister(role) {
+        const vm = this
+        if (role.grantOnRegister) {
+          deleteRegister(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+            vm.loadAsyncData()
+          })
+        } else {
+          addRegister(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+            vm.loadAsyncData()
+          })
+        }
+
+      },
       loadAsyncData() {
         this.$parent.startLoading()
         const vm = this
@@ -66,7 +89,11 @@
             let whitelist = whiltelist.data.filter(function(role) {
               return role.sysRoleId == item.sysRoleId
             }).length > 0
+            let grantOnRegister = whiltelist.data.filter(function(role) {
+              return role.sysRoleId == item.sysRoleId && role.grantOnRegister
+            }).length > 0
             item.whitelist = whitelist
+            item.grantOnRegister = grantOnRegister
           })
           vm.$parent.closeLoading()
           vm.$nextTick(() => {
@@ -88,24 +115,17 @@
           let whitelist = whiltelist.data.filter(function(role) {
             return role.sysRoleId == item.sysRoleId
           }).length > 0
-          console.log(whitelist)
+          let grantOnRegister = whiltelist.data.filter(function(role) {
+            return role.sysRoleId == item.sysRoleId && role.grantOnRegister
+          }).length > 0
           item.whitelist = whitelist
+          item.grantOnRegister = grantOnRegister
         })
         vm.$parent.closeLoading()
       })).catch(err => {
         vm.$parent.closeLoading()
         vm.$parent.fail('查询失败', err)
         })
-      // this.$getModel(getApplication, this.$parent.$props.props.applicationId)
-      // .then(respone => {
-      //   this.$parent.closeLoading()
-      // }).catch(err => {
-      //   this.$parent.closeLoading()
-      //   this.$parent.fail('应用查询失败', err)
-      // })
     }
   }
 </script>
-<style>
-
-</style>

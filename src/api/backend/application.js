@@ -40,3 +40,11 @@ export function addRole (applicationId, roleId) {
 export function deleteRole (applicationId, roleId) {
   return request.post(base + '/' + applicationId + '/delete-role', {roleId: roleId})
 }
+
+export function addRegister (applicationId, roleId) {
+  return request.post(base + '/' + applicationId + '/add-register', {roleId: roleId})
+}
+
+export function deleteRegister (applicationId, roleId) {
+  return request.post(base + '/' + applicationId + '/delete-register', {roleId: roleId})
+}

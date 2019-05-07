@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="column ml-2" v-show="viewMenu">
-        <div class="card box-content">
+        <div class="card">
           <div class="card-content">
             <b-field label="类型" horizontal class="static-field">
               <p class="control static-field">{{$dictText('permissionType', model.type)}}</p>
@@ -63,7 +63,7 @@
       </div>
 
       <div class="column ml-2" v-show="addMenu">
-        <div class="card box-content">
+        <div class="card">
           <div class="card-content">
             <jcc-field label="类型" horizontal class="required-field"
                        :type="errors.has('type') ? 'is-danger' : ''"
