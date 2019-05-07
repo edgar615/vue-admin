@@ -2,12 +2,10 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="card box-content1 notification is-primary" data-simplebar>
-          <div class="card-content">
+        <div class="box-content1 notification is-primary" data-simplebar>
             <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>
-          </div>
         </div>
       </div>
       <div class="column ml-2">
@@ -21,29 +19,27 @@
               </button>
             </div>
           </header>
-          <header class="card-header">
-            <div class="buttons m-2">
-              <a class="button">默认分组</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button">Size</a>
-              <a class="button">All</a>
-              <a class="button">Medium</a>
-              <a class="button"><b-icon icon="plus"></b-icon></a>
+          <header class="card-header"  v-if="viewCate">
+            <div class="tags are-medium m-2">
+              <a class="tag is-primary">
+                默认分组
+                <button class="delete is-small"></button>
+              </a>
+              <a class="tag is-link">
+                Hello World
+                <button class="delete is-small"></button>
+              </a>
+              <a class="tag is-link">
+                Hello World
+                <button class="delete is-small"></button>
+              </a>
+              <a class="tag is-link">
+                Hello World
+                <button class="delete is-small"></button>
+              </a>
+              <a class="tag" @click="onAddGroup">
+                <b-icon icon="plus"></b-icon>
+              </a>
             </div>
           </header>
           <div class="card-content">
@@ -189,11 +185,24 @@
     height: 600px;
     overflow: auto;
   }
+  .specification_delete_button{
+    width: 16px;
+    height: 16px;
+    background-color: #b1b1b1;
+    float: right;
+    border-radius: 50%;
+    color: red;
+    text-align: center;
+    line-height: 14px;
+    margin-left: .5rem;
+    cursor: pointer;
+  }
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import AddForm from '@/views/shop-backend/attributes/add.vue'
   import EditForm from '@/views/shop-backend/attributes/edit.vue'
+  import AddGroupForm from '@/views/shop-backend/attributes/group-add.vue'
   import {
     cateTree
   } from '@/api/commodity/category'
@@ -234,6 +243,19 @@
       }
     },
     methods: {
+      onAddGroup () {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增属性分组',
+          width: '20rem',
+          component: AddGroupForm,
+          props: {
+            commodityCategoryKey: this.cateModel.commodityCategoryKey
+          },
+          onClose: () => { vm.loadAttr() }
+        })
+      },
       onAdd () {
         const vm = this
         this.$formModal.open({

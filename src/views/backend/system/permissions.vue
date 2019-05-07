@@ -2,11 +2,9 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="card box-content notification is-primary" data-simplebar>
-          <div class="card-content">
+        <div class="box-content notification is-primary" data-simplebar>
             <vue-tree :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>
-          </div>
         </div>
       </div>
       <div class="column ml-2" v-show="viewMenu">
