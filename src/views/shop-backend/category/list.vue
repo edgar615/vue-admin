@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="card box-content1">
+        <div class="card box-content1 notification is-primary" data-simplebar>
           <div class="card-content">
             <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"

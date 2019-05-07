@@ -5,12 +5,15 @@
         <div class="column is-6 is-offset-3">
           <div class="widthcol">
             <div class="level">
-              <figure class="avatar">
-                <img src="../../assets/lock.png" alt="">
-              </figure>
-              <div class="logtitle">
-                <h3 class="title has-text-orange">用户登录</h3>
-                <p class="subtitle has-text-grey">Please enter your credentials to login.</p>
+              <div class="level-left">
+                <div class="level-item">
+                  <figure class="avatar">
+                    <img src="../../assets/lock.png" alt="">
+                  </figure>
+                </div>
+                <div class="level-item logtitle">
+                  <h3 class="title has-text-orange is-1">用户登录</h3>
+                </div>
               </div>
             </div>
           </div>

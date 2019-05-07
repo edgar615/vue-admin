@@ -29,9 +29,21 @@ a {
 
 //边框
 .box-shadow {
-  box-shadow: 0 2px 3px $grey, 0 0 0 1px $grey;
+  box-shadow: 0 2px 3px #76839b, 0 0 0 1px #76839b;
   box-size: border-box;
 }
 .border-1 {
-  border: 1px solid $grey !important;
+  border: 1px solid #76839b !important;
+}
+
+.border-2 {
+  border: 2px solid #76839b !important;
+}
+
+.border-3 {
+  border: 3px solid #76839b !important;
+}
+
+.border-bottom-3 {
+  border-bottom: 3px solid #76839b !important;
 }

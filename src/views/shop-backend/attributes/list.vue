@@ -2,7 +2,7 @@
   <section>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="card box-content1">
+        <div class="card box-content1 notification is-primary" data-simplebar>
           <div class="card-content">
             <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
@@ -21,7 +21,33 @@
               </button>
             </div>
           </header>
+          <header class="card-header">
+            <div class="buttons m-2">
+              <a class="button">默认分组</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button">Size</a>
+              <a class="button">All</a>
+              <a class="button">Medium</a>
+              <a class="button"><b-icon icon="plus"></b-icon></a>
+            </div>
+          </header>
           <div class="card-content">
+
             <b-table
                 striped
                 hoverable
@@ -166,8 +192,8 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import AddForm from '@/views/shop-backend/category/attribute-add.vue'
-  import EditForm from '@/views/shop-backend/category/attribute-edit.vue'
+  import AddForm from '@/views/shop-backend/attributes/add.vue'
+  import EditForm from '@/views/shop-backend/attributes/edit.vue'
   import {
     cateTree
   } from '@/api/commodity/category'
