@@ -67,12 +67,11 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/sys/sysuser';
 
   export default {
     components: {
-      VueTree, EmptyTable
+      VueTree
     },
     data() {
       return {

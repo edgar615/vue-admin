@@ -34,12 +34,8 @@
 </template>
 
 <script>
-  import EmptyTable from '@/components/EmptyTable.vue'
   import {getAvailableRole, getPermitted, savePermit} from '@/api/sys/sysuser';
   export default {
-    components: {
-      EmptyTable
-    },
     data() {
       return {
         checkedRoles: [],

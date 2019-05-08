@@ -1,6 +1,6 @@
 <template>
   <!-- 使用路由生成菜单 -->
-  <div class="sub-menu is-size-7">
+  <div class="sub-menu is-size-7" data-simplebar>
     <router-link class="menu-title"
                  v-for="level1 in level1List" :key="level1.sysPermissionId"
                  :class="activeLevel1 == level1.sysPermissionId || activeModule  == level1.sysPermissionId ? 'active' : '' "

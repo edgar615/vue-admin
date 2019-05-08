@@ -1,63 +1,62 @@
 <template>
   <section>
-    <div class="card">
-      <header class="card-header">
-        <div class="card-header-title">
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-input v-model="filters.outTradeNo" placeholder="订单号"></b-input>
-              <b-select placeholder="支付方式" v-model="filters.type">
-                <option value="">请选择</option>
-                <option
-                    v-for="option in $dictList('payType')"
-                    :value="option.dictValue"
-                    :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <b-select placeholder="支付状态" v-model="filters.paymentState">
-                <option value="">请选择</option>
-                <option
-                    v-for="option in $dictList('paymentResponseResult')"
-                    :value="option.dictValue"
-                    :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <b-select placeholder="确认状态" v-model="filters.ackState">
-                <option value="">请选择</option>
-                <option
-                    v-for="option in $dictList('paymentResponseAckState')"
-                    :value="option.dictValue"
-                    :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <date-picker
-                  v-model="transactionTimeRange"
-                  range
-                  type="datetime"
-                  lang="zh"
-                  format="YYYY-MM-DD HH:mm:ss"
-                  value-type="timestamp"
-                  clearable
-                  confirm
-                  placeholder="交易时间"
-                  confirm-text="确认"
-                  @change="clear"
-                  icon="calendar-today right-icon"
-              >
-              </date-picker>
-              <p class="control ml-1">
-                <button class="button is-primary" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
-          </div>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-input v-model="filters.orderNo" placeholder="订单号"></b-input>
         </div>
-      </header>
+        <div class="level-item">
+          <b-select placeholder="支付方式" v-model="filters.payType">
+            <option value="">请选择</option>
+            <option
+                v-for="option in $dictList('payType')"
+                :value="option.dictValue"
+                :key="option.dictValue">
+              {{ option.dictText }}
+            </option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <b-select placeholder="确认状态" v-model="filters.ackState">
+            <option value="">请选择</option>
+            <option
+                v-for="option in $dictList('paymentResponseAckState')"
+                :value="option.dictValue"
+                :key="option.dictValue">
+              {{ option.dictText }}
+            </option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <date-picker
+              v-model="transactionTimeRange"
+              range
+              type="datetime"
+              lang="zh"
+              format="YYYY-MM-DD HH:mm:ss"
+              value-type="timestamp"
+              clearable
+              confirm
+              placeholder="交易时间"
+              confirm-text="确认"
+              @change="clear"
+              icon="calendar-today right-icon"
+          >
+          </date-picker>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
+    </nav>
+    <div class="card">
       <div class="card-content">
         <b-table
           striped
@@ -136,7 +135,6 @@
 
 <script>
   import {paymentPage, confirmPayment} from '@/api/payment/paymentResponse'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import ViewForm from '@/views/pay-backend/payment-notify/view.vue'
 
   export default {
@@ -148,9 +146,6 @@
         loading: false,
         deleting: false
       }
-    },
-    components: {
-      EmptyTable
     },
     methods: {
       /*

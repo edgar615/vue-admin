@@ -1,10 +1,11 @@
-import JccMetaInput from './MetaInput'
+import Vue from 'vue'
+import PageTitle from './PageTitle'
 
 import {registerComponent, use} from '../../utils/helpers'
 
 const Plugin = {
   install (Vue) {
-    registerComponent(Vue, JccMetaInput)
+    registerComponent(Vue, PageTitle)
   }
 }
 
@@ -13,5 +14,5 @@ use(Plugin)
 export default Plugin
 
 export {
-  JccMetaInput
+  PageTitle
 }

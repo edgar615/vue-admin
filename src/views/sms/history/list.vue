@@ -1,47 +1,54 @@
 <template>
   <section>
-    <div class="card mt-3">
-      <header class="card-header">
-        <div class="card-header-title">
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
-              <b-select placeholder="发送状态" v-model="filters.state">
-                <option value="">请选择</option>
-                <option
-                        v-for="option in $dictList('smsState')"
-                        :value="option.dictValue"
-                        :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <date-picker
-                      v-model="sendTimeRange"
-                      range
-                      type="datetime"
-                      lang="zh"
-                      format="YYYY-MM-DD HH:mm:ss"
-                      value-type="timestamp"
-                      clearable
-                      confirm
-                      placeholder="发送时间"
-                      confirm-text="确认"
-                      @change="clear"
-                      icon="calendar-today right-icon"
-              >
-              </date-picker>
-              <p class="control ml-1">
-                <button class="button" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
-          </div>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-input v-model="filters.phoneNumber" placeholder="手机号码"></b-input>
         </div>
-      </header>
-      <div class="card-content">
+        <div class="level-item">
+          <b-select placeholder="发送状态" v-model="filters.state">
+            <option value="">请选择</option>
+            <option
+                v-for="option in $dictList('smsState')"
+                :value="option.dictValue"
+                :key="option.dictValue">
+              {{ option.dictText }}
+            </option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <date-picker
+              v-model="sendTimeRange"
+              range
+              type="datetime"
+              lang="zh"
+              format="YYYY-MM-DD HH:mm:ss"
+              value-type="timestamp"
+              clearable
+              confirm
+              placeholder="发送时间"
+              confirm-text="确认"
+              @change="clear"
+              icon="calendar-today right-icon"
+          >
+          </date-picker>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
 
+    </nav>
+
+    <div class="card">
+      <div class="card-content">
 
         <b-table
           striped
@@ -109,7 +116,6 @@
 
 <script>
   import {page} from '@/api/sms/history'
-  import EmptyTable from '@/components/EmptyTable.vue'
 
   export default {
     data () {
@@ -119,9 +125,6 @@
         pagination: {},
         loading: false
       }
-    },
-    components: {
-      EmptyTable
     },
     methods: {
       /*

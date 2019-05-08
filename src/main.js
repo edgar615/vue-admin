@@ -13,8 +13,9 @@ import '@/utils/apiHelper'
 import '@/utils/validate'
 // Bue提供的表单水平布局在生成错误提示的时候不太友好，修改了源码，重新定义了一个
 import '@/components/field'
-import '@/components/meta'
 import '@/components/dict'
+import '@/components/page-title'
+import '@/components/empty-table'
 import '@/components/form-modal'
 
 import Notifications from 'vue-notification'

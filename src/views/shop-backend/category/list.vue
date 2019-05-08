@@ -1,5 +1,11 @@
 <template>
   <section>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+      </div>
+    </nav>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
         <div class="box-content1 notification is-primary" data-simplebar>

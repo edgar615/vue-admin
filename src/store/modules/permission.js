@@ -5,6 +5,7 @@ const permission = {
     activeSystem: '',
     activeLevel1Menu: '',
     systems: [],
+    pageTitle: '',
     user: {}
   },
   mutations: {
@@ -14,16 +15,15 @@ const permission = {
     ACTIVE_SYSTEM: (state, subsystemId) => {
       state.activeSystem = subsystemId
     },
-    ACTIVE_MODULE: (state, [subsystemId, moduleId]) => {
-      state.activeSystem = subsystemId
-      state.activeModule = moduleId
-    },
     ACTIVE_LEVEL1_MENU: (state, [subsystemId, menuId]) => {
       state.activeSystem = subsystemId
       state.activeLevel1Menu = menuId
     },
     SET_USER: (state, user) => {
       state.user = user
+    },
+    PAGE_TITLE: (state, title) => {
+      state.pageTitle = title
     }
   },
 

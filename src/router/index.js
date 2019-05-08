@@ -95,6 +95,11 @@ router.afterEach((to, from) => {
         [to.meta.subsystemId, to.meta.parentId])
     }
   }
+  let title = to.meta.title
+  if (title == undefined) {
+    title = to.meta.name
+  }
+  store.commit('PAGE_TITLE', title)
 })
 
 export default router

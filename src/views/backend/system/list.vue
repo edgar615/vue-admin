@@ -1,51 +1,63 @@
 <template>
   <section>
-    <div class="card">
-      <header class="card-header">
-        <div class="card-header-title">
-          <button class="button is-primary" @click="addModal()">
-            <b-icon icon="plus-circle-outline"></b-icon>
-            <span>新增</span>
-          </button>
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
-              <b-select placeholder="类型" v-model="filters.type">
-                <option value="">请选择</option>
-                <option
-                    v-for="option in $dictList('systemType')"
-                    :value="option.dictValue"
-                    :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <p class="control ml-1">
-                <button class="button" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-input v-model="filters.sysIdentifier" placeholder="标识符"></b-input>
+        </div>
+        <div class="level-item">
+          <b-select placeholder="类型" v-model="filters.type">
+            <option value="">请选择</option>
+            <option
+                v-for="option in $dictList('systemType')"
+                :value="option.dictValue"
+                :key="option.dictValue">
+              {{ option.dictText }}
+            </option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="level-right">
+        <div class="level-item">
+          <div class="level-item">
+            <button class="button is-primary" @click="addModal()">
+              <b-icon icon="plus-circle-outline"></b-icon>
+              <span>新增</span>
+            </button>
           </div>
         </div>
-      </header>
+      </div>
+    </nav>
 
+    <div class="card">
       <div class="card-content">
         <b-table
-          striped
-          hoverable
-          narrowed
-          mobile-cards
+            striped
+            hoverable
+            narrowed
+            mobile-cards
 
-          :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
-          :loading="loading"
-          paginated
-          backend-pagination
-          :total="pagination.totalRecords"
-          :per-page="pagination.pageSize"
-          :current-page="pagination.page"
-          @page-change="onPageChange"
-          pagination-size="is-small"
+            :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
+            :loading="loading"
+            paginated
+            backend-pagination
+            :total="pagination.totalRecords"
+            :per-page="pagination.pageSize"
+            :current-page="pagination.page"
+            @page-change="onPageChange"
+            pagination-size="is-small"
         >
 
           <template slot-scope="props">
@@ -85,7 +97,7 @@
                 删除
               </a>
               <router-link
-                :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }" exact>
+                  :to="{path:  '/backend/system/' +props.row.subsystemId + '/permissions' }" exact>
                 菜单管理
               </router-link>
             </b-table-column>
@@ -102,14 +114,13 @@
 </template>
 
 <script>
-  import {systemPage, deleteSystem} from '@/api/backend/system'
-  import EmptyTable from '@/components/EmptyTable.vue'
+  import {deleteSystem, systemPage} from '@/api/backend/system'
   import AddForm from '@/views/backend/system/add.vue'
   import EditForm from '@/views/backend/system/edit.vue'
   import ViewForm from '@/views/backend/system/view.vue'
 
   export default {
-    data () {
+    data() {
       return {
         filters: {},
         pagination: {},
@@ -121,20 +132,17 @@
         checkedRows: []
       }
     },
-    components: {
-      EmptyTable
-    },
     methods: {
       /*
        * Load async data
        */
-      loadAsyncData (params) {
+      loadAsyncData(params) {
         this.$pageModelWithHistory(systemPage, params)
       },
       /*
        * Handle page-change event
        */
-      onPageChange (page) {
+      onPageChange(page) {
         if (this.pagination.page !== page) {
           this.loadAsyncData({page: page})
         }
@@ -142,7 +150,7 @@
       /*
        * Type style in relation to the value
        */
-      internalClass (value) {
+      internalClass(value) {
         if (value === undefined) {
           return 'is-black'
         }
@@ -151,21 +159,23 @@
         }
         return 'is-dark'
       },
-      onDelete (id) {
+      onDelete(id) {
         this.$deleteModel(deleteSystem, id,
-          () => this.loadAsyncData({page: this.pagination.page}))
+            () => this.loadAsyncData({page: this.pagination.page}))
       },
-      addModal () {
-          const vm = this
-          this.$formModal.open({
-              parent: this,
-              name: '新增子系统',
-              width: '30rem',
-              component: AddForm,
-              onClose: () => { vm.loadAsyncData() }
-          })
+      addModal() {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增子系统',
+          width: '30rem',
+          component: AddForm,
+          onClose: () => {
+            vm.loadAsyncData()
+          }
+        })
       },
-      viewModal (id) {
+      viewModal(id) {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -176,10 +186,12 @@
             systemId: id
           },
           showClose: true,
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => {
+            vm.loadAsyncData()
+          }
         })
       },
-      editModal (id) {
+      editModal(id) {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -189,11 +201,13 @@
           props: {
             systemId: id
           },
-          onClose: () => { vm.loadAsyncData() }
+          onClose: () => {
+            vm.loadAsyncData()
+          }
         })
       }
     },
-    created () {
+    created() {
       this.$fillParamFromHistory()
       this.loadAsyncData()
     }

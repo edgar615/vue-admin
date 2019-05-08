@@ -1,29 +1,33 @@
 <template>
   <section>
-    <div class="card mt-3">
-      <header class="card-header">
-        <div class="card-header-title">
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-select name="method" v-model="filters.method" placeholder="请求方法">
-                <option value="GET">GET</option>
-                <option value="POST">POST</option>
-                <option value="PUT">PUT</option>
-                <option value="DELETE">DELETE</option>
-                <option value="ALL">ALL</option>
-              </b-select>
-              <b-input v-model="filters.url" placeholder="接口地址"></b-input>
-              <p class="control ml-1">
-                <button class="button is-primary" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
-          </div>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-select name="method" v-model="filters.method" placeholder="请求方法">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="ALL">ALL</option>
+          </b-select>
         </div>
+        <div class="level-item">
+          <b-input v-model="filters.url" placeholder="接口地址"></b-input>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
+    </nav>
 
-      </header>
+    <div class="card">
       <div class="card-content">
         <b-table
           striped
@@ -75,7 +79,6 @@
 
 <script>
   import {resourcePage} from '@/api/backend/sysresource'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import EditForm from '@/views/backend/resource/edit.vue'
 
   export default {
@@ -85,9 +88,6 @@
         pagination: {},
         loading: false
       }
-    },
-    components: {
-      EmptyTable
     },
     methods: {
       /*

@@ -1,44 +1,55 @@
 <template>
   <section>
-    <div class="card mt-3">
-      <header class="card-header">
-        <div class="card-header-title">
-          <button class="button is-primary" @click="addModal()">
-            <b-icon icon="plus-circle-outline"></b-icon>
-            <span>新增</span>
-          </button>
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-input v-model="filters.companyCode" placeholder="编码"></b-input>
-              <b-input v-model="filters.name" placeholder="名称"></b-input>
-              <b-field>
-                <b-radio-button v-model="filters.state"
-                                native-value="1"
-                                type="is-success">
-                  <b-icon icon="lock-open-outline"></b-icon>
-                  <span>活动</span>
-                </b-radio-button>
-                <b-radio-button v-model="filters.state"
-                                native-value="2"
-                                type="is-dark" class="is-dark-blue-lighter">
-                  <b-icon icon="lock-outline"></b-icon>
-                  <span>锁定</span>
-                </b-radio-button>
-                <b-radio-button v-model="filters.state"
-                                native-value="">
-                  全部
-                </b-radio-button>
-              </b-field>
-              <p class="control ml-1">
-                <button class="button" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-input v-model="filters.name" placeholder="名称"></b-input>
+        </div>
+        <div class="level-item">
+          <b-field>
+            <b-radio-button v-model="filters.state"
+                            native-value="1"
+                            type="is-success">
+              <b-icon icon="lock-open-outline"></b-icon>
+              <span>活动</span>
+            </b-radio-button>
+            <b-radio-button v-model="filters.state"
+                            native-value="2"
+                            type="is-dark" class="is-dark-blue-lighter">
+              <b-icon icon="lock-outline"></b-icon>
+              <span>锁定</span>
+            </b-radio-button>
+            <b-radio-button v-model="filters.state"
+                            native-value="">
+              全部
+            </b-radio-button>
+          </b-field>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="level-right">
+        <div class="level-item">
+          <div class="level-item">
+            <button class="button is-primary" @click="addModal()">
+              <b-icon icon="plus-circle-outline"></b-icon>
+              <span>新增</span>
+            </button>
           </div>
         </div>
-      </header>
+      </div>
+    </nav>
+    <div class="card">
       <div class="card-content">
         <b-table
             striped
@@ -130,7 +141,6 @@
 
 <script>
   import {lock, page, unLock} from '@/api/company'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/company/add.vue'
   import EditForm from '@/views/company/edit.vue'
 
@@ -141,9 +151,6 @@
         pagination: {},
         loading: false
       }
-    },
-    components: {
-      EmptyTable
     },
     methods: {
       /*

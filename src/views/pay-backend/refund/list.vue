@@ -1,35 +1,50 @@
 <template>
   <section>
-    <div class="card">
-      <header class="card-header">
-        <div class="card-header-title">
-          <button class="button is-primary" @click="addModal()">
-            <b-icon icon="plus-circle-outline"></b-icon>
-            <span>新增</span>
-          </button>
-          <div class="card-header-left">
-            <b-field grouped group-multiline>
-              <b-input v-model="filters.orderNo" placeholder="订单号"></b-input>
-              <b-input v-model="filters.refundNo" placeholder="退款单号"></b-input>
-              <b-select placeholder="支付方式" v-model="filters.payType">
-                <option value="">请选择</option>
-                <option
-                    v-for="option in $dictList('payType')"
-                    :value="option.dictValue"
-                    :key="option.dictValue">
-                  {{ option.dictText }}
-                </option>
-              </b-select>
-              <p class="control ml-1">
-                <button class="button is-primary" @click="loadAsyncData({page: 1})">
-                  <b-icon icon="magnify"></b-icon>
-                  <span>查询</span>
-                </button>
-              </p>
-            </b-field>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+        <div class="level-item">
+          <b-input v-model="filters.orderNo" placeholder="订单号"></b-input>
+        </div>
+        <div class="level-item">
+          <b-input v-model="filters.refundNo" placeholder="退款单号"></b-input>
+        </div>
+        <div class="level-item">
+          <b-select placeholder="支付方式" v-model="filters.payType">
+            <option value="">请选择</option>
+            <option
+                v-for="option in $dictList('payType')"
+                :value="option.dictValue"
+                :key="option.dictValue">
+              {{ option.dictText }}
+            </option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <p class="control ml-1">
+            <button class="button" @click="loadAsyncData({page: 1})">
+              <b-icon icon="magnify"></b-icon>
+              <span>查询</span>
+            </button>
+          </p>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="level-right">
+        <div class="level-item">
+          <div class="level-item">
+            <button class="button is-primary" @click="addModal()">
+              <b-icon icon="plus-circle-outline"></b-icon>
+              <span>新增</span>
+            </button>
           </div>
         </div>
-      </header>
+      </div>
+    </nav>
+
+    <div class="card">
       <div class="card-content">
         <b-table
           striped
@@ -96,7 +111,6 @@
 
 <script>
   import {refundPage} from '@/api/payment/refund'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import AddForm from '@/views/pay-backend/refund/add.vue'
   import ViewForm from '@/views/pay-backend/refund/view.vue'
 
@@ -108,9 +122,6 @@
         loading: false,
         deleting: false
       }
-    },
-    components: {
-      EmptyTable
     },
     methods: {
       /*

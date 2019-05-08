@@ -27,6 +27,7 @@
     margin: 7px 0;
     padding: 0;
     &.menu-bottom {
+      border-top: 1px solid #00d1b2;
       position: absolute;
       left: 0;
       bottom: 0;
@@ -82,7 +83,8 @@
 .sub-menu {
   background-color:#DAE1E7;
   color: findColorInvert(#DAE1E7);
-  height: 100%;
+  height: calc(100vh - 3.25rem - .7rem );
+  overflow-y: auto;
   margin-left: 33px;
   width: 130px;
   a {

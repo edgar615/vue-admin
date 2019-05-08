@@ -1,11 +1,17 @@
 <template>
   <section>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+      </div>
+    </nav>
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
         <div class="box-content1 notification is-primary" data-simplebar>
-            <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
-            <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
-                      @handle="itemClick"></vue-tree>
+          <b-loading :is-full-page="isFullPage" :active.sync="isCateLoading"></b-loading>
+          <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
+                    @handle="itemClick"></vue-tree>
         </div>
       </div>
       <div class="column ml-2">
@@ -19,7 +25,7 @@
               </button>
             </div>
           </header>
-          <header class="card-header"  v-if="viewCate">
+          <header class="card-header" v-if="viewCate">
             <div class="tags are-medium m-2">
               <a class="tag is-primary">
                 默认分组
@@ -104,12 +110,14 @@
                         {{$boolText(props.row.required)}}
                       </p>
                     </b-field>
-                    <b-field label="最小值" horizontal class="static-field" v-show="props.row.type == 1">
+                    <b-field label="最小值" horizontal class="static-field"
+                             v-show="props.row.type == 1">
                       <p class="control is-size-7">
                         {{props.row.minValue}}
                       </p>
                     </b-field>
-                    <b-field label="最小长度" horizontal class="static-field" v-show="props.row.type == 2">
+                    <b-field label="最小长度" horizontal class="static-field"
+                             v-show="props.row.type == 2">
                       <p class="control is-size-7">
                         {{props.row.minLength}}
                       </p>
@@ -119,7 +127,8 @@
                         {{props.row.defaultValue}}
                       </p>
                     </b-field>
-                    <b-field label="正则" horizontal class="static-field" v-show="props.row.type == 2">
+                    <b-field label="正则" horizontal class="static-field"
+                             v-show="props.row.type == 2">
                       <p class="control is-size-7">
                         {{props.row.regex}}
                       </p>
@@ -131,12 +140,14 @@
                         {{$boolText(props.row.immutable)}}
                       </p>
                     </b-field>
-                    <b-field label="最大值" horizontal class="static-field" v-show="props.row.type == 1">
+                    <b-field label="最大值" horizontal class="static-field"
+                             v-show="props.row.type == 1">
                       <p class="control is-size-7">
                         {{props.row.maxValue}}
                       </p>
                     </b-field>
-                    <b-field label="最大长度" horizontal class="static-field" v-show="props.row.type == 2">
+                    <b-field label="最大长度" horizontal class="static-field"
+                             v-show="props.row.type == 2">
                       <p class="control is-size-7">
                         {{$boolText(props.row.maxLength)}}
                       </p>
@@ -146,14 +157,16 @@
                         {{props.row.possibleValues}}
                       </p>
                     </b-field>
-                    <b-field label="列表键" horizontal class="static-field" v-show="props.row.listExtra">
+                    <b-field label="列表键" horizontal class="static-field"
+                             v-show="props.row.listExtra">
                       <p class="control is-size-7">
                         {{props.row.extraKey}}
                       </p>
                     </b-field>
                   </div>
                 </div>
-                <div class="columns is-size-7" v-show="props.row.type == 5 || props.row.type == 6">
+                <div class="columns is-size-7"
+                     v-show="props.row.type == 5 || props.row.type == 6">
                   <div class="column">
                     <b-table striped
                              hoverable
@@ -185,7 +198,8 @@
     height: 600px;
     overflow: auto;
   }
-  .specification_delete_button{
+
+  .specification_delete_button {
     width: 16px;
     height: 16px;
     background-color: #b1b1b1;
@@ -203,18 +217,14 @@
   import AddForm from '@/views/shop-backend/attributes/add.vue'
   import EditForm from '@/views/shop-backend/attributes/edit.vue'
   import AddGroupForm from '@/views/shop-backend/attributes/group-add.vue'
-  import {
-    cateTree
-  } from '@/api/commodity/category'
-  import {
-    listAttr, deleteAttr
-  } from '@/api/commodity/attribute'
+  import {cateTree} from '@/api/commodity/category'
+  import {deleteAttr, listAttr} from '@/api/commodity/attribute'
 
   export default {
     components: {
       VueTree
     },
-    data () {
+    data() {
       return {
         isFullPage: false,
         isCateLoading: true,
@@ -243,7 +253,7 @@
       }
     },
     methods: {
-      onAddGroup () {
+      onAddGroup() {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -253,10 +263,12 @@
           props: {
             commodityCategoryKey: this.cateModel.commodityCategoryKey
           },
-          onClose: () => { vm.loadAttr() }
+          onClose: () => {
+            vm.loadAttr()
+          }
         })
       },
-      onAdd () {
+      onAdd() {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -266,10 +278,12 @@
           props: {
             commodityCategoryKey: this.cateModel.commodityCategoryKey
           },
-          onClose: () => { vm.loadAttr() }
+          onClose: () => {
+            vm.loadAttr()
+          }
         })
       },
-      onEdit (id) {
+      onEdit(id) {
         const vm = this
         this.$formModal.open({
           parent: this,
@@ -279,10 +293,12 @@
           props: {
             "commodityAttributeId": id
           },
-          onClose: () => { vm.loadAttr() }
+          onClose: () => {
+            vm.loadAttr()
+          }
         })
       },
-      itemClick (item) {
+      itemClick(item) {
         const id = item.id
         this.cateModel = item
         if (id !== -1) {
@@ -303,7 +319,7 @@
         vm.$deleteModel(deleteAttr, commodityAttributeId,
             () => vm.loadAttr())
       },
-      loadAsyncData () {
+      loadAsyncData() {
         const vm = this
         vm.isCateLoading = true
         this.viewCate = false
@@ -321,7 +337,7 @@
         })
       }
     },
-    created () {
+    created() {
       this.loadAsyncData()
     }
   }

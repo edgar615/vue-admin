@@ -59,7 +59,6 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import EmptyTable from '@/components/EmptyTable.vue'
   import {
     getSystem,
     getPermitted,
@@ -68,7 +67,7 @@
 
   export default {
     components: {
-      VueTree, EmptyTable
+      VueTree
     },
     data() {
       return {
