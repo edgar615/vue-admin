@@ -7,11 +7,18 @@
         <b-input name="name" v-model="model.name"
                  v-validate="'required|max:64'" data-vv-as="名称"></b-input>
       </b-field>
-      <b-field label="角色编码" class="required-field"
-               :type="errors.has('roleCode') ? 'is-danger' : ''"
-               :message="errors.first('roleCode')">
-        <b-input name="roleCode" v-model="model.roleCode"
-                 v-validate="'required|max:64|alpha_underscore'" data-vv-as="角色编码"></b-input>
+      <b-field label="类型" class="required-field"
+               :type="errors.has('type') ? 'is-danger' : ''"
+               :message="errors.first('type')">
+        <b-select name="type" expanded v-model="model.type"
+                  v-validate="'required'" data-vv-as="类型">
+          <option
+              v-for="option in $dictList('roleType')"
+              :value="option.dictValue"
+              :key="option.dictValue">
+            {{ option.dictText }}
+          </option>
+        </b-select>
       </b-field>
       <b-field label="排序" class="required-field"
                :message="errors.first('sorted')"
@@ -46,7 +53,7 @@
     methods: {
       save() {
         const vm = this
-        vm.$updateModel(updateRole,this.$parent.$props.props.sysRoleId, resp => {
+        vm.$updateModel(updateRole,this.$parent.$props.props.roleId, resp => {
           vm.$parent.succeed('角色保存成功', resp)
         }, err => {
           vm.$parent.fail('角色保存失败', err)
@@ -55,7 +62,7 @@
     },
     created() {
       this.$parent.startLoading()
-      this.$getModel(getRole, this.$parent.$props.props.sysRoleId)
+      this.$getModel(getRole, this.$parent.$props.props.roleId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

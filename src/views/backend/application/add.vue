@@ -25,14 +25,6 @@
         <dict-radio-button :model="model" param-name="state" dict-code="applicationState"></dict-radio-button>
       </b-field>
 
-      <b-field class="field">
-        <b-switch v-model="model.onlyCompany"
-                  true-value="true"
-                  false-value="false"
-                  type="is-info">
-          仅限企业用户访问
-        </b-switch>
-      </b-field>
     </div>
     <div class="form-modal-card-footer">
       <button class="button is-primary" @click="save" :disabled='errors.any()'

@@ -48,13 +48,13 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <a @click="editModal(props.row.sysRoleId)">
+              <a @click="editModal(props.row.roleId)">
                 修改
               </a>
-              <a @click="onDelete(props.row.sysRoleId)">
+              <a @click="onDelete(props.row.roleId)">
                 删除
               </a>
-              <a @click="permitModal(props.row.sysRoleId)">
+              <a @click="permitModal(props.row.roleId)">
                 授权
               </a>
             </b-table-column>
@@ -109,7 +109,7 @@
           width: '30rem',
           component: EditForm,
           props: {
-            "sysRoleId": id
+            "roleId": id
           },
           onClose: () => { vm.loadAsyncData() }
         })
@@ -134,7 +134,7 @@
           width: '60rem',
           component: PermitForm,
           props: {
-            "sysRoleId": id
+            "roleId": id
           },
           onClose: () => { }
         })

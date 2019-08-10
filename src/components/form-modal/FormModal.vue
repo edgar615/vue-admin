@@ -12,10 +12,10 @@
             <b-icon icon="close" size="is-small"></b-icon>
           </a>
         </header>
-        <div class="notification form-modal-card-notification is-success" v-if="result === 1">
+        <div class="notification form-modal-card-notification is-success" v-show="result == 1">
           <p>{{response.message}}</p>
         </div>
-        <div class="notification form-modal-card-notification is-danger" v-if="result === 2">
+        <div class="notification form-modal-card-notification is-danger" v-show="result == 2">
           <p>{{response.message}}</p>
           <p v-if="response.err && response.err.msg">{{response.err.msg}}</p>
         </div>
@@ -29,12 +29,12 @@
           v-else-if="content && result === 0"
           v-html="content"/>
         <slot v-else/>
-        <div class="form-modal-card-footer" v-if="result === 1">
+        <div class="form-modal-card-footer" v-show="result == 1">
           <button class="button" @click="close()">
             <span>关闭</span>
           </button>
         </div>
-        <div class="form-modal-card-footer" v-if="showClose">
+        <div class="form-modal-card-footer" v-show="showClose">
           <button class="button" @click="cancel()">
             <span>关闭</span>
           </button>
@@ -75,7 +75,12 @@
         type: Function,
         default: () => {}
       },
-      response: Object
+      response: {
+        type: Object,
+        default: () => {
+          return {}
+        }
+      }
     },
     data () {
       return {

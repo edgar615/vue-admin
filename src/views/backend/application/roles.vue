@@ -55,11 +55,11 @@
       toggleWhitelist(role) {
         const vm = this
         if (role.whitelist) {
-          deleteRole(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+          deleteRole(this.$parent.$props.props.applicationId, role.roleId).then(response => {
             vm.loadAsyncData()
           })
         } else {
-          addRole(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+          addRole(this.$parent.$props.props.applicationId, role.roleId).then(response => {
             vm.loadAsyncData()
           })
         }
@@ -68,11 +68,11 @@
       toggleRegister(role) {
         const vm = this
         if (role.grantOnRegister) {
-          deleteRegister(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+          deleteRegister(this.$parent.$props.props.applicationId, role.roleId).then(response => {
             vm.loadAsyncData()
           })
         } else {
-          addRegister(this.$parent.$props.props.applicationId, role.sysRoleId).then(response => {
+          addRegister(this.$parent.$props.props.applicationId, role.roleId).then(response => {
             vm.loadAsyncData()
           })
         }
@@ -87,10 +87,10 @@
           vm.roles = roles.data
           vm.roles.forEach(function(item) {
             let whitelist = whiltelist.data.filter(function(role) {
-              return role.sysRoleId == item.sysRoleId
+              return role.roleId == item.roleId
             }).length > 0
             let grantOnRegister = whiltelist.data.filter(function(role) {
-              return role.sysRoleId == item.sysRoleId && role.grantOnRegister
+              return role.roleId == item.roleId && role.grantOnRegister
             }).length > 0
             item.whitelist = whitelist
             item.grantOnRegister = grantOnRegister
@@ -113,10 +113,10 @@
         vm.roles = roles.data
         vm.roles.forEach(function(item) {
           let whitelist = whiltelist.data.filter(function(role) {
-            return role.sysRoleId == item.sysRoleId
+            return role.roleId == item.roleId
           }).length > 0
           let grantOnRegister = whiltelist.data.filter(function(role) {
-            return role.sysRoleId == item.sysRoleId && role.grantOnRegister
+            return role.roleId == item.roleId && role.grantOnRegister
           }).length > 0
           item.whitelist = whitelist
           item.grantOnRegister = grantOnRegister

@@ -40,7 +40,7 @@
     methods: {
       save() {
         const vm = this
-        vm.$updateModel(updateRole,this.$parent.$props.props.sysRoleId, resp => {
+        vm.$updateModel(updateRole,this.$parent.$props.props.roleId, resp => {
           vm.$parent.succeed('角色保存成功', resp)
         }, err => {
           vm.$parent.fail('角色保存失败', err)
@@ -49,7 +49,7 @@
     },
     created() {
       this.$parent.startLoading()
-      this.$getModel(getRole, this.$parent.$props.props.sysRoleId)
+      this.$getModel(getRole, this.$parent.$props.props.roleId)
       .then(respone => {
         this.$parent.closeLoading()
       }).catch(err => {

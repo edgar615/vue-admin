@@ -5,12 +5,14 @@ const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API,
     timeout: 30000,
   headers: {
-    'X-Client-AppKey': 'f11a41dbfd05455cb1dd0e498de8d128',
     'X-Client-Name': process.env.VUE_APP_CLIENT_NAME}
 })
 
 // request拦截器
 service.interceptors.request.use(config => {
+  if (process.env.NODE_ENV == 'development') {
+    config.headers['X-Client-AppKey'] = process.env.VUE_APP_CLIENT_APP_KEY
+  }
   const token = store.getters.token
   if (token) {
     config.headers['Authorization'] = 'Bearer ' + token

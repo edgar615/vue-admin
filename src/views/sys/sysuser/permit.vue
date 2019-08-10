@@ -50,7 +50,7 @@
         const vm = this
         vm.saving = true
         vm.model.roles = vm.checkedRoles.map(function (item) {
-          return item.sysRoleId
+          return item.roleId
         })
         vm.$saveModel(savePermit, resp => {
           vm.$parent.succeed('用户授权成功', resp)
@@ -66,10 +66,10 @@
           getPermitted(vm.model.sysUserId).then(response2 => {
             vm.loading = false
             let roleIdList = response2.data.map(function (item) {
-              return item.sysRoleId
+              return item.roleId
             })
             vm.checkedRoles = vm.availableRoles.filter(function (item) {
-              return vm.$arrayContains(roleIdList, item.sysRoleId)
+              return vm.$arrayContains(roleIdList, item.roleId)
             })
           }).catch(err => {
             vm.loading = false

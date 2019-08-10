@@ -45,7 +45,7 @@
                   </b-table-column>
 
                   <b-table-column label="删除">
-                    <a @click="deletePermit(props.row.sysRoleId)">
+                    <a @click="deletePermit(props.row.roleId)">
                       删除
                     </a>
                   </b-table-column>

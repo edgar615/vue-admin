@@ -71,7 +71,7 @@
     },
     data() {
       return {
-        sysRoleId: this.$parent.$props.props.sysRoleId,
+        roleId: this.$parent.$props.props.roleId,
         saving: false,
         curMenu: '',
         firstCreated: 0,
@@ -134,7 +134,7 @@
           savedPermissions.push(item.sysPermissionId)
         })
         const permitModel = {
-          roleId: this.sysRoleId,
+          roleId: this.roleId,
           permissions: savedPermissions
         }
         permit(permitModel).then(response => {
@@ -148,7 +148,7 @@
       loadAsyncData() {
         this.$parent.startLoading()
         const vm = this
-        const id = this.sysRoleId
+        const id = this.roleId
         vm.permitOptions.checkedIds = []
         vm.permitTreeData = []
         vm.allPermissions = []

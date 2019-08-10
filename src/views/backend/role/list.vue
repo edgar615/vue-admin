@@ -34,19 +34,19 @@
           <header class="card-header">
             <div class="card-header-title">
               <div class="ml-3 buttons">
-                <button class="button m-1" @click="onAdd(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                <button class="button m-1" @click="onAdd(model.roleId)" :disabled="!model.roleId || deleting">
                   <span>新增子角色</span>
                 </button>
-                <button class="button m-1" @click="onEdit(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                <button class="button m-1" @click="onEdit(model.roleId)" :disabled="!model.roleId || deleting">
                   <span>修改角色</span>
                 </button>
                 <button class="button m-1 is-danger"
-                        @click="onDelete(model.sysRoleId)"
-                        :class="{'is-loading' : deleting}" :disabled="!model.sysRoleId">
+                        @click="onDelete(model.roleId)"
+                        :class="{'is-loading' : deleting}" :disabled="!model.roleId">
                   <span>删除</span>
                 </button>
                 <button class="button m-1"
-                        @click="onPermit(model.sysRoleId)" :disabled="!model.sysRoleId || deleting">
+                        @click="onPermit(model.roleId)" :disabled="!model.roleId || deleting">
                   <span>授权</span>
                 </button>
               </div>
@@ -56,8 +56,8 @@
             <b-field label="名称" horizontal class="static-field">
               <p class="control static-field">{{model.name}}</p>
             </b-field>
-            <b-field label="角色编码" horizontal class="static-field">
-              <p class="control static-field">{{model.roleCode}}</p>
+            <b-field label="类型" horizontal class="static-field">
+              <p class="control static-field">{{ $dictText('roleType',model.type) }}</p>
             </b-field>
             <b-field label="排序" horizontal class="static-field">
               <p class="control">{{model.sorted}}</p>
@@ -160,7 +160,7 @@
           width: '30rem',
           component: EditForm,
           props: {
-            "sysRoleId": id
+            "roleId": id
           },
           onClose: () => { vm.loadAsyncData() }
         })
@@ -172,7 +172,7 @@
           width: '60rem',
           component: PermitForm,
           props: {
-            "sysRoleId": id
+            "roleId": id
           },
           onClose: () => { }
         })

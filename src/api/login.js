@@ -2,7 +2,7 @@ import request from '@/utils/request'
 import requestNoMessage from '@/utils/requestNoMessage'
 
 export function login (username, password) {
-  return requestNoMessage.post('/auth/login', {
+  return requestNoMessage.post('/auth/login/password', {
     username: username,
     password: password
   })
