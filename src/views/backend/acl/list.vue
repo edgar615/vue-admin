@@ -5,13 +5,13 @@
       <div class="level-left">
         <PageTitle></PageTitle>
         <div class="level-item">
-          <b-select placeholder="公司类型" v-model="filters.companyType">
+          <b-select placeholder="角色" v-model="filters.roleId">
             <option value="">请选择</option>
             <option
-                v-for="option in $dictList('companyType')"
-                :value="option.dictValue"
-                :key="option.dictValue">
-              {{ option.dictText }}
+                v-for="option in roles"
+                :value="option.roleId"
+                :key="option.roleId">
+              {{ option.name }}
             </option>
           </b-select>
         </div>
@@ -61,8 +61,8 @@
 
           <template slot-scope="props">
 
-            <b-table-column field="companyType" label="公司类型">
-              {{ $dictText('companyType',props.row.companyType) }}
+            <b-table-column field="companyType" label="角色">
+              {{ props.row.roleName }}
             </b-table-column>
 
             <b-table-column field="resourceName" label="资源">
@@ -109,6 +109,7 @@
 
 <script>
   import {aclPage, deleteAcl} from '@/api/backend/acl'
+  import {roleList} from '@/api/user/role'
   import AddForm from '@/views/backend/acl/add.vue'
 
   export default {
@@ -117,7 +118,8 @@
         filters: {},
         pagination: {},
         loading: false,
-        deleting: false
+        deleting: false,
+        roles: []
       }
     },
     methods: {
@@ -137,9 +139,12 @@
         }
         return array.join(',')
       },
-      /*
-       * Load async data
-       */
+      loadRoles () {
+        const vm = this
+        roleList().then(data => {
+          vm.roles = data.data
+        })
+      },
       loadAsyncData (params) {
         this.$pageModelWithHistory(aclPage, params)
       },
@@ -168,6 +173,7 @@
     },
     created () {
       this.$fillParamFromHistory()
+      this.loadRoles()
       this.loadAsyncData()
     }
   }

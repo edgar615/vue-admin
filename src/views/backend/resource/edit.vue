@@ -12,11 +12,11 @@
         </p>
       </b-field>
 
-      <b-field label="权限范围" class="required-field"
+      <b-field label="权限值" class="required-field"
                :type="errors.has('permission') ? 'is-danger' : ''"
                :message="errors.first('permission')">
         <b-input name="permission" v-model="model.permission"
-                 v-validate="'required|max:64'" data-vv-as="权限范围"></b-input>
+                 v-validate="'required|max:64'" data-vv-as="权限值"></b-input>
       </b-field>
     </div>
     <div class="form-modal-card-footer">

@@ -1,22 +1,22 @@
 .navbar{
-  background: #2E363F;
+  background: #ffffff;
 
   &-item{
-    background-color: #2E363F;
-    color: #afb8c3 !important;
+    background-color: #ffffff;
+    color: #676c7b !important;
     &.is-active{
-      background-color: #f5f5f5 !important;
+      background-color: #ffffff !important;
       color: #363636 !important;
-      border-bottom-color: #00d1b2;
+      border-bottom-color: #716aca;
       border-bottom-style: solid;
       border-bottom-width: 3px;
-      color: #00d1b2;
+      color: #716aca;
       padding-bottom: calc(.5rem - 3px);
     }
     &:hover {
-      background-color: #f5f5f5 !important;
-      color: #363636 !important;
-      border-bottom-color: #00d1b2;
+      background-color: #ffffff !important;
+      color: #716aca !important;
+      border-bottom-color: #716aca;
       border-bottom-style: solid;
       border-bottom-width: 0.666667px;
     }
@@ -24,7 +24,7 @@
 
   .is--brand{
     &:hover {
-      background-color: #2E363F !important;
+      background-color: #ffffff !important;
     }
   }
 
@@ -38,25 +38,33 @@
   &-dropdown{
     .navbar-item{
       background-color: #fff;
-      color: #2E363F !important;
+      color: #676c7b !important;
+      &:hover {
+        color: #716aca !important;
+        background-color: #ffffff !important;
+        border-bottom-color: #ffffff;
+      }
     }
   }
 
   &-burger{
-    background-color: #2E363F !important;
+    background-color: #ffffff !important;
     border: 0;
     span{
-      background-color: #00d1b2;
+      background-color: #716aca;
     }
   }
 
   &-link{
-    color: #afb8c3 !important;
+    color: #676c7b !important;
     figure{
       img{
         border-radius: 50%;
         max-height: 2em;
       }
+    }
+    &:not(.is-arrowless)::after {
+      border-color: #676c7b
     }
   }
 

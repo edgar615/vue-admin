@@ -1,0 +1,222 @@
+.list-timeline-group {
+  margin:0 0 30px 0
+}
+.list-timeline-heading {
+  margin:0 0 18px 0;
+  font-weight:600;
+  font-size:1rem;
+  text-transform:uppercase
+}
+.list-timeline-items {
+  position:relative;
+  padding:0;
+  margin:0
+}
+.list-timeline-items:before {
+  position:absolute;
+  display:block;
+  content:'';
+  width:1px;
+  height:100%;
+  top:0;
+  bottom:0;
+  left:3px
+}
+.list-timeline-items .list-timeline-item {
+  position:relative;
+  display:table;
+  table-layout:fixed;
+  width:100%;
+  padding:6px 0;
+  margin:5px 0;
+}
+
+.list-timeline-items .list-timeline-item:first-child:before,
+.list-timeline-items .list-timeline-item:last-child:before {
+  background-color:#fff;
+  position:absolute;
+  display:block;
+  content:'';
+  width:1px;
+  height:50%;
+  top:0;
+  bottom:0;
+  left:3px
+}
+.list-timeline-items .list-timeline-item:last-child:before {
+  top:auto;
+  bottom:0
+}
+.list-timeline-items .list-timeline-item .list-timeline-badge {
+  text-align:left;
+  vertical-align:middle;
+  display:table-cell;
+  position:relative;
+  width:20px
+}
+.list-timeline-items .list-timeline-item .list-timeline-badge:before {
+  position:absolute;
+  display:block;
+  content:'';
+  width:7px;
+  height:7px;
+  left:0;
+  top:50%;
+  margin-top:-3.5px;
+  -webkit-border-radius:100%;
+  -moz-border-radius:100%;
+  -ms-border-radius:100%;
+  -o-border-radius:100%;
+  border-radius:100%
+}
+.list-timeline-items .list-timeline-item .list-timeline-icon {
+  text-align:left;
+  vertical-align:middle;
+  display:table-cell;
+  width:30px;
+  padding:0 5px 0 0;
+  line-height:0
+}
+//.list-timeline-items .list-timeline-item [class*=" la-"],
+//.list-timeline-items .list-timeline-item [class^=la-] {
+//  font-size:1.6rem
+//}
+//.list-timeline-items .list-timeline-item [class*=" fa-"],
+//.list-timeline-items .list-timeline-item [class^=fa-] {
+//  font-size:1.2rem
+//}
+//.list-timeline-items .list-timeline-item [class*=" flaticon-"],
+//.list-timeline-items .list-timeline-item [class^=flaticon-] {
+//  font-size:1.6rem
+//}
+.list-timeline-items .list-timeline-item .list-timeline-text {
+  display:table-cell;
+  text-align:left;
+  vertical-align:middle;
+  width:100%;
+  padding:0 5px 0 0;
+  font-size: 12px;
+}
+.list-timeline-items .list-timeline-item .list-timeline-text:hover {
+  text-decoration:none
+}
+.list-timeline-items .list-timeline-item .list-timeline-time {
+  display:table-cell;
+  text-align:right;
+  vertical-align:middle;
+  width:80px;
+  padding:0 7px 0 0;
+  font-size:.85rem
+}
+.list-timeline-items .list-timeline-item:first-child {
+  padding-top:0;
+  margin-top:0
+}
+.list-timeline-items .list-timeline-item:last-child {
+  padding-bottom:0;
+  margin-bottom:0
+}
+.list-timeline .list-timeline-items:before {
+  background-color:#ebedf2
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge:before {
+  background-color:#ebedf2
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--brand:before {
+  background-color:#716aca
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--metal:before {
+  background-color:#c4c5d6
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--light:before {
+  background-color:#fff
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--accent:before {
+  background-color:#00c5dc
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--focus:before {
+  background-color:#9816f4
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--primary:before {
+  background-color:#5867dd
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--success:before {
+  background-color:#34bfa3
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--info:before {
+  background-color:#36a3f7
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--warning:before {
+  background-color:#ffb822
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--danger:before {
+  background-color:#f4516c
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-icon {
+  color:#cfcedb
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-text {
+  color:#575962
+}
+.list-timeline .list-timeline-items .list-timeline-item .list-timeline-time {
+  color:#7b7e8a
+}
+.list-timeline .list-timeline-items .list-timeline-item:first-child:before,
+.list-timeline .list-timeline-items .list-timeline-item:last-child:before {
+  background-color:#fff
+}
+.list-timeline .list-timeline-items .list-timeline-item.list-timeline-item--read {
+  opacity:.5
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items:before {
+  background-color:#a1a4b1
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge:before {
+  background-color:#a1a4b1
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--brand:before {
+  background-color:#716aca
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--metal:before {
+  background-color:#c4c5d6
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--light:before {
+  background-color:#fff
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--accent:before {
+  background-color:#00c5dc
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--focus:before {
+  background-color:#9816f4
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--primary:before {
+  background-color:#5867dd
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--success:before {
+  background-color:#34bfa3
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--info:before {
+  background-color:#36a3f7
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--warning:before {
+  background-color:#ffb822
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-badge.list-timeline-badge--danger:before {
+  background-color:#f4516c
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-icon {
+  color:#dfdff1
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-text {
+  color:#fff
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item .list-timeline-time {
+  color:#8284a1
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item:first-child:before,
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item:last-child:before {
+  background-color:#333
+}
+.list-timeline.list-timeline--skin-dark .list-timeline-items .list-timeline-item.list-timeline-item--read {
+  opacity:.5
+}

@@ -63,7 +63,7 @@
     getSystem,
     getPermitted,
     permit
-  } from '@/api/sys/role'
+  } from '@/api/user/role'
 
   export default {
     components: {

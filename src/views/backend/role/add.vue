@@ -27,6 +27,14 @@
                  v-validate="'required|numeric|min_value:0|max_value:9999'" data-vv-as="排序">
         </b-input>
       </b-field>
+      <b-field class="field" message="数据角色，可以设置数据权限">
+        <b-switch v-model="model.dataRole"
+                  true-value="true"
+                  false-value="false"
+                  type="is-info">
+          数据角色
+        </b-switch>
+      </b-field>
     </div>
     <div class="form-modal-card-footer">
       <button class="button is-primary" @click="save" :disabled='errors.any()'
@@ -40,7 +48,7 @@
   </section>
 </template>
 <script>
-  import {addRole} from '@/api/sys/role'
+  import {addRole} from '@/api/user/role'
 
   export default {
     data() {

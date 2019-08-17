@@ -1,0 +1,59 @@
+.m-nav-sticky {
+  width: 40px;
+  position: fixed;
+  top: 35%;
+  right: 0;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  z-index: 110;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  -ms-border-radius: 8px 0 0 8px;
+  -o-border-radius: 8px 0 0 8px;
+  border-radius: 8px 0 0 8px;
+}
+
+.m-nav-sticky .m-nav-sticky-item {
+  margin: 0;
+  padding: 5px;
+  text-align: center
+}
+
+.m-nav-sticky .m-nav-sticky-item > a > i {
+  font-size: 1.4rem
+}
+
+.m-nav-sticky .m-nav-sticky-item > a:hover {
+  text-decoration: none
+}
+
+.m-nav-sticky {
+  background: #fff;
+  -webkit-box-shadow: 0 0 15px 1px rgba(69, 65, 78, .2);
+  -moz-box-shadow: 0 0 15px 1px rgba(69, 65, 78, .2);
+  box-shadow: 0 0 15px 1px rgba(69, 65, 78, .2)
+}
+
+.m-nav-sticky .m-nav-sticky-item > a > i {
+  color: #c1bfd0
+}
+
+.m-nav-sticky .m-nav-sticky-item > a:hover > i {
+  color: #837dd1
+}
+
+.m-nav-sticky.m-nav-sticky--skin-dark {
+  background: #555;
+  -webkit-box-shadow: 0 0 15px 1px rgba(69, 65, 78, .4);
+  -moz-box-shadow: 0 0 15px 1px rgba(69, 65, 78, .4);
+  box-shadow: 0 0 15px 1px rgba(69, 65, 78, .4)
+}
+
+.m-nav-sticky.m-nav-sticky--skin-dark .m-nav-sticky-item > a > i {
+  color: #f1f1f9
+}
+
+.m-nav-sticky.m-nav-sticky--skin-dark .m-nav-sticky-item > a:hover > i {
+  color: #837dd1
+}

@@ -5,7 +5,7 @@
                :type="errors.has('username') ? 'is-danger' : ''"
                :message="errors.first('username')">
         <b-input name="username" expanded v-model="model.username"
-                 v-validate="'required|max:60|min:3|alpha_underscore|remote:/sysuser/username-vertify'"  data-vv-as="用户名">
+                 v-validate="'required|max:60|min:3|alpha_underscore|remote:/user/username-vertify'"  data-vv-as="用户名">
         </b-input>
       </b-field>
       <b-field label="姓名" class="required-field"
@@ -45,7 +45,7 @@
   </section>
 </template>
 <script>
-  import { save } from '@/api/sys/sysuser';
+  import { save } from '@/api/user/user';
 
   export default {
     data () {

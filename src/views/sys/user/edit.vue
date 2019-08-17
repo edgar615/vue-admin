@@ -51,7 +51,7 @@
   </section>
 </template>
 <script>
-  import { get, update } from '@/api/sys/sysuser';
+  import { get, update } from '@/api/user/user';
   export default {
     data() {
     return {

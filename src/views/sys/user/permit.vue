@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import {getAvailableRole, getPermitted, savePermit} from '@/api/sys/sysuser';
+  import {getAvailableRole, getPermitted, savePermit} from '@/api/user/user';
   export default {
     data() {
       return {
@@ -63,7 +63,7 @@
         vm.loading = true
         getAvailableRole().then(response => {
           vm.availableRoles = response.data
-          getPermitted(vm.model.sysUserId).then(response2 => {
+          getPermitted(vm.model.userId).then(response2 => {
             vm.loading = false
             let roleIdList = response2.data.map(function (item) {
               return item.roleId
@@ -78,7 +78,7 @@
       }
     },
     created() {
-      this.model.sysUserId = this.$parent.$props.props.sysUserId
+      this.model.userId = this.$parent.$props.props.userId
       this.loadAsyncData()
     }
   }

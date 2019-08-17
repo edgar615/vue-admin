@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import {page, deleteRole} from '@/api/sys/role'
+  import {page, deleteRole} from '@/api/user/role'
   import AddForm from '@/views/sys/role/add.vue'
   import EditForm from '@/views/sys/role/edit.vue'
   import PermitForm from '@/views/backend/role/permit.vue'

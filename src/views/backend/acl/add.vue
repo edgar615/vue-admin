@@ -1,16 +1,17 @@
 <template>
   <section>
     <div class="form-modal-card-body">
-      <b-field label="公司类型" class="required-field"
-               :type="errors.has('companyType') ? 'is-danger' : ''"
-               :message="errors.first('companyType')">
-        <b-select name="companyType" expanded v-model="model.companyType"
-                  v-validate="'required'" data-vv-as="公司类型">
+      <b-field label="角色" class="required-field"
+               :type="errors.has('roleId') ? 'is-danger' : ''"
+               :message="errors.first('roleId')">
+        <b-select name="roleId" expanded v-model="model.roleId"
+                  v-validate="'required'" data-vv-as="角色">
+          <option value="">请选择</option>
           <option
-              v-for="option in $dictList('companyType')"
-              :value="option.dictValue"
-              :key="option.dictValue">
-            {{ option.dictText }}
+              v-for="option in roles"
+              :value="option.roleId"
+              :key="option.roleId">
+            {{ option.name }}
           </option>
         </b-select>
       </b-field>
@@ -108,6 +109,7 @@
 </template>
 <script>
   import {addAcl} from '@/api/backend/acl'
+  import {roleList} from '@/api/user/role'
   import BField from 'buefy/src/components/field/Field'
 
   export default {
@@ -116,10 +118,14 @@
       return {
         loading: false,
         saving: false,
+        roles: [],
         model: {
           operateTypeArray: []
         }
       }
+    },
+    created () {
+      this.loadRoles()
     },
     computed: {
       prohibitedResource () {
@@ -129,6 +135,12 @@
     methods: {
       back () {
         this.$router.back()
+      },
+      loadRoles () {
+        const vm = this
+        roleList().then(data => {
+          vm.roles = data.data
+        })
       },
       save () {
         const vm = this

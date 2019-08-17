@@ -62,6 +62,13 @@
             <b-field label="排序" horizontal class="static-field">
               <p class="control">{{model.sorted}}</p>
             </b-field>
+            <b-field label="数据角色" horizontal class="static-field">
+              <p class="control">
+            <span class="tag is-info">
+              {{ $boolText(model.dataRole) }}
+              </span>
+              </p>
+            </b-field>
           </div>
         </div>
       </div>
@@ -83,7 +90,7 @@
     roleTree,
     getRole,
     deleteRole
-  } from '@/api/sys/role'
+  } from '@/api/user/role'
 
   export default {
     components: {

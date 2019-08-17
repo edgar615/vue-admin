@@ -67,7 +67,7 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/sys/sysuser';
+  import {addRole, deleteRole, getAvailableRole, getPermitted} from '@/api/user/user';
 
   export default {
     components: {
@@ -117,7 +117,7 @@
         const roleId = item.id
         vm.$opConfirm('确定要授予这个角色吗?', () => {
           vm.deleting = true
-          addRole(this.sysUserId, roleId).then(response => {
+          addRole(this.userId, roleId).then(response => {
             vm.loadPermitted()
           })
         })
@@ -126,7 +126,7 @@
         const vm = this
         vm.$opConfirm('确定要取消这个角色吗?', () => {
           vm.deleting = true
-          deleteRole(this.sysUserId, roleId).then(response => {
+          deleteRole(this.userId, roleId).then(response => {
             vm.loadPermitted();
           })
         })
@@ -134,7 +134,7 @@
       loadPermitted () {
         const vm = this
         vm.loading = true
-        getPermitted(this.sysUserId).then(response => {
+        getPermitted(this.userId).then(response => {
           vm.loading = false
           vm.roles = response.data
         }).catch(err => {
@@ -150,7 +150,7 @@
       }
     },
     created() {
-      this.sysUserId = this.$parent.$props.props.sysUserId
+      this.userId = this.$parent.$props.props.userId
       this.loadAsyncData()
     }
   }

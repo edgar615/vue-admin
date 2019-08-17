@@ -86,13 +86,13 @@
             </b-table-column>
 
             <b-table-column label="操作">
-              <a @click="doLock(props.row.sysUserId)" v-show="props.row.state == 1">
+              <a @click="doLock(props.row.userId)" v-show="props.row.state == 1">
                 锁定
               </a>
-              <a @click="doUnLock(props.row.sysUserId)" v-show="props.row.state == 2">
+              <a @click="doUnLock(props.row.userId)" v-show="props.row.state == 2">
                 解锁
               </a>
-              <a @click="permitModal(props.row.sysUserId)">
+              <a @click="permitModal(props.row.userId)">
                 授权
               </a>
             </b-table-column>
@@ -109,9 +109,9 @@
 </template>
 
 <script>
-  import {page, lock, unLock} from '@/api/sys/sysuser'
-  import AddForm from '@/views/sys/sysuser/add.vue'
-  import PermitForm from '@/views/sys/sysuser/permit.vue'
+  import {page, lock, unLock} from '@/api/user/user'
+  import AddForm from '@/views/sys/user/add.vue'
+  import PermitForm from '@/views/sys/user/permit.vue'
 
   export default {
     data () {
@@ -171,7 +171,7 @@
           width: '30rem',
           component: PermitForm,
           props: {
-            sysUserId: id
+            userId: id
           },
           onClose: () => { vm.loadAsyncData() }
         })

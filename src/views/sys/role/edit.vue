@@ -27,7 +27,7 @@
   </section>
 </template>
 <script>
-  import {updateRole, getRole} from '@/api/sys/role'
+  import {updateRole, getRole} from '@/api/user/role'
 
   export default {
     data() {

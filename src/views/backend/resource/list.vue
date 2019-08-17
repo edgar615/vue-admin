@@ -55,7 +55,7 @@
               {{ props.row.httpUrl }}
             </b-table-column>
 
-            <b-table-column field="permission" label="权限范围">
+            <b-table-column field="permission" label="权限值">
               {{ props.row.permission }}
             </b-table-column>
 
