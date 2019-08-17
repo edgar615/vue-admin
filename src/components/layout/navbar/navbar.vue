@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-fixed-top is-white">
+  <nav class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a class="navbar-item is--brand">
         <img class="navbar-brand-logo" src="../../../assets/logo.png">
