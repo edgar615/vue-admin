@@ -1,9 +1,8 @@
 <template>
   <section>
-    <nav class="level page-title">
+    <nav class="level page-topbar">
       <!-- Left side -->
       <div class="level-left">
-        <PageTitle></PageTitle>
         <div class="level-item">
           <b-input v-model="filters.orderNo" placeholder="订单号"></b-input>
         </div>

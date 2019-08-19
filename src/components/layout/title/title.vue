@@ -1,23 +1,10 @@
 <template>
-    <section class="mt-3 mb-3">
-        <div class="level" v-if="title && title != ''">
-            <div class="level-left">
-                <div class="level-item">
-                    <div class="title is-size-4 has-text-primary">{{title}}</div>
-                </div>
-            </div>
+    <nav class="level page-title">
+        <!-- Left side -->
+        <div class="level-left">
+            <PageTitle></PageTitle>
         </div>
-        <div class="level" v-else>
-            <div class="level-left">
-                <div class="level-item">
-                    <div class="title is-size-4 has-text-primary">{{lastRouteName}}</div>
-                </div>
-            </div>
-        </div>
-        <div class="notification" v-if="description && description != ''">
-            {{description}}
-        </div>
-    </section>
+    </nav>
 </template>
 
 <script>

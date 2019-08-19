@@ -3,9 +3,9 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
-a {
+/*a {
   color: #00d1b2;
-}
+}*/
 
 .vertical-center {
   margin: 0;
@@ -24,26 +24,4 @@ a {
 
 .is-clipped {
   overflow:hidden!important
-}
-
-
-//边框
-.box-shadow {
-  box-shadow: 0 2px 3px #76839b, 0 0 0 1px #76839b;
-  box-size: border-box;
-}
-.border-1 {
-  border: 1px solid #76839b !important;
-}
-
-.border-2 {
-  border: 2px solid #76839b !important;
-}
-
-.border-3 {
-  border: 3px solid #76839b !important;
-}
-
-.border-bottom-3 {
-  border-bottom: 3px solid #76839b !important;
 }

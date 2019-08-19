@@ -1,7 +1,7 @@
 <template>
   <transition :name="animation">
     <div class="form-modal">
-      <div class="form-modal-background"></div>
+      <div class="form-modal-background" @click="cancel()"></div>
       <div class="form-modal-card" :style="{ maxWidth: newWidth}" data-simplebar>
         <b-loading :is-full-page="isFullPage" :active.sync="isLoading"></b-loading>
         <header class="form-modal-card-header">

@@ -1,5 +1,5 @@
 .app-content {
-  background-color: #f2f3f8;
+  background-color: #F6FAFB;
 }
 .is-fullheight {
   min-height: calc(100vh - 3.25rem - .75rem );
@@ -43,23 +43,37 @@
 .main-container{
   /*padding-top: 0.75rem;*/
   margin-top: 62px;
+  padding-left: 0;
 }
 
 .is-main-content{
   /*padding-top: 0.75rem;*/
   //background-color: #e1e1e1;
   width: 100%;
+  margin-left: 72px;
 }
 
-.is-main-content-no-submenu{
-  margin-left: 33px;
+.is-main-content-submenu{
+  width: 100%;
+  margin-left: 200px;
 }
+
 .page-title {
+  margin-left: 1rem;
   margin-top: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 3px solid #76839b;
+  margin-bottom: .5rem;
+  //border-bottom: 3px solid #76839b;
 }
 
 .page-title-text {
   color: $primary;
+}
+
+.level.page-topbar {
+  margin-bottom: 0.5rem;
+}
+
+.login-bg {
+  background-color: #F6FAFB;
+  height: 100vh;
 }

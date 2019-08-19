@@ -1,11 +1,8 @@
 <template>
   <section>
-    <nav class="level page-title">
+    <nav class="level page-topbar">
       <!-- Left side -->
       <div class="level-left">
-        <div class="level-item">
-          <PageTitle></PageTitle>
-        </div>
         <div class="level-item">
           <b-input v-model="filters.ipAddress" placeholder="ip地址"></b-input>
         </div>

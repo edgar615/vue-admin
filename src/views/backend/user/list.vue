@@ -1,9 +1,8 @@
 <template>
   <section>
-    <nav class="level page-title">
+    <nav class="level page-topbar">
       <!-- Left side -->
       <div class="level-left">
-        <PageTitle></PageTitle>
         <div class="level-item">
           <b-select placeholder="公司类型" v-model="filters.companyType">
             <option value="">请选择</option>

@@ -1,9 +1,8 @@
 <template>
   <section>
-    <nav class="level page-title">
+    <nav class="level page-topbar">
       <!-- Left side -->
       <div class="level-left">
-        <PageTitle></PageTitle>
         <div class="level-item">
           <b-select name="method" v-model="filters.method" placeholder="请求方法">
             <option value="GET">GET</option>

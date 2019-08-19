@@ -4,12 +4,13 @@
 //https://bulma.io/documentation/overview/variables/
 @import "./colors";
 
+$primary: #716aca;
 $pagination-current-background-color: $primary;
 $pagination-current-border-color: $primary;
 
 //如果将所有的颜色都打包，会导致CSS巨大，根据主题来选择不同的颜色打包
 $baseColors: (
-  //"primary":($active-color, findColorInvert($active-color)),
+  "primary":($primary, findColorInvert($primary)),
   "orange" : ($orange, $orange-invert),
 );
 $colors: map-merge($colors,$baseColors);

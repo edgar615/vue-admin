@@ -1,22 +1,25 @@
+$navbar-color: #716aca;
+$navbar-backgroud-color: #ffffff;
+
 .navbar{
-  background: #ffffff;
+  background: $navbar-backgroud-color;
 
   &-item{
-    background-color: #ffffff;
-    color: #676c7b !important;
+    background-color: $navbar-backgroud-color;
+    color: $navbar-color !important;
     &.is-active{
       background-color: #ffffff !important;
-      color: #363636 !important;
-      border-bottom-color: #716aca;
+      color: $navbar-color !important;
+      border-bottom-color: $navbar-color;
       border-bottom-style: solid;
       border-bottom-width: 3px;
-      color: #716aca;
+      color: $navbar-color;
       padding-bottom: calc(.5rem - 3px);
     }
     &:hover {
-      background-color: #ffffff !important;
-      color: #716aca !important;
-      border-bottom-color: #716aca;
+      background-color: $navbar-backgroud-color !important;
+      color: $navbar-color !important;
+      border-bottom-color: $navbar-color;
       border-bottom-style: solid;
       border-bottom-width: 0.666667px;
     }
@@ -24,7 +27,7 @@
 
   .is--brand{
     &:hover {
-      background-color: #ffffff !important;
+      background-color: $navbar-backgroud-color !important;
     }
   }
 
@@ -40,18 +43,18 @@
       background-color: #fff;
       color: #676c7b !important;
       &:hover {
-        color: #716aca !important;
-        background-color: #ffffff !important;
-        border-bottom-color: #ffffff;
+        color: $navbar-color !important;
+        background-color: $navbar-backgroud-color !important;
+        border-bottom-color: $navbar-backgroud-color;
       }
     }
   }
 
   &-burger{
-    background-color: #ffffff !important;
+    background-color: $navbar-backgroud-color !important;
     border: 0;
     span{
-      background-color: #716aca;
+      background-color: $navbar-color;
     }
   }
 

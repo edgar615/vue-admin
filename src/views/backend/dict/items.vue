@@ -1,7 +1,6 @@
 <template>
   <section>
-    <nav class="level page-title">
-      <PageTitle></PageTitle>
+    <nav class="level page-topbar">
       <div class="level-right">
         <div class="level-item">
           <div class="level-item">

@@ -1,7 +1,12 @@
 <template>
   <div class="main-content">
     <!--<RouterBreadcrumb></RouterBreadcrumb>-->
-    <Title class="pl-3 pr-3"></Title>
+    <nav class="level page-title">
+      <!-- Left side -->
+      <div class="level-left">
+        <PageTitle></PageTitle>
+      </div>
+    </nav>
     <router-view class="pl-3 pr-3"></router-view>
   </div>
 </template>

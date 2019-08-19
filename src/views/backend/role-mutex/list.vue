@@ -1,9 +1,8 @@
 <template>
   <section>
-    <nav class="level page-title">
+    <nav class="level page-topbar">
       <!-- Left side -->
       <div class="level-left">
-        <PageTitle></PageTitle>
       </div>
     </nav>
     <button class="arrow-paginate left" data-state="disabled"><i></i><i></i></button>

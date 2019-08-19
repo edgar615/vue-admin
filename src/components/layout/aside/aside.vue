@@ -1,34 +1,53 @@
 <template>
-  <div class="aside-menu">
-    <ul>
-      <li v-for="system in systems" :class="activeSystem == system.subsystemId ? 'active' : '' ">
-        <router-link :to="{path: system.path}">
-          <b-icon :icon="system.icon" size="is-small" class="menu-icon"></b-icon>
-          <span class="menu-text">{{system.name}}</span>
-        </router-link>
-      </li>
-    </ul>
-
-    <ul class="menu-bottom">
-      <li>
-        <a href="#">
-          <b-icon icon="power" size="is-small" class="menu-icon"></b-icon>
-          <span class="menu-text">退出</span>
-
-        </a>
-      </li>
-    </ul>
+  <!-- BEGIN: Aside Menu -->
+  <div class="app-aside fade nav-dropdown aside-bg folded" style="display: none;"
+       aria-hidden="true">
+    <div class="navside">
+      <div data-flex="" class="hide-scroll">
+        <nav class="scroll nav-stacked nav-color">
+          <ul class="nav">
+            <li v-for="system in systems" :class="activeSystem == system.subsystemId ? 'active' : '' ">
+              <router-link :to="{path: system.path}">
+                <span class="nav-caret" v-show="system.permissions && system.permissions.length > 0">
+                  <b-icon icon="chevron-down"></b-icon>
+                </span>
+                <b-icon :icon="system.icon" class="nav-icon no-fade"></b-icon>
+                <span class="nav-text">{{system.name}}</span>
+              </router-link>
+              <ul class="nav-sub nav-mega">
+                <li v-for="level1 in system.permissions" :key="level1.sysPermissionId">
+                  <router-link  :to="{path: level1.path}" v-show="level1.type == 1 && !level1.hidden">
+                    <span class="nav-text">{{level1.name}}</span>
+                  </router-link>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav-bottom is-medium">
+            <li>
+              <a href="#">
+                <figure class="image is-48x48">
+                  <img class="is-rounded" src="https://via.placeholder.com/48">
+                </figure>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
+  <!-- END: Aside Menu -->
 </template>
 <script>
+
   export default {
-    data () {
+    data() {
       return {
         clickedModule: 0
       }
     },
     methods: {
-      onClickModule (moduleId) {
+      onClickModule(moduleId) {
         if (this.clickedModule === moduleId) {
           this.clickedModule = 0
         } else {
@@ -41,7 +60,7 @@
     // 只有当message发生变化时才会触发reverseMessage，而methods方式是每次进入页面都要执行该方法，
     // 但是在利用实时信息时，比如显示当前进入页面的时间，必须用methods方式
     computed: {
-      systems () {
+      systems() {
         let systemArray = this.$store.getters.systemList()
         const activeSystem = this.$store.getters.activeSystem
         if (systemArray.length > 0 && (activeSystem === undefined || activeSystem === '')) {
@@ -49,11 +68,11 @@
         }
         return systemArray
       },
-      activeSystem () {
+      activeSystem() {
         var active = this.$store.getters.activeSystem
         return active
       },
-      level1List () {
+      level1List() {
         const menus = this.$store.getters.menuList()
         return menus.filter(function (item, index, array) {
           return item.level === 1

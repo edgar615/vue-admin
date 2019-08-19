@@ -43,7 +43,7 @@
 
       <div class="box">
         <!-- Main container -->
-        <nav class="level">
+        <nav class="level page-topbar">
           <!-- Left side -->
           <div class="level-left">
             <div class="level-item">

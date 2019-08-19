@@ -1,103 +1,703 @@
-.aside-menu {
-  background: #2c2e3e;
-  border-right: 1px solid #3490DC;
-  position: absolute;
-  top: 3.45rem;
-  bottom: 0;
-  left: 0;
-  width: 45px;
-  overflow: hidden;
-  -webkit-transition: width .2s linear;
-  transition: width .2s linear;
-  -webkit-transform: translateZ(0) scale(1, 1);
+$aside-backgroud-color: $primary;
+$aside-color: findColorInvert($aside-backgroud-color);
+$aside-submenu-backgroud-color: #16202f;
+$aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
+
+.app-aside, .app-fixed .app {
+  height: 100%
+}
+
+.app-aside {
   opacity: 1;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  &:hover, &.expanded {
-    width: 180px;
-    overflow: hidden;
-    opacity: 1;
-    z-index: 9999;
+  overflow: hidden;
+  position: fixed !important;
+  z-index: 30;
+  margin-top: 70px;
+}
+
+.app-aside > * {
+  position: fixed;
+  top: 3.25rem + .75rem;
+  bottom: 0;
+  width: inherit;
+  overflow: hidden
+}
+
+@media (min-width: 992px) {
+  .app-aside {
+    display: block !important
   }
-  ul {
-    outline: 0;
-    margin: 7px 0;
-    padding: 0;
-    &.menu-bottom {
-      background-color: #00d1b2;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
+
+  .app-aside, .app-aside .scroll {
+    width: 12.5rem
   }
-  li {
-    position: relative;
-    display: block;
-    width: 180px;
-    outline: 0;
-    margin: 0;
-    padding: 0;
-    a {
-      position: relative;
-      width: 180px;
-      display: table;
-      border-collapse: collapse;
-      border-spacing: 0;
-      color: #ffffff;
-      font-size: 14px;
-      text-decoration: none;
-      -webkit-transform: translateZ(0) scale(1, 1);
-      -webkit-transition: all .14s linear;
-      transition: all .14s linear;
-      font-family: 'Strait', sans-serif;
-      border-top: 1px solid #2E363F;
-    }
-    &:hover, &.active {
-      a {
-        color: #fff;
-        background-color: #00d1b2;
-        text-shadow: 0px 0px 0px;
-      }
-    }
+
+  .app-aside.lg:not(.folded), .app-aside.lg:not(.folded) .scroll {
+    width: 13.75rem
   }
-  .menu-icon {
-    position: relative;
-    display: table-cell;
-    width: 55px;
-    height: 36px;
-    text-align: center;
-    vertical-align:middle;
-    font-size: 20px;
+
+  .app-aside.lg:not(.hide) ~ .app-content {
+    margin-left: 13.75rem;
+    left: 13.75rem
   }
-  .menu-text {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    width: 160px;
+
+  .app-aside.sm:not(.folded), .app-aside.sm:not(.folded) .scroll {
+    width: 11.25rem
+  }
+
+  .app-aside.sm:not(.hide) ~ .app-content {
+    margin-left: 11.25rem;
+    left: 11.25rem
+  }
+
+  .app-aside.folded {
+    width: 4.5rem
+  }
+
+  .app-aside.folded:not(.hide) ~ .app-content {
+    margin-left: 4.5rem;
+    left: 4.5rem
+  }
+
+  .app-aside.folded.md {
+    width: 5.5rem
+  }
+
+  .app-aside.folded.md:not(.hide) ~ .app-content {
+    margin-left: 5.5rem;
+    left: 5.5rem
+  }
+
+  .app-aside:not(.hide) ~ .app-content {
+    margin-left: 12.5rem;
+    left: 12.5rem
+  }
+
+  .app-header.hidden-lg-up ~ .app-body {
+    padding-top: 0
+  }
+
+  .hide-scroll {
+    width: auto;
+    margin-right: -17px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch
   }
 }
 
-.sub-menu {
-  background-color:#DAE1E7;
-  color: findColorInvert(#DAE1E7);
-  height: calc(100vh - 3.25rem - .7rem );
-  overflow-y: auto;
-  margin-left: 33px;
-  width: 130px;
-  a {
-    color: $black;
+@media (max-width: 991px) {
+  .app-aside {
+    -webkit-transition: -webkit-transform opacity .15s linear;
+    -moz-transition: -moz-transform opacity .15s linear;
+    -o-transition: -o-transform opacity .15s linear;
+    transition: transform opacity .15s linear;
+    width: 100%;
+    position: fixed;
+    z-index: 30;
+    display: none;
+    background-color: transparent !important
+  }
+
+  .app-aside > * {
+    -webkit-transition: -webkit-transform .4s cubic-bezier(.25, .8, .25, 1);
+    -moz-transition: -moz-transform .4s cubic-bezier(.25, .8, .25, 1);
+    -o-transition: -o-transform .4s cubic-bezier(.25, .8, .25, 1);
+    transition: transform .4s cubic-bezier(.25, .8, .25, 1);
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    width: 304px
+  }
+
+  .app-aside.in > div {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+@media (min-width: 768px) {
+  .app-header.hidden-md-up ~ .app-body {
+    padding-top: 0
+  }
+}
+
+@media (min-width: 544px) {
+  .app-header.hidden-sm-up ~ .app-body {
+    padding-top: 0
+  }
+}
+
+@media print {
+  .app-aside, .app-footer, .app-header, .switcher {
+    display: none
+  }
+}
+
+@media (min-width: 992px) {
+
+  .app-aside {
+    left: inherit;
+    right: auto
+  }
+
+  .app-aside.lg ~ .app-content .app-header {
+    width: 45rem
+  }
+
+  .app-aside.sm ~ .app-content .app-header {
+    width: 47.5rem
+  }
+
+  .app-aside.folded ~ .app-content .app-header {
+    width: 54.25rem
+  }
+
+  .app-aside.folded.md ~ .app-content .app-header {
+    width: 53.25rem
+  }
+
+  .app-aside ~ .app-content .app-header {
+    width: 46.25rem
+  }
+
+  .app-header {
+    left: inherit;
+    right: auto;
+    margin-left: 0;
+    width: 58.75rem
+  }
+}
+
+@media (min-width: 1200px) {
+  .app-aside.lg ~ .app-content .app-header {
+    width: 57.5rem
+  }
+
+  .app-aside.sm ~ .app-content .app-header {
+    width: 60rem
+  }
+
+  .app-aside.folded ~ .app-content .app-header {
+    width: 66.75rem
+  }
+
+  .app-aside.folded.md ~ .app-content .app-header {
+    width: 65.75rem
+  }
+
+  .app-aside ~ .app-content .app-header {
+    width: 58.75rem
+  }
+
+  .app-header {
+    width: 71.25rem
+  }
+}
+
+.navside [data-flex], .navside [flex] {
+  margin-top: 1rem;
+  overflow: auto
+}
+
+.navside .nav li {
+  border: inherit;
+  position: relative
+}
+
+.navside .nav li li a {
+  line-height: 1.75rem;
+  padding-left: 4rem
+}
+
+.navside .nav li li a .nav-text {
+  padding: .3125rem 0
+}
+
+.navside .nav li li li a {
+  padding-left: 5rem
+}
+
+.navside .nav li li li li a {
+  padding-left: 6rem
+}
+
+.navside .nav li a, .navside .nav-header {
+  padding: 0 1rem;
+  line-height: 2rem
+}
+
+.navside .nav li a {
+  display: block;
+  position: relative
+}
+
+.navside .nav li a::after {
+  display: table;
+  clear: both
+}
+
+.navside .nav li.active > a .nav-caret i {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+
+.navside .nav-header span {
+  opacity: .4
+}
+
+.navside .nav-header:focus, .navside .nav-header:hover {
+  background-color: transparent !important
+}
+
+.navside .nav-header:after {
+  display: none
+}
+
+.nav-text, .nav-text small, .nav-text span {
+  display: block
+}
+
+.navside .navbar-brand {
+  float: none;
+  margin-right: 0
+}
+
+.nav-text {
+  line-height: 1.125rem;
+  padding: .4375rem 0
+}
+
+.navside .nav-text {
+  opacity: .65
+}
+
+.navside .active > a > .nav-text, .navside a:focus > .nav-text, .navside a:hover > .nav-text {
+  opacity: 1
+}
+
+.navbar .nav-text {
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 0
+}
+
+.navbar .nav-text span.text-xs {
+  margin-top: .25rem
+}
+
+.nav-icon {
+  float: left;
+  margin-right: 1rem;
+  top: 0;
+  width: 2rem;
+  border-radius: 100%;
+  display: inline-block
+}
+
+.nav-icon i {
+  position: relative;
+  line-height: 1
+}
+
+.nav-icon i img, .nav-icon i svg {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
+}
+
+.navside .nav-icon {
+  opacity: .35
+}
+
+.nav-icon.no-fade {
+  opacity: 1 !important
+}
+
+.navside .active > a > .nav-icon, .navside a:focus > .nav-icon, .navside a:hover > .nav-icon {
+  opacity: 1
+}
+
+.navbar .nav-icon {
+  margin-right: .5rem
+}
+
+.nav-caret {
+  float: right;
+  margin-left: 1rem;
+  opacity: .45
+}
+
+.nav-caret i {
+  -webkit-transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out
+}
+
+.navbar .nav-caret {
+  margin-left: .5rem
+}
+
+.nav-sub {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .4s ease 0s;
+  transition: max-height .4s ease 0s
+}
+
+.nav-sub li > a:hover {
+  background-color: #ffffff;
+}
+
+.active > .nav-sub {
+  max-height: 50rem
+}
+
+.nav-border .nav > li.active:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left-color: inherit;
+  border-left-width: 3px;
+  border-left-style: solid
+}
+
+.nav-color .nav > li > a > * {
+  position: relative
+}
+
+.nav-color .nav > li > a:before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: 1rem;
+  width: 2rem;
+  height: 100%;
+  border: 1rem solid transparent;
+  -webkit-transition: width .4s ease 0s;
+  transition: width .4s ease 0s
+}
+
+.nav-color .nav > li > a[class*=b-]:before, .nav-color .nav > li > a[class*=" b-"]:before, .ui-icon:after {
+  border-color: inherit
+}
+
+.nav-color .nav > li.active > a:before {
+  width: 100%;
+  left: 0;
+  right: 0
+}
+
+.nav-stacked .nav > li:not(.nav-header) {
+  padding: .25rem .5rem
+}
+
+.nav-stacked .nav > li > a {
+  line-height: 1.75rem;
+  padding: 0 .5rem
+}
+
+.nav-stacked .nav > li > a .nav-icon {
+  width: 1.75rem
+}
+
+.nav-stacked .nav > li > a .nav-text {
+  padding: .3125rem 0;
+  padding-top: .125rem;
+}
+
+.nav-stacked .nav > li > a:before {
+  left: .5rem;
+  border-radius: 3px;
+  width: 1.75rem;
+  border-width: .875rem
+}
+
+.nav-stacked .nav > li li a {
+  padding-left: 3.25rem
+}
+
+.nav-stacked .nav > li li li a {
+  padding-left: 4.25rem
+}
+
+.nav-stacked .nav > li li li li a {
+  padding-left: 5.25rem
+}
+
+.nav-stacked .nav li a {
+  border-radius: 3px
+}
+
+.nav-light .nav .nav-icon i img, .nav-light .nav .nav-icon i svg {
+  display: block
+}
+
+.nav-center .nav-icon {
+  display: none
+}
+
+.nav-center .nav-caret {
+  position: absolute;
+  right: 10px
+}
+
+.nav-center .nav a {
+  padding-left: 16px !important
+}
+
+@media (min-width: 992px) {
+  .folded .nav > li > a, .folded .navbar {
+    padding-left: 4px;
+    padding-right: 4px
+  }
+
+  .folded, .folded .scroll {
+    width: 4.5rem
+  }
+
+  .folded.md, .folded.md .scroll {
+    width: 5.5rem
+  }
+
+  .folded .hidden-folded, .folded .nav li ul {
+    display: none
+  }
+
+  .folded .nav > li > a {
+    text-align: center
+  }
+
+  .folded .nav > li > a .nav-caret, .folded .nav > li > a .nav-text {
+    display: none;
+    padding-left: 4px;
+    padding-right: 4px
+  }
+
+  .folded .nav > li > a .nav-icon {
+    float: none;
+    line-height: 2.5rem;
+    margin: 0;
+    position: relative;
+    width: 2.5rem
+  }
+
+  .folded .nav > li > a:before {
+    left: 0
+  }
+
+  .folded .nav li.active {
+    background: 0 0
+  }
+
+  .folded.show-text .nav > li > a .nav-text {
     display: block;
-    padding: 10px 12px 10px 14px;
-    text-decoration: none;
+    margin-top: -18px;
+    font-size: .85em
+  }
+
+  .folded .navbar {
+    text-align: center
+  }
+
+  .folded .navbar-brand {
+    float: none;
+    margin: 0
+  }
+
+  .folded .nav-color .nav > li > a:before {
+    width: 100%;
+    border-width: 1.25rem;
+    background-image: linear-gradient(to right bottom, transparent, rgba(0, 0, 0, .15))
+  }
+
+  .folded.nav-expand {
+    -webkit-transition: width .4s cubic-bezier(.25, .8, .25, 1);
+    transition: width .4s cubic-bezier(.25, .8, .25, 1);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute
+  }
+
+  .folded.nav-expand.active, .folded.nav-expand.active .scroll, .folded.nav-expand:focus, .folded.nav-expand:focus .scroll, .folded.nav-expand:hover, .folded.nav-expand:hover .scroll {
+    width: 12.5rem !important
+  }
+
+  .folded.nav-expand.active > *, .folded.nav-expand:focus > *, .folded.nav-expand:hover > * {
+    width: 12.5rem
+  }
+
+  .folded.nav-expand.active .hidden-folded, .folded.nav-expand:focus .hidden-folded, .folded.nav-expand:hover .hidden-folded {
+    display: block
+  }
+
+  .folded.nav-expand.active .hidden-folded.inline, .folded.nav-expand:focus .hidden-folded.inline, .folded.nav-expand:hover .hidden-folded.inline {
+    display: inline-block
+  }
+
+  .folded.nav-expand.active .nav li ul, .folded.nav-expand:focus .nav li ul, .folded.nav-expand:hover .nav li ul {
+    display: inherit
+  }
+
+  .folded.nav-dropdown .nav > li:focus > ul, .folded.nav-dropdown .nav > li:hover > ul, .folded.nav-expand.active .nav > li > a .nav-caret, .folded.nav-expand.active .nav > li > a .nav-text, .folded.nav-expand:focus .nav > li > a .nav-caret, .folded.nav-expand:focus .nav > li > a .nav-text, .folded.nav-expand:hover .nav > li > a .nav-caret, .folded.nav-expand:hover .nav > li > a .nav-text, .nav-dropup .nav > li:focus > ul, .nav-dropup .nav > li:hover > ul {
+    display: block
+  }
+
+  .folded.nav-expand.active .nav > li > a, .folded.nav-expand:focus .nav > li > a, .folded.nav-expand:hover .nav > li > a {
+    width: auto !important;
+    margin: 0 !important;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+
+  .folded.nav-expand.active .nav > li > a .nav-text, .folded.nav-expand:focus .nav > li > a .nav-text, .folded.nav-expand:hover .nav > li > a .nav-text {
+    font-size: 1em;
+    margin: 0
+  }
+
+  .folded.nav-expand.active .nav > li > a .nav-icon, .folded.nav-expand:focus .nav > li > a .nav-icon, .folded.nav-expand:hover .nav > li > a .nav-icon {
+    float: left;
+    width: 2rem;
+    line-height: 2rem;
+    margin-left: 0;
+    margin-right: 1rem
+  }
+
+  .folded.nav-expand.active .navbar, .folded.nav-expand:focus .navbar, .folded.nav-expand:hover .navbar {
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+
+  .folded.nav-expand.active .nav-color .nav > li > a:before, .folded.nav-expand:focus .nav-color .nav > li > a:before, .folded.nav-expand:hover .nav-color .nav > li > a:before {
+    width: 2rem;
+    left: 1rem;
+    border-width: 1rem
+  }
+
+  .folded.nav-expand.active .nav-color .nav > li.active > a:before, .folded.nav-expand:focus .nav-color .nav > li.active > a:before, .folded.nav-expand:hover .nav-color .nav > li.active > a:before {
+    width: 100%;
+    left: 0
+  }
+
+  .folded.nav-expand.active .nav-stacked .nav > li > a, .folded.nav-expand:focus .nav-stacked .nav > li > a, .folded.nav-expand:hover .nav-stacked .nav > li > a {
+    padding: 0 .5rem
+  }
+
+  .folded.nav-expand.active .nav-stacked .nav > li > a:before, .folded.nav-expand:focus .nav-stacked .nav > li > a:before, .folded.nav-expand:hover .nav-stacked .nav > li > a:before {
+    left: .5rem;
+    width: 1.75rem;
+    border-width: .875rem
+  }
+
+  .folded.nav-expand.active .nav-stacked .nav > li > a .nav-icon, .folded.nav-expand:focus .nav-stacked .nav > li > a .nav-icon, .folded.nav-expand:hover .nav-stacked .nav > li > a .nav-icon {
+    width: 1.75rem;
+    line-height: 1.75rem
+  }
+
+  .folded.nav-dropdown, .folded.nav-dropdown .row-body, .folded.nav-dropdown [data-flex], .folded.nav-dropdown [flex], .folded.nav-dropdown > *, .nav-dropup, .nav-dropup .row-body, .nav-dropup [data-flex], .nav-dropup [flex], .nav-dropup > * {
+    overflow: visible !important
+  }
+
+  .folded.nav-dropdown .nav > li > ul, .nav-dropup .nav > li > ul {
+    display: none;
+    overflow: visible;
+    max-height: 999px;
+    color: $aside-submenu-color;
+    background-color: $aside-submenu-backgroud-color;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+    position: absolute;
+    left: 100%;
+    top: 0;
+    padding: 6px 0
+  }
+
+  .folded.nav-dropdown .nav > li > ul a, .nav-dropup .nav > li > ul a {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    min-width: 160px
+  }
+
+  .folded.nav-dropdown .nav > li > ul li.active ul, .nav-dropup .nav > li > ul li.active ul {
+    display: block
+  }
+
+  .folded.nav-dropdown .nav > li > ul .nav-text, .nav-dropup .nav > li > ul .nav-text {
+    padding: 6px 0 !important
+  }
+
+  .folded.nav-dropdown .nav > li .nav-mega, .nav-dropup .nav > li .nav-mega {
+    width: 320px
+  }
+
+  .folded.nav-dropdown .nav > li .nav-mega > li, .nav-dropup .nav > li .nav-mega > li {
+    width: 160px;
+    float: left
+  }
+
+  .folded.nav-dropdown .nav > li .nav-mega.nav-mega-3, .nav-dropup .nav > li .nav-mega.nav-mega-3 {
+    width: 480px
+  }
+}
+
+.aside-bg {
+  background-color: $aside-backgroud-color;
+  color: $aside-color;
+}
+
+.aside-bg .navside {
+  background-color: $aside-backgroud-color;
+  color: $aside-color;
+  a {
+    color: #ffffff;
     &:hover {
-      background-color: #ccc;
-    }
-    &.active {
       background-color: #ffffff;
-      color: $black;
+      color: $aside-backgroud-color;
+    }
+  }
+  li {
+    &.active {
+      a {
+        background-color: #ffffff;
+        color: $aside-backgroud-color;
+        &:hover {
+          background-color: #ffffff;
+          color: $aside-backgroud-color;
+        }
+      }
+      .nav-sub {
+        background-color: $aside-backgroud-color;
+        a {
+          background-color: $aside-backgroud-color;
+          color: $aside-color;
+          &:hover {
+            background-color: #ffffff;
+            color: $aside-backgroud-color;
+          }
+        }
+      }
+    }
+  }
+  ul.nav-bottom {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    li {
+      border-width: 0;
+      a {
+        &:hover {
+          background-color:$aside-backgroud-color;
+          border-width: 0;
+        }
+      }
     }
   }
 }
