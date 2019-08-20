@@ -392,7 +392,8 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
 }
 
 .nav-stacked .nav > li:not(.nav-header) {
-  padding: .25rem .5rem
+  //padding: .25rem .5rem
+  padding-bottom: .5rem;
 }
 
 .nav-stacked .nav > li > a {
@@ -482,7 +483,12 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
     line-height: 2.5rem;
     margin: 0;
     position: relative;
-    width: 2.5rem
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-block;
+    padding: 5px;
+    //background-color: $white;
+    //color: $aside-backgroud-color;
   }
 
   .folded .nav > li > a:before {
@@ -658,12 +664,76 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
   color: $aside-color;
   a {
     color: #ffffff;
+    opacity: .9;
     &:hover {
-      background-color: #ffffff;
-      color: $aside-backgroud-color;
+      opacity: 1;
     }
   }
   li {
+    padding: 0 0 0 10px;
+    .nav-sub {
+      background-color: $aside-backgroud-color;
+      a {
+        background-color: $aside-backgroud-color;
+        color: $aside-submenu-color;
+        &:hover {
+          color: $aside-backgroud-color;
+        }
+      }
+    }
+    &.active {
+      a {
+        opacity: 1;
+        background-color: #ffffff;
+        color: $aside-backgroud-color;
+        border-radius: 60px 0 0 60px;
+        &:hover {
+          background-color: #ffffff;
+          color: $aside-backgroud-color;
+          border-radius: 60px 0 0 60px;
+        }
+      }
+      .nav-sub {
+        background-color: $aside-backgroud-color;
+        a {
+          background-color: $aside-backgroud-color;
+          color: $aside-submenu-color;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  ul.nav-bottom {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    margin-bottom: .5rem;
+    li {
+      border-width: 0;
+      a {
+        &:hover {
+          background-color:$aside-backgroud-color;
+          border-width: 0;
+        }
+      }
+    }
+  }
+}
+
+.aside-bg.folded .navside {
+  li {
+    .nav-sub {
+      background-color: $aside-submenu-backgroud-color;
+      a {
+        background-color: $aside-submenu-backgroud-color;
+        color: $aside-submenu-color;
+        &:hover {
+          color: $aside-backgroud-color;
+        }
+      }
+    }
     &.active {
       a {
         background-color: #ffffff;
@@ -674,28 +744,13 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
         }
       }
       .nav-sub {
-        background-color: $aside-backgroud-color;
+        background-color: $aside-submenu-backgroud-color;
         a {
-          background-color: $aside-backgroud-color;
-          color: $aside-color;
+          background-color: $aside-submenu-backgroud-color;
+          color: $aside-submenu-color;
           &:hover {
-            background-color: #ffffff;
             color: $aside-backgroud-color;
           }
-        }
-      }
-    }
-  }
-  ul.nav-bottom {
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    li {
-      border-width: 0;
-      a {
-        &:hover {
-          background-color:$aside-backgroud-color;
-          border-width: 0;
         }
       }
     }

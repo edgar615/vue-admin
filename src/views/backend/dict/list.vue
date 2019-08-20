@@ -29,6 +29,7 @@
       </div>
     </nav>
     <div class="card">
+      <span class="arrow top bg-primary"></span>
       <div class="card-content">
 
         <b-table

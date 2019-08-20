@@ -1,5 +1,5 @@
 .app-content {
-  background-color: #F6FAFB;
+  background-color: $grey-50;
 }
 .is-fullheight {
   min-height: calc(100vh - 3.25rem - .75rem );
@@ -8,7 +8,7 @@
   flex-direction: row;
   justify-content: stretch;
   padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  //padding-right: 0.75rem;
 }
 .is-fullheight .is-main-content {
   /*overflow-y: auto;
@@ -58,19 +58,26 @@
   margin-left: 200px;
 }
 
-.page-title {
-  margin-left: 1rem;
+.level.page-title {
+  margin-left: 0;
   margin-top: 1rem;
-  margin-bottom: .5rem;
-  //border-bottom: 3px solid #76839b;
+  margin-bottom: 1rem;
+  background: $grey-200;
+}
+
+.content-header {
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-right: 0rem;
+  padding-bottom: 1rem;
+  border-bottom-color: $primary;
+  border-width:0 0 .05rem 0;
+  border-style:solid;
+  background: $grey-50;
 }
 
 .page-title-text {
   color: $primary;
-}
-
-.level.page-topbar {
-  margin-bottom: 0.5rem;
 }
 
 .login-bg {

@@ -1,8 +1,11 @@
-$navbar-color: #716aca;
+$navbar-color: $primary;
 $navbar-backgroud-color: #ffffff;
 
 .navbar{
   background: $navbar-backgroud-color;
+  border-bottom-color: $primary;
+  border-width:0 0 .05rem 0;
+  border-style:solid;
 
   &-item{
     background-color: $navbar-backgroud-color;

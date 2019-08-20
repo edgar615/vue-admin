@@ -14,8 +14,8 @@
                 <b-icon :icon="system.icon" class="nav-icon no-fade"></b-icon>
                 <span class="nav-text">{{system.name}}</span>
               </router-link>
-              <ul class="nav-sub nav-mega">
-                <li v-for="level1 in system.permissions" :key="level1.sysPermissionId">
+              <ul :class="calSubMenuClass(system)">
+                <li v-for="level1 in system.permissions" :key="level1.sysPermissionId" :class="activeLevel1 == level1.sysPermissionId ? 'active' : '' ">
                   <router-link  :to="{path: level1.path}" v-show="level1.type == 1 && !level1.hidden">
                     <span class="nav-text">{{level1.name}}</span>
                   </router-link>
@@ -53,6 +53,17 @@
         } else {
           this.clickedModule = moduleId
         }
+      },
+      calSubMenuClass(system) {
+        if (!system.permissions) {
+          return "nav-sub"
+        } else if (system.permissions.length > 15) {
+          return 'nav-sub nav-mega nav-mega-3'
+        } else if (system.permissions.length > 10) {
+          return 'nav-sub nav-mega'
+        } else {
+          return 'nav-sub'
+        }
       }
     },
     // computed计算属性的方式在用属性时不用加(),而methods方式在使用时要像方法一样去用，必须加().
@@ -71,6 +82,9 @@
       activeSystem() {
         var active = this.$store.getters.activeSystem
         return active
+      },
+      activeLevel1 () {
+        return this.$store.getters.activeLevel1
       },
       level1List() {
         const menus = this.$store.getters.menuList()

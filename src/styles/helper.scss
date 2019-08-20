@@ -215,15 +215,15 @@
 
 /*text*/
 a.primary:hover {
-  background-color: #41b9b9
+  background-color: $primary
 }
 
 a.text-primary:hover {
-  color: #41b9b9
+  color: $primary
 }
 
 .text-primary, .text-primary-hover .active > a, .text-primary-hover a:hover {
-  color: #4BC0C0 !important
+  color: $primary !important
 }
 
 a.warn:hover {
@@ -251,79 +251,79 @@ a.text-accent:hover {
 }
 
 a.success:hover {
-  background-color: #1fa765
+  background-color: $success
 }
 
 a.text-success:hover {
-  color: #1fa765
+  color: $success
 }
 
 .text-success, .text-success-hover .active > a, .text-success-hover a:hover {
-  color: #22b66e !important
+  color: $success !important
 }
 
 a.info:hover {
-  background-color: #108ef2
+  background-color: $info
 }
 
 a.text-info:hover {
-  color: #108ef2
+  color: $info
 }
 
 .text-info, .text-info-hover .active > a, .text-info-hover a:hover {
-  color: #2196f3 !important
+  color: $info !important
 }
 
 a.warning:hover {
-  background-color: #e7b60c
+  background-color: $warning
 }
 
 a.text-warning:hover {
-  color: #e7b60c
+  color: $warning
 }
 
 .text-warning, .text-warning-hover .active > a, .text-warning-hover a:hover {
-  color: #f3c111 !important
+  color: $warning !important
 }
 
 a.danger:hover {
-  background-color: #e61033
+  background-color: $danger
 }
 
 a.text-danger:hover {
-  color: #e61033
+  color: $danger
 }
 
 .text-danger, .text-danger-hover .active > a, .text-danger-hover a:hover {
-  color: #ef193c !important
+  color: $danger !important
 }
 
 a.dark:hover {
-  background-color: #202c3d
+  background-color: $dark
 }
 
 a.text-dark:hover {
-  color: #202c3d
+  color: $dark
 }
 
 .text-dark, .text-dark-hover .active > a, .text-dark-hover a:hover {
-  color: #263449 !important
+  color: $dark !important
 }
 
 a.blue:hover {
-  background-color: #108ef2
+  background-color: $info
 }
 
 a.text-blue:hover {
-  color: #108ef2
+  color: $info
 }
 
 .text-blue, .text-blue-hover .active > a, .text-blue-hover a:hover {
-  color: #2196f3 !important
+  color: $info !important
 }
 
 .text-white {
-  color: #fff !important
+  color: $white !important
 }
 
 .text-white-lt {
@@ -335,7 +335,7 @@ a.text-blue:hover {
 }
 
 .text-black {
-  color: #000
+  color: $black
 }
 
 .text-black-lt {
@@ -627,263 +627,223 @@ a.text-muted:focus, a.text-muted:hover {
 }
 
 .b-primary {
-  border-color: #4BC0C0
+  border-color: $primary
 }
 
 .b-t-primary {
-  border-top-color: #4BC0C0
+  border-top-color: $primary
 }
 
 .b-r-primary {
-  border-right-color: #4BC0C0
+  border-right-color: $primary
 }
 
 .b-b-primary {
-  border-bottom-color: #4BC0C0
+  border-bottom-color: $primary
 }
 
 .b-l-primary {
-  border-left-color: #4BC0C0
-}
-
-.b-accent {
-  border-color: #00d2ff
-}
-
-.b-t-accent {
-  border-top-color: #00d2ff
-}
-
-.b-r-accent {
-  border-right-color: #00d2ff
-}
-
-.b-b-accent {
-  border-bottom-color: #00d2ff
-}
-
-.b-l-accent {
-  border-left-color: #00d2ff
-}
-
-.b-warn {
-  border-color: #b07cdd
-}
-
-.b-t-warn {
-  border-top-color: #b07cdd
-}
-
-.b-r-warn {
-  border-right-color: #b07cdd
-}
-
-.b-b-warn {
-  border-bottom-color: #b07cdd
-}
-
-.b-l-warn {
-  border-left-color: #b07cdd
+  border-left-color: $primary
 }
 
 .b-success {
-  border-color: #22b66e
+  border-color: $success
 }
 
 .b-t-success {
-  border-top-color: #22b66e
+  border-top-color: $success
 }
 
 .b-r-success {
-  border-right-color: #22b66e
+  border-right-color: $success
 }
 
 .b-b-success {
-  border-bottom-color: #22b66e
+  border-bottom-color: $success
 }
 
 .b-l-success {
-  border-left-color: #22b66e
+  border-left-color: $success
 }
 
 .b-info {
-  border-color: #2196f3
+  border-color: $info
 }
 
 .b-t-info {
-  border-top-color: #2196f3
+  border-top-color: $info
 }
 
 .b-r-info {
-  border-right-color: #2196f3
+  border-right-color: $info
 }
 
 .b-b-info {
-  border-bottom-color: #2196f3
+  border-bottom-color: $info
 }
 
 .b-l-info {
-  border-left-color: #2196f3
+  border-left-color: $info
 }
 
 .b-warning {
-  border-color: #f3c111
+  border-color: $warning
 }
 
 .b-t-warning {
-  border-top-color: #f3c111
+  border-top-color: $warning
 }
 
 .b-r-warning {
-  border-right-color: #f3c111
+  border-right-color: $warning
 }
 
 .b-b-warning {
-  border-bottom-color: #f3c111
+  border-bottom-color: $warning
 }
 
 .b-l-warning {
-  border-left-color: #f3c111
+  border-left-color: $warning
 }
 
 .b-danger {
-  border-color: #ef193c
+  border-color: $danger
 }
 
 .b-t-danger {
-  border-top-color: #ef193c
+  border-top-color: $danger
 }
 
 .b-r-danger {
-  border-right-color: #ef193c
+  border-right-color: $danger
 }
 
 .b-b-danger {
-  border-bottom-color: #ef193c
+  border-bottom-color: $danger
 }
 
 .b-l-danger {
-  border-left-color: #ef193c
+  border-left-color: $danger
 }
 
 .b-light {
-  border-color: #F6FAFB
+  border-color: $light
 }
 
 .b-t-light {
-  border-top-color: #F6FAFB
+  border-top-color: $light
 }
 
 .b-r-light {
-  border-right-color: #F6FAFB
+  border-right-color: $light
 }
 
 .b-b-light {
-  border-bottom-color: #F6FAFB
+  border-bottom-color: $light
 }
 
 .b-l-light {
-  border-left-color: #F6FAFB
+  border-left-color: $light
 }
 
 .b-grey {
-  border-color: #354255
+  border-color: $grey
 }
 
 .b-t-grey {
-  border-top-color: #354255
+  border-top-color: $grey
 }
 
 .b-r-grey {
-  border-right-color: #354255
+  border-right-color: $grey
 }
 
 .b-b-grey {
-  border-bottom-color: #354255
+  border-bottom-color: $grey
 }
 
 .b-l-grey {
-  border-left-color: #354255
+  border-left-color: $grey
 }
 
 .b-dark {
-  border-color: #263449
+  border-color: $dark
 }
 
 .b-t-dark {
-  border-top-color: #263449
+  border-top-color: $dark
 }
 
 .b-r-dark {
-  border-right-color: #263449
+  border-right-color: $dark
 }
 
 .b-b-dark {
-  border-bottom-color: #263449
+  border-bottom-color: $dark
 }
 
 .b-l-dark {
-  border-left-color: #263449
+  border-left-color: $dark
 }
 
 .b-black {
-  border-color: #16202f
+  border-color: $black
 }
 
 .b-t-black {
-  border-top-color: #16202f
+  border-top-color: $black
 }
 
 .b-r-black {
-  border-right-color: #16202f
+  border-right-color: $black
 }
 
 .b-b-black {
-  border-bottom-color: #16202f
+  border-bottom-color: $black
 }
 
 .b-l-black {
-  border-left-color: #16202f
+  border-left-color: $black
 }
 
 .b-white {
-  border-color: #fff
+  border-color: $white
 }
 
 .b-t-white {
-  border-top-color: #fff
+  border-top-color: $white
 }
 
 .b-r-white {
-  border-right-color: #fff
+  border-right-color: $white
 }
 
 .b-b-white {
-  border-bottom-color: #fff
+  border-bottom-color: $white
 }
 
 .b-l-white {
-  border-left-color: #fff
+  border-left-color: $white
 }
 
 .b-blue {
-  border-color: #2196f3
+  border-color: $info
 }
 
 .b-t-blue {
-  border-top-color: #2196f3
+  border-top-color: $info
 }
 
 .b-r-blue {
-  border-right-color: #2196f3
+  border-right-color: $info
 }
 
 .b-b-blue {
-  border-bottom-color: #2196f3
+  border-bottom-color: $info
 }
 
 .b-l-blue {
-  border-left-color: #2196f3
+  border-left-color: $info
 }
 
 .b-default {
