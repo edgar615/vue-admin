@@ -1,5 +1,6 @@
 .app-content {
   background-color: $grey-50;
+  //color: #86939e;
 }
 .is-fullheight {
   min-height: calc(100vh - 3.25rem - .75rem );
@@ -50,12 +51,11 @@
   /*padding-top: 0.75rem;*/
   //background-color: #e1e1e1;
   width: 100%;
-  margin-left: 72px;
+  margin-left: 200px;
 }
 
-.is-main-content-submenu{
-  width: 100%;
-  margin-left: 200px;
+.is-main-content-folded {
+  margin-left: 72px;
 }
 
 .level.page-topbar {

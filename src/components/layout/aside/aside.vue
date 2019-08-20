@@ -1,6 +1,6 @@
 <template>
   <!-- BEGIN: Aside Menu -->
-  <div class="app-aside fade nav-dropdown aside-bg folded" style="display: none;"
+  <div class="app-aside fade nav-dropdown aside-bg" :class="showFolderAside ? 'folded' : ''" style="display: none;"
        aria-hidden="true">
     <div class="navside">
       <div data-flex="" class="hide-scroll">
@@ -71,6 +71,9 @@
     // 只有当message发生变化时才会触发reverseMessage，而methods方式是每次进入页面都要执行该方法，
     // 但是在利用实时信息时，比如显示当前进入页面的时间，必须用methods方式
     computed: {
+      showFolderAside() {
+        return this.$store.getters.showFolderAside
+      },
       systems() {
         let systemArray = this.$store.getters.systemList()
         const activeSystem = this.$store.getters.activeSystem

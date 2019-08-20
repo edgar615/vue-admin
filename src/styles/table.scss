@@ -1,1 +1,58 @@
-//$table-striped-row-even-background-color: #dcdee0
+$table-row-even-hover-background-color: #f5f8fa;
+$table-text-color: #86939e;
+
+.table {
+  background-color: $white;
+  color: $table-text-color;
+  a {
+    color: $table-text-color;
+  }
+  //td, th {
+  //  border: #86939e;
+  //}
+  thead {
+    background-color: $white;
+    td, th {
+      color: $table-text-color;
+    }
+  }
+  tfoot {
+    background-color: $white;
+    td, th {
+      color: $table-text-color;
+    }
+  }
+  &.is-hoverable {
+    tbody {
+      tr:not(.is-selected) {
+        &:hover {
+          background-color: $indigo-50;
+        }
+      }
+    }
+    &.is-striped {
+      tbody {
+        tr:not(.is-selected) {
+          &:hover {
+            background-color: $indigo-50;
+          }
+          &:nth-child(even) {
+            background-color: $table-row-even-hover-background-color;
+          }
+        }
+      }
+    }
+  }
+  &.is-striped {
+    tbody {
+      tr:not(.is-selected) {
+        &:nth-child(even) {
+          background-color: $table-row-even-hover-background-color;
+        }
+      }
+    }
+  }
+
+
+
+}

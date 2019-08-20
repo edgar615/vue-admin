@@ -4,7 +4,7 @@
     <!-- Main container -->
     <div class="is-fullheight main-container">
         <Aside></Aside>
-      <div class="is-main-content is-paddingless">
+      <div class="is-main-content is-paddingless" :class="showFolderAside ? 'is-main-content-folded' : ''">
         <PageTitle></PageTitle>
         <router-view class="pl-3 pr-3"></router-view>
       </div>
@@ -18,6 +18,11 @@
   export default {
     data () {
       return {}
+    },
+    computed: {
+      showFolderAside() {
+        return this.$store.getters.showFolderAside
+      },
     },
     components: {
       Navbar, Aside

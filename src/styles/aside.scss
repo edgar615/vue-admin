@@ -682,6 +682,9 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
       }
     }
     &.active {
+      //border-right-color: $aside-backgroud-color;
+      //border-width:0 0.1rem 0 0rem;
+      //border-style:solid;
       a {
         opacity: 1;
         background-color: #ffffff;

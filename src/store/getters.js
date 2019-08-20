@@ -3,6 +3,7 @@ const getters = {
   region: state => state.region.data,
   token: state => state.user.token,
   user: state => state.permission.user,
+  showFolderAside: state => state.appScreen.showFolderAside,
   screenWidth: state => state.appScreen.screenWidth,
   activeSystem: state => state.permission.activeSystem,
   activeLevel1: state => state.permission.activeLevel1Menu,

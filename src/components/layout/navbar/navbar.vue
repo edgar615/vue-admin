@@ -13,6 +13,11 @@
     </div>
 
     <div id="navMenu" class="navbar-menu" :class="menuToggle ? 'is-active' : ''">
+      <div class="navbar-start">
+        <a class="navbar-item" @click="toggleAside">
+          <b-icon icon="view-headline"></b-icon>
+        </a>
+      </div>
       <div class="navbar-end">
         <a class="navbar-item">
           <span>{{user.fullname}}，您好</span>
@@ -77,7 +82,8 @@
     data() {
       return {
         burgerToggle: false,
-        menuToggle: false
+        menuToggle: false,
+        showFolderAside: this.$store.getters.showFolderAside
       }
     },
     methods: {
@@ -90,6 +96,10 @@
       burgerClick() {
         this.burgerToggle = !this.burgerToggle
         this.menuToggle = !this.menuToggle
+      },
+      toggleAside() {
+        this.showFolderAside = !this.showFolderAside
+        this.$store.dispatch('changeShowFolderAside', {showFolderAside: this.showFolderAside})
       }
     },
     computed: {
