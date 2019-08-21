@@ -6,7 +6,7 @@
         <Aside></Aside>
       <div class="is-main-content is-paddingless" :class="showFolderAside ? 'is-main-content-folded' : ''">
         <PageTitle></PageTitle>
-        <router-view class="pl-3 pr-3"></router-view>
+        <router-view></router-view>
       </div>
     </div>
   </div>

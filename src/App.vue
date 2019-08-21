@@ -44,21 +44,21 @@
       </template>
     </notifications>
 
-    <ul class="m-nav-sticky" style="margin-top: 30px;">
+    <ul class="nav-sticky" style="margin-top: 30px;">
       <!--
-      <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Showcase" data-placement="left">
+      <li class="nav-sticky__item" data-toggle="m-tooltip" title="Showcase" data-placement="left">
         <a href="">
           <i class="la la-eye"></i>
         </a>
       </li>
-      <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pre-sale Chat" data-placement="left">
+      <li class="nav-sticky__item" data-toggle="m-tooltip" title="Pre-sale Chat" data-placement="left">
         <a href="" >
           <i class="la la-comments-o"></i>
         </a>
       </li>
       -->
 
-      <li class="m-nav-sticky-item">
+      <li class="nav-sticky-item">
         <b-tooltip label="购物车"
                    position="is-left"
                    animated>
@@ -68,7 +68,7 @@
         </b-tooltip>
 
       </li>
-      <li class="m-nav-sticky-item">
+      <li class="nav-sticky-item">
         <b-tooltip label="帮助文档"
                    position="is-left"
                    animated>
