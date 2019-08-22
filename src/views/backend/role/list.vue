@@ -1,79 +1,73 @@
 <template>
-  <section class="page-content">
-    <div class="columns is-full-content">
-      <div class="column is-one-fifth">
-        <div class="box-content1 notification is-primary no-radius" data-simplebar>
-            <b-loading :is-full-page="isFullPage" :active.sync="isRoleLoading"></b-loading>
-            <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
-                      @handle="itemClick"></vue-tree>
-        </div>
+  <section>
+    <ul class="page-nav page-nav-material">
+    </ul>
+    <div class="columns is-fixed-full-content mt-1">
+      <div class="column is-offset-one-fifth is-one-fifth bg-blue-grey-50 page-content-part is-paddingless">
+          <b-loading :is-full-page="isFullPage" :active.sync="isRoleLoading"></b-loading>
+          <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
+                    @handle="itemClick"></vue-tree>
       </div>
-      <div class="column ml-2" v-show="addRole">
-        <div class="card box-content1">
-          <header class="card-header">
-            <div class="card-header-title">
-              <div class="ml-3 buttons">
+      <div class="column is-one-fifth bg-blue-grey-50 page-content-part is-paddingless" v-show="addRole">
+        <nav class="level bg-white p-2 m-1">
+          <div class="level-left">
+            <div class="level-item">
+              <p class="control ml-1">
                 <button class="button m-1" @click="onAdd(-1)">
                   <span>新增角色</span>
                 </button>
-              </div>
+              </p>
             </div>
-          </header>
-        </div>
+          </div>
+        </nav>
       </div>
-      <div class="column ml-2" v-show="viewRole">
-        <div class="card box-content1">
-          <b-loading :is-full-page="isFullPage" :active.sync="ifViewLoading"></b-loading>
-          <header class="card-header">
-            <div class="card-header-title">
-              <div class="ml-3 buttons">
-                <button class="button m-1" @click="onAdd(model.roleId)" :disabled="!model.roleId || deleting">
-                  <span>新增子角色</span>
-                </button>
-                <button class="button m-1" @click="onEdit(model.roleId)" :disabled="!model.roleId || deleting">
-                  <span>修改角色</span>
-                </button>
-                <button class="button m-1 is-danger"
-                        @click="onDelete(model.roleId)"
-                        :class="{'is-loading' : deleting}" :disabled="!model.roleId">
-                  <span>删除</span>
-                </button>
-                <button class="button m-1"
-                        @click="onPermit(model.roleId)" :disabled="!model.roleId || deleting">
-                  <span>授权</span>
-                </button>
-              </div>
-            </div>
-          </header>
-          <div class="card-content">
-            <b-field label="名称" horizontal class="static-field">
-              <p class="control static-field">{{model.name}}</p>
-            </b-field>
-            <b-field label="类型" horizontal class="static-field">
-              <p class="control static-field">{{ $dictText('roleType',model.type) }}</p>
-            </b-field>
-            <b-field label="排序" horizontal class="static-field">
-              <p class="control">{{model.sorted}}</p>
-            </b-field>
-            <b-field label="数据角色" horizontal class="static-field">
-              <p class="control">
+      <div class="column is-one-fifth bg-blue-grey-50 page-content-part is-paddingless" v-show="viewRole">
+        <b-loading :is-full-page="isFullPage" :active.sync="ifViewLoading"></b-loading>
+        <nav class="level bg-white p-2 m-1">
+        <div class="level-left">
+          <div class="level-item">
+            <p class="control">
+              <button class="button m-1" @click="onAdd(model.roleId)" :disabled="!model.roleId || deleting">
+                <span>新增子角色</span>
+              </button>
+              <button class="button m-1" @click="onEdit(model.roleId)" :disabled="!model.roleId || deleting">
+                <span>修改角色</span>
+              </button>
+              <button class="button m-1 is-danger"
+                      @click="onDelete(model.roleId)"
+                      :class="{'is-loading' : deleting}" :disabled="!model.roleId">
+                <span>删除</span>
+              </button>
+              <button class="button m-1"
+                      @click="onPermit(model.roleId)" :disabled="!model.roleId || deleting">
+                <span>授权</span>
+              </button>
+            </p>
+          </div>
+        </div>
+        </nav>
+        <div class="">
+          <b-field label="名称" horizontal class="static-field">
+            <p class="control static-field">{{model.name}}</p>
+          </b-field>
+          <b-field label="类型" horizontal class="static-field">
+            <p class="control static-field">{{ $dictText('roleType',model.type) }}</p>
+          </b-field>
+          <b-field label="排序" horizontal class="static-field">
+            <p class="control">{{model.sorted}}</p>
+          </b-field>
+          <b-field label="数据角色" horizontal class="static-field">
+            <p class="control">
             <span class="tag is-info">
               {{ $boolText(model.dataRole) }}
               </span>
-              </p>
-            </b-field>
-          </div>
+            </p>
+          </b-field>
         </div>
       </div>
     </div>
   </section>
 </template>
-<style scoped>
-  .box-content1 {
-    height: 600px;
-    overflow: auto;
-  }
-</style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
   import AddForm from '@/views/backend/role/add.vue'
