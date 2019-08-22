@@ -6,8 +6,8 @@
         <Aside></Aside>
       <div class="is-main-content is-paddingless" :class="showFolderAside ? 'is-main-content-folded' : ''">
         <PageTitle></PageTitle>
-        <PageNav></PageNav>
-        <router-view></router-view>
+        <PageNav v-show="showLevel2Menu"></PageNav>
+        <router-view class="pr-3 pl-3"></router-view>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
         const menu = this.$store.getters.currentLevel1Menu()
         if (menu && menu.children) {
           menu.children.forEach(function (item) {
-            if (!item.hidden) {
+            if (!item.hidden && !item.acquiescent) {
               showLevel2 = true
             }
           })

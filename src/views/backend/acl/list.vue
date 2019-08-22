@@ -1,6 +1,6 @@
 <template>
   <section>
-    <nav class="level page-content-top">
+    <nav class="level page-content-top bg-white">
       <!-- Left side -->
       <div class="level-left">
         <div class="level-item">

@@ -1,5 +1,5 @@
 <template>
-  <section class="page-content">
+  <section>
       <nav class="level page-content-top">
         <!-- Left side -->
         <div class="level-left">
