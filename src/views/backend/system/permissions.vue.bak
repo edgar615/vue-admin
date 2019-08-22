@@ -180,7 +180,7 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import {menuList, getMenu, addMenu, deleteMenu, updateMenu} from '@/api/backend/system'
+  import {menuTree, getMenu, addMenu, deleteMenu, updateMenu} from '@/api/backend/system'
 
   export default {
     components: {
@@ -285,7 +285,7 @@
         vm.loading = true
         this.addMenu = false
         this.viewMenu = false
-        menuList(this.$route.params.id).then(response => {
+        menuTree(this.$route.params.id).then(response => {
           const data = {
             id: -1,
             name: '根目录',

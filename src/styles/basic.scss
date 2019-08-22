@@ -7,14 +7,6 @@ body{
   color: #00d1b2;
 }*/
 
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 .is-noscroll {
   //position:fixed;
   overflow:hidden;
@@ -24,4 +16,28 @@ body{
 
 .is-clipped {
   overflow:hidden!important
+}
+
+
+.login-bg {
+  background-color: #F6FAFB;
+  height: 100vh;
+}
+
+list-unstyled {
+  padding-left: 0;
+  list-style: none
+}
+
+.list-inline {
+  padding-left: 0;
+  list-style: none
+}
+
+.list-inline-item {
+  display: inline-block
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: .5rem
 }

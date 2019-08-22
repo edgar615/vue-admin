@@ -1,13 +1,17 @@
-.v-m {
-  vertical-align: middle !important
+
+.v-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
-.v-t {
-  vertical-align: top !important
-}
-
-.v-b {
-  vertical-align: bottom !important
+.v-h-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .w-8 {
@@ -827,23 +831,23 @@ a.text-muted:focus, a.text-muted:hover {
 }
 
 .b-blue {
-  border-color: $info
+  border-color: $blue
 }
 
 .b-t-blue {
-  border-top-color: $info
+  border-top-color: $blue
 }
 
 .b-r-blue {
-  border-right-color: $info
+  border-right-color: $blue
 }
 
 .b-b-blue {
-  border-bottom-color: $info
+  border-bottom-color: $blue
 }
 
 .b-l-blue {
-  border-left-color: $info
+  border-left-color: $blue
 }
 
 .b-default {
@@ -880,6 +884,10 @@ a.text-muted:focus, a.text-muted:hover {
 
 .no-b-l {
   border-left-width: 0
+}
+
+.b-solid {
+  border-style: solid !important
 }
 
 .b-dashed {

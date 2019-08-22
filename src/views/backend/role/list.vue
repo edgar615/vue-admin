@@ -1,8 +1,8 @@
 <template>
-  <section>
+  <section class="page-content">
     <div class="columns is-full-content">
       <div class="column is-one-fifth">
-        <div class="box-content1 notification is-primary" data-simplebar>
+        <div class="box-content1 notification is-primary no-radius" data-simplebar>
             <b-loading :is-full-page="isFullPage" :active.sync="isRoleLoading"></b-loading>
             <vue-tree v-model="checkedIds" :tree-data="treeData" :options="options"
                       @handle="itemClick"></vue-tree>

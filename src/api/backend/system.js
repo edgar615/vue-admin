@@ -7,6 +7,13 @@ export function systemPage (params) {
   return request.get('/system/page', {params: params})
 }
 
+export function systemList (params) {
+  if (!params) {
+    params = {}
+  }
+  return request.get('/system', {params: params})
+}
+
 export function getSystem (id) {
   return request.get('/system/' + id)
 }
@@ -27,8 +34,12 @@ export function batchDeleteSystem (ids) {
   return request.delete('/system', {data: {ids: ids}})
 }
 
-export function menuList (id) {
+export function menuTree (id) {
   return request.get('/permission/tree', {params: {systemId: id}})
+}
+
+export function menuList (id) {
+  return request.get('/permission', {params: {systemId: id}})
 }
 
 export function getMenu (id) {

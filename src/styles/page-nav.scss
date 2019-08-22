@@ -1,4 +1,4 @@
-$page-nav-background-color: #fff;
+$page-nav-background-color: $blue-grey-50;
 $page-nav-color: $primary;
 $page-nav-active-border-color: $primary;
 $page-nav-hover-border-color: #4ea9e0;
@@ -22,6 +22,7 @@ $page-nav-hover-border-color: #4ea9e0;
 }
 .page-nav-material {
   background-color: $page-nav-background-color;
+  //border-bottom:1px solid $page-nav-active-border-color;
   li {
     position:relative;
     .page-nav-link.active {

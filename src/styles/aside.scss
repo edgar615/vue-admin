@@ -1,7 +1,13 @@
 $aside-backgroud-color: $primary;
-$aside-color: findColorInvert($aside-backgroud-color);
+$aside-color: #fff;
 $aside-submenu-backgroud-color: #16202f;
 $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
+$aside-active-backgroud-color: #fff;
+$aside-active-color: $primary;
+$aside-hover-backgroud-color: #fff;
+$aside-hover-color: $primary;
+$aside-submenu-active-backgroud-color: $aside-backgroud-color;
+$aside-submenu-active-color: $aside-color;
 
 .app-aside, .app-fixed .app {
   height: 100%
@@ -662,8 +668,9 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
 .aside-bg .navside {
   background-color: $aside-backgroud-color;
   color: $aside-color;
+  box-shadow: 0 0 6px rgba(0,0,0,.1) !important;
   a {
-    color: #ffffff;
+    color: $aside-color;
     opacity: .9;
     &:hover {
       opacity: 1;
@@ -687,12 +694,12 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
       //border-style:solid;
       a {
         opacity: 1;
-        background-color: #ffffff;
-        color: $aside-backgroud-color;
+        background-color: $aside-active-backgroud-color;
+        color: $aside-active-color;
         border-radius: 60px 0 0 60px;
         &:hover {
-          background-color: #ffffff;
-          color: $aside-backgroud-color;
+          background-color: $aside-hover-backgroud-color;
+          color: $aside-hover-color;
           border-radius: 60px 0 0 60px;
         }
       }
@@ -700,7 +707,7 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
         background-color: $aside-backgroud-color;
         a {
           background-color: $aside-backgroud-color;
-          color: $aside-submenu-color;
+          color: $aside-submenu-active-color;
           &:hover {
             opacity: 1;
           }
@@ -739,11 +746,11 @@ $aside-submenu-color: findColorInvert($aside-submenu-backgroud-color);
     }
     &.active {
       a {
-        background-color: #ffffff;
-        color: $aside-backgroud-color;
+        background-color: $aside-active-backgroud-color;
+        color: $aside-active-color;
         &:hover {
-          background-color: #ffffff;
-          color: $aside-backgroud-color;
+          background-color: $aside-hover-backgroud-color;
+          color: $aside-hover-color;
         }
       }
       .nav-sub {

@@ -30,12 +30,26 @@
   overflow-y: auto;
 }
 
-.is-full-content {
-  min-height: calc(100vh - 6rem);
+.is-fixed-full-content {
+  min-height: calc(100vh - 13rem);
+  max-height: calc(100vh - 13rem);
   display: flex;
   flex-direction: row;
   justify-content: stretch;
   /*margin-top: 0.5rem;*/
+  padding: 0 .75rem 0 .75rem;
+}
+.is-fixed-full-content .column {
+  overflow-y: auto;
+}
+
+.is-full-content {
+  min-height: calc(100vh - 15rem);
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  /*margin-top: 0.5rem;*/
+  padding: 0 .75rem 0 .75rem;
 }
 .is-full-content .column {
   overflow-y: auto;
@@ -52,9 +66,9 @@
   //background-color: #e1e1e1;
   width: 100%;
   margin-left: 200px;
-  border-width:0 0 0 .05rem;
-  border-style:solid;
-  border-color: $primary;
+  //border-width:0 0 0 .05rem;
+  //border-style:solid;
+  //border-color: $primary;
 }
 
 .is-main-content-folded {
@@ -62,14 +76,21 @@
 }
 
 .page-content {
-  padding-left: .75rem;
+  padding: 0 .75rem 0 .75rem;
 }
 
 .level.page-content-top {
   margin-bottom: 0.5rem;
 }
 
-.login-bg {
-  background-color: #F6FAFB;
-  height: 100vh;
+.page-content-part {
+  border-width: 0 .05rem 0 0;
+  border-color: $grey-50;
+  border-style: solid !important;
+  margin-right: 0.5rem;
 }
+
+.page-content-part.first {
+  border-width: 0 .05rem 0 0.05rem;
+}
+
