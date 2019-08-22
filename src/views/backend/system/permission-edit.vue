@@ -99,7 +99,7 @@
     methods: {
       save () {
         const vm = this
-        vm.$updateModal(updateMenu, this.$parent.$props.props.sysPermissionId, resp => {
+        vm.$updateModel(updateMenu, this.$parent.$props.props.sysPermissionId, resp => {
           vm.$parent.succeed('菜单保存成功', resp)
         }, err => {
           vm.$parent.fail('菜单保存失败', err)

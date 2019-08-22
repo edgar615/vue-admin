@@ -6,7 +6,7 @@
       <div data-flex="" class="hide-scroll">
         <nav class="scroll nav-stacked nav-color">
           <ul class="nav">
-            <li v-for="system in systems" :class="activeSystem == system.subsystemId ? 'active' : '' ">
+            <li :key="system.subsystemId" v-for="system in systems" :class="activeSystem == system.subsystemId ? 'active' : '' ">
               <router-link :to="{path: system.path}">
                 <span class="nav-caret" v-show="system.permissions && system.permissions.length > 0">
                   <b-icon icon="chevron-down"></b-icon>

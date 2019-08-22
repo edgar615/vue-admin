@@ -7,6 +7,7 @@ const getters = {
   screenWidth: state => state.appScreen.screenWidth,
   activeSystem: state => state.permission.activeSystem,
   activeLevel1: state => state.permission.activeLevel1Menu,
+  activeLevel2: state => state.permission.activeLevel2Menu,
   pageTitle: state => state.permission.pageTitle,
   systems: state => state.permission.systems,
   dictList: (state) => (dictName, dictValue) => {

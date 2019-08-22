@@ -15,6 +15,7 @@ import '@/utils/validate'
 import '@/components/field'
 import '@/components/dict'
 import '@/components/page-title'
+import '@/components/page-nav'
 import '@/components/empty-table'
 import '@/components/form-modal'
 

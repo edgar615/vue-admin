@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="page-content">
     <nav class="level page-content-top">
       <!-- Left side -->
       <div class="level-left">
@@ -26,51 +26,49 @@
       </div>
     </nav>
 
-    <div class="card">
-      <div class="card-content">
-        <b-table
-          striped
-          hoverable
-          narrowed
-          mobile-cards
+    <b-table
+      striped
+      bordered
+      hoverable
+      narrowed
+      mobile-cards
 
-          :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
-          :loading="loading"
-          paginated
-          backend-pagination
-          :total="pagination.totalRecords"
-          :per-page="pagination.pageSize"
-          :current-page="pagination.page"
-          @page-change="onPageChange"
-        >
+      :data="(pagination.records && pagination.records.length == 0) ? [] : pagination.records"
+      :loading="loading"
+      paginated
+      backend-pagination
+      :total="pagination.totalRecords"
+      :per-page="pagination.pageSize"
+      :current-page="pagination.page"
+      @page-change="onPageChange"
+      pagination-size="is-small"
+    >
 
-          <template slot-scope="props">
+      <template slot-scope="props">
 
-            <b-table-column field="sorted" label="请求方法">
-              {{ props.row.httpMethod }}
-            </b-table-column>
+        <b-table-column field="sorted" label="请求方法">
+          {{ props.row.httpMethod }}
+        </b-table-column>
 
-            <b-table-column field="httpUrl" label="接口地址">
-              {{ props.row.httpUrl }}
-            </b-table-column>
+        <b-table-column field="httpUrl" label="接口地址">
+          {{ props.row.httpUrl }}
+        </b-table-column>
 
-            <b-table-column field="permission" label="权限值">
-              {{ props.row.permission }}
-            </b-table-column>
+        <b-table-column field="permission" label="权限值">
+          {{ props.row.permission }}
+        </b-table-column>
 
 
-            <b-table-column label="操作">
-              <a @click="editModal(props.row.sysResourceId)">
-                修改
-              </a>
-            </b-table-column>
-          </template>
-          <template slot="empty">
-            <EmptyTable></EmptyTable>
-          </template>
-        </b-table>
-      </div>
-    </div>
+        <b-table-column label="操作">
+          <a @click="editModal(props.row.sysResourceId)">
+            修改
+          </a>
+        </b-table-column>
+      </template>
+      <template slot="empty">
+        <EmptyTable></EmptyTable>
+      </template>
+    </b-table>
 
 
   </section>

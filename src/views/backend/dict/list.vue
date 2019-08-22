@@ -1,14 +1,5 @@
 <template>
-  <section>
-    <ul class="page-nav page-nav-material">
-      <li>
-        <a class="page-nav-link active" href="#"><b-icon icon="magnify" size="is-small"></b-icon>字典列表</a>
-      </li>
-      <li>
-        <a class="page-nav-link" href="#" @click="addModal()"><b-icon icon="plus-circle-outline" size="is-small"></b-icon>新增字典</a>
-      </li>
-    </ul>
-    <div class="page-content">
+  <section class="page-content">
       <nav class="level page-content-top">
         <!-- Left side -->
         <div class="level-left">
@@ -84,7 +75,6 @@
           <EmptyTable></EmptyTable>
         </template>
       </b-table>
-    </div>
   </section>
 </template>
 

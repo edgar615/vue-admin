@@ -30,12 +30,23 @@
           <ul class="list-unstyled ml-2 mr-2">
             <li class="mb-2" :key="system.subsystemId" v-for="system in systems" @click="loadMenus(system.subsystemId)">
               <div class="card p-3" style="height: 130px;">
-                <div class="is-pulled-left mr-2">
-                  <div class="v-center">
-                    <b-icon :icon="system.icon" class="has-text-primary"></b-icon>
-                  </div>
-                </div>
                 <div>
+                  <div class="ml-2">
+                    <p>
+                      <b-icon :icon="system.icon" class="has-text-primary"></b-icon> <strong>{{system.name}}</strong>
+                    </p>
+                    <p>
+                      <small>{{system.sysIdentifier}}</small>
+                    </p>
+                    <p>
+                      <small class="has-text-primary">排序: {{system.sorted}}</small>
+                    </p>
+                    <div class="tags">
+                      <span class="tag is-primary">{{ $dictText('systemType',system.type) }}</span>
+                      <span class="tag is-success">{{ $customBoolText(system.internal, '仅维护人员访问', '外部用户') }}</span>
+                    </div>
+                  </div>
+
                   <div class="is-pulled-right">
                     <div class="v-center" style="right: 1rem;">
                       <div class="mb-2">
@@ -48,21 +59,6 @@
                           <b-icon icon="delete"></b-icon>
                         </a>
                       </div>
-                    </div>
-                  </div>
-                  <div class="v-h-center" style="left: 35%; position: absolute">
-                    <p>
-                      <strong>{{system.name}}</strong>
-                    </p>
-                    <p>
-                      <small>{{system.sysIdentifier}}</small>
-                    </p>
-                    <p>
-                      <small class="has-text-primary">排序: {{system.sorted}}</small>
-                    </p>
-                    <div class="tags">
-                      <span class="tag is-primary">{{ $dictText('systemType',system.type) }}</span>
-                      <span class="tag is-success">{{ $customBoolText(system.internal, '仅维护人员访问', '外部用户') }}</span>
                     </div>
                   </div>
                 </div>

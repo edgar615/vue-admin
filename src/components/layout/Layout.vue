@@ -6,6 +6,7 @@
         <Aside></Aside>
       <div class="is-main-content is-paddingless" :class="showFolderAside ? 'is-main-content-folded' : ''">
         <PageTitle></PageTitle>
+        <PageNav></PageNav>
         <router-view></router-view>
       </div>
     </div>
@@ -14,6 +15,7 @@
 <script>
   import Navbar from '@/components/layout/navbar/navbar.vue'
   import Aside from '@/components/layout/aside/aside.vue'
+  import PageNav from '@/components/page-nav/PageNav.vue'
 
   export default {
     data () {
@@ -23,9 +25,35 @@
       showFolderAside() {
         return this.$store.getters.showFolderAside
       },
+      activeLevel2 () {
+        return this.$store.getters.activeLevel2
+      },
+      currentLevel1Menu () {
+        // 以前直接使用 $router.options.routes显示菜单，与后端结合之后，直接通过菜单计算
+        const menu = this.$store.getters.currentLevel1Menu()
+        if (menu) {
+          return menu
+        } else {
+          return {
+            children: []
+          }
+        }
+      },
+      showLevel2Menu () {
+        var showLevel2 = false
+        const menu = this.$store.getters.currentLevel1Menu()
+        if (menu && menu.children) {
+          menu.children.forEach(function (item) {
+            if (!item.hidden) {
+              showLevel2 = true
+            }
+          })
+        }
+        return showLevel2
+      }
     },
     components: {
-      Navbar, Aside
+      Navbar, Aside, PageNav
     }
   }
 </script>

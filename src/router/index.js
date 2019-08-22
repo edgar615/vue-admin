@@ -84,15 +84,20 @@ router.afterEach((to, from) => {
   }
   if (!to.meta.menuId) {
     store.commit('ACTIVE_LEVEL1_MENU', ['', ''])
+    store.commit('ACTIVE_LEVEL2_MENU', ['', '', ''])
     return
   }
   if (to.meta.level === 1) {
     store.commit('ACTIVE_LEVEL1_MENU', [to.meta.subsystemId, to.meta.menuId])
+    store.commit('ACTIVE_LEVEL2_MENU',
+        [to.meta.subsystemId, to.meta.menuId, ''])
   }
   if (to.meta.level === 2) {
     if (!to.meta.hidden || store.getters.activeLevel1 !== to.meta.parentId) {
       store.commit('ACTIVE_LEVEL1_MENU',
         [to.meta.subsystemId, to.meta.parentId])
+      store.commit('ACTIVE_LEVEL2_MENU',
+          [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
     }
   }
   let title = to.meta.title
