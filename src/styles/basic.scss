@@ -18,11 +18,42 @@ body{
   overflow:hidden!important
 }
 
+.login-text {
+  color: #606676;
+}
 
 .login-bg {
   background-color: #F6FAFB;
   height: 100vh;
 }
+
+.login-card {
+  background-color: #fff;
+  padding: 1rem 1rem 1rem 1rem;
+  margin-top: 13rem;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+}
+
+
+.login-bg-2 {
+  background-color: #274da8;
+  height: 100vh;
+}
+
+.interactive-bg {
+  height: 100vh;
+  background-color: #2979ff;
+  /*-webkit-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
+  /*-moz-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
+  /*box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
+  padding: 0px;
+}
+@media (max-width: 769px) {
+  .interactive-bg{
+    display: none
+  }
+}
+
 
 list-unstyled {
   padding-left: 0;

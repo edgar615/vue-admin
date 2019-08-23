@@ -6,7 +6,7 @@
 import ErrorPage from '@/views/page/page-500.vue'
 import TokenPage from '@/views/page/page-401.vue'
 import AuthPage from '@/views/page/page-403.vue'
-import Login from '@/views/login/login.vue'
+import Login from '@/views/login/login2.vue'
 import Landing from '@/views/page/landing.vue'
 import store from "../store";
 
