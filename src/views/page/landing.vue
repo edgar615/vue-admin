@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-info is-fullheight">
+  <section class="hero is-primary is-fullheight">
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="column is-6 is-offset-3">
@@ -15,7 +15,7 @@
                 <input class="input" type="text" placeholder="Enter your email">
               </p>
               <p class="control">
-                <a class="button is-info">
+                <a class="button is-primary">
                   Notify Me
                 </a>
               </p>

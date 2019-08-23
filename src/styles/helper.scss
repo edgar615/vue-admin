@@ -6,8 +6,15 @@
   transform: translateY(-50%);
 }
 
+.h-center {
+  position: relative;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
 .v-h-center {
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
@@ -512,6 +519,22 @@ a.text-muted:focus, a.text-muted:hover {
 
 .text-shadow {
   text-shadow: 0 1px 0 rgba(0, 0, 0, .1)
+}
+
+.shadow {
+  box-shadow: 0 0 6px rgba(0, 0, 0, .1) !important
+}
+
+.shadow1 {
+  box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .26) !important
+}
+
+.shadow2 {
+  box-shadow: 0 0 25px 0 #e5f0fa !important
+}
+
+.no-shadow {
+  box-shadow: none !important
 }
 
 

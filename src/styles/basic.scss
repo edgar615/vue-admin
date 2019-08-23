@@ -1,6 +1,7 @@
 body{
   height: auto;
   font-family: 'Open Sans', sans-serif;
+  background-color: #ecf0f5;
 }
 
 /*a {
@@ -42,7 +43,7 @@ body{
 
 .interactive-bg {
   height: 100vh;
-  background-color: #2979ff;
+  background-color: #274da8;
   /*-webkit-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
   /*-moz-box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
   /*box-shadow: inset 24px 4px 64px -24px rgba(71,71,71,1);*/
@@ -71,4 +72,8 @@ list-unstyled {
 
 .list-inline-item:not(:last-child) {
   margin-right: .5rem
+}
+
+.fade {
+  transition: opacity .15s linear
 }

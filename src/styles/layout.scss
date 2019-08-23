@@ -57,7 +57,7 @@
 
 .main-container{
   /*padding-top: 0.75rem;*/
-  margin-top: 62px;
+  margin-top: 52px;
   padding-left: 0;
 }
 
@@ -90,9 +90,25 @@
   border-color: $grey-50;
   border-style: solid !important;
   margin-right: 0.5rem;
+  overflow-x: hidden;
 }
 
 .page-content-part.first {
   border-width: 0 .05rem 0 0.05rem;
 }
 
+.has-sidebar-left {
+  margin-left: 200px;
+  transition: transform .5s ease-in-out, margin .5s ease-in-out
+}
+
+.has-sidebar-left-folded {
+  margin-left: 72px;
+  transition: transform .5s ease-in-out, margin .5s ease-in-out
+}
+
+//@media (max-width: 1031px) {
+//  .has-sidebar-left {
+//    margin-left: 0
+//  }
+//}

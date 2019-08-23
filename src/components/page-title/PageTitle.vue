@@ -1,6 +1,6 @@
 <template>
-      <div class="is-child notification is-blue-grey-50 no-radius is-marginless">
-        <p class="title is-size-6 has-text-primary">{{this.$store.getters.pageTitle}}</p>
+      <div class="is-child notification is-primary no-radius is-marginless pl-3">
+        <p class="title is-size-6 has-text-white">{{this.$store.getters.pageTitle}}</p>
       </div>
 </template>
 <script>

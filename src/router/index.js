@@ -8,6 +8,7 @@ import TokenPage from '@/views/page/page-401.vue'
 import AuthPage from '@/views/page/page-403.vue'
 import Login from '@/views/login/login2.vue'
 import Landing from '@/views/page/landing.vue'
+import Home from '@/views/home/home.vue'
 import store from "../store";
 
 // 异步加载的模块
@@ -20,32 +21,41 @@ var routes = [{
   meta: {
     name: '登录'
   }
-}, {
-  path: '/landing',
-  component: Landing,
-  meta: {
-    name: 'landing',
-    hidden: true
-  }
-}, {
-  path: '/500',
-  component: ErrorPage,
-  meta: {
-    name: '系统错误'
-  }
-}, {
-  path: '/401',
-  component: TokenPage,
-  meta: {
-    name: '无效Token'
-  }
-}, {
-  path: '/403',
-  component: AuthPage,
-  meta: {
-    name: '权限不足'
-  }
-}]
+},
+  {
+    path: '/home',
+    component: Home,
+    meta: {
+      name: 'home',
+      hidden: true
+    }
+  },
+  {
+    path: '/landing',
+    component: Landing,
+    meta: {
+      name: 'landing',
+      hidden: true
+    }
+  }, {
+    path: '/500',
+    component: ErrorPage,
+    meta: {
+      name: '系统错误'
+    }
+  }, {
+    path: '/401',
+    component: TokenPage,
+    meta: {
+      name: '无效Token'
+    }
+  }, {
+    path: '/403',
+    component: AuthPage,
+    meta: {
+      name: '权限不足'
+    }
+  }]
 
 // 在最后添加处理 404 路由，由于是动态加载，所以要改在动态加载之后添加
 /*
@@ -95,7 +105,7 @@ router.afterEach((to, from) => {
   if (to.meta.level === 2) {
     if (!to.meta.hidden || store.getters.activeLevel1 !== to.meta.parentId) {
       store.commit('ACTIVE_LEVEL1_MENU',
-        [to.meta.subsystemId, to.meta.parentId])
+          [to.meta.subsystemId, to.meta.parentId])
       store.commit('ACTIVE_LEVEL2_MENU',
           [to.meta.subsystemId, to.meta.parentId, to.meta.menuId])
     }

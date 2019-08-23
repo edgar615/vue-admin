@@ -4,7 +4,7 @@
       <li :key="menu.sysPermissionId" v-for="menu in currentLevel1Menu.children" v-if="!menu.hidden">
         <router-link class="page-nav-link" :class="activeLevel2 == menu.sysPermissionId ? 'active' : '' "
                      :to="{path: currentLevel1Menu.path + '/' + menu.path}">
-          <b-icon :icon="menu.icon" size="is-small"></b-icon>{{ menu.name }}
+          &nbsp;·&nbsp;{{ menu.name }}
         </router-link>
       </li>
     </ul>

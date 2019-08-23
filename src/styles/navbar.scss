@@ -1,5 +1,5 @@
-$navbar-color: $primary;
-$navbar-backgroud-color: #ffffff;
+$navbar-color: #fff;
+$navbar-backgroud-color: $primary;
 
 .navbar{
   background: $navbar-backgroud-color;
@@ -16,7 +16,6 @@ $navbar-backgroud-color: #ffffff;
       border-bottom-color: $navbar-color;
       border-bottom-style: solid;
       border-bottom-width: 3px;
-      color: $navbar-color;
       padding-bottom: calc(.5rem - 3px);
     }
     &:hover {
@@ -35,7 +34,7 @@ $navbar-backgroud-color: #ffffff;
   }
 
   &-brand {
-    width: 200px;
+    width: 5px;
   }
 
   &-brand-logo{

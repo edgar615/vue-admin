@@ -4,7 +4,8 @@
 //https://bulma.io/documentation/overview/variables/
 @import "./colors";
 
-$primary: #2979ff;
+//$primary: #2979ff;
+$primary: #274da8;
 $pagination-current-background-color: $primary;
 $pagination-current-border-color: $primary;
 
@@ -24,20 +25,6 @@ $colors: map-merge($colors,$baseColors);
   .bg-#{$name} {
     background-color: nth($pair, 1);
     color: nth($pair, 2);
-  }
-  .is-sidebar-menu {
-    padding: 2rem;
-    //border-top: 1px solid nth($pair, 2);
-    box-sizing: border-box;
-    &.is-#{$name} {
-      background-color: nth($pair, 1);
-      color: nth($pair, 2);
-      & li a {
-        font-size: 14px;
-        //font-size: $size-7;
-        color: nth($pair, 2);
-      }
-    }
   }
 }
 
@@ -64,3 +51,4 @@ $colors: map-merge($colors,$baseColors);
 @import "./list-timeline";
 @import "./tabs";
 @import "./page-nav";
+@import "./widget";

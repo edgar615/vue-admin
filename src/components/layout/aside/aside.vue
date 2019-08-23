@@ -1,35 +1,42 @@
 <template>
   <!-- BEGIN: Aside Menu -->
-  <div class="app-aside fade nav-dropdown aside-bg" :class="showFolderAside ? 'folded' : ''" style="display: none;"
+  <div class="app-aside fade nav-dropdown aside-bg" :class="showFolderAside ? 'folded' : ''"
+       style="display: none;"
        aria-hidden="true">
     <div class="navside">
+      <div class="ml-1" v-if="showFolderAside">
+        <img src="https://via.placeholder.com/48" style="height: 4rem">
+      </div>
+      <div class="ml-3" v-else>
+        <img src="../../../assets/logo.png" style="height: 4rem">
+      </div>
+      <div class="user-panel p-3 bg-blue-grey-50 mb-2">
+        <div class="image is-48x48 has-text-centered h-center">
+          <img class="is-rounded" src="https://via.placeholder.com/48">
+        </div>
+      </div>
       <div data-flex="" class="hide-scroll">
         <nav class="scroll nav-stacked nav-color">
           <ul class="nav">
-            <li :key="system.subsystemId" v-for="system in systems" :class="activeSystem == system.subsystemId ? 'active' : '' ">
+            <li :key="system.subsystemId" v-for="system in systems"
+                :class="activeSystem == system.subsystemId ? 'active' : '' ">
               <router-link :to="{path: system.path}">
-                <span class="nav-caret" v-show="system.permissions && system.permissions.length > 0">
+                <span class="nav-caret"
+                      v-show="system.permissions && system.permissions.length > 0">
                   <b-icon icon="chevron-down"></b-icon>
                 </span>
                 <b-icon :icon="system.icon" class="nav-icon no-fade"></b-icon>
                 <span class="nav-text">{{system.name}}</span>
               </router-link>
               <ul :class="calSubMenuClass(system)">
-                <li v-for="level1 in system.permissions" :key="level1.sysPermissionId" :class="activeLevel1 == level1.sysPermissionId ? 'active' : '' ">
-                  <router-link  :to="{path: level1.path}" v-show="level1.type == 1 && !level1.hidden">
+                <li v-for="level1 in system.permissions" :key="level1.sysPermissionId"
+                    :class="activeLevel1 == level1.sysPermissionId ? 'active' : '' ">
+                  <router-link :to="{path: level1.path}"
+                               v-show="level1.type == 1 && !level1.hidden">
                     <span class="nav-text">{{level1.name}}</span>
                   </router-link>
                 </li>
               </ul>
-            </li>
-          </ul>
-          <ul class="nav-bottom is-medium">
-            <li>
-              <a href="#">
-                <figure class="image is-48x48">
-                  <img class="is-rounded" src="https://via.placeholder.com/48">
-                </figure>
-              </a>
             </li>
           </ul>
         </nav>
@@ -86,7 +93,7 @@
         var active = this.$store.getters.activeSystem
         return active
       },
-      activeLevel1 () {
+      activeLevel1() {
         return this.$store.getters.activeLevel1
       },
       level1List() {

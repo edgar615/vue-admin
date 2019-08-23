@@ -4,10 +4,31 @@
     <!-- Main container -->
     <div class="is-fullheight main-container">
         <Aside></Aside>
-      <div class="is-main-content is-paddingless" :class="showFolderAside ? 'is-main-content-folded' : ''">
+      <div class="is-main-content is-paddingless" :class="showFolderAside ? 'has-sidebar-left-folded' : 'has-sidebar-left'">
         <PageTitle></PageTitle>
         <PageNav v-show="showLevel2Menu"></PageNav>
         <router-view class="pr-3 pl-3"></router-view>
+        <ul class="nav-sticky" style="margin-top: 30px;">
+          <li class="nav-sticky-item">
+            <b-tooltip label="购物车"
+                       position="is-left"
+                       animated>
+              <a href="#">
+                <b-icon icon="cart-outline"></b-icon>
+              </a>
+            </b-tooltip>
+
+          </li>
+          <li class="nav-sticky-item">
+            <b-tooltip label="帮助文档"
+                       position="is-left"
+                       animated>
+              <a href="#">
+                <b-icon icon="help-circle-outline"></b-icon>
+              </a>
+            </b-tooltip>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
