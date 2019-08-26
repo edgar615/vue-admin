@@ -5,7 +5,7 @@
        aria-hidden="true">
     <div class="navside">
       <div class="ml-1" v-if="showFolderAside">
-        <img src="https://via.placeholder.com/48" style="height: 4rem">
+        <img src="../../../assets/logo2.png" style="height: 4rem">
       </div>
       <div class="ml-3" v-else>
         <img src="../../../assets/logo.png" style="height: 4rem">

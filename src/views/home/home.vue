@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="m-5">
     <div class="columns is-multiline">
       <div class="column">
         <div class="notification is-primary">
@@ -106,43 +106,57 @@
         </div>
       </div>
     </div>
+
     <div class="columns is-multiline">
-      <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <div class="imperialimg-one">
-            <img src="images/carticon.png" alt="">
+      <div class="column is-3 pl-0 pr-0">
+
+        <div class="widget widget-counter">
+          <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
+          <div class="widget-label">
+            <span>Server uptime</span>
           </div>
-          <article class="tile is-child box">
-            <p class="title">Total Sales</p>
-            <p class="subtitle">$245,452</p>
-          </article>
+          <div class="widget-label">
+            <strong class="num">0.0%</strong>
+          </div>
         </div>
-        <div class="tile is-parent">
-          <div class="imperialimg-two">
-            <img src="images/writeicon.png" alt="">
+
+      </div>
+      <div class="column is-3 pl-0 pr-0">
+
+        <div class="widget widget-counter is-info">
+          <b-icon icon="star" class="widget-icon"></b-icon>
+          <div class="widget-label">
+            <span>Users Total</span>
           </div>
-          <article class="tile is-child box">
-            <p class="title">New Quote</p>
-            <p class="subtitle">245,452</p>
-          </article>
+          <div class="widget-label">
+            <strong class="num">1k</strong>
+          </div>
         </div>
-        <div class="tile is-parent">
-          <div class="imperialimg-three">
-            <img src="images/baricon.png" alt="">
+
+      </div>
+      <div class="column is-3 pl-0 pr-0">
+
+        <div class="widget widget-counter is-success">
+          <b-icon icon="star" class="widget-icon"></b-icon>
+          <div class="widget-label">
+            <span>New Daily Photos</span>
           </div>
-          <article class="tile is-child box">
-            <p class="title">Orders</p>
-            <p class="subtitle">245,452</p>
-          </article>
+          <div class="widget-label">
+            <strong class="num">1000</strong>
+          </div>
         </div>
-        <div class="tile is-parent">
-          <div class="imperialimg-four">
-            <img src="images/boxicon.png" alt="">
+
+      </div>
+      <div class="column is-3 pl-0 pr-0">
+
+        <div class="widget widget-counter is-danger">
+          <b-icon icon="star" class="widget-icon"></b-icon>
+          <div class="widget-label">
+            <span>Exchange Commission</span>
           </div>
-          <article class="tile is-child box">
-            <p class="title">Products</p>
-            <p class="subtitle">245,452</p>
-          </article>
+          <div class="widget-label">
+            <strong class="num">0%</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -152,7 +166,7 @@
       <div class="column is-3">
 
         <div class="widget widget-counter">
-          <b-icon icon="star" class="widget-icon"></b-icon>
+          <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
           <div class="widget-label">
             <strong class="num">0.0%</strong>
             <span>Server uptime</span>
@@ -187,7 +201,7 @@
         <div class="widget widget-counter is-danger">
           <b-icon icon="star" class="widget-icon"></b-icon>
           <div class="widget-label">
-            <strong class="num">-,0%</strong>
+            <strong class="num">0%</strong>
             <span>Exchange Commission</span>
           </div>
         </div>
@@ -199,10 +213,10 @@
     <div class="columns">
       <div class="column is-3">
 
-        <div class="widget widget-counter-block">
+        <div class="widget">
           <div class="widget-upper">
 
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <strong class="num">0.0%</strong>
               <span>Server uptime</span>
@@ -211,8 +225,7 @@
           </div>
           <div class="widget-lower">
             <div class="border"></div>
-
-            <span>Result</span>
+            <span class="mb-1">Result</span>
             <strong>78% Increase</strong>
           </div>
         </div>
@@ -220,10 +233,10 @@
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-counter-block">
+        <div class="widget is-primary">
           <div class="widget-upper">
 
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <strong class="num">0</strong>
               <span>Photos Taken</span>
@@ -233,7 +246,7 @@
           <div class="widget-lower">
             <div class="border"></div>
 
-            <span>Increase</span>
+            <span class="mb-1">Increase</span>
             <strong>512 more photos</strong>
           </div>
         </div>
@@ -241,10 +254,10 @@
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-counter-block">
+        <div class="widget is-dark">
           <div class="widget-upper">
 
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <strong class="num">0k</strong>
               <span>Daily Visits</span>
@@ -254,7 +267,7 @@
           <div class="widget-lower">
             <div class="border"></div>
 
-            <span>Bounce Rate</span>
+            <span class="mb-1">Bounce Rate</span>
             <strong>51.55%</strong>
           </div>
         </div>
@@ -262,10 +275,10 @@
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-counter-block">
+        <div class="widget is-warning">
           <div class="widget-upper">
 
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <strong class="num">24/7</strong>
               <span>Live Support</span>
@@ -275,7 +288,7 @@
           <div class="widget-lower">
             <div class="border"></div>
 
-            <span>Tickets Opened</span>
+            <span class="mb-1">Tickets Opened</span>
             <strong>0</strong>
           </div>
         </div>
@@ -283,188 +296,19 @@
       </div>
     </div>
 
-    <!--progress-counter-->
-    <div class="columns">
-      <div class="column is-3">
-
-        <div class="widget widget-progress-counter widget-progress-counter-pink">
-
-          <div class="widget-background">
-            <i class="linecons-heart"></i>
-          </div>
-
-          <div class="widget-upper">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-label">
-              <span>likes</span>
-              <strong class="num">0</strong>
-            </div>
-          </div>
-
-          <div class="widget-progress">
-            <span class="widget-progress-fill"></span>
-          </div>
-
-          <div class="widget-lower">
-            <span>Likes p/ Month</span>
-            <strong>41% more likes</strong>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-progress-counter widget-progress-counter-turquoise">
-
-          <div class="widget-background">
-            <i class="linecons-paper-plane"></i>
-          </div>
-
-          <div class="widget-upper">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-label">
-              <span>chat lines</span>
-              <strong class="num">0</strong>
-            </div>
-          </div>
-
-          <div class="widget-progress">
-            <span class="widget-progress-fill"></span>
-          </div>
-
-          <div class="widget-lower">
-            <span>Chat lines p/ Month</span>
-            <strong>82% more communication</strong>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-progress-counter widget-progress-counter-info">
-
-          <div class="widget-background">
-            <i class="linecons-music"></i>
-          </div>
-
-          <div class="widget-upper">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-label">
-              <span>audio views</span>
-              <strong class="num">0</strong>
-            </div>
-          </div>
-
-          <div class="widget-progress">
-            <span class="widget-progress-fill"></span>
-          </div>
-
-          <div class="widget-lower">
-            <span>Audio views p/ Month</span>
-            <strong>40% more coverage</strong>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-progress-counter widget-progress-counter-red">
-
-          <div class="widget-background">
-            <i class="linecons-calendar"></i>
-          </div>
-
-          <div class="widget-upper">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-label">
-              <span>appointments</span>
-              <strong class="num">0</strong>
-            </div>
-          </div>
-
-          <div class="widget-progress">
-            <span class="widget-progress-fill"></span>
-          </div>
-
-          <div class="widget-lower">
-            <span>Appointments p/ Month</span>
-            <strong>-32% less this week</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Verical Counter -->
-    <div class="columns">
-      <div class="column is-3">
-
-        <div class="widget widget-vertical-counter widget-vertical-counter-yellow">
-          <b-icon icon="star" class="widget-icon"></b-icon>
-
-          <div class="widget-label">
-            <strong class="num">0,0%</strong>
-            <span>Video Views</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-vertical-counter widget-vertical-counter-danger">
-          <b-icon icon="star" class="widget-icon"></b-icon>
-
-          <div class="widget-label">
-            <strong class="num">0,0%</strong>
-            <span>Document Downloads</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-vertical-counter widget-vertical-counter-white">
-          <b-icon icon="star" class="widget-icon"></b-icon>
-
-          <div class="widget-label">
-            <strong class="num">0</strong>
-            <span>New Topics Published</span>
-          </div>
-        </div>
-
-      </div>
-      <div class="column is-3">
-
-        <div class="widget widget-vertical-counter widget-vertical-counter-primary">
-          <b-icon icon="star" class="widget-icon"></b-icon>
-
-          <div class="widget-label">
-            <strong class="num">0</strong>
-            <span>Traffic Delivered</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
     <!-- Todo List -->
     <div class="columns">
       <div class="column is-3">
 
-        <div class="widget widget-todo-list">
+        <div class="widget">
           <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <span>to do list</span>
               <strong>Tasks</strong>
             </div>
           </div>
           <div class="widget-body">
-
             <ul class="list-unstyled">
               <li class="done">
                 <label>
@@ -499,286 +343,149 @@
             </ul>
 
           </div>
-          <div class="widget-footer">
-            <input type="text" class="form-control" placeholder="Add task..." />
-          </div>
         </div>
 
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-todo-list widget-todo-list-turquoise">
+        <div class="widget is-primary">
           <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <span>to do list</span>
               <strong>Tasks</strong>
             </div>
           </div>
           <div class="widget-body">
-
             <ul class="list-unstyled">
               <li class="done">
                 <label>
-                  <input type="checkbox" class="cbr cbr-turquoise" checked />
+                  <input type="checkbox" class="cbr" checked />
                   <span>Web Design</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-turquoise" />
+                  <input type="checkbox" class="cbr" />
                   <span>Slicing</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-turquoise" />
+                  <input type="checkbox" class="cbr" />
                   <span>WooCommerce</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-turquoise" />
+                  <input type="checkbox" class="cbr" />
                   <span>Programming</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-turquoise" />
+                  <input type="checkbox" class="cbr" />
                   <span>SEO Optimize</span>
                 </label>
               </li>
             </ul>
 
-          </div>
-          <div class="widget-footer">
-            <input type="text" class="form-control" placeholder="Add task..." />
           </div>
         </div>
 
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-todo-list widget-todo-list-pink">
+        <div class="widget is-info">
           <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <span>to do list</span>
               <strong>Tasks</strong>
             </div>
           </div>
           <div class="widget-body">
-
             <ul class="list-unstyled">
               <li class="done">
                 <label>
-                  <input type="checkbox" class="cbr cbr-pink" checked />
+                  <input type="checkbox" class="cbr" checked />
                   <span>Web Design</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-pink" />
+                  <input type="checkbox" class="cbr" />
                   <span>Slicing</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-pink" />
+                  <input type="checkbox" class="cbr" />
                   <span>WooCommerce</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-pink" />
+                  <input type="checkbox" class="cbr" />
                   <span>Programming</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-pink" />
+                  <input type="checkbox" class="cbr" />
                   <span>SEO Optimize</span>
                 </label>
               </li>
             </ul>
 
-          </div>
-          <div class="widget-footer">
-            <input type="text" class="form-control" placeholder="Add task..." />
           </div>
         </div>
 
       </div>
       <div class="column is-3">
 
-        <div class="widget widget-todo-list widget-todo-list-purple">
+        <div class="widget is-danger">
           <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
+            <b-icon icon="star" class="widget-icon" size="is-medium"></b-icon>
             <div class="widget-label">
               <span>to do list</span>
               <strong>Tasks</strong>
             </div>
           </div>
           <div class="widget-body">
-
             <ul class="list-unstyled">
               <li class="done">
                 <label>
-                  <input type="checkbox" class="cbr cbr-purple" checked />
+                  <input type="checkbox" class="cbr" checked />
                   <span>Web Design</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-purple" />
+                  <input type="checkbox" class="cbr" />
                   <span>Slicing</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-purple" />
+                  <input type="checkbox" class="cbr" />
                   <span>WooCommerce</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-purple" />
+                  <input type="checkbox" class="cbr" />
                   <span>Programming</span>
                 </label>
               </li>
               <li>
                 <label>
-                  <input type="checkbox" class="cbr cbr-purple" />
+                  <input type="checkbox" class="cbr" />
                   <span>SEO Optimize</span>
                 </label>
               </li>
             </ul>
 
-          </div>
-          <div class="widget-footer">
-            <input type="text" class="form-control" placeholder="Add task..." />
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- Status Widget -->
-    <div class="columns">
-      <div class="col-sm-4">
-
-        <div class="widget widget-status-update">
-          <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-nav">
-              <a href="#" class="widget-prev">
-                <i class="fa-angle-left"></i>
-              </a>
-              <a href="#" class="widget-next">
-                <i class="fa-angle-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="widget-body">
-
-            <ul class="list-unstyled">
-              <li class="active">
-                <span class="status-date">21 May</span>
-                <p>Build your own Fake Twitter Post now! Check it out @ simitator.com #laborator #envato</p>
-              </li>
-              <li>
-                <span class="status-date">18 April</span>
-                <p> Micro-finance clean water sustainable future Oxfam protect. Enabler meaningful work change-makers.</p>
-              </li>
-              <li>
-                <span class="status-date">08 March</span>
-                <p>Fight against malnutrition Aga Khan Bloomberg, economic independence inspire breakthroughs benefit civil.</p>
-              </li>
-            </ul>
-
-          </div>
-          <div class="widget-footer">
-            <a href="#">
-              <i class="fa-retweet"></i>
-              Retweet
-            </a>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-sm-4">
-
-        <div class="widget widget-status-update widget-status-update-facebook">
-          <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-nav">
-            </div>
-          </div>
-          <div class="widget-body">
-
-            <ul class="list-unstyled">
-              <li>
-                <span class="status-date">21 May</span>
-                <p>Build your own Fake Twitter Post now! Check it out @ simitator.com #laborator #envato</p>
-              </li>
-              <li class="active">
-                <span class="status-date">18 April</span>
-                <p> Micro-finance clean water sustainable future Oxfam protect. Enabler meaningful work change-makers.</p>
-              </li>
-              <li>
-                <span class="status-date">08 March</span>
-                <p>Fight against malnutrition Aga Khan Bloomberg, economic independence inspire breakthroughs benefit civil.</p>
-              </li>
-            </ul>
-
-          </div>
-          <div class="widget-footer">
-            <a href="#">
-              <i class="linecons-megaphone"></i>
-              Share This
-            </a>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-sm-4">
-
-        <div class="widget widget-status-update widget-status-update-google-plus">
-          <div class="widget-header">
-            <b-icon icon="star" class="widget-icon"></b-icon>
-            <div class="widget-nav">
-              <a href="#" class="widget-prev">
-                <i class="fa-angle-left"></i>
-              </a>
-              <a href="#" class="widget-next">
-                <i class="fa-angle-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="widget-body">
-
-            <ul class="list-unstyled">
-              <li class="active">
-                <span class="status-date">21 May</span>
-                <p>Build your own Fake Twitter Post now! Check it out @ simitator.com #laborator #envato</p>
-              </li>
-              <li>
-                <span class="status-date">18 April</span>
-                <p> Micro-finance clean water sustainable future Oxfam protect. Enabler meaningful work change-makers.</p>
-              </li>
-              <li>
-                <span class="status-date">08 March</span>
-                <p>Fight against malnutrition Aga Khan Bloomberg, economic independence inspire breakthroughs benefit civil.</p>
-              </li>
-            </ul>
-
-          </div>
-          <div class="widget-footer">
-            <a href="#">
-              <i class="linecons-thumbs-up"></i>
-              +1 this post
-            </a>
           </div>
         </div>
 
