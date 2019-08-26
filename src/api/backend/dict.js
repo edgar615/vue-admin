@@ -4,6 +4,13 @@ export function allDict () {
   return request.get('/dict')
 }
 
+export function dictList (params) {
+  if (!params) {
+    params = {}
+  }
+  return request.get('/dict/list', {params: params})
+}
+
 export function dictPage (params) {
   if (!params) {
     params = {}

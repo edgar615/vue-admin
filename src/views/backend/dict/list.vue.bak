@@ -1,0 +1,152 @@
+<template>
+  <section>
+    <div class="columns mt-1">
+      <div class="column is-one-fifth bg-blue-grey-50 page-content-part is-paddingless">
+        <b-loading :is-full-page="isFullPage" :active.sync="isRoleLoading"></b-loading>
+        <nav class="level bg-white p-2 m-b-1">
+          <!-- Left side -->
+          <div class="level-left">
+            <div class="level-item">
+              <b-input rounded v-model="filters.code" placeholder="字典编码"></b-input>
+            </div>
+            <div class="level-item">
+              <p class="control ml-1">
+                <button class="button" @click="restartLoad">
+                  <b-icon icon="magnify"></b-icon>
+                </button>
+              </p>
+              <p class="control ml-1">
+                <button class="button" @click="addModal">
+                  <b-icon icon="plus"></b-icon>
+                </button>
+              </p>
+            </div>
+          </div>
+        </nav>
+        <ul class="list-unstyled ml-2 mr-2">
+          <li class="mb-2" :key="dict.dictId" v-for="dict in dictList"
+              @click="loadItems(dict.dictId)">
+            <div class="card">
+              <div class="card-content">
+                <div class="ml-2">
+                  <p>
+                    <small class="has-text-primary">字典编码: {{dict.dictCode}}</small>
+                  </p>
+                  <p>
+                    <small>名称: {{dict.name}}</small>
+                  </p>
+                  <p>
+                    <small>默认值: {{dict.name}}</small>
+                  </p>
+                </div>
+              </div>
+              <footer class="card-footer">
+                <p class="card-footer-item">
+                  <button class="button is-outlined is-primary is-small" @click="editModal(dict.dictId)">
+                    <b-icon icon="pencil" size="is-small"></b-icon>
+                    <span>编辑</span>
+                  </button>
+
+                </p>
+                <p class="card-footer-item">
+                  <a class="button is-outlined is-danger is-small"
+                     @click="onDelete(dict.dictId)">
+                    <b-icon icon="delete" size="is-small"></b-icon>
+                    <span>删除</span>
+                  </a>
+                </p>
+              </footer>
+            </div>
+          </li>
+        </ul>
+        <div class="has-text-centered">
+          <a class="has-text-grey" @click="loadAsyncData" v-if="!noData">点击获取更多</a>
+          <a class="has-text-grey" @click="loadAsyncData" v-else>没有更多了</a>
+        </div>
+      </div>
+      <div class="column is-one-fifth bg-blue-grey-50 page-content-part is-paddingless"
+           v-show="addRole">
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+  import {deleteDict, dictList} from '@/api/backend/dict'
+  import AddForm from '@/views/backend/dict/add.vue'
+  import EditForm from '@/views/backend/dict/edit.vue'
+
+  export default {
+    data() {
+      return {
+        filters: {},
+        dictList: [],
+        itemList: [],
+        limit: 10,
+        noData: false,
+        loading: false,
+        deleting: false,
+        dictId: undefined
+      }
+    },
+    methods: {
+      loadAsyncData(params) {
+        const vm = this
+        if (params == undefined) {
+          params = {}
+        }
+        params.limit = vm.limit
+        params.start = vm.dictList.length
+        this.$pageModel(dictList, params).then(data => {
+          vm.dictList = vm.dictList.concat(data)
+          if (data.length < vm.limit) {
+            vm.noData = true
+          }
+        })
+      },
+      restartLoad() {
+        this.dictList = []
+        this.noData = false
+        this.dictId = undefined
+        this.itemList = []
+        this.loadAsyncData()
+      },
+      onDelete(id) {
+        const vm = this
+        this.$deleteModel(deleteDict, id,
+            () => this.loadAsyncData({page: this.pagination.page}))
+      },
+      addModal() {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '新增字典',
+          width: '30rem',
+          component: AddForm,
+          onClose: () => {
+            vm.loadAsyncData()
+          }
+        })
+      },
+      editModal(id) {
+        const vm = this
+        this.$formModal.open({
+          parent: this,
+          name: '修改字典',
+          width: '30rem',
+          component: EditForm,
+          props: {
+            dictId: id
+          },
+          onClose: () => {
+            vm.loadAsyncData()
+          }
+        })
+      }
+    },
+    created() {
+      this.$fillParamFromHistory()
+      this.loadAsyncData()
+    }
+  }
+</script>

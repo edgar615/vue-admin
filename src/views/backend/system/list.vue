@@ -3,7 +3,7 @@
     <ul class="page-nav page-nav-material">
     </ul>
       <div class="columns is-fixed-full-content mt-1">
-        <div class="column is-offset-one-fifth is-one-fifth bg-blue-grey-50 page-content-part is-paddingless">
+        <div class="column is-one-fifth bg-blue-grey-50 page-content-part is-paddingless">
           <div class="notification is-white no-radius is-marginless">
             <p class="title is-size-6 has-text-dark">系统列表</p>
           </div>
