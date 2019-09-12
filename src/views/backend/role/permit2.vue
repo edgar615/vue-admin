@@ -1,39 +1,43 @@
 <template>
   <section>
     <div class="form-modal-card-body">
-      <span>用户管理</span>
-      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-        <thead>
-        <tr>
-          <th width="20%">模块</th>
-          <th>功能</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td width="20%" class="text-middle has-text-right">
-            <label class="b-checkbox checkbox">
-               <span class="control-label mr-2">
-                角色列表
-              </span>
-              <input type="checkbox">
-              <span class="check"></span>
-            </label>
-          </td>
-          <td>
-            <div>ddd</div>
-            <div>ddd</div>
-            <div>ddd</div>
-            <div>ddd</div>
-            <div>ddd</div>
-          </td>
-        </tr>
-        <tr>
-          <td width="20%">用户列表</td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="columns is-full-content">
+        <div class="column">
+          <div class="card box-content1" data-simplebar>
+            <header class="card-header">
+              <div class="card-header-title">
+                菜单权限
+              </div>
+            </header>
+            <div class="card-content">
+              <vue-tree v-model="permitOptions.checkedIds"  :tree-data="permitTreeData" :options="permitOptions"
+                        @handle="menuClick"></vue-tree>
+            </div>
+          </div>
+        </div>
+
+        <div class="column ml-2">
+          <div class="card box-content1" data-simplebar>
+            <header class="card-header">
+              <div class="card-header-title">
+                功能权限
+              </div>
+            </header>
+            <div class="card-content">
+              <b-table
+                  :data="curPermissions"
+                  :checked-rows.sync="checkedPermissions"
+                  checkable>
+                <template slot-scope="props">
+                  <b-table-column field="name" label="权限" width="400">
+                    {{ props.row.name }}
+                  </b-table-column>
+                </template>
+              </b-table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="form-modal-card-footer">
       <button class="button is-primary" @click="save" :disabled='errors.any()'
@@ -55,7 +59,11 @@
 </style>
 <script>
   import VueTree from 'vue-simple-tree/src/components/VueTree.vue'
-  import {getPermitted, getSystem, permit} from '@/api/user/role'
+  import {
+    getSystem,
+    getPermitted,
+    permit
+  } from '@/api/user/role'
 
   export default {
     components: {
@@ -90,7 +98,7 @@
       };
     },
     methods: {
-      contains(array, obj) {
+      contains (array, obj) {
         let i = array.length
         while (i--) {
           if (array[i] === obj) {
@@ -99,16 +107,16 @@
         }
         return false
       },
-      removeArray(array, element) {
+      removeArray (array, element) {
         const index = array.indexOf(element)
         if (index !== -1) {
           array.splice(index, 1)
         }
       },
-      menuClick(item) {
+      menuClick (item) {
         this.curMenu = item.sysPermissionId
       },
-      save() {
+      save () {
         const vm = this
         vm.saving = true
         // 删除掉子系统、根目录
@@ -147,7 +155,7 @@
         vm.firstCreated = 0
         // 因为要获取checkedPermissions，应该在两个请求都完成后计算，没有使用axios.all
         getPermitted(id).then(response2 => {
-          const checkedIds = response2.data.permissions
+         const checkedIds = response2.data.permissions
           getSystem(id).then(response => {
             const treeData = response.data
             // 重新修改树节点，将最后的子菜单放在右边
@@ -159,7 +167,7 @@
                 })
               }
             })
-            vm.permitTreeData = [{
+            vm.permitTreeData = [ {
               id: -1,
               name: '角色列表',
               children: treeData
@@ -189,20 +197,20 @@
       this.loadAsyncData()
     },
     computed: {
-      curPermissions() {
+      curPermissions () {
         const vm = this
         return this.allPermissions.filter(function (item) {
           return item.parentId === vm.curMenu
         })
       },
-      checkedPermitTree() {
+      checkedPermitTree () {
         let temp = [...this.permitOptions.checkedIds]
         return temp
       }
     },
     watch: {
       // 可以使用deep监听详细属性，也可以使用computed做中间层
-      checkedPermitTree(newValue, oldValue) {
+      checkedPermitTree (newValue, oldValue) {
         // 现在没有办法获取check事件，同时又没办法区分首次加载，所以用了个很傻的计数o(╥﹏╥)o
         if (this.firstCreated < 3) {
           this.firstCreated = this.firstCreated + 1

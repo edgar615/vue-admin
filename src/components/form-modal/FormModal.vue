@@ -71,6 +71,10 @@
         type: Boolean,
         default: false
       },
+      autoRefreshParent: {
+        type: Boolean,
+        default: false
+      },
       onClose: {
         type: Function,
         default: () => {}
@@ -118,8 +122,10 @@
           data: data
         }
         this.closeLoading()
-        //主动刷新父窗口
-        this.onClose.apply(null, arguments)
+        if (this.autoRefreshParent) {
+          //主动刷新父窗口
+          this.onClose.apply(null, arguments)
+        }
       },
       fail (message, err) {
         this.result = 2
@@ -152,7 +158,9 @@
        * Emit events, and destroy modal if it's programmatic.
        */
       close () {
-        this.onClose.apply(null, arguments)
+        if (!this.autoRefreshParent) {
+          this.onClose.apply(null, arguments)
+        }
         this.cancel()
       }
     },

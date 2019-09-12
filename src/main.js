@@ -20,6 +20,9 @@ import '@/components/form-modal'
 
 import Notifications from 'vue-notification'
 import VModal from 'vue-js-modal'
+
+Vue.use(LiquorTree)
+
 Vue.use(Notifications)
 Vue.use(VModal, { dialog: true })
 
